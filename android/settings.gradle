@@ -1,0 +1,3 @@
+rootProject.name = 'Stop2TravellerClient'
+
+include ':app'
