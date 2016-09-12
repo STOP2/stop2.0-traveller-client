@@ -3,7 +3,7 @@ node_js:
 - '4'
 script:
 - npm run test
-install:
+before_install:
  - gem install coveralls-lcov
 notifications:
   slack:
