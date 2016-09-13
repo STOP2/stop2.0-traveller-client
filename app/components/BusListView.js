@@ -17,7 +17,7 @@ class BusListView extends Component{
 
 renderRow(renderData) {
   return (
-    <View style= {{flexDirection: 'row', justifyContent:'space-between'}}>
+    <View style= {{flexDirection: 'row', padding:10, justifyContent:'space-between', flex:1}}>
     <Text>{renderData.type}</Text>
     <Text>{renderData.line}</Text>
     <Text>{renderData.destination}</Text>
@@ -28,8 +28,8 @@ renderRow(renderData) {
 
   render() {
     return (
-      <View style= {{padding:20}}>
-        <Text style= {{fontSize:30}}>Busseja pysäkiltä 3029</Text>
+      <View style= {{padding:0}}>
+        <Text style= {{fontSize:30, backgroundColor:'#007AC9', color:'white', padding:10}}>Busseja pysäkiltä 3029</Text>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderRow}
