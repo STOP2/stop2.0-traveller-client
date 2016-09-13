@@ -29,7 +29,7 @@ renderRow(renderData) {
 
 renderHeader() {
   return (
-    <View style= {styles.busrow}>
+    <View style= {styles.busrowheader}>
     <Text style= {{flex:1}}>Tyyppi</Text>
     <Text style= {{flex:1}}>Linja</Text>
     <Text style= {{flex:4}}>Määränpää</Text>
