@@ -1,8 +1,11 @@
 import { combineReducers } from 'redux'
-import test from './test';
+
+import test from './test'
+import routes from './routes'
 
 const reducers = combineReducers({
-  test
+  test,
+  routes
 })
 
 export default reducers
