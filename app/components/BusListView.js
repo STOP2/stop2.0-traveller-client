@@ -6,12 +6,29 @@ import styles from '../styles/stylesheet'
 
 class BusListView extends Component{
   constructor(props) {
-    super(props);
+    super(props)
 
-    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+
+    let departureData = [
+      {
+        vehicleId: 1,
+        type:'bus',
+        line: 55,
+        destination: 'Rautatieasema',
+        leaves: '3 min'
+      },
+      {
+        vehicleId: 2,
+        type: 'bus',
+        line: 506,
+        destination: 'Viikki',
+        leaves:'4 min'
+      }
+    ]
 
     this.state = {
-      dataSource: ds.cloneWithRows([{type:'bus', line:55, destination:'Rautatieasema', leaves:'3 min'},{type:'bus', line:506,destination:'Viikki', leaves:'4 min'}]),
+      dataSource: ds.cloneWithRows(departureData),
     }
 
   }
