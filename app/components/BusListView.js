@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Text, ListView, View, TouchableOpacity } from 'react-native'
+
 import styles from '../styles/stylesheet'
 
 
@@ -16,14 +17,14 @@ class BusListView extends Component{
         type:'bus',
         line: 55,
         destination: 'Rautatieasema',
-        leaves: '3 min'
+        leaves:3
       },
       {
         vehicleId: 2,
         type: 'bus',
         line: 506,
         destination: 'Viikki',
-        leaves:'4 min'
+        leaves:4
       }
     ]
 
@@ -40,7 +41,7 @@ class BusListView extends Component{
           <Text style={{flex:1}}>{renderData.type}</Text>
           <Text style={{flex:1}}>{renderData.line}</Text>
           <Text style={{flex:4, color:'black'}}>{renderData.destination}</Text>
-          <Text style={{flex:1, color:'black'}}>{renderData.leaves}</Text>
+          <Text style={{flex:1, color:'black'}}>{renderData.leaves} min</Text>
         </View>
       </TouchableOpacity>
     )
