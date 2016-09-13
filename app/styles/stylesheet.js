@@ -10,7 +10,7 @@ var styles = StyleSheet.create({
   busrowheader: {
     flexDirection: 'row',
     padding:10,
-    backgroundColor:'#dddddc',
+    backgroundColor:'#e9e9e9',
   },
   title: {
     fontSize:30,
