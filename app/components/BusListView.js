@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { Text, ListView, View } from 'react-native';
-import styles from '../styles/stylesheet';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Text, ListView, View, TouchableOpacity } from 'react-native'
+import styles from '../styles/stylesheet'
 
 
 class BusListView extends Component{
@@ -16,27 +16,29 @@ class BusListView extends Component{
 
   }
 
-renderRow(renderData) {
-  return (
-    <View style= {styles.busrow}>
-    <Text style= {{flex:1}}>{renderData.type}</Text>
-    <Text style= {{flex:1}}>{renderData.line}</Text>
-    <Text style= {{flex:4, color:'black'}}>{renderData.destination}</Text>
-    <Text style= {{flex:1, color:'black'}}>{renderData.leaves}</Text>
-    </View>
-  )
-}
+  renderRow(renderData) {
+    return (
+      <TouchableOpacity>
+        <View style={styles.busrow}>
+          <Text style={{flex:1}}>{renderData.type}</Text>
+          <Text style={{flex:1}}>{renderData.line}</Text>
+          <Text style={{flex:4, color:'black'}}>{renderData.destination}</Text>
+          <Text style={{flex:1, color:'black'}}>{renderData.leaves}</Text>
+        </View>
+      </TouchableOpacity>
+    )
+  }
 
-renderHeader() {
-  return (
-    <View style= {styles.busrowheader}>
-    <Text style= {{flex:1}}>Tyyppi</Text>
-    <Text style= {{flex:1}}>Linja</Text>
-    <Text style= {{flex:4}}>Määränpää</Text>
-    <Text style= {{flex:1}}>Lähtee</Text>
-    </View>
-  )
-}
+  renderHeader() {
+    return (
+      <View style={styles.busrowheader}>
+        <Text style={{flex:1}}>Tyyppi</Text>
+        <Text style={{flex:1}}>Linja</Text>
+        <Text style={{flex:4}}>Määränpää</Text>
+        <Text style={{flex:1}}>Lähtee</Text>
+      </View>
+    )
+  }
 
   render() {
     return (
@@ -48,18 +50,8 @@ renderHeader() {
           renderRow={this.renderRow}
         />
       </View>
-    );
+    )
   }
 }
-  const mapStateProps = (state) => {
-    return {
-    }
-  }
 
-  const mapDispatchToProps = (dispatch) => {
-    return{
-
-    }
-  }
-
-export default connect(mapStateProps, mapDispatchToProps)(BusListView);
+export default BusListView;
