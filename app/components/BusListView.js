@@ -21,8 +21,8 @@ renderRow(renderData) {
     <View style= {styles.busrow}>
     <Text style= {{flex:1}}>{renderData.type}</Text>
     <Text style= {{flex:1}}>{renderData.line}</Text>
-    <Text style= {{flex:4}}>{renderData.destination}</Text>
-    <Text style= {{flex:1}}>{renderData.leaves}</Text>
+    <Text style= {{flex:4, color:'black'}}>{renderData.destination}</Text>
+    <Text style= {{flex:1, color:'black'}}>{renderData.leaves}</Text>
     </View>
   )
 }
