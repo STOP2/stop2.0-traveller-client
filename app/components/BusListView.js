@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Text, ListView, View } from 'react-native';
+import styles from '../styles/stylesheet';
 
 
 class BusListView extends Component{
@@ -17,7 +18,7 @@ class BusListView extends Component{
 
 renderRow(renderData) {
   return (
-    <View style= {{flexDirection: 'row', padding:10, justifyContent:'space-between', flex:1}}>
+    <View style= {styles.busrow}>
     <Text>{renderData.type}</Text>
     <Text>{renderData.line}</Text>
     <Text>{renderData.destination}</Text>
@@ -28,8 +29,8 @@ renderRow(renderData) {
 
   render() {
     return (
-      <View style= {{padding:0}}>
-        <Text style= {{fontSize:30, backgroundColor:'#007AC9', color:'white', padding:10}}>Busseja pysäkiltä 3029</Text>
+      <View>
+        <Text style={styles.title}>Busseja pysäkiltä 3029</Text>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderRow}
