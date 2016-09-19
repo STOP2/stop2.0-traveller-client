@@ -4,6 +4,7 @@ import { Text, ListView, View, TouchableOpacity } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
 import styles from '../styles/stylesheet'
+import strings from '../resources/translations'
 
 class StopRequestView extends Component{
   constructor(props) {
@@ -18,11 +19,17 @@ class StopRequestView extends Component{
     const goBack = () => Actions.pop();
 
     return (
-      <View style={{padding: 10}}>
-        <Text>Valitun bussin id on {this.props.vehicle.vehicleId}</Text>
+      <View style={{
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center'
+      }}>
+      <View>
+        <Text style={{fontSize: 20, textAlign: 'center'}}>{this.props.vehicle.type} {this.props.vehicle.line} {strings.stopsAt} {this.props.stop.stopName} ({this.props.stop.stopId})</Text>
         <TouchableOpacity onPress={goBack}>
-          <Text style={{color: '#ff0000'}}>Takaisin</Text>
+          <Text style={{color: '#ff0000', textAlign: 'center'}}>{strings.back}</Text>
         </TouchableOpacity>
+        </View>
       </View>
     )
   }
