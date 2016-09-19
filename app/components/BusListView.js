@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Text, ListView, View, TouchableOpacity } from 'react-native'
 
 import styles from '../styles/stylesheet'
-
+import strings from '../resources/translations'
 
 class BusListView extends Component{
   constructor(props) {
@@ -38,7 +38,7 @@ class BusListView extends Component{
     return (
       <TouchableOpacity>
         <View style={styles.busrow}>
-          <Text style={{flex:1}}>{renderData.type}</Text>
+          <Text style={{flex:1}}>{strings[renderData.type]}</Text>
           <Text style={{flex:1}}>{renderData.line}</Text>
           <Text style={{flex:4, color:'black'}}>{renderData.destination}</Text>
           <Text style={{flex:1, color:'black'}}>{renderData.leaves} min</Text>
@@ -50,10 +50,10 @@ class BusListView extends Component{
   renderHeader() {
     return (
       <View style={styles.busrowheader}>
-        <Text style={{flex:1}}>Tyyppi</Text>
-        <Text style={{flex:1}}>Linja</Text>
-        <Text style={{flex:4}}>Määränpää</Text>
-        <Text style={{flex:1}}>Lähtee</Text>
+        <Text style={{flex:1}}>{strings.type}</Text>
+        <Text style={{flex:1}}>{strings.line}</Text>
+        <Text style={{flex:4}}>{strings.dest}</Text>
+        <Text style={{flex:1}}>{strings.leaves}</Text>
       </View>
     )
   }
@@ -61,7 +61,7 @@ class BusListView extends Component{
   render() {
     return (
       <View>
-        <Text style={styles.title}>Busseja pysäkiltä 3029</Text>
+        <Text style={styles.title}>{strings.title} 3029</Text>
         <ListView
           dataSource={this.state.dataSource}
           renderHeader={this.renderHeader}
