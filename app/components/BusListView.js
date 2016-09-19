@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Text, ListView, View, TouchableOpacity } from 'react-native'
+import { Actions } from 'react-native-router-flux'
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
@@ -35,8 +36,10 @@ class BusListView extends Component{
   }
 
   renderRow(renderData) {
+    const goToStopRequestPage = () => Actions.stopRequest({vehicle: renderData})
+
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={goToStopRequestPage}>
         <View style={styles.busrow}>
           <Text style={{flex:1}}>{strings[renderData.type]}</Text>
           <Text style={{flex:1}}>{renderData.line}</Text>
