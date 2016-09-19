@@ -41,7 +41,7 @@ class BusListView extends Component{
       stopName: 'Kumpulan kampus'
     }
 
-    const goToStopRequestPage = () => Actions.stopRequest({vehicle: renderData}, {stop:stopData})
+    const goToStopRequestPage = () => Actions.stopRequest({vehicle: renderData, stop: stopData})
 
     return (
       <TouchableOpacity onPress={goToStopRequestPage}>
