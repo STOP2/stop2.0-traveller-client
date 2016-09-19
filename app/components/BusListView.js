@@ -30,13 +30,18 @@ class BusListView extends Component{
     ]
 
     this.state = {
-      dataSource: ds.cloneWithRows(departureData),
+      dataSource: ds.cloneWithRows(departureData)
     }
 
   }
 
   renderRow(renderData) {
-    const goToStopRequestPage = () => Actions.stopRequest({vehicle: renderData})
+    let stopData = {
+      stopId: 3029,
+      stopName: 'Kumpulan kampus'
+    }
+
+    const goToStopRequestPage = () => Actions.stopRequest({vehicle: renderData}, {stop:stopData})
 
     return (
       <TouchableOpacity onPress={goToStopRequestPage}>
