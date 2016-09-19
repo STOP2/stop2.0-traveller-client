@@ -19,11 +19,7 @@ class StopRequestView extends Component{
     const goBack = () => Actions.pop();
 
     return (
-      <View style={{
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center'
-      }}>
+      <View style={styles.stopRequestStyle}>
       <View>
         <Text style={{fontSize: 20, textAlign: 'center'}}>{this.props.vehicle.type} {this.props.vehicle.line} {strings.stopsAt} {this.props.stop.stopName} ({this.props.stop.stopId})</Text>
         <TouchableOpacity onPress={goBack}>
