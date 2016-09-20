@@ -39,3 +39,5 @@ buck-out/
 \.buckd/
 android/app/libs
 android/keystores/debug.keystore
+android/app/app-release.apk
+android/keystores/stop2-1.0-key.keystore
