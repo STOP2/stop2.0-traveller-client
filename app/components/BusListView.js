@@ -86,7 +86,7 @@ class BusListView extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    stop: state.test.stop
+    stop: state.fetchReducer.stop
   }
 }
 

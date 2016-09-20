@@ -5,7 +5,7 @@ let initialState = {
   isFetching: false
 }
 
-const test = (state = initialState, action) => {
+const fetchReducer = (state = initialState, action) => {
   switch (action.type) {
     case REQUEST_DEPARTURES:
       return Object.assign({}, state, {isFetching: true});
@@ -20,4 +20,4 @@ const test = (state = initialState, action) => {
   }
 }
 
-export default fetch
+export default fetchReducer
