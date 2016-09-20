@@ -6,6 +6,8 @@ import { Actions } from 'react-native-router-flux'
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
+import { fetchDepartures } from '../actions/fetchDeparturesActions';
+
 class BusListView extends Component{
   constructor(props) {
     super(props)
@@ -14,18 +16,10 @@ class BusListView extends Component{
 
     let departureData = [
       {
-        vehicleId: 1,
-        type:'bus',
+        bus_id: 1,
         line: 55,
         destination: 'Rautatieasema',
-        leaves:3
-      },
-      {
-        vehicleId: 2,
-        type: 'bus',
-        line: 506,
-        destination: 'Viikki',
-        leaves:4
+        arrival:3
       }
     ]
 
@@ -33,24 +27,33 @@ class BusListView extends Component{
       stopId: 3029,
       stopName: 'Kumpulan kampus'
     }
+
     this.state = {
       dataSource: ds.cloneWithRows(departureData),
       stop: stopData
     }
 
+    this.props.fetchDepartures(60.20583, 24.96293) // latitude, longitude
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(nextProps.stop.schedule)
+    })
   }
 
   renderRow = (renderData) => {
-
-    const goToStopRequestPage = () => Actions.stopRequest({vehicle: renderData, stop: this.state.stop})
+    const goToStopRequestPage = () => {
+      Actions.stopRequest({vehicle: renderData, stop: {stopName: this.props.stop.stop_name, stopId: this.props.stop.stop_code}})
+    }
 
     return (
       <TouchableOpacity onPress={goToStopRequestPage}>
         <View style={styles.busrow}>
-          <Text style={{flex:1}}>{strings[renderData.type]}</Text>
+          <Text style={{flex:1}}>{renderData.type}</Text>
           <Text style={{flex:1}}>{renderData.line}</Text>
           <Text style={{flex:4, color:'black'}}>{renderData.destination}</Text>
-          <Text style={{flex:1, color:'black'}}>{renderData.leaves} min</Text>
+          <Text style={{flex:1, color:'black'}}>{renderData.arrival} min</Text>
         </View>
       </TouchableOpacity>
     )
@@ -70,7 +73,7 @@ class BusListView extends Component{
   render() {
     return (
       <View>
-        <Text style={styles.title}>{strings.title} {this.state.stop.stopName} ({this.state.stop.stopId})</Text>
+        <Text style={styles.title}>{strings.title} {this.props.stop.stop_name} ({this.props.stop.stop_code})</Text>
         <ListView
           dataSource={this.state.dataSource}
           renderHeader={this.renderHeader}
@@ -81,4 +84,18 @@ class BusListView extends Component{
   }
 }
 
-export default BusListView;
+const mapStateToProps = (state) => {
+  return {
+    stop: state.test.stop
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      fetchDepartures: (latitude, longitude) => {
+        dispatch(fetchDepartures(latitude, longitude))
+      }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BusListView);
