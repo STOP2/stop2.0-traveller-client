@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 
-import test from './test'
+import fetch from './fetch'
 import routes from './routes'
 
 const reducers = combineReducers({
-  test,
+  fetch,
   routes
 })
 
