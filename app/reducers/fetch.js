@@ -12,7 +12,7 @@ const test = (state = initialState, action) => {
     break
 
     case RECEIVE_DEPARTURES:
-      return Object.assign({}, state, {isFetching: false, stop: action.departures[0].stop});
+      return Object.assign({}, state, {isFetching: false, stop: action.departures[0].stop}); // return only the first stop (temporarily)
     break
 
     default:
@@ -20,4 +20,4 @@ const test = (state = initialState, action) => {
   }
 }
 
-export default test
+export default fetch
