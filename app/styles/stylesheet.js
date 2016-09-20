@@ -13,10 +13,27 @@ var styles = StyleSheet.create({
     backgroundColor:'#e9e9e9',
   },
   title: {
-    fontSize:30,
+    fontSize:29,
     backgroundColor:'#007AC9',
     color:'white',
     padding:10
+  },
+  start: {
+    flex:1,
+    padding: 10,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  startText: {
+    flex:1,
+    color: '#007AC9',
+    fontSize: 60
+  },
+  stopRequestStyle: {
+  flex: 1,
+  flexDirection: 'column',
+  justifyContent: 'center'
   },
 });
 

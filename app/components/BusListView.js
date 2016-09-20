@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Text, ListView, View, TouchableOpacity } from 'react-native'
+import { Actions } from 'react-native-router-flux'
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
@@ -28,15 +29,23 @@ class BusListView extends Component{
       }
     ]
 
+    let stopData = {
+      stopId: 3029,
+      stopName: 'Kumpulan kampus'
+    }
     this.state = {
       dataSource: ds.cloneWithRows(departureData),
+      stop: stopData
     }
 
   }
 
-  renderRow(renderData) {
+  renderRow = (renderData) => {
+
+    const goToStopRequestPage = () => Actions.stopRequest({vehicle: renderData, stop: this.state.stop})
+
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={goToStopRequestPage}>
         <View style={styles.busrow}>
           <Text style={{flex:1}}>{strings[renderData.type]}</Text>
           <Text style={{flex:1}}>{renderData.line}</Text>
@@ -61,7 +70,7 @@ class BusListView extends Component{
   render() {
     return (
       <View>
-        <Text style={styles.title}>{strings.title} 3029</Text>
+        <Text style={styles.title}>{strings.title} {this.state.stop.stopName} ({this.state.stop.stopId})</Text>
         <ListView
           dataSource={this.state.dataSource}
           renderHeader={this.renderHeader}
