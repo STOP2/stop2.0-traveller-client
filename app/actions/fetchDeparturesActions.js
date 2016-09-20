@@ -1,3 +1,5 @@
+const API_URL = 'https://stop20.herokuapp.com'
+
 export const REQUEST_DEPARTURES = 'REQUEST_DEPARTURES'
 export const RECEIVE_DEPARTURES = 'RECEIVE_DEPARTURES'
 
@@ -19,7 +21,7 @@ function receiveDepartures(json) {
 export function fetchDepartures(latitude, longitude) {
   return dispatch => {
     dispatch(requestDepartures(latitude, longitude))
-    return fetch('https://stop20.herokuapp.com/stops?lat=' + latitude + '&lon=' + longitude)
+    return fetch(API_URL + '/stops?lat=' + latitude + '&lon=' + longitude)
       .then(response => response.json())
       .then(json => dispatch(receiveDepartures(json)))
   }
