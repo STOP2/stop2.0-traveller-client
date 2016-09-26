@@ -11,7 +11,10 @@ var strings = new LocalizedStrings({
     leaves: 'Leaves',
     bus: 'Bus',
     stopsAt: 'stops at',
-    back: 'Back'
+    back: 'Back',
+    tram: 'Tram',
+    metro: 'Metro',
+    ferry: 'Ferry'
   },
 
   fi: {
@@ -22,9 +25,12 @@ var strings = new LocalizedStrings({
     line: 'Linja',
     dest: 'Määränpää',
     leaves: 'Lähtee',
-    bus: 'Bussi',
+    bus: 'bussi',
     stopsAt: 'Pysähtyy pysäkillä',
-    back: 'Takaisin'
+    back: 'Takaisin',
+    tram: 'Ratikka',
+    metro: 'Metro',
+    ferry: 'Lautta'
   }
 });
 
