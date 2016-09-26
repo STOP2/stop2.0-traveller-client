@@ -16,7 +16,7 @@ class StopRequestView extends Component{
   }
 
   render() {
-    const goBack = () => Actions.pop();
+    const goBack = () => Actions.departures();
 
     return (
       <View style={styles.stopRequestStyle}>

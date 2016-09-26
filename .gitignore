@@ -40,4 +40,4 @@ buck-out/
 android/app/libs
 android/keystores/debug.keystore
 android/app/app-release.apk
-android/keystores/stop2-1.0-key.keystore
+android/keystores/stop2.keystore

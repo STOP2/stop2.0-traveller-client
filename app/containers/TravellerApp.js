@@ -20,8 +20,8 @@ class TravellerApp extends Component {
       <RouterWithRedux>
         <Scene key="root" hideNavBar={true}>
           <Scene key="start" component={StartView} initial={true} />
-          <Scene key="departures" component={BusListView}/>
-          <Scene key="stopRequest" component={StopRequestView} />
+          <Scene key="departures" component={BusListView} />
+          <Scene key="stopRequest" component={StopRequestView} type="replace" />
         </Scene>
       </RouterWithRedux>
     )
