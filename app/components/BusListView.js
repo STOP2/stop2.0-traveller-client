@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Text, ListView, View, TouchableOpacity, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux'
+import timer from 'react-native-timer';
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
@@ -32,18 +33,18 @@ class BusListView extends Component{
     this.props.fetchDepartures(this.currentPosition.latitude, this.currentPosition.longitude)
 
     this.updateInterval = 10000 // update interval in ms
+
   }
 
   componentDidMount = () => {
-    this.interval = setInterval(() =>
-    {
-      this.props.fetchDepartures(this.currentPosition.latitude, this.currentPosition.longitude)
-      }, this.updateInterval)
+    timer.setInterval(
+      this, 'fetchDeparturesInterval', () => this.props.fetchDepartures(this.currentPosition.latitude, this.currentPosition.longitude), this.updateInterval
+    )
   }
 
-  componentWillUnmount = () => {
-    clearInterval(this.interval)
-  }
+componentWillUnmount = () => {
+  timer.clearInterval(this)
+}
 
   componentWillReceiveProps = (nextProps) => {
     this.setState({
