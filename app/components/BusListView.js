@@ -34,6 +34,9 @@ class BusListView extends Component{
 
     this.updateInterval = 10000 // update interval in ms
 
+
+    this.icon_tram = require('../resources/icons/hsl_reittiopas_tram.png')
+    this.icon_bus = require('../resources/icons/hsl_reittiopas_bus.png')
   }
 
   componentDidMount = () => {
@@ -64,7 +67,7 @@ componentWillUnmount = () => {
         <View style={styles.busrow}>
         {(renderData.vehicle_type == 1 || renderData.vehicle_type == 2 || renderData.vehicle_type == 4) ? <Text style={{flex:1}}>strings[vehicleTypes[this.props.vehicle.vehicle_type]]</Text> :
         <Image style={{flex:1, width: undefined, height: undefined}} resizeMode="contain"
-          source={renderData.vehicle_type == 0 ? require('../resources/icons/hsl_reittiopas_tram.png') : require('../resources/icons/hsl_reittiopas_bus.png')}
+          source={renderData.vehicle_type == 0 ? this.icon_tram : this.icon_bus}
         />}
           <Text style={{flex:1}}>{renderData.line}</Text>
           <Text style={{flex:4, color:'black'}}>{renderData.destination}</Text>
