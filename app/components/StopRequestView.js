@@ -18,10 +18,12 @@ class StopRequestView extends Component{
   render() {
     const goBack = () => Actions.pop();
 
+    const vehicleTypes = 'tram metro train bus ferry'.split(' ')
+
     return (
       <View style={styles.stopRequestStyle}>
       <View>
-        <Text style={{fontSize: 20, textAlign: 'center'}}>{this.props.vehicle.type} {this.props.vehicle.line} {strings.stopsAt} {this.props.stop.stopName} ({this.props.stop.stopId})</Text>
+        <Text style={{fontSize: 20, textAlign: 'center'}}>{strings[vehicleTypes[this.props.vehicle.vehicle_type]]} {this.props.vehicle.line} to {this.props.vehicle.destination} {strings.stopsAt} {this.props.stop.stopName} ({this.props.stop.stopId})</Text>
         <TouchableOpacity onPress={goBack}>
           <Text style={{color: '#ff0000', textAlign: 'center'}}>{strings.back}</Text>
         </TouchableOpacity>
