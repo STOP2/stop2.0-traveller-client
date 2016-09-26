@@ -14,26 +14,35 @@ class BusListView extends Component{
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
 
-    let departureData = [
-      {
-        bus_id: 1,
-        line: 55,
-        destination: 'Rautatieasema',
-        arrival:3
-      }
-    ]
-
     let stopData = {
       stopId: 3029,
       stopName: 'Kumpulan kampus'
     }
 
     this.state = {
-      dataSource: ds.cloneWithRows(departureData),
+      dataSource: ds.cloneWithRows([]),
       stop: stopData
     }
 
-    this.props.fetchDepartures(60.20583, 24.96293) // latitude, longitude
+    this.currentPosition = {
+      latitude: 60.20583,
+      longitude: 24.96293
+    }
+
+    this.props.fetchDepartures(this.currentPosition.latitude, this.currentPosition.longitude)
+
+    this.updateInterval = 10000 // update interval in ms
+  }
+
+  componentDidMount = () => {
+    this.interval = setInterval(() =>
+    {
+      this.props.fetchDepartures(this.currentPosition.latitude, this.currentPosition.longitude)
+      }, this.updateInterval)
+  }
+
+  componentWillUnmount = () => {
+    clearInterval(this.interval)
   }
 
   componentWillReceiveProps = (nextProps) => {
