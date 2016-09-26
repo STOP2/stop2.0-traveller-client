@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Text, ListView, View, TouchableOpacity } from 'react-native'
+import { Text, ListView, View, TouchableOpacity, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
 import styles from '../styles/stylesheet'
@@ -56,10 +56,15 @@ class BusListView extends Component{
       Actions.stopRequest({vehicle: renderData, stop: {stopName: this.props.stop.stop_name, stopId: this.props.stop.stop_code}})
     }
 
+    const vehicleTypes = 'tram metro train bus ferry'.split(' ')
+
     return (
       <TouchableOpacity onPress={goToStopRequestPage}>
         <View style={styles.busrow}>
-          <Text style={{flex:1}}>{renderData.type}</Text>
+        {(renderData.vehicle_type == 1 || renderData.vehicle_type == 2 || renderData.vehicle_type == 4) ? <Text style={{flex:1}}>strings[vehicleTypes[this.props.vehicle.vehicle_type]]</Text> :
+        <Image style={{flex:1, width: undefined, height: undefined}} resizeMode="contain"
+          source={renderData.vehicle_type == 0 ? require('../resources/icons/hsl_reittiopas_tram.png') : require('../resources/icons/hsl_reittiopas_bus.png')}
+        />}
           <Text style={{flex:1}}>{renderData.line}</Text>
           <Text style={{flex:4, color:'black'}}>{renderData.destination}</Text>
           <Text style={{flex:1, color:'black'}}>{renderData.arrival} min</Text>
