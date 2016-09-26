@@ -5,3 +5,12 @@
 Digital stop button for your mobile phone
 
 https://ohtuprojekti.jamo.fi/topic_descriptions/147
+
+#### Setup of development environment (UNDER PROGRESS)
+ 
+`npm install react-native`
+
+Requirements: 
+- build-tools 23.0.1
+
+
