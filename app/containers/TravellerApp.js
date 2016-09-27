@@ -4,9 +4,9 @@ import { Text } from 'react-native'
 
 import { Router, Scene } from 'react-native-router-flux'
 
-import BusListView from '../components/BusListView';
-import StopRequestView from '../components/StopRequestView';
-import StartView from '../components/StartView';
+import BusListPage from '../pages/BusListPage';
+import StopRequestPage from '../pages/StopRequestPage';
+import StartPage from '../pages/StartPage';
 
 const RouterWithRedux = connect()(Router)
 
@@ -19,9 +19,9 @@ class TravellerApp extends Component {
     return(
       <RouterWithRedux>
         <Scene key="root" hideNavBar={true}>
-          <Scene key="start" component={StartView} initial={true} />
-          <Scene key="departures" component={BusListView} />
-          <Scene key="stopRequest" component={StopRequestView} type="replace" />
+          <Scene key="start" component={StartPage} initial={true} />
+          <Scene key="departures" component={BusListPage} />
+          <Scene key="stopRequest" component={StopRequestPage} type="replace" />
         </Scene>
       </RouterWithRedux>
     )
