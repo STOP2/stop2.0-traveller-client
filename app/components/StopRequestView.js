@@ -16,7 +16,7 @@ class StopRequestView extends Component{
   }
 
   render() {
-    const goBack = () => Actions.departures();
+    const goBack = () => Actions.departures()
 
     const vehicleTypes = 'tram metro train bus ferry'.split(' ')
 
@@ -33,4 +33,4 @@ class StopRequestView extends Component{
   }
 }
 
-export default StopRequestView;
+export default StopRequestView
