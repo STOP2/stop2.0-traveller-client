@@ -6,11 +6,21 @@ Digital stop button for your mobile phone
 
 https://ohtuprojekti.jamo.fi/topic_descriptions/147
 
-#### Setup of development environment (UNDER PROGRESS)
- 
-`npm install react-native`
+#### Setup of development environment (UNDER PROGRESS) 
 
-Requirements: 
-- build-tools 23.0.1
+Lataa Node.js versio 4 tai uudempi.
 
+Lataa ja asenna Android Studio: https://developer.android.com/studio/index.html
+
+Avaa Android Studion configure -> SDK Manager -> Launch SDK Manager ja asenna Android SDK Build-tools 23.0.1.
+
+Kloonaa githubista uusin versio. Stop2.0-traveller-client kansion sisällä
+```bash
+npm install react-native
+npm install
+```
+
+Avaa projektin android kansio Android Studiossa. Jos tulee virheviesti "failed to find target with hash string 'android-23'", Tools -> Android ja asenna Android 6.0.
+
+Vihreä nuoli -> Create Virtual Device
 
