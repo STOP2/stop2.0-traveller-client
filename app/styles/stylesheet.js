@@ -30,6 +30,16 @@ var styles = StyleSheet.create({
     color: '#007AC9',
     fontSize: 60
   },
+  locationErrorText: {
+    flex:1,
+    color: '#007AC9',
+    fontSize: 20
+  },
+  gettingLocationText: {
+    flex:1,
+    color: '#007AC9',
+    fontSize: 30
+  },
   stopRequestStyle: {
   flex: 1,
   flexDirection: 'column',
