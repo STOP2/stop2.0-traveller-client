@@ -104,7 +104,8 @@ componentWillUnmount = () => {
 
 const mapStateToProps = (state) => {
   return {
-    stop: state.fetchReducer.stop
+    stop: state.fetchReducer.stop,
+    isFetching: state.fetchReducer.isFetching
   }
 }
 
