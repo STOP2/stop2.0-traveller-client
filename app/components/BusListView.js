@@ -65,10 +65,12 @@ componentWillUnmount = () => {
     return (
       <TouchableOpacity onPress={goToStopRequestPage}>
         <View style={styles.busrow}>
-        {(renderData.vehicle_type == 1 || renderData.vehicle_type == 2 || renderData.vehicle_type == 4) ? <Text style={{flex:1}}>strings[vehicleTypes[this.props.vehicle.vehicle_type]]</Text> :
-        <Image style={{flex:1, width: undefined, height: undefined}} resizeMode="contain"
-          source={renderData.vehicle_type == 0 ? this.icon_tram : this.icon_bus}
-        />}
+          <View style={{flex:1}}>
+            {(renderData.vehicle_type == 1 || renderData.vehicle_type == 2 || renderData.vehicle_type == 4) ?
+            <Text>strings[vehicleTypes[this.props.vehicle.vehicle_type]]</Text> :
+            <Image style={{width: 18, height: 18, marginLeft: 5}} resizeMode="contain"
+            source={renderData.vehicle_type == 0 ? this.icon_tram : this.icon_bus}/>}
+          </View>
           <Text style={{flex:1}}>{renderData.line}</Text>
           <Text style={{flex:4, color:'black'}}>{renderData.destination}</Text>
           <Text style={{flex:1, color:'black'}}>{renderData.arrival} min</Text>
