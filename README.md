@@ -8,19 +8,15 @@ https://ohtuprojekti.jamo.fi/topic_descriptions/147
 
 #### Setup of development environment (UNDER PROGRESS) 
 
-Lataa Node.js versio 4 tai uudempi.
+Download Node.js version 4 or newer.
 
-Lataa ja asenna Android Studio: https://developer.android.com/studio/index.html
+Download and install Android Studio: https://developer.android.com/studio/index.html
 
-Avaa Android Studion configure -> SDK Manager -> Launch SDK Manager ja asenna Android SDK Build-tools 23.0.1.
+Open Android Studio -> configure -> SDK Manager -> Launch SDK Manager and install Android 6.0 and Android SDK Build-tools 23.0.1.
 
-Kloonaa githubista uusin versio. Stop2.0-traveller-client kansion sisällä
+Clone the latest version of the project. Inside the Stop2.0-traveller-client folder
 ```bash
-npm install react-native
 npm install
 ```
 
-Avaa projektin android kansio Android Studiossa. Jos tulee virheviesti "failed to find target with hash string 'android-23'", Tools -> Android ja asenna Android 6.0.
-
-Vihreä nuoli -> Create Virtual Device
-
+Open the project in Android Studio. Press the green run-button and create virtual device
