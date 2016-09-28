@@ -1,5 +1,5 @@
 {
-  "name": "Stop2",
+  "name": "Stop2TravellerClient",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -9,8 +9,8 @@
     "bundle-android": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/"
   },
   "dependencies": {
-    "react": "15.3.1",
-    "react-native": "0.32.1",
+    "react": "^15.3.2",
+    "react-native": "^0.34.1",
     "react-native-localization": "^0.1.17",
     "react-native-router-flux": "^3.35.0",
     "react-native-timer": "^1.1.2",
