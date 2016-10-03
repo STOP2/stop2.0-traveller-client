@@ -24,12 +24,12 @@ var styles = StyleSheet.create({
     flex:1,
     padding: 10,
     flexDirection: 'column',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: '#dddddc'
   },
   startText: {
-    flex:1,
-    color: '#007AC9',
-    fontSize: 60
+    color: '#ffffff',
+    fontSize: 60,
   },
   stopRequestStyle: {
   flex: 1,
@@ -55,6 +55,28 @@ var styles = StyleSheet.create({
     fontSize: 40,
     textAlign: 'center',
     margin: 20
+  },
+  startImage: {
+    width: 100,
+    height: 100,
+  },
+  startUpper: {
+    flex: 1,
+    flexDirection:'column',
+    alignItems:'center',
+    justifyContent:'center',
+    backgroundColor: '#00B9E4',
+    borderRadius: 10,
+    marginBottom: 3
+  },
+  startLower: {
+    flex: 1,
+    flexDirection:'column',
+    alignItems:'center',
+    justifyContent:'center',
+    backgroundColor: '#F092CD',
+    borderRadius: 10,
+    marginTop: 3
   }
 });
 

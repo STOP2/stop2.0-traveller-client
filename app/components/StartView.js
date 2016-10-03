@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Text, ListView, View, TouchableOpacity } from 'react-native'
+import { Text, ListView, View, TouchableOpacity, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
 import styles from '../styles/stylesheet'
@@ -19,16 +19,14 @@ class StartView extends Component{
 
     return (
       <View style={styles.start}>
-        <View style={styles.start}>
-          <TouchableOpacity onPress={goToBusListView}>
-            <Text style={styles.startText}>{strings.onStop}</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.start}>
-          <TouchableOpacity>
-            <Text style={styles.startText}>{strings.onBus}</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity style={styles.startUpper} onPress={goToBusListView}>
+          <Image style={styles.startImage} source={require('../resources/images/rinkeli.jpg')}></Image>
+          <Text style={styles.startText}>{strings.onStop}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.startLower}>
+          <Image style={styles.startImage} source={require('../resources/images/bussi.jpg')}></Image>
+          <Text style={styles.startText}>{strings.onBus}</Text>
+        </TouchableOpacity>
       </View>
     )
   }
