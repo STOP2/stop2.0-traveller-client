@@ -102,7 +102,7 @@ componentWillUnmount = () => {
 
   render() {
     return (
-      <View>
+      <View style={{flex: 1}}>
         <Text style={styles.title}>{strings.title} {this.props.stop.stop_name} ({this.props.stop.stop_code})</Text>
         <ListView
           dataSource={this.state.dataSource}
