@@ -58,8 +58,8 @@ class StartView extends Component{
 
     return (
       <View style={styles.start}>
-      {viewElement}
-        </View>
+        {viewElement}
+      </View>
     )
   }
 }
