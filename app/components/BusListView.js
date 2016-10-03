@@ -24,15 +24,12 @@ class BusListView extends Component{
       stop: stopData
     }
 
-    this.currentPosition = {
-      latitude: 60.20583,
-      longitude: 24.96293
-    }
-
     this.icon_tram = require('../resources/icons/hsl_reittiopas_tram.png')
     this.icon_bus = require('../resources/icons/hsl_reittiopas_bus.png')
+  }
 
-    this.props.fetchDepartures(this.currentPosition.latitude, this.currentPosition.longitude)
+  componentWillMount = () => {
+        this.props.fetchDepartures(this.props.locationData.latitude, this.props.locationData.longitude)
   }
 
   componentWillReceiveProps = (nextProps) => {
