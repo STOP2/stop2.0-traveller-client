@@ -19,12 +19,16 @@ class StartView extends Component{
 
     return (
       <View style={styles.start}>
-        <TouchableOpacity onPress={goToBusListView}>
-          <Text style={styles.startText}>{strings.onStop}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={goToBusListView}>
-          <Text style={styles.startText}>{strings.onBus}</Text>
-        </TouchableOpacity>
+        <View style={styles.start}>
+          <TouchableOpacity onPress={goToBusListView}>
+            <Text style={styles.startText}>{strings.onStop}</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.start}>
+          <TouchableOpacity>
+            <Text style={styles.startText}>{strings.onBus}</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
