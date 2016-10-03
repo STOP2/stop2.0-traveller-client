@@ -19,4 +19,4 @@ Clone the latest version of the project. Inside the Stop2.0-traveller-client fol
 npm install
 ```
 
-Open the project in Android Studio. Press the green run-button and create virtual device
+Open the project's Android folder in Android Studio. Press the green run-button and create a new virtual device.
