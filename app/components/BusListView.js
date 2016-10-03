@@ -90,7 +90,7 @@ componentWillUnmount = () => {
     )
   }
 
-  renderFooter() {
+  renderFooter = () => {
     return (
         <View>
         <ActivityIndicator
