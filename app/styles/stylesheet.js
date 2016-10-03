@@ -29,7 +29,8 @@ var styles = StyleSheet.create({
   startText: {
     flex:1,
     color: '#007AC9',
-    fontSize: 60
+    fontSize: 60,
+    fontFamily: 'gotham-rounded-medium'
   },
   locationErrorText: {
     flex:1,
