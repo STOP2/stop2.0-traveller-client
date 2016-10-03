@@ -2,6 +2,7 @@ import { REQUEST_DEPARTURES, RECEIVE_DEPARTURES } from '../actions/fetchDepartur
 import { SEND_STOPREQUEST, RECEIVE_CONFIRM } from '../actions/sendStoprequest'
 
 let initialState = {
+<<<<<<< HEAD
   stop: {schedule: []},
   isFetching: false,
   sentStoprequest: false

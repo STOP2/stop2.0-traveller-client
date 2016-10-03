@@ -18,7 +18,6 @@ class StopRequestView extends Component{
   }
 
   componentWillReceiveProps = (nextProps) => {
-    console.log(1)
     this.setState({
       renderConfirm: !nextProps.sent
     })
