@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+<<<<<<< HEAD
 import { ActivityIndicator, Text, ListView, View, TouchableOpacity } from 'react-native'
+=======
+import { Text, ListView, View, TouchableOpacity, Image } from 'react-native'
+import { Actions } from 'react-native-router-flux'
+>>>>>>> styletys
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
