@@ -20,11 +20,11 @@ class StartView extends Component{
     return (
       <View style={styles.start}>
         <TouchableOpacity style={styles.startUpper} onPress={goToBusListView}>
-          <Image style={styles.startImage} source={require('../resources/images/rinkeli.jpg')}></Image>
+          <Image style={styles.startImageStop} source={require('../resources/images/rinkeli.png')}></Image>
           <Text style={styles.startText}>{strings.onStop}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.startLower}>
-          <Image style={styles.startImage} source={require('../resources/images/bussi.jpg')}></Image>
+          <Image style={styles.startImageVehicle} source={require('../resources/images/bussi.png')}></Image>
           <Text style={styles.startText}>{strings.onBus}</Text>
         </TouchableOpacity>
       </View>

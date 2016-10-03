@@ -25,12 +25,11 @@ var styles = StyleSheet.create({
     padding: 10,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#dddddc'
+    backgroundColor: '#ffffff'
   },
   startText: {
-    flex:1,
     color: '#ffffff',
-    fontSize: 60,
+    fontSize: 50,
     fontFamily: 'gotham-rounded-medium'
   },
   stopRequestStyle: {
@@ -58,9 +57,13 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     margin: 20
   },
-  startImage: {
+  startImageStop: {
     width: 100,
-    height: 100,
+    height: 100
+  },
+  startImageVehicle: {
+    width: 90,
+    height: 100
   },
   startUpper: {
     flex: 1,
