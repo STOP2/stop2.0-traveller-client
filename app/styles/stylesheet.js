@@ -45,6 +45,14 @@ var styles = StyleSheet.create({
     backgroundColor: '#64BE14',
     borderRadius: 5,
     margin: 20
+  },
+  confirmText: {
+    marginBottom: 7,
+    padding: 5,
+    color: '#64BE14',
+    fontSize: 40,
+    textAlign: 'center',
+    margin: 20
   }
 });
 

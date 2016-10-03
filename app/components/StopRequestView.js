@@ -25,7 +25,7 @@ class StopRequestView extends Component{
   }
 
   renderCancel = () => {
-    console.log(2)
+    const sendStoprequest = () => this.props.sendStoprequest(this.props.vehicle.vehicle_id, this.props.stop.stopId, "stop")
         if (this.state.renderConfirm) {
             return (
               <View>
@@ -36,14 +36,12 @@ class StopRequestView extends Component{
 
             );
         } else {
-            return <Text style={{fontSize: 40, textAlign: 'center', color: '#ffffff'}}>{strings.stopsent}</Text>;
+            return <Text style={styles.confirmText}>{strings.stopsent}</Text>;
         }
     }
 
   render() {
     const goBack = () => Actions.departures()
-    const sendStoprequest = () => this.props.sendStoprequest(this.props.vehicle.vehicle_id, this.props.stop.stopId, "stop")
-
     const vehicleTypes = 'tram metro train bus ferry'.split(' ')
 
     return (
