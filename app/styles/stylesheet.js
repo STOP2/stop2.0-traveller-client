@@ -28,8 +28,10 @@ var styles = StyleSheet.create({
     backgroundColor: '#dddddc'
   },
   startText: {
+    flex:1,
     color: '#ffffff',
     fontSize: 60,
+    fontFamily: 'gotham-rounded-medium'
   },
   stopRequestStyle: {
   flex: 1,
