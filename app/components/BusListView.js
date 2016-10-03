@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Text, ListView, View, TouchableOpacity, Image } from 'react-native'
+import { ActivityIndicator, Text, ListView, View, TouchableOpacity, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import timer from 'react-native-timer';
 
@@ -90,6 +90,16 @@ componentWillUnmount = () => {
     )
   }
 
+  renderFooter() {
+    return (
+        <View>
+        <ActivityIndicator
+          animating={this.props.isFetching}
+        />
+      </View>
+    )
+  }
+
   render() {
     return (
       <View>
@@ -98,6 +108,7 @@ componentWillUnmount = () => {
           dataSource={this.state.dataSource}
           renderHeader={this.renderHeader}
           renderRow={this.renderRow}
+          renderFooter={this.renderFooter}
         />
       </View>
     )
@@ -106,7 +117,8 @@ componentWillUnmount = () => {
 
 const mapStateToProps = (state) => {
   return {
-    stop: state.fetchReducer.stop
+    stop: state.fetchReducer.stop,
+    isFetching: state.fetchReducer.isFetching
   }
 }
 

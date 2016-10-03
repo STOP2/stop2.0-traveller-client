@@ -1,7 +1,7 @@
 import { REQUEST_DEPARTURES, RECEIVE_DEPARTURES } from '../actions/fetchDeparturesActions'
 
 let initialState = {
-  stop: [],
+  stop: {schedule: []},
   isFetching: false
 }
 

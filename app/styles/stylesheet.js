@@ -35,6 +35,10 @@ var styles = StyleSheet.create({
   flexDirection: 'column',
   justifyContent: 'center'
   },
+  spinnerContainer: {
+    backgroundColor: 'transparent',
+    alignSelf: 'center'
+  }
 });
 
 export default styles;
