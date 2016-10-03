@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Text, ListView, View, TouchableOpacity } from 'react-native'
+import { ActivityIndicator, Text, ListView, View, TouchableOpacity } from 'react-native'
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
@@ -52,7 +52,7 @@ class StartView extends Component{
       if(this.state.gotLocation) {
         viewElement = <StartViewButtons />
       } else {
-        viewElement = <View><Text style={styles.gettingLocationText}>{strings.gettingLocation}</Text></View>
+        viewElement = <View><Text style={styles.gettingLocationText}>{strings.gettingLocation}</Text><ActivityIndicator /></View>
       }
     }
 
