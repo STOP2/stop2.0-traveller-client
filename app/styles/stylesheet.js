@@ -3,14 +3,16 @@ import { StyleSheet } from 'react-native';
 var styles = StyleSheet.create({
   busrow: {
     flexDirection: 'row',
-    padding:10,
     borderBottomColor:666666,
-    borderBottomWidth:1
+    borderBottomWidth:1,
+    height: 60,
+    padding: 10,
+    alignItems: 'center'
   },
   busrowheader: {
     flexDirection: 'row',
     padding:10,
-    backgroundColor:'#e9e9e9',
+    backgroundColor:'#e9e9e9'
   },
   title: {
     fontSize:29,
