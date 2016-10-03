@@ -19,7 +19,7 @@ function receiveConfirm() {
 }
 
 export function sendStoprequest(bus_id, stop_id, request_type) {
-  
+  console.log(bus_id)
   return dispatch => {
     dispatch(requestStoprequest(bus_id, stop_id, request_type))
     return fetch(API_URL + '/stoprequests', {
