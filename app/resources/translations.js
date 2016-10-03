@@ -14,7 +14,9 @@ var strings = new LocalizedStrings({
     back: 'Back',
     tram: 'Tram',
     metro: 'Metro',
-    ferry: 'Ferry'
+    ferry: 'Ferry',
+    confirm: 'Confirm',
+    stopsent: 'Confirmed!'
   },
 
   fi: {
@@ -30,7 +32,9 @@ var strings = new LocalizedStrings({
     back: 'Takaisin',
     tram: 'Ratikka',
     metro: 'Metro',
-    ferry: 'Lautta'
+    ferry: 'Lautta',
+    confrim: 'Vahvista',
+    stopsent: 'Vahvistettu!'
   }
 });
 
