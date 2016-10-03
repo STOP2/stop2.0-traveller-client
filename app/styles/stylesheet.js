@@ -22,8 +22,7 @@ var styles = StyleSheet.create({
     flex:1,
     padding: 10,
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'center'
   },
   startText: {
     flex:1,
@@ -33,11 +32,19 @@ var styles = StyleSheet.create({
   stopRequestStyle: {
   flex: 1,
   flexDirection: 'column',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  alignItems: 'center'
   },
   spinnerContainer: {
     backgroundColor: 'transparent',
     alignSelf: 'center'
+  },
+  button: {
+    marginBottom: 7,
+    padding: 5,
+    backgroundColor: '#64BE14',
+    borderRadius: 5,
+    margin: 20
   }
 });
 

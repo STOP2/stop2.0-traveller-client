@@ -4,7 +4,7 @@ import { SEND_STOPREQUEST, RECEIVE_CONFIRM } from '../actions/sendStoprequest'
 let initialState = {
   stop: {schedule: []},
   isFetching: false,
-  isSending: false
+  sentStoprequest: false
 }
 
 const fetchReducer = (state = initialState, action) => {
@@ -18,11 +18,11 @@ const fetchReducer = (state = initialState, action) => {
     break
 
     case SEND_STOPREQUEST:
-      return Object.assign({}, state, {isSending: true});
+      return Object.assign({}, state, {sentStoprequest: false});
     break
 
     case RECEIVE_CONFIRM:
-      return Object.assign({}, state, {isSending: false});
+      return Object.assign({}, state, {sentStoprequest: true});
     break
 
     default:
