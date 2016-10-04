@@ -29,13 +29,13 @@ class StopRequestView extends Component{
             return (
               <View>
                 <TouchableOpacity onPress={sendStoprequest} style={styles.button}>
-                  <Text style={{fontSize: 40, textAlign: 'center', color: '#ffffff'}}>{strings.confirm}</Text>
+                  <Text style={styles.confirmText}>{strings.confirm}</Text>
                 </TouchableOpacity>
               </View>
 
             );
         } else {
-            return <Text style={styles.confirmText}>{strings.stopsent}</Text>;
+            return <Text style={styles.confirmedText}>{strings.stopsent}</Text>;
         }
     }
 
@@ -46,10 +46,10 @@ class StopRequestView extends Component{
     return (
       <View style={styles.stopRequestStyle}>
       <View>
-        <Text style={{fontSize: 20, textAlign: 'center', margin: 20}}>{strings[vehicleTypes[this.props.vehicle.vehicle_type]]} {this.props.vehicle.line} to {this.props.vehicle.destination} {strings.stopsAt} {this.props.stop.stopName} ({this.props.stop.stopId})</Text>
+        <Text style={styles.busStopsAtText}>{strings[vehicleTypes[this.props.vehicle.vehicle_type]]} {this.props.vehicle.line} to {this.props.vehicle.destination} {strings.stopsAt} {this.props.stop.stopName} ({this.props.stop.stopId})</Text>
         {this.renderCancel()}
         <TouchableOpacity onPress={goBack}>
-          <Text style={{fontSize: 20, color: '#666666', textAlign: 'center'}}>{strings.back}</Text>
+          <Text style={styles.backText}>{strings.back}</Text>
         </TouchableOpacity>
         </View>
       </View>
