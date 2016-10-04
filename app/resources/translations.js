@@ -16,7 +16,9 @@ var strings = new LocalizedStrings({
     metro: 'Metro',
     ferry: 'Ferry',
     confirm: 'Confirm',
-    stopsent: 'Confirmed!'
+    stopsent: 'Confirmed!',
+    gettingLocation: 'Finding your location...',
+    locationError: 'Unable to find your location. Make sure that GPS enabled.'
   },
 
   fi: {
@@ -33,8 +35,11 @@ var strings = new LocalizedStrings({
     tram: 'Ratikka',
     metro: 'Metro',
     ferry: 'Lautta',
-    confrim: 'Vahvista',
-    stopsent: 'Vahvistettu!'
+    confirm: 'Vahvista',
+    stopsent: 'Vahvistettu!',
+    tryAgain: 'Yritä uudelleen',
+    gettingLocation: 'Paikannetaan sijantia...',
+    locationError: 'Paikantaminen epäonnistui. Varmista, että GPS on kytketty päälle.'
   }
 });
 

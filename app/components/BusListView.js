@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { ActivityIndicator, Text, ListView, View, TouchableOpacity, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux'
-import timer from 'react-native-timer';
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
-import { fetchDepartures } from '../actions/fetchDeparturesActions';
+import { fetchDepartures } from '../actions/fetchDeparturesActions'
 
 class BusListView extends Component{
   constructor(props) {
@@ -25,31 +24,17 @@ class BusListView extends Component{
       stop: stopData
     }
 
-    this.currentPosition = {
-      latitude: 60.20583,
-      longitude: 24.96293
-    }
-
-    this.props.fetchDepartures(this.currentPosition.latitude, this.currentPosition.longitude)
-
-    this.updateInterval = 10000 // update interval in ms
-
-
     this.icon_tram = require('../resources/icons/hsl_reittiopas_tram.png')
     this.icon_bus = require('../resources/icons/hsl_reittiopas_bus.png')
   }
 
-  componentDidMount = () => {
-    timer.setInterval(
-      this, 'fetchDeparturesInterval', () => this.props.fetchDepartures(this.currentPosition.latitude, this.currentPosition.longitude), this.updateInterval
-    )
+  componentWillMount = () => {
+        this.props.fetchDepartures(this.props.locationData.latitude, this.props.locationData.longitude)
   }
 
-componentWillUnmount = () => {
-  timer.clearInterval(this)
-}
-
   componentWillReceiveProps = (nextProps) => {
+    this.props.fetchDepartures(nextProps.locationData.latitude, nextProps.locationData.longitude)
+
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(nextProps.stop.schedule)
     })
@@ -118,7 +103,8 @@ componentWillUnmount = () => {
 const mapStateToProps = (state) => {
   return {
     stop: state.fetchReducer.stop,
-    isFetching: state.fetchReducer.isFetching
+    isFetching: state.fetchReducer.isFetching,
+    locationData: state.locationReducer.locationData
   }
 }
 

@@ -1,33 +1,80 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Text, ListView, View, TouchableOpacity } from 'react-native'
-import { Actions } from 'react-native-router-flux'
+import { ActivityIndicator, Text, ListView, View, TouchableOpacity } from 'react-native'
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
+
+import StartViewButtons from './StartViewButtons'
+
+import { setLocation } from '../actions/locationActions'
 
 class StartView extends Component{
   constructor(props) {
     super(props)
 
     this.state = {
+      locationData: '',
+      gotLocation: false,
+      locationError: false
     }
+
+    this.getCurrentLocation()
   }
 
-  render(renderData) {
-    const goToBusListView = () => Actions.departures()
+  getCurrentLocation = () => {
+    navigator.geolocation.getCurrentPosition(
+      (position) =>
+      {
+        this.props.setLocation(position.coords)
+        this.setState({locationData: position.coords, gotLocation: true})
+      },
+      (error) =>
+      {
+        this.setState({locationData: '', locationError: true})
+      },
+      {
+        enableHighAccuracy: false,
+        timeout: 20000,
+        maximumAge: 1000
+      })
+  }
+
+  render() {
+    let viewElement
+
+    if(this.state.locationError) {
+        viewElement = <View>
+        <Text style={styles.locationErrorText}>{strings.locationError}</Text>
+        <TouchableOpacity onPress={this.getCurrentLocation()}><Text style={{textAlign: 'center', color: '#0000ff'}}>{strings.tryAgain}</Text></TouchableOpacity>
+        </View>
+    } else {
+      if(this.state.gotLocation) {
+        viewElement = <StartViewButtons />
+      } else {
+        viewElement = <View><Text style={styles.gettingLocationText}>{strings.gettingLocation}</Text><ActivityIndicator /></View>
+      }
+    }
 
     return (
       <View style={styles.start}>
-        <TouchableOpacity onPress={goToBusListView}>
-          <Text style={styles.startText}>{strings.onStop}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={goToBusListView}>
-          <Text style={styles.startText}>{strings.onBus}</Text>
-        </TouchableOpacity>
-      </View>
+      {viewElement}
+        </View>
     )
   }
 }
+const mapStateToProps = (state) => {
+  return {
 
-export default StartView;
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      setLocation: (locationData) => {
+        dispatch(setLocation(locationData))
+      }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(StartView);
