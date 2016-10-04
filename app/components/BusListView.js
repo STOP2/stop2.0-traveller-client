@@ -68,12 +68,12 @@ componentWillUnmount = () => {
           <View style={{flex:1}}>
             {(renderData.vehicle_type == 1 || renderData.vehicle_type == 2 || renderData.vehicle_type == 4) ?
             <Text>strings[vehicleTypes[this.props.vehicle.vehicle_type]]</Text> :
-            <Image style={{width: 18, height: 18, marginLeft: 5}} resizeMode="contain"
+            <Image style={{width: 20, height: 20, marginLeft: 5}} resizeMode="contain"
             source={renderData.vehicle_type == 0 ? this.icon_tram : this.icon_bus}/>}
           </View>
-          <Text style={{flex:1}}>{renderData.line}</Text>
-          <Text style={{flex:4, color:'black'}}>{renderData.destination}</Text>
-          <Text style={{flex:1, color:'black'}}>{renderData.arrival} min</Text>
+          <Text style={styles.busrowText}>{renderData.line}</Text>
+          <Text style={styles.busrowTextBlack2}>{renderData.destination}</Text>
+          <Text style={styles.busrowTextBlack}>{renderData.arrival} min</Text>
         </View>
       </TouchableOpacity>
     )
@@ -81,12 +81,7 @@ componentWillUnmount = () => {
 
   renderHeader() {
     return (
-      <View style={styles.busrowheader}>
-        <Text style={{flex:1}}>{strings.type}</Text>
-        <Text style={{flex:1}}>{strings.line}</Text>
-        <Text style={{flex:4}}>{strings.dest}</Text>
-        <Text style={{flex:1}}>{strings.leaves}</Text>
-      </View>
+      <View></View>
     )
   }
 
@@ -104,6 +99,12 @@ componentWillUnmount = () => {
     return (
       <View style={{flex: 1}}>
         <Text style={styles.title}>{strings.title} {this.props.stop.stop_name} ({this.props.stop.stop_code})</Text>
+        <View style={styles.busrowheader}>
+          <Text style={styles.busrowText}>{strings.type}</Text>
+          <Text style={styles.busrowText}>{strings.line}</Text>
+          <Text style={styles.busrowText2}>{strings.dest}</Text>
+          <Text style={styles.busrowText}>{strings.leaves}</Text>
+        </View>
         <ListView
           dataSource={this.state.dataSource}
           renderHeader={this.renderHeader}
