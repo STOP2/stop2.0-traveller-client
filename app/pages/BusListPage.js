@@ -12,9 +12,7 @@ class BusListPage extends Component{
 
     render()
     {
-        return (
-      <BusListView />
-    )
+        return <BusListView />
     }
 }
 

@@ -12,9 +12,7 @@ class StopRequestPage extends Component{
 
     render()
     {
-        return (
-      <StopRequestView {...this.props} />
-    )
+        return <StopRequestView {...this.props} />
     }
 }
 

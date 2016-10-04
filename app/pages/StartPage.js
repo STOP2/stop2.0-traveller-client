@@ -10,11 +10,9 @@ class StartPage extends Component{
         this.state = {}
     }
 
-    render() 
+    render()
     {
-        return (
-          <StartView />
-      )
+        return <StartView />
     }
 }
 
