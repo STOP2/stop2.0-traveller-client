@@ -20,15 +20,16 @@ class TravellerApp extends Component {
   render() {
     return(
       <RouterWithRedux>
-        <Scene key="root" hideNavBar={true}>
-          <Scene key="start" component={StartPage} initial={true} />
-          <Scene key="departures" component={BusListPage} />
-          <Scene key="stopRequest" component={StopRequestPage} type="replace" />
+        <Scene key="root" hideNavBar={true} panHandlers={null}>
+          <Scene key="start" component={StartPage} initial={true} panHandlers={null}/>
+          <Scene key="departures" component={BusListPage} panHandlers={null}/>
+          <Scene key="stopRequest" component={StopRequestPage} type="replace" panHandlers={null}/>
         </Scene>
       </RouterWithRedux>
     )
   }
 }
+
 
 const mapStateProps = (state) => {
   return {
