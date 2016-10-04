@@ -85,12 +85,31 @@ var styles = StyleSheet.create({
     margin: 20
   },
   confirmText: {
+    fontSize: 40,
+    textAlign: 'center',
+    color: '#ffffff',
+    fontFamily: 'gotham-rounded-medium'
+  },
+  confirmedText: {
     marginBottom: 7,
     padding: 5,
     color: '#64BE14',
     fontSize: 40,
     textAlign: 'center',
-    margin: 20
+    margin: 20,
+    fontFamily: 'gotham-rounded-medium'
+  },
+  backText: {
+    fontSize: 20,
+    color: '#666666',
+    textAlign: 'center',
+    fontFamily: 'gotham-rounded-book'
+  },
+  busStopsAtText: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 20,
+    fontFamily: 'gotham-rounded-book'
   },
   startImageStop: {
     width: 100,
