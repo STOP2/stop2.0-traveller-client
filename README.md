@@ -22,7 +22,7 @@ Clone the latest version of the project. Inside the Stop2.0-traveller-client fol
 npm install
 ```
 
-For Android development:
+#### For Android development:
 
 Download and install Android Studio: https://developer.android.com/studio/index.html
 
