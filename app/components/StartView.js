@@ -34,7 +34,7 @@ class StartView extends Component{
         this.setState({locationData: '', locationError: true})
       },
       {
-        enableHighAccuracy: true,
+        enableHighAccuracy: false,
         timeout: 20000,
         maximumAge: 1000
       })
