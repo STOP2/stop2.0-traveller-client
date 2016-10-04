@@ -26,20 +26,18 @@ class TravellerApp extends Component {
         </Scene>
       </RouterWithRedux>
     )
-  }
+    }
 }
 
 
 const mapStateProps = (state) =>
 {
-    return {
-  }
+    return {}
 }
 
 const mapDispatchToProps = (dispatch) =>
 {
-  return {
-  }
+    return {}
 }
 
 export default connect(mapStateProps, mapDispatchToProps)(TravellerApp)
