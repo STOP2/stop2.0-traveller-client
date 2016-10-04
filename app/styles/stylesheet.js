@@ -1,9 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 var styles = StyleSheet.create({
-  text: {
-    fontFamily: 'gotham-rounded-book'
-  },
   busrow: {
     flexDirection: 'row',
     borderBottomColor:666666,
@@ -17,11 +14,34 @@ var styles = StyleSheet.create({
     padding:10,
     backgroundColor:'#e9e9e9'
   },
+  busrowText: {
+    flex:1,
+    fontFamily: 'gotham-rounded-book',
+    fontSize:15
+  },
+  busrowText2: {
+    flex:3,
+    fontFamily: 'gotham-rounded-book',
+    fontSize:15
+  },
+  busrowTextBlack: {
+    flex:1,
+    fontFamily: 'gotham-rounded-book',
+    color:'black',
+    fontSize:15
+  },
+  busrowTextBlack2: {
+    flex:3,
+    fontFamily: 'gotham-rounded-book',
+    color:'black',
+    fontSize:15
+  },
   title: {
     fontSize:29,
     backgroundColor:'#007AC9',
     color:'white',
-    padding:10
+    padding:15,
+    fontFamily: 'gotham-rounded-book'
   },
   start: {
     flex:1,
