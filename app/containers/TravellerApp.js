@@ -8,6 +8,8 @@ import BusListPage from '../pages/BusListPage';
 import StopRequestPage from '../pages/StopRequestPage';
 import StartPage from '../pages/StartPage';
 
+import styles from '../styles/stylesheet'
+
 const RouterWithRedux = connect()(Router)
 
 class TravellerApp extends Component {
