@@ -6,30 +6,35 @@ const LOCATION_RADIUS = 500
 export const REQUEST_DEPARTURES = 'REQUEST_DEPARTURES'
 export const RECEIVE_DEPARTURES = 'RECEIVE_DEPARTURES'
 
-function requestDepartures(latitude, longitude) {
-  return {
-    type: REQUEST_DEPARTURES,
-    latitude: latitude,
-    longitude: longitude
-  }
+let requestDepartures = function(latitude, longitude)
+{
+    return {
+        type: REQUEST_DEPARTURES,
+        latitude: latitude,
+        longitude: longitude
+    }
 }
 
-function receiveDepartures(json) {
-  return {
-    type: RECEIVE_DEPARTURES,
-    departures: json.stops
-  }
+let receiveDepartures = function(json)
+{
+    return {
+        type: RECEIVE_DEPARTURES,
+        departures: json.stops
+    }
 }
 
-export function fetchDepartures(latitude, longitude) {
-  let radius_string = ''
+export let fetchDepartures = function(latitude, longitude)
+{
+    let radiusString = ''
 
-  if(USE_LOCATION_RADIUS) radius_string = '&rad=' + LOCATION_RADIUS
+    if (USE_LOCATION_RADIUS) radiusString = '&rad=' + LOCATION_RADIUS
 
-  return dispatch => {
-    dispatch(requestDepartures(latitude, longitude))
-    return fetch(API_URL + '/stops?lat=' + latitude + '&lon=' + longitude + radius_string)
+    return dispatch =>
+    {
+        dispatch(requestDepartures(latitude, longitude))
+
+        return fetch(API_URL + '/stops?lat=' + latitude + '&lon=' + longitude + radiusString)
       .then(response => response.json())
       .then(json => dispatch(receiveDepartures(json)))
-  }
+    }
 }
