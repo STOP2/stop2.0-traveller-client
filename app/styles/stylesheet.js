@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 var styles = StyleSheet.create({
+  text: {
+    fontFamily: 'gotham-rounded-book'
+  },
   busrow: {
     flexDirection: 'row',
     borderBottomColor:666666,
