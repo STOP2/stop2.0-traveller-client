@@ -22,11 +22,11 @@ Clone the latest version of the project. Inside the Stop2.0-traveller-client fol
 npm install
 ```
 
-For Android:
+#### For Android development:
 
 Download and install Android Studio: https://developer.android.com/studio/index.html
 
-Open Android Studio -> configure -> SDK Manager -> Launch SDK Manager (or in command line: cd tools && ./android on android SDK folder) and install Android 6.0 and Android SDK Build-tools 23.0.1.
+Open Android Studio -> configure -> SDK Manager -> Launch SDK Manager (or in command line: cd tools && ./android on android SDK folder) and install Android 6.0 and Android SDK Build-tools 23.0.3.
 
 Run in Android emulator:
 Create new AVD (Android Virtual Device) with Android Studio or in command line: cd tools && ./android avd (on android SDK folder)
