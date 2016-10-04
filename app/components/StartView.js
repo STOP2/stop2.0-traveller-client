@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { ActivityIndicator, Text, ListView, View, TouchableOpacity } from 'react-native'
 
+
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
@@ -58,7 +59,18 @@ class StartView extends Component{
 
     return (
       <View style={styles.start}>
+<<<<<<< HEAD
         {viewElement}
+=======
+        <TouchableOpacity style={styles.startUpper} onPress={goToBusListView}>
+          <Image style={styles.startImageStop} source={require('../resources/images/rinkeli.png')}></Image>
+          <Text style={styles.startText}>{strings.onStop}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.startLower}>
+          <Image style={styles.startImageVehicle} source={require('../resources/images/bussi.png')}></Image>
+          <Text style={styles.startText}>{strings.onBus}</Text>
+        </TouchableOpacity>
+>>>>>>> 103d3688af69689566a1ac134e14837cc46d6f56
       </View>
     )
   }
