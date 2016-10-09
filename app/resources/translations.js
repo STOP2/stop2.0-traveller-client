@@ -18,7 +18,8 @@ let strings = new LocalizedStrings({
         confirm: 'Confirm',
         stopsent: 'Confirmed!',
         gettingLocation: 'Finding your location...',
-        locationError: 'Unable to find your location. Make sure that GPS enabled.'
+        locationError: 'Unable to find your location. Make sure that GPS enabled.',
+        locationPermissionsError: 'Couldn\'t set location permissions.'
     },
 
     fi: {
@@ -39,7 +40,8 @@ let strings = new LocalizedStrings({
         stopsent: 'Vahvistettu!',
         tryAgain: 'Yritä uudelleen',
         gettingLocation: 'Paikannetaan sijantia...',
-        locationError: 'Paikantaminen epäonnistui. Varmista, että GPS on kytketty päälle.'
+        locationError: 'Paikantaminen epäonnistui. Varmista, että GPS on kytketty päälle.',
+        locationPermissionsError: 'Sijainnin käyttöoikeuden asettaminen epäonnistui.'
     }
 })
 
