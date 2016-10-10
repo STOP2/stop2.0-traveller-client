@@ -1,6 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 var styles = StyleSheet.create({
+<<<<<<< HEAD
   navBar: {
     height: 50,
     backgroundColor:'#007AC9',
@@ -17,6 +18,13 @@ var styles = StyleSheet.create({
     tintColor: '#ffffff',
     marginTop:-4,
     marginLeft:5
+=======
+  flex1: {
+    flex: 1
+  },
+  flexRow: {
+    flexDirection: 'row'
+>>>>>>> slider2
   },
   busrow: {
     flexDirection: 'row',
@@ -62,7 +70,7 @@ var styles = StyleSheet.create({
   },
   start: {
     flex:1,
-    padding: 10,
+    padding: 5,
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: '#ffffff'
@@ -107,15 +115,6 @@ var styles = StyleSheet.create({
     color: '#ffffff',
     fontFamily: 'gotham-rounded-medium'
   },
-  confirmedText: {
-    marginBottom: 7,
-    padding: 5,
-    color: '#64BE14',
-    fontSize: 40,
-    textAlign: 'center',
-    margin: 20,
-    fontFamily: 'gotham-rounded-medium'
-  },
   backText: {
     fontSize: 20,
     color: '#666666',
@@ -143,7 +142,7 @@ var styles = StyleSheet.create({
     justifyContent:'center',
     backgroundColor: '#00B9E4',
     borderRadius: 10,
-    marginBottom: 3
+    marginBottom: 5
   },
   startLower: {
     flex: 1,
@@ -152,7 +151,60 @@ var styles = StyleSheet.create({
     justifyContent:'center',
     backgroundColor: '#F092CD',
     borderRadius: 10,
-    marginTop: 3
+    marginTop: 5
+  },
+  confirmedText: {
+    color: '#ffffff',
+    fontSize: 40,
+    textAlign: 'center',
+    margin: 15,
+    fontFamily: 'gotham-rounded-medium'
+  },
+  sliderText: {
+    position: 'absolute',
+    color: '#ffffff',
+    fontSize: 30,
+    textAlign: 'center',
+    margin: 20,
+    fontFamily: 'gotham-rounded-medium'
+  },
+  sliderBackgroundRed: {
+    width: undefined,
+    height: 80,
+    backgroundColor: '#DC0451'
+  },
+  sliderBackgroundGreen: {
+    width: undefined,
+    height: 80,
+    backgroundColor: '#64BE14'
+  },
+  sliderTextContainer: {
+    height: 80,
+    width: Dimensions.get('window').width
+  },
+  pysaytetaankoWrapper: {
+    marginBottom: 10
+  },
+  pysaytetaanko: {
+    fontSize: 40,
+    textAlign: 'center',
+    fontFamily: 'gotham-rounded-book'
+  },
+  busIcon: {
+    width: 50,
+    height: 50
+  },
+  vehicleInfoWrapper: {
+    marginLeft: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  vehicleInfo: {
+    flex: 1,
+    fontSize: 20,
+    textAlign: 'center',
+    fontFamily: 'gotham-rounded-book'
   }
 });
 
