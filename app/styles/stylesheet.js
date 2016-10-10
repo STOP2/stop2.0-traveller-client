@@ -71,7 +71,6 @@ var styles = StyleSheet.create({
   flex: 1,
   flexDirection: 'column',
   justifyContent: 'center',
-  alignItems: 'center'
   },
   spinnerContainer: {
     backgroundColor: 'transparent',
@@ -88,15 +87,6 @@ var styles = StyleSheet.create({
     fontSize: 40,
     textAlign: 'center',
     color: '#ffffff',
-    fontFamily: 'gotham-rounded-medium'
-  },
-  confirmedText: {
-    marginBottom: 7,
-    padding: 5,
-    color: '#64BE14',
-    fontSize: 40,
-    textAlign: 'center',
-    margin: 20,
     fontFamily: 'gotham-rounded-medium'
   },
   backText: {
@@ -136,6 +126,23 @@ var styles = StyleSheet.create({
     backgroundColor: '#F092CD',
     borderRadius: 10,
     marginTop: 3
+  },
+  confirmedText: {
+    padding: 5,
+    color: '#ffffff',
+    fontSize: 40,
+    textAlign: 'center',
+    margin: 20,
+    fontFamily: 'gotham-rounded-medium'
+  },
+  sliderText: {
+    position: 'absolute',
+    padding: 5,
+    color: '#ffffff',
+    fontSize: 40,
+    textAlign: 'center',
+    margin: 20,
+    fontFamily: 'gotham-rounded-medium'
   }
 });
 
