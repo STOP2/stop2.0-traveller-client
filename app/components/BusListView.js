@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ActivityIndicator, Text, ListView, View, TouchableOpacity, Image } from 'react-native'
+import { ActivityIndicator, Text, ListView, View, TouchableOpacity, Image, Navigator } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
 import styles from '../styles/stylesheet'
