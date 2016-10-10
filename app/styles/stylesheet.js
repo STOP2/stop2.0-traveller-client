@@ -1,6 +1,12 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 var styles = StyleSheet.create({
+  flex1: {
+    flex: 1
+  },
+  flexRow: {
+    flexDirection: 'row'
+  },
   busrow: {
     flexDirection: 'row',
     borderBottomColor:666666,
@@ -142,6 +148,44 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     margin: 20,
     fontFamily: 'gotham-rounded-medium'
+  },
+  sliderBackgroundRed: {
+    width: undefined,
+    height: 80,
+    backgroundColor: '#DC0451'
+  },
+  sliderBackgroundGreen: {
+    width: undefined,
+    height: 80,
+    backgroundColor: '#64BE14'
+  },
+  sliderTextContainer: {
+    height: 80,
+    width: Dimensions.get('window').width
+  },
+  pysaytetaankoWrapper: {
+    marginBottom: 10
+  },
+  pysaytetaanko: {
+    fontSize: 40,
+    textAlign: 'center',
+    fontFamily: 'gotham-rounded-book'
+  },
+  busIcon: {
+    width: 50,
+    height: 50
+  },
+  vehicleInfoWrapper: {
+    marginLeft: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  vehicleInfo: {
+    flex: 1,
+    fontSize: 20,
+    textAlign: 'center',
+    fontFamily: 'gotham-rounded-book'
   }
 });
 
