@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Text, View, TouchableOpacity, Dimensions } from 'react-native'
+import { Text, View, TouchableOpacity, Dimensions, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { sendStoprequest } from '../actions/sendStoprequest'
 import { SlideButton } from 'react-native-slide-button'
@@ -12,7 +12,11 @@ class StopRequestView extends Component{
     constructor(props)
     {
         super(props)
+
         this.state = {renderConfirm: true}
+
+        this.iconTram = require('../resources/icons/hsl_reittiopas_tram.png')
+        this.iconBus = require('../resources/icons/hsl_reittiopas_bus.png')
     }
 
     componentWillReceiveProps = (nextProps) =>
@@ -68,13 +72,22 @@ class StopRequestView extends Component{
             <Text style={styles.title}>{this.props.stop.stopName} ({this.props.stop.stopId})</Text>
 
             <View style={styles.stopRequestStyle}>
-              <View>
-                <Text style={styles.busStopsAtText}>{strings[vehicleTypes[this.props.vehicle.vehicle_type]]} {this.props.vehicle.line} to {this.props.vehicle.destination} {strings.stopsAt} {this.props.stop.stopName} ({this.props.stop.stopId})</Text>
-                <TouchableOpacity onPress={goBack}>
-                  <Text style={styles.backText}>{strings.back}</Text>
-                </TouchableOpacity>
+              <View style={{marginBottom: 10}}>
+                <Text style={{fontSize: 40,
+                textAlign: 'center',
+                fontFamily: 'gotham-rounded-book'}}>Pysäytetäänkö</Text>
+              </View>
+              <View style={{flexDirection: 'row'}}>
+                <Image style={{width: 50, height: 50}} resizeMode="contain"
+                source={this.props.vehicle.vehicle_type == 0 ? this.iconTram : this.iconBus}/>
+                <View style={{marginLeft: 10, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                  <Text style={{flex: 1, fontSize: 20,
+                  textAlign: 'center',
+                  fontFamily: 'gotham-rounded-book'}}>{this.props.vehicle.line} {this.props.vehicle.destination}</Text>
+                </View>
               </View>
             </View>
+
             {this.renderCancel()}
           </View>
         )
