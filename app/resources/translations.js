@@ -48,7 +48,7 @@ let strings = new LocalizedStrings({
         locationPermissionsError: 'Sijainnin käyttöoikeuden asettaminen epäonnistui.',
         chooseVehicle: 'Valitse ajoneuvo',
         stopRequest: 'Vahvista pysäytyspyyntö',
-        slide: 'Vahvista liu?\'uttamalla',
+        slide: 'Vahvista liu\'uttamalla',
         doYouWantToStop: 'Pysäytetäänkö'
     }
 })
