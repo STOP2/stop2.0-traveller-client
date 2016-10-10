@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { Text, Navigator } from 'react-native'
 import { Router, Scene } from 'react-native-router-flux'
-import BusListPage from '../pages/BusListPage';
-import StopRequestPage from '../pages/StopRequestPage';
-import StartPage from '../pages/StartPage';
+import BusListPage from '../pages/BusListPage'
+import StopRequestPage from '../pages/StopRequestPage'
+import StartPage from '../pages/StartPage'
 
 import strings from '../resources/translations'
 import styles from '../styles/stylesheet'
@@ -12,12 +11,14 @@ import styles from '../styles/stylesheet'
 const RouterWithRedux = connect()(Router)
 
 class TravellerApp extends Component {
-  constructor(props) {
-    super(props);
-  }
+    constructor(props) 
+    {
+        super(props)
+    }
 
-  render() {
-    return(
+    render()
+    {
+        return (
       <RouterWithRedux>
         <Scene key="root">
           <Scene key="start" component={StartPage} initial={true} hideNavBar={true} panHandlers={null}/>
@@ -26,7 +27,7 @@ class TravellerApp extends Component {
         </Scene>
       </RouterWithRedux>
     )
-  }
+    }
 }
 const mapStateProps = (state) =>
 {
