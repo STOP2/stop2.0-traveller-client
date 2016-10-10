@@ -20,13 +20,10 @@ let strings = new LocalizedStrings({
         gettingLocation: 'Finding your location...',
         locationError: 'Unable to find your location. Make sure that GPS enabled.',
         locationPermissionsError: 'Couldn\'t set location permissions.',
-<<<<<<< HEAD
         chooseVehicle: 'Choose a vehicle',
-        stopRequest: 'Confirm stop request'
-=======
+        stopRequest: 'Confirm stop request',
         slide: 'Slide to confirm',
         doYouWantToStop: 'Do you want to stop'
->>>>>>> slider2
     },
 
     fi: {
@@ -49,13 +46,10 @@ let strings = new LocalizedStrings({
         gettingLocation: 'Paikannetaan sijantia...',
         locationError: 'Paikantaminen epäonnistui. Varmista, että GPS on kytketty päälle.',
         locationPermissionsError: 'Sijainnin käyttöoikeuden asettaminen epäonnistui.',
-<<<<<<< HEAD
         chooseVehicle: 'Valitse ajoneuvo',
-        stopRequest: 'Vahvista pysäytyspyyntö'
-=======
+        stopRequest: 'Vahvista pysäytyspyyntö',
         slide: 'Vahvista liu?\'uttamalla',
         doYouWantToStop: 'Pysäytetäänkö'
->>>>>>> slider2
     }
 })
 
