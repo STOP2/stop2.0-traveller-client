@@ -34,10 +34,10 @@ class StopRequestView extends Component{
 
             );*/
             return (
-              <View style={{width: undefined, height: 100, backgroundColor: '#DC0451'}}>
+              <View style={{width: undefined, height: 80, backgroundColor: '#DC0451'}}>
                 <SlideButton
                  onSlideSuccess={sendStoprequest}>
-                  <View style={{height: 100, width: Dimensions.get('window').width}}>
+                  <View style={{height: 80, width: Dimensions.get('window').width}}>
                     <Text style={styles.sliderText}>Slide</Text>
                   </View>
                 </SlideButton>
@@ -47,7 +47,7 @@ class StopRequestView extends Component{
         else
         {
             return (
-              <View style={{width: undefined, height: 100, backgroundColor: '#64BE14'}}>
+              <View style={{width: undefined, height: 80, backgroundColor: '#64BE14'}}>
                 <Text style={styles.confirmedText}>{strings.stopsent}</Text>
               </View>
             )
