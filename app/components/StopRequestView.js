@@ -22,7 +22,11 @@ class StopRequestView extends Component{
 
     renderCancel = () =>
     {
-        const sendStoprequest = () => this.props.sendStoprequest(this.props.vehicle.vehicle_id, this.props.stop.stopId, 'stop')
+        const sendStoprequest = () =>
+        {
+            this.props.sendStoprequest(this.props.vehicle.vehicle_id, this.props.stop.stopId, 'stop')
+        }
+
         if (this.state.renderConfirm)
         {
             /* return (
@@ -60,16 +64,19 @@ class StopRequestView extends Component{
         const vehicleTypes = 'tram metro train bus ferry'.split(' ')
 
         return (
-          <View style={styles.stopRequestStyle}>
-            <View>
-              <Text style={styles.busStopsAtText}>{strings[vehicleTypes[this.props.vehicle.vehicle_type]]} {this.props.vehicle.line} to {this.props.vehicle.destination} {strings.stopsAt} {this.props.stop.stopName} ({this.props.stop.stopId})</Text>
-              <TouchableOpacity onPress={goBack}>
-                <Text style={styles.backText}>{strings.back}</Text>
-              </TouchableOpacity>
-            </View>
+          <View style={{flex: 1}}>
+            <Text style={styles.title}>{this.props.stop.stopName} ({this.props.stop.stopId})</Text>
+
+            <View style={styles.stopRequestStyle}>
+              <View>
+                <Text style={styles.busStopsAtText}>{strings[vehicleTypes[this.props.vehicle.vehicle_type]]} {this.props.vehicle.line} to {this.props.vehicle.destination} {strings.stopsAt} {this.props.stop.stopName} ({this.props.stop.stopId})</Text>
+                <TouchableOpacity onPress={goBack}>
+                  <Text style={styles.backText}>{strings.back}</Text>
+                </TouchableOpacity>
+              </View>
 
               {this.renderCancel()}
-
+            </View>
           </View>
         )
     }
@@ -83,8 +90,9 @@ const mapStateToProps = (state) =>
 const mapDispatchToProps = (dispatch) =>
 {
     return {
-        sendStoprequest: (bus_id, stop_id, request_type) => {
-            dispatch(sendStoprequest(bus_id, stop_id, request_type))
+        sendStoprequest: (busId, stopId, requestType) =>
+        {
+            dispatch(sendStoprequest(busId, stopId, requestType))
         }
     }
 }
