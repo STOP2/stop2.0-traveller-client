@@ -27,7 +27,7 @@ class TravellerApp extends Component {
       </RouterWithRedux>
     )
   }
-
+}
 const mapStateProps = (state) =>
 {
     return {}
