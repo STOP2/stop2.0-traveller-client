@@ -129,18 +129,16 @@ var styles = StyleSheet.create({
     marginTop: 3
   },
   confirmedText: {
-    padding: 5,
     color: '#ffffff',
     fontSize: 40,
     textAlign: 'center',
-    margin: 20,
+    margin: 15,
     fontFamily: 'gotham-rounded-medium'
   },
   sliderText: {
     position: 'absolute',
-    padding: 5,
     color: '#ffffff',
-    fontSize: 40,
+    fontSize: 30,
     textAlign: 'center',
     margin: 20,
     fontFamily: 'gotham-rounded-medium'
