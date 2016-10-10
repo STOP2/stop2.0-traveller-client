@@ -41,3 +41,6 @@ android/app/libs
 android/keystores/debug.keystore
 android/app/app-release.apk
 android/keystores/stop2.keystore
+android/app/src/main/assets/index.android.bundle
+android/app/src/main/assets/index.android.bundle.meta
+android/app/src/main/assets/index.android.map
