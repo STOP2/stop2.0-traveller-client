@@ -45,7 +45,7 @@ var styles = StyleSheet.create({
   },
   start: {
     flex:1,
-    padding: 10,
+    padding: 5,
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: '#ffffff'
@@ -116,7 +116,7 @@ var styles = StyleSheet.create({
     justifyContent:'center',
     backgroundColor: '#00B9E4',
     borderRadius: 10,
-    marginBottom: 3
+    marginBottom: 5
   },
   startLower: {
     flex: 1,
@@ -125,7 +125,7 @@ var styles = StyleSheet.create({
     justifyContent:'center',
     backgroundColor: '#F092CD',
     borderRadius: 10,
-    marginTop: 3
+    marginTop: 5
   },
   confirmedText: {
     color: '#ffffff',
