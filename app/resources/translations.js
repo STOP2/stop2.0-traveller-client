@@ -18,7 +18,9 @@ var strings = new LocalizedStrings({
     confirm: 'Confirm',
     stopsent: 'Confirmed!',
     gettingLocation: 'Finding your location...',
-    locationError: 'Unable to find your location. Make sure that GPS enabled.'
+    locationError: 'Unable to find your location. Make sure that GPS enabled.',
+    chooseVehicle: 'Choose a vehicle',
+    stopRequest: 'Confirm stop request'
   },
 
   fi: {
@@ -39,7 +41,9 @@ var strings = new LocalizedStrings({
     stopsent: 'Vahvistettu!',
     tryAgain: 'Yritä uudelleen',
     gettingLocation: 'Paikannetaan sijantia...',
-    locationError: 'Paikantaminen epäonnistui. Varmista, että GPS on kytketty päälle.'
+    locationError: 'Paikantaminen epäonnistui. Varmista, että GPS on kytketty päälle.',
+    chooseVehicle: 'Valitse ajoneuvo',
+    stopRequest: 'Vahvista pysäytyspyyntö'
   }
 });
 
