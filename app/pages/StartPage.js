@@ -3,18 +3,17 @@ import StartView from '../components/StartView'
 import React, { Component } from 'react'
 
 class StartPage extends Component{
-  constructor(props) {
-    super(props)
+    constructor(props)
+    {
+        super(props)
 
-    this.state = {
+        this.state = {}
     }
-  }
 
-  render() {
-    return (
-      <StartView />
-    )
-  }
+    render()
+    {
+        return <StartView />
+    }
 }
 
-export default StartPage;
+export default StartPage
