@@ -1,7 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 var styles = StyleSheet.create({
-<<<<<<< HEAD
   navBar: {
     height: 50,
     backgroundColor:'#007AC9',
@@ -18,13 +17,12 @@ var styles = StyleSheet.create({
     tintColor: '#ffffff',
     marginTop:-4,
     marginLeft:5
-=======
+  },
   flex1: {
     flex: 1
   },
   flexRow: {
     flexDirection: 'row'
->>>>>>> slider2
   },
   busrow: {
     flexDirection: 'row',
