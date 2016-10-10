@@ -46,7 +46,7 @@
       "newline-before-return": "warn",
       "newline-after-var": ["warn", "always"],
       "max-nested-callbacks": ["warn", 3],
-      "max-len": ["warn", 80],
+      //"max-len": ["warn", 80],
       "max-depth": ["warn", 4],
       "lines-around-directive": ["warn", "always"],
       "lines-around-comment": ["warn", { "beforeBlockComment": true }],
