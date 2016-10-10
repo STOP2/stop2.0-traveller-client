@@ -42,7 +42,7 @@ class StopRequestView extends Component{
                 <SlideButton
                  onSlideSuccess={sendStoprequest}>
                   <View style={{height: 80, width: Dimensions.get('window').width}}>
-                    <Text style={styles.sliderText}>Slide</Text>
+                    <Text style={styles.sliderText}>{strings.slide}</Text>
                   </View>
                 </SlideButton>
               </View>
@@ -74,9 +74,8 @@ class StopRequestView extends Component{
                   <Text style={styles.backText}>{strings.back}</Text>
                 </TouchableOpacity>
               </View>
-
-              {this.renderCancel()}
             </View>
+            {this.renderCancel()}
           </View>
         )
     }

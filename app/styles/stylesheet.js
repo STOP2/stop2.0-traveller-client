@@ -137,9 +137,9 @@ var styles = StyleSheet.create({
   sliderText: {
     position: 'absolute',
     color: '#ffffff',
-    fontSize: 40,
+    fontSize: 30,
     textAlign: 'center',
-    margin: 15,
+    margin: 20,
     fontFamily: 'gotham-rounded-medium'
   }
 });
