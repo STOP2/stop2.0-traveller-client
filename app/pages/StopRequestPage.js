@@ -1,20 +1,19 @@
-import StopRequestView from '../components/StopRequestView';
+import StopRequestView from '../components/StopRequestView'
 
 import React, { Component } from 'react'
 
 class StopRequestPage extends Component{
-  constructor(props) {
-    super(props)
+    constructor(props)
+    {
+        super(props)
 
-    this.state = {
+        this.state = {}
     }
-  }
 
-  render() {
-    return (
-      <StopRequestView {...this.props} />
-    )
-  }
+    render()
+    {
+        return <StopRequestView {...this.props} />
+    }
 }
 
-export default StopRequestPage;
+export default StopRequestPage

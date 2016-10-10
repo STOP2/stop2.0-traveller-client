@@ -10,6 +10,8 @@ import StartViewButtons from './StartViewButtons'
 
 import { setLocation } from '../actions/locationActions'
 
+import {checkPermission, requestPermission} from 'react-native-android-permissions'
+
 class StartView extends Component{
   constructor(props) {
     super(props)
@@ -19,9 +21,29 @@ class StartView extends Component{
       gotLocation: false,
       locationError: false
     }
-
-    this.getCurrentLocation()
   }
+
+    componentWillMount = () =>
+    {
+        checkPermission('android.permission.ACCESS_FINE_LOCATION').then(() =>
+        {
+            this.getCurrentLocation()
+        }, () =>
+        {
+            setTimeout(() =>
+            {
+                requestPermission('android.permission.ACCESS_FINE_LOCATION').then(() =>
+            {
+                    this.getCurrentLocation()
+                }, () =>
+            {
+                    alert(strings.locationPermissionsError)
+                })
+          // for the correct StatusBar behaviour with translucent={true} we need to wait a bit and ask for permission after the first render cycle
+          // (check https://github.com/facebook/react-native/issues/9413 for more info)
+            }, 0)
+        })
+    }
 
   getCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition(
