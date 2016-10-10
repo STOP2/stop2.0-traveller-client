@@ -1,49 +1,32 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-
+import { Text, Navigator } from 'react-native'
 import { Router, Scene } from 'react-native-router-flux'
-import { Alert } from 'react-native'
+import BusListPage from '../pages/BusListPage';
+import StopRequestPage from '../pages/StopRequestPage';
+import StartPage from '../pages/StartPage';
 
-import BusListPage from '../pages/BusListPage'
-import StopRequestPage from '../pages/StopRequestPage'
-import StartPage from '../pages/StartPage'
+import strings from '../resources/translations'
+import styles from '../styles/stylesheet'
 
 const RouterWithRedux = connect()(Router)
 
 class TravellerApp extends Component {
-    constructor(props)
-    {
-        super(props)
-    }
-
-    render() {
-      const routeStackIds = this.props.navigator.state.routeStack.map((route)=> route.id);
-      const presentedIndex = _.indexOf(routeStackIds, this.props.route.id);
-      Alert("jee1", presentedIndex)
-      return(
-        <RouterWithRedux backAndroidHandler={backAndroidHandle}>
-          <Scene key="root" hideNavBar={true} panHandlers={null}>
-            <Scene key="start" component={StartPage} initial={true} panHandlers={null}/>
-            <Scene key="departures" component={BusListPage} panHandlers={null}/>
-            <Scene key="stopRequest" component={StopRequestPage} type="replace" panHandlers={null}/>
-          </Scene>
-        </RouterWithRedux>
-      )
-    }
+  constructor(props) {
+    super(props);
   }
 
-  const backAndroidHandle = () => {
-    const routeStackIds = this.props.navigator.state.routeStack.map((route)=> route.id);
-    const presentedIndex = _.indexOf(routeStackIds, this.props.route.id);
-    Alert("jee2", presentedIndex)
-      if (presentedIndex==1){
-      return true
-    }
-    else {
-      return true
-    }
-  };
-
+  render() {
+    return(
+      <RouterWithRedux>
+        <Scene key="root">
+          <Scene key="start" component={StartPage} initial={true} hideNavBar={true} panHandlers={null}/>
+          <Scene title={strings.chooseVehicle} key="departures" component={BusListPage} panHandlers={null} navigationBarStyle={styles.navBar} titleStyle={styles.navBarTitle} leftButtonIconStyle={styles.backButton} sceneStyle={{paddingTop: 50}} hideNavBar={false}/>
+          <Scene title={strings.stopRequest} key="stopRequest" component={StopRequestPage} panHandlers={null} navigationBarStyle={styles.navBar} titleStyle={styles.navBarTitle} leftButtonIconStyle={styles.backButton} sceneStyle={{paddingTop: 50}} hideNavBar={false}/>
+        </Scene>
+      </RouterWithRedux>
+    )
+  }
 
 const mapStateProps = (state) =>
 {
