@@ -1,6 +1,23 @@
 import { StyleSheet } from 'react-native';
 
 var styles = StyleSheet.create({
+  navBar: {
+    height: 50,
+    backgroundColor:'#007AC9',
+    borderBottomColor: '#e9e9e9',
+    justifyContent: 'center'
+  },
+  navBarTitle: {
+    fontFamily: 'gotham-rounded-medium',
+    color: '#ffffff',
+    fontSize:25,
+    marginTop:2
+  },
+  backButton: {
+    tintColor: '#ffffff',
+    marginTop:-4,
+    marginLeft:5
+  },
   busrow: {
     flexDirection: 'row',
     borderBottomColor:666666,
@@ -37,7 +54,7 @@ var styles = StyleSheet.create({
     fontSize:15
   },
   title: {
-    fontSize:29,
+    fontSize:25,
     backgroundColor:'#007AC9',
     color:'white',
     padding:15,
