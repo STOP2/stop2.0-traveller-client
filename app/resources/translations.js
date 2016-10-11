@@ -23,7 +23,7 @@ let strings = new LocalizedStrings({
         chooseVehicle: 'Choose a vehicle',
         stopRequest: 'Confirm stop request',
         slide: 'Slide to confirm',
-        doYouWantToStop: 'Do you want to stop'
+        doYouWantToStop: 'Stop?'
     },
 
     fi: {
