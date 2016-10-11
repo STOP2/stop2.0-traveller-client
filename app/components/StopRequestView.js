@@ -93,9 +93,9 @@ const mapStateToProps = (state) =>
 const mapDispatchToProps = (dispatch) =>
 {
     return {
-        sendStoprequest: (busId, stopId, requestType) =>
+        sendStoprequest: (tripId, stopId, requestType) =>
         {
-            dispatch(sendStoprequest(busId, stopId, requestType))
+            dispatch(sendStoprequest(tripId, stopId, requestType))
         }
     }
 }
