@@ -18,3 +18,19 @@ DefaultText.propTypes = {
     children: React.PropTypes.node,
     style: React.PropTypes.number
 }
+
+export class BoldText extends Component {
+    render()
+    {
+        return (
+            <Text style={this.props.style}>
+              <Text style={styles.boldText}>{this.props.children}</Text>
+            </Text>
+          )
+    }
+}
+
+BoldText.propTypes = {
+    children: React.PropTypes.node,
+    style: React.PropTypes.number
+}

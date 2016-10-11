@@ -1,6 +1,12 @@
 import { StyleSheet, Dimensions } from 'react-native'
 
 const styles = StyleSheet.create({
+    defaultText: {
+        fontFamily: 'gotham-rounded-book'
+    },
+    boldText: {
+        fontFamily: 'gotham-rounded-medium'
+    },
     navBar: {
         height: 50,
         backgroundColor: '#007AC9',
@@ -161,8 +167,7 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         fontSize: 30,
         textAlign: 'center',
-        margin: 20,
-        fontFamily: 'gotham-rounded-medium'
+        margin: 20
     },
     sliderBackgroundRed: {
         width: undefined,
