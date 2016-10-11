@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text } from 'react-native'
+import { DefaultText } from '../components/textComponents'
 
 import styles from '../styles/stylesheet'
 
@@ -13,7 +13,7 @@ class TitleBar extends Component {
 
     render()
     {
-        return (<Text style={styles.title}>{this.props.title}</Text>)
+        return (<DefaultText style={styles.title}>{this.props.title}</DefaultText>)
     }
 }
 

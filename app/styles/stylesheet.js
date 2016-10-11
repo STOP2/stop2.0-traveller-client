@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#007AC9',
         color: 'white',
         padding: 15,
-        fontFamily: 'gotham-rounded-book'
     },
     start: {
         flex: 1,
