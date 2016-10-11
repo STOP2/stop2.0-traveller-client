@@ -22,9 +22,10 @@ cache:
     - $HOME/.gradle/wrapper/
 
 before_install:
+  - npm install -g npm@latest
+  - npm install
   - rvm install 2.0.0
   - gem install calabash-android
-  - npm install
 
 before_script:
   - echo no | android create avd --force -n test -t android-23 --abi x86
