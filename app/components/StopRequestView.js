@@ -42,7 +42,7 @@ class StopRequestView extends Component{
             );*/
             return (
               <View style={styles.sliderBackgroundRed}>
-                <SlideButton
+                <SlideButton width={500} height={80}
                  onSlideSuccess={sendStoprequest}>
                   <View style={styles.sliderTextContainer}>
                     <Text style={styles.sliderText}>{strings.slide}</Text>
@@ -70,7 +70,7 @@ class StopRequestView extends Component{
             <Text style={styles.title}>{this.props.stop.stopName} ({this.props.stop.stopId})</Text>
             <View style={styles.stopRequestStyle}>
               <View style={styles.pysaytetaankoWrapper}>
-                <Text style={styles.pysaytetaanko}>Pysäytetäänkö</Text>
+                <Text style={styles.pysaytetaanko}>{strings.doYouWantToStop}</Text>
               </View>
               <View style={styles.flexRow}>
                 <Image style={styles.busIcon} resizeMode="contain"

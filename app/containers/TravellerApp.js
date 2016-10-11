@@ -11,7 +11,7 @@ import styles from '../styles/stylesheet'
 const RouterWithRedux = connect()(Router)
 
 class TravellerApp extends Component {
-    constructor(props) 
+    constructor(props)
     {
         super(props)
     }
