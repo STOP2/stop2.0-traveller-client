@@ -20,8 +20,8 @@ class StartViewButtons extends Component {
 
         return (
         <View style={styles.start}>
-          <StartButton style={styles.startUpper} onPress={goToBusListView} buttonText={strings.onBus} image={require('../resources/images/rinkeli.png')}/>
-          <StartButton style={styles.startLower} buttonText={strings.onStop} image={require('../resources/images/bussi.png')}/>
+          <StartButton style={styles.startUpper} imageStyle={styles.startImageStop} onPress={goToBusListView} buttonText={strings.onBus} image={require('../resources/images/rinkeli.png')}/>
+          <StartButton style={styles.startLower} imageStyle={styles.startImageVehicle} buttonText={strings.onStop} image={require('../resources/images/bussi.png')}/>
         </View>)
     }
 }
