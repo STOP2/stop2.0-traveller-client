@@ -178,8 +178,8 @@ const styles = StyleSheet.create({
         height: 80,
         width: Dimensions.get('window').width
     },
-    pysaytetaankoWrapper: {marginBottom: 10},
-    pysaytetaanko: {
+    doYouWantToStopWrapper: {marginBottom: 10},
+    doYouWantToStop: {
         fontSize: 40,
         textAlign: 'center',
         fontFamily: 'gotham-rounded-book'
