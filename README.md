@@ -48,3 +48,15 @@ Run the app (the app will run on the device if it's connected, otherwise it will
 ```bash
 react-native run-android
 ```
+
+### Recommended IDE
+The recommended IDE is Atom (https://atom.io) with Nuclide (https://nuclide.io).
+
+To install Nuclide for Atom:
+```bash
+apm install nuclide
+```
+Install Eslint support for Atom:
+```bash
+apm install linter-eslint
+```
