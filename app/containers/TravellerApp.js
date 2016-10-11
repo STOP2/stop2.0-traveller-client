@@ -11,7 +11,7 @@ import styles from '../styles/stylesheet'
 const RouterWithRedux = connect()(Router)
 
 class TravellerApp extends Component {
-    constructor(props) 
+    constructor(props)
     {
         super(props)
     }
@@ -29,12 +29,12 @@ class TravellerApp extends Component {
     )
     }
 }
-const mapStateProps = (state) =>
+const mapStateProps = () =>
 {
     return {}
 }
 
-const mapDispatchToProps = (dispatch) =>
+const mapDispatchToProps = () =>
 {
     return {}
 }

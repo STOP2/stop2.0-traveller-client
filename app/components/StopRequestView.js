@@ -7,7 +7,7 @@ import { SlideButton } from 'react-native-slide-button'
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
-class StopRequestView extends Component{
+class StopRequestView extends Component {
     constructor(props)
     {
         super(props)
@@ -63,8 +63,6 @@ class StopRequestView extends Component{
 
     render()
     {
-        const vehicleTypes = 'tram metro train bus ferry'.split(' ')
-
         return (
           <View style={styles.flex1}>
             <Text style={styles.title}>{this.props.stop.stopName} ({this.props.stop.stopId})</Text>

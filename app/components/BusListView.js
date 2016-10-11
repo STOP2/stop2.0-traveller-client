@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ActivityIndicator, Text, ListView, View, TouchableOpacity, Image, Navigator } from 'react-native'
+import { ActivityIndicator, Text, ListView, View, TouchableOpacity, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
 import styles from '../styles/stylesheet'
@@ -10,25 +10,26 @@ import { fetchDepartures } from '../actions/fetchDeparturesActions'
 
 const UPDATE_INTERVAL_IN_MS = 10000
 
-class BusListView extends Component{
-  constructor(props) {
-    super(props)
+class BusListView extends Component {
+    constructor(props)
+    {
+        super(props)
 
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
 
-    let stopData = {
-      stopId: 3029,
-      stopName: 'Kumpulan kampus'
+        let stopData = {
+            stopId: 3029,
+            stopName: 'Kumpulan kampus'
+        }
+
+        this.state = {
+            dataSource: ds.cloneWithRows([]),
+            stop: stopData
+        }
+
+        this.iconTram = require('../resources/icons/hsl_reittiopas_tram.png')
+        this.iconBus = require('../resources/icons/hsl_reittiopas_bus.png')
     }
-
-    this.state = {
-      dataSource: ds.cloneWithRows([]),
-      stop: stopData
-    }
-
-    this.icon_tram = require('../resources/icons/hsl_reittiopas_tram.png')
-    this.icon_bus = require('../resources/icons/hsl_reittiopas_bus.png')
-  }
 
     componentWillMount = () =>
     {
@@ -48,29 +49,37 @@ class BusListView extends Component{
       clearInterval(this.fetchInterval)
   }*/
 
-  componentWillReceiveProps = (nextProps) => {
-    //this.props.fetchDepartures(nextProps.locationData.latitude, nextProps.locationData.longitude)
+    componentWillReceiveProps = (nextProps) =>
+    {
+    // this.props.fetchDepartures(nextProps.locationData.latitude, nextProps.locationData.longitude)
 
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(nextProps.stop.schedule)
-    })
-  }
-
-  renderRow = (renderData) => {
-    const goToStopRequestPage = () => {
-      Actions.stopRequest({vehicle: renderData, stop: {stopName: this.props.stop.stop_name, stopId: this.props.stop.stop_code}})
+        this.setState({dataSource: this.state.dataSource.cloneWithRows(nextProps.stop.schedule)})
     }
 
-    const vehicleTypes = 'tram metro train bus ferry'.split(' ')
+    renderRow = (renderData) =>
+    {
+        const goToStopRequestPage = () =>
+        {
+            Actions.stopRequest({
+                vehicle: renderData,
+                stop: {
+                    stopName: this.props.stop.stop_name,
+                    stopId: this.props.stop.stop_code
+                }
+            })
+        }
 
-    return (
+        const vehicleTypes = 'tram metro train bus ferry'.split(' ')
+
+        return (
       <TouchableOpacity onPress={goToStopRequestPage}>
         <View style={styles.busrow}>
-          <View style={{flex:1}}>
-            {(renderData.vehicle_type == 1 || renderData.vehicle_type == 2 || renderData.vehicle_type == 4) ?
-            <Text>strings[vehicleTypes[this.props.vehicle.vehicle_type]]</Text> :
-            <Image style={{width: 20, height: 20, marginLeft: 5}} resizeMode="contain"
-            source={renderData.vehicle_type == 0 ? this.icon_tram : this.icon_bus}/>}
+          <View style={{flex: 1}}>
+            {(renderData.vehicle_type == 1 || renderData.vehicle_type == 2 || renderData.vehicle_type == 4) ? <Text>strings[vehicleTypes[this.props.vehicle.vehicle_type]]</Text> : <Image style={{
+                width: 20,
+                height: 20,
+                marginLeft: 5
+            }} resizeMode="contain" source={renderData.vehicle_type == 0 ? this.icon_tram : this.icon_bus}/>}
           </View>
           <Text style={styles.busrowText}>{renderData.line}</Text>
           <Text style={styles.busrowTextBlack2}>{renderData.destination}</Text>
@@ -78,26 +87,29 @@ class BusListView extends Component{
         </View>
       </TouchableOpacity>
     )
-  }
+    }
 
-  renderHeader() {
-    return (
+    renderHeader()
+    {
+        return (
       <View></View>
     )
-  }
+    }
 
-  renderFooter = () => {
-    return (
+    renderFooter = () =>
+    {
+        return (
         <View>
         <ActivityIndicator
           animating={this.props.isFetching}
         />
       </View>
     )
-  }
+    }
 
-  render() {
-    return (
+    render()
+    {
+        return (
       <View style={{flex: 1}}>
         <Text style={styles.title}>{strings.title} {this.props.stop.stop_name} ({this.props.stop.stop_code})</Text>
         <View style={styles.busrowheader}>
@@ -114,23 +126,26 @@ class BusListView extends Component{
         />
       </View>
     )
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    stop: state.fetchReducer.stop,
-    isFetching: state.fetchReducer.isFetching,
-    locationData: state.locationReducer.locationData
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-      fetchDepartures: (latitude, longitude) => {
-        dispatch(fetchDepartures(latitude, longitude))
-      }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BusListView);
+const mapStateToProps = (state) =>
+{
+    return {
+        stop: state.fetchReducer.stop,
+        isFetching: state.fetchReducer.isFetching,
+        locationData: state.locationReducer.locationData
+    }
+}
+
+const mapDispatchToProps = (dispatch) =>
+{
+    return {
+        fetchDepartures: (latitude, longitude) =>
+        {
+            dispatch(fetchDepartures(latitude, longitude))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BusListView)
