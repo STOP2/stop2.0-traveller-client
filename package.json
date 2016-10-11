@@ -6,7 +6,8 @@
     "test": "jest --coverage",
     "build": "(cd android/ && ./gradlew assembleDebug)",
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "bundle-android": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/"
+    "bundle-android": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/",
+    "apk": "(cd android/ && ./gradlew assembleRelease)"
   },
   "dependencies": {
     "react": "^15.3.2",
