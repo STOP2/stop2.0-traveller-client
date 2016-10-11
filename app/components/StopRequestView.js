@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Text, View, Image } from 'react-native'
 import { sendStoprequest } from '../actions/sendStoprequest'
-import { SlideButton } from 'react-native-slide-button'
+
+import TitleBar from './TitleBar'
+import SlideConfirmButton from './SlideConfirmButton'
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
@@ -32,24 +34,7 @@ class StopRequestView extends Component {
 
         if (this.state.renderConfirm)
         {
-            /* return (
-              <View>
-                <TouchableOpacity onPress={sendStoprequest} style={styles.button}>
-                  <Text style={styles.confirmText}>{strings.confirm}</Text>
-                </TouchableOpacity>
-              </View>
-
-            );*/
-            return (
-              <View style={styles.sliderBackgroundRed}>
-                <SlideButton width={500} height={80}
-                 onSlideSuccess={sendStoprequest}>
-                  <View style={styles.sliderTextContainer}>
-                    <Text style={styles.sliderText}>{strings.slide}</Text>
-                  </View>
-                </SlideButton>
-              </View>
-            )
+            return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide} />)
         }
         else
         {
@@ -65,10 +50,10 @@ class StopRequestView extends Component {
     {
         return (
           <View style={styles.flex1}>
-            <Text style={styles.title}>{this.props.stop.stopName} ({this.props.stop.stopId})</Text>
+              <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopId + ')'} />
             <View style={styles.stopRequestStyle}>
-              <View style={styles.pysaytetaankoWrapper}>
-                <Text style={styles.pysaytetaanko}>{strings.doYouWantToStop}</Text>
+              <View style={styles.doYouWantToStopWrapper}>
+                <Text style={styles.doYouWantToStop}>{strings.doYouWantToStop}</Text>
               </View>
               <View style={styles.flexRow}>
                 <Image style={styles.busIcon} resizeMode="contain"
