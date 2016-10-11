@@ -75,21 +75,27 @@ class StartView extends Component {
     {
         let viewElement
 
-        if (this.state.locationError) {
+        if (this.state.locationError)
+        {
             viewElement = <View>
-        <Text style={styles.locationErrorText}>{strings.locationError}</Text>
-        <TouchableOpacity onPress={this.getCurrentLocation()}><Text style={{
-            textAlign: 'center',
-            color: '#0000ff'
-        }}>{strings.tryAgain}</Text></TouchableOpacity>
-        </View>
-      } else {
-          if (this.state.gotLocation) {
-              viewElement = <StartViewButtons />
-          } else {
-              viewElement = <View><Text style={styles.gettingLocationText}>{strings.gettingLocation}</Text><ActivityIndicator /></View>
-          }
-      }
+                          <Text style={styles.locationErrorText}>{strings.locationError}</Text>
+                          <TouchableOpacity onPress={this.getCurrentLocation()}><Text style={{
+                              textAlign: 'center',
+                              color: '#0000ff'
+                          }}>{strings.tryAgain}</Text></TouchableOpacity>
+                          </View>
+        }
+        else
+        {
+            if (this.state.gotLocation)
+           {
+                viewElement = <StartViewButtons />
+            }
+            else
+           {
+                viewElement = <View><Text style={styles.gettingLocationText}>{strings.gettingLocation}</Text><ActivityIndicator /></View>
+            }
+        }
 
         return (
       <View style={styles.start}>
@@ -98,6 +104,9 @@ class StartView extends Component {
     )
     }
 }
+
+StartView.propTypes = {coords: React.PropTypes.number.isRequired}
+
 
 const mapStateToProps = () =>
 {
