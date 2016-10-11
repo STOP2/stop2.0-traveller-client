@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { ActivityIndicator, Text, ListView, View, TouchableOpacity, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
+import TitleBar from './TitleBar'
+
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
@@ -111,9 +113,11 @@ class BusListView extends Component {
     render()
     {
         return (
-      <View style={{flex: 1}}>
-        <Text style={styles.title}>{strings.title} {this.props.stop.stop_name} ({this.props.stop.stop_code})</Text>
-        {this.props.error ? <Text style={styles.error}>{strings.backendError}</Text> : null}
+
+      <View style={styles.flex1}>
+      <TitleBar title={strings.title + ' ' + this.props.stop.stop_name + ' (' + this.props.stop.stop_code + ')'} />
+          {this.props.error ? <Text style={styles.error}>{strings.backendError}</Text> : null}
+
         <View style={styles.busrowheader}>
           <Text style={styles.busrowText}>{strings.type}</Text>
           <Text style={styles.busrowText}>{strings.line}</Text>
@@ -121,6 +125,7 @@ class BusListView extends Component {
           <Text style={styles.busrowText}>{strings.leaves}</Text>
         </View>
         <ListView
+          enableEmptySections={true}
           dataSource={this.state.dataSource}
           renderHeader={this.renderHeader}
           renderRow={this.renderRow}
