@@ -9,7 +9,7 @@ android:
 
     - extra-android-support
 
-    - sys-img-armeabi-x86-android-23
+    - sys-img-x86-android-23
 
 jdk: oraclejdk8
 
