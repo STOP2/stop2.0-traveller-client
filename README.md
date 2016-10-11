@@ -45,8 +45,15 @@ Enable Developer options and USB debugging: Settings -> Developer options -> Ena
 Connect the phone to PC with USB
 
 Run the app (the app will run on the device if it's connected, otherwise it will run on the emulator):
+
+In debug mode (shows errors & warnings):
 ```bash
 react-native run-android
+```
+
+In production mode (hides errors & warnings):
+```bash
+react-native run-android --variant=release
 ```
 
 ### Recommended IDE
