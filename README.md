@@ -63,7 +63,7 @@ To install Nuclide for Atom:
 ```bash
 apm install nuclide
 ```
-Install Eslint support for Atom:
+Install Eslint (https://eslint.org/) support for Atom:
 ```bash
 apm install linter-eslint
 ```
