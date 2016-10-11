@@ -79,7 +79,7 @@ class BusListView extends Component {
                 width: 20,
                 height: 20,
                 marginLeft: 5
-            }} resizeMode="contain" source={renderData.vehicle_type == 0 ? this.icon_tram : this.icon_bus}/>}
+            }} resizeMode="contain" source={renderData.vehicle_type == 0 ? this.iconTram : this.iconBus}/>}
           </View>
           <Text style={styles.busrowText}>{renderData.line}</Text>
           <Text style={styles.busrowTextBlack2}>{renderData.destination}</Text>
