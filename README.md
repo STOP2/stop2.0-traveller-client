@@ -22,11 +22,18 @@ Clone the latest version of the project. Inside the Stop2.0-traveller-client fol
 npm install
 ```
 
+Install react-native-slide-button v. 1.3.0 manually:
+```bash
+npm install https://github.com/sreejithr/react-native-slide-button/archive/v1.3.0.tar.gz
+```
+
 #### For Android development:
 
 Download and install Android Studio: https://developer.android.com/studio/index.html
 
 Open Android Studio -> configure -> SDK Manager -> Launch SDK Manager (or in command line: cd tools && ./android on android SDK folder) and install Android 6.0 and Android SDK Build-tools 23.0.3.
+
+Set up Android keystore: Follow steps "Generating a signing key" and "Setting up gradle variables" at https://facebook.github.io/react-native/docs/signed-apk-android.html
 
 Run in Android emulator:
 Create new AVD (Android Virtual Device) with Android Studio or in command line: cd tools && ./android avd (on android SDK folder)
