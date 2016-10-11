@@ -12,6 +12,7 @@ android:
     - sys-img-armeabi-v7a-android-23
 
 jdk: oraclejdk8
+rvm: 2.2
 
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -19,12 +20,14 @@ before_cache:
 cache:
   directories:
     - $HOME/.gradle/caches/
+    - $HOME/.gradle/daemon/
+    - $HOME/.gradle/native/
     - $HOME/.gradle/wrapper/
+    - node_modules
 
 before_install:
   - npm install -g npm@latest
   - npm install
-  - rvm install 2.0.0
   - gem install calabash-android
 
 before_script:
