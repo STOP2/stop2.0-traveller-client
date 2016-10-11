@@ -1,4 +1,4 @@
-const API_URL = 'https://stop20.herokuapp.com'
+import config from '../config/config'
 
 const USE_LOCATION_RADIUS = true
 const LOCATION_RADIUS = 500
@@ -33,7 +33,7 @@ export let fetchDepartures = function(latitude, longitude)
     {
         dispatch(requestDepartures(latitude, longitude))
 
-        return fetch(API_URL + '/stops?lat=' + latitude + '&lon=' + longitude + radiusString)
+        return fetch(config.API_URL + '/stops?lat=' + latitude + '&lon=' + longitude + radiusString)
       .then(response => response.json())
       .then(json => dispatch(receiveDepartures(json)))
     }

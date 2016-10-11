@@ -1,4 +1,4 @@
-const API_URL = 'https://stop20.herokuapp.com'
+import config from '../config/config'
 
 export const SEND_STOPREQUEST = 'SEND_STOPREQUEST'
 export const RECEIVE_CONFIRM = 'RECEIVE_CONFIRM'
@@ -24,7 +24,7 @@ export let sendStoprequest = function(tripId, stopId, requestType)
     {
         dispatch(requestStoprequest(tripId, stopId, requestType))
 
-        return fetch(API_URL + '/stoprequests', {
+        return fetch(config.API_URL + '/stoprequests', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
