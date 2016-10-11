@@ -21,6 +21,12 @@ Clone the latest version of the project. Inside the Stop2.0-traveller-client fol
 ```bash
 npm install
 ```
+Set up Android keystore: Follow steps "Generating a signing key" and "Setting up gradle variables" at https://facebook.github.io/react-native/docs/signed-apk-android.html
+
+Install react-native-slide-button v. 1.3.0 manually:
+```bash
+npm install https://github.com/sreejithr/react-native-slide-button/archive/v1.3.0.tar.gz
+```
 
 #### For Android development:
 
