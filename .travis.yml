@@ -28,6 +28,7 @@ cache:
 before_install:
   - npm install -g npm@latest
   - npm install
+  - rvm install 2.0.0
   - gem install calabash-android
 
 before_script:
