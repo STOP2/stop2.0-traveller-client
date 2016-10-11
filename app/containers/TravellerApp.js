@@ -29,12 +29,12 @@ class TravellerApp extends Component {
     )
     }
 }
-const mapStateProps = (state) =>
+const mapStateProps = () =>
 {
     return {}
 }
 
-const mapDispatchToProps = (dispatch) =>
+const mapDispatchToProps = () =>
 {
     return {}
 }
