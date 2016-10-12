@@ -17,20 +17,21 @@ android:
 jdk: oraclejdk8
 
 before_cache:
-  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -f ~/.gradle/caches/modules-2/modules-2.lock
 
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/daemon/
-    - $HOME/.gradle/native/
-    - $HOME/.gradle/wrapper/
+    - ~/.gradle/caches/
+    - ~/.gradle/daemon/
+    - ~/.gradle/native/
+    - ~/.gradle/wrapper/
     - node_modules
 
 install:
+  - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash -
+  - source ~/.profile
+  - nvm install 4
   - npm install -g npm@latest
-  - curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-  - sudo apt-get install -y nodejs
   - npm install -g react-native-cli
   - npm install
   - rvm install 2.0.0
