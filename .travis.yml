@@ -25,7 +25,6 @@ cache:
     - ~/.gradle/daemon/
     - ~/.gradle/native/
     - ~/.gradle/wrapper/
-    - node_modules
 
 install:
   - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash -
