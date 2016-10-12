@@ -30,7 +30,7 @@ cache:
 install:
   - npm install -g npm@latest
   - npm install -g n
-  - sudo n stable
+  - sudo -E env "PATH=$PATH" n stable
   - npm install -g react-native-cli
   - npm install
   - rvm install 2.0.0
