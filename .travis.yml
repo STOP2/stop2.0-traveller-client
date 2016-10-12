@@ -1,5 +1,7 @@
 language: android
 
+sudo: true
+
 android:
   components:
     - tools
@@ -13,7 +15,6 @@ android:
     - sys-img-armeabi-v7a-android-23
 
 jdk: oraclejdk8
-rvm: 2.2
 
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -28,6 +29,8 @@ cache:
 
 install:
   - npm install -g npm@latest
+  - npm install -g n
+  - sudo n stable
   - npm install -g react-native-cli
   - npm install
   - rvm install 2.0.0
