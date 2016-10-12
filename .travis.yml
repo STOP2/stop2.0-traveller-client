@@ -31,9 +31,9 @@ install:
   - npm install -g npm@latest
   - npm install -g react-native-cli
   - npm install
-  - [ -f node_modules/.bin/which ] && mv node_modules/.bin/which node_modules/.bin/which.backup
+  - if [ -f node_modules/.bin/which ]; then mv node_modules/.bin/which node_modules/.bin/which.backup; fi
   - rvm install 2.0.0
-  - [ -f node_modules/.bin/which.backup ] && mv node_modules/.bin/which.backup node_modules/.bin/which
+  - if [ -f node_modules/.bin/which.backup ]; then mv node_modules/.bin/which.backup node_modules/.bin/which; fi
   - gem install calabash-android
 
 before_script:
