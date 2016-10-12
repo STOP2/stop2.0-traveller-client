@@ -16,10 +16,6 @@ android:
 
 jdk: oraclejdk8
 
-before_cache:
-  - rm -f ~/.gradle/caches/modules-2/modules-2.lock
-  - rm -rf ./node_modules/.bin
-
 cache:
   directories:
     - ~/.gradle/caches/
@@ -35,7 +31,9 @@ install:
   - npm install -g npm@latest
   - npm install -g react-native-cli
   - npm install
+  - [ -f node_modules/.bin/which ] && mv node_modules/.bin/which node_modules/.bin/which.backup
   - rvm install 2.0.0
+  - [ -f node_modules/.bin/which.backup ] && mv node_modules/.bin/which.backup node_modules/.bin/which
   - gem install calabash-android
 
 before_script:
