@@ -24,7 +24,8 @@ class BusListView extends Component {
 
         this.state = {
             dataSource: ds.cloneWithRows([]),
-            stop: stopData
+            stop: stopData,
+            error: false
         }
 
         this.iconTram = require('../resources/icons/hsl_reittiopas_tram.png')
@@ -112,6 +113,7 @@ class BusListView extends Component {
         return (
       <View style={{flex: 1}}>
         <Text style={styles.title}>{strings.title} {this.props.stop.stop_name} ({this.props.stop.stop_code})</Text>
+        {this.props.error ? <Text style={styles.error}>{strings.backendError}</Text> : null}
         <View style={styles.busrowheader}>
           <Text style={styles.busrowText}>{strings.type}</Text>
           <Text style={styles.busrowText}>{strings.line}</Text>
@@ -134,7 +136,8 @@ const mapStateToProps = (state) =>
     return {
         stop: state.fetchReducer.stop,
         isFetching: state.fetchReducer.isFetching,
-        locationData: state.locationReducer.locationData
+        error: state.fetchReducer.error,
+        locationData: state.locationReducer.locationData,
     }
 }
 

@@ -23,7 +23,8 @@ let strings = new LocalizedStrings({
         chooseVehicle: 'Choose a vehicle',
         stopRequest: 'Confirm stop request',
         slide: 'Slide to confirm',
-        doYouWantToStop: 'Stop?'
+        doYouWantToStop: 'Stop?',
+        backendError: 'Error: No network connection'
     },
 
     fi: {
@@ -49,7 +50,8 @@ let strings = new LocalizedStrings({
         chooseVehicle: 'Valitse ajoneuvo',
         stopRequest: 'Vahvista pysäytyspyyntö',
         slide: 'Vahvista liu\'uttamalla',
-        doYouWantToStop: 'Pysäytetäänkö'
+        doYouWantToStop: 'Pysäytetäänkö',
+        backendError: 'Virhe: Ei verkkoyhteyttä'
     }
 })
 

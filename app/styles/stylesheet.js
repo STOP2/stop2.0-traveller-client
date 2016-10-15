@@ -199,6 +199,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
         fontFamily: 'gotham-rounded-book'
+    },
+    error: {
+        backgroundColor: '#DC0451',
+        color: '#ffffff',
+        fontSize: 15,
+        padding: 10
     }
 })
 
