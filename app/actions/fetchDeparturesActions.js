@@ -5,6 +5,7 @@ const LOCATION_RADIUS = 500
 
 export const REQUEST_DEPARTURES = 'REQUEST_DEPARTURES'
 export const RECEIVE_DEPARTURES = 'RECEIVE_DEPARTURES'
+export const REQUEST_ERROR = 'REQUEST_ERROR'
 
 let requestDepartures = function(latitude, longitude)
 {
@@ -23,6 +24,15 @@ let receiveDepartures = function(json)
     }
 }
 
+let requestError = function(error)
+{
+    console.log("requestErrorersers")
+    return {
+      type: REQUEST_ERROR,
+      error: error
+    }
+}
+
 export let fetchDepartures = function(latitude, longitude)
 {
     let radiusString = ''
@@ -36,5 +46,6 @@ export let fetchDepartures = function(latitude, longitude)
         return fetch(config.API_URL + '/stops?lat=' + latitude + '&lon=' + longitude + radiusString)
       .then(response => response.json())
       .then(json => dispatch(receiveDepartures(json)))
+      .catch(error => dispatch(requestError(error)))
     }
 }
