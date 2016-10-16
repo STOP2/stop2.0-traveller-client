@@ -1,7 +1,5 @@
 language: android
 
-sudo: required
-
 android:
   components:
     - tools
@@ -25,11 +23,7 @@ cache:
     - node_modules
 
 install:
-  - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash -
-  - source ~/.profile
-  - nvm install 4
   - npm install -g npm@latest
-  - npm install -g react-native-cli
   - npm install
   - if [ -f node_modules/.bin/which ]; then mv node_modules/.bin/which node_modules/.bin/which.backup; fi
   - rvm install 2.0.0
