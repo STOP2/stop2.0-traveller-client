@@ -25,7 +25,7 @@ cache:
 install:
   - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash -
   - nvm install 4
-  - [ -s "~/.nvm/nvm.sh" ] && . "~/.nvm/nvm.sh"
+  - source ~/.nvm/nvm.sh
   - npm install -g npm@latest
   - npm install
   - if [ -f node_modules/.bin/which ]; then mv node_modules/.bin/which node_modules/.bin/which.backup; fi
