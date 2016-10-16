@@ -65,6 +65,10 @@ import com.android.build.OutputFile
  * ]
  */
 
+project.ext.react = [
+  bundleInDebugTesting: true
+]
+
 apply from: "../../node_modules/react-native/react.gradle"
 
 /**
@@ -122,6 +126,7 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             signingConfig signingConfigs.release
         }
+        debugTesting.initWith(buildTypes.debug)
     }
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
