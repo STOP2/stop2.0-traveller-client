@@ -39,5 +39,4 @@ before_script:
   - ./gradlew clean assembleDebugTesting -PdisablePreDex --continue --stacktrace
 
 script:
-  - calabash-android resign app/build/outputs/apk/app-debugTesting.apk
   - calabash-android run app/build/outputs/apk/app-debugTesting.apk
