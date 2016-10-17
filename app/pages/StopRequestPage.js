@@ -79,7 +79,7 @@ StopRequestPage.propTypes = {
         destination: React.PropTypes.string.isRequired
     }),
     stop: React.PropTypes.shape({
-        stopId: React.PropTypes.number.isRequired,
+        stopId: React.PropTypes.string.isRequired,
         stopName: React.PropTypes.string.isRequired
     }),
     sendStoprequest: React.PropTypes.func.isRequired
