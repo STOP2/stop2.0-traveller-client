@@ -1,6 +1,12 @@
 import { StyleSheet, Dimensions } from 'react-native'
 
 const styles = StyleSheet.create({
+    defaultText: {
+        fontFamily: 'gotham-rounded-book'
+    },
+    boldText: {
+        fontFamily: 'gotham-rounded-medium'
+    },
     navBar: {
         height: 50,
         backgroundColor: '#007AC9',
@@ -60,7 +66,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#007AC9',
         color: 'white',
         padding: 15,
-        fontFamily: 'gotham-rounded-book'
     },
     start: {
         flex: 1,
@@ -161,8 +166,7 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         fontSize: 30,
         textAlign: 'center',
-        margin: 20,
-        fontFamily: 'gotham-rounded-medium'
+        margin: 20
     },
     sliderBackgroundRed: {
         width: undefined,
@@ -178,8 +182,8 @@ const styles = StyleSheet.create({
         height: 80,
         width: Dimensions.get('window').width
     },
-    pysaytetaankoWrapper: {marginBottom: 10},
-    pysaytetaanko: {
+    doYouWantToStopWrapper: {marginBottom: 10},
+    doYouWantToStop: {
         fontSize: 40,
         textAlign: 'center',
         fontFamily: 'gotham-rounded-book'
@@ -198,13 +202,12 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 20,
         textAlign: 'center',
-        fontFamily: 'gotham-rounded-book'
     },
     error: {
         backgroundColor: '#DC0451',
         color: '#ffffff',
         fontSize: 15,
-        padding: 10
+        padding: 10,
     }
 })
 
