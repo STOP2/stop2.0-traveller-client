@@ -1,20 +1,16 @@
 import { StyleSheet, Dimensions } from 'react-native'
+import { colors } from 'colors'
 
 const styles = StyleSheet.create({
-    defaultText: {
-        fontFamily: 'gotham-rounded-book'
-    },
-    boldText: {
-        fontFamily: 'gotham-rounded-medium'
-    },
+    defaultText: {fontFamily: 'gotham-rounded-book'},
+    boldText: {fontFamily: 'gotham-rounded-medium'},
     navBar: {
         height: 50,
-        backgroundColor: '#007AC9',
+        backgroundColor: colors.busBlue,
         borderBottomColor: '#e9e9e9',
         justifyContent: 'center'
     },
     navBarTitle: {
-        fontFamily: 'gotham-rounded-medium',
         color: '#ffffff',
         fontSize: 25,
         marginTop: 2
@@ -41,31 +37,27 @@ const styles = StyleSheet.create({
     },
     busrowText: {
         flex: 1,
-        fontFamily: 'gotham-rounded-book',
         fontSize: 15
     },
     busrowText2: {
         flex: 3,
-        fontFamily: 'gotham-rounded-book',
         fontSize: 15
     },
     busrowTextBlack: {
         flex: 1,
-        fontFamily: 'gotham-rounded-book',
         color: 'black',
         fontSize: 15
     },
     busrowTextBlack2: {
         flex: 3,
-        fontFamily: 'gotham-rounded-book',
         color: 'black',
         fontSize: 15
     },
     title: {
         fontSize: 25,
-        backgroundColor: '#007AC9',
+        backgroundColor: colors.busBlue,
         color: 'white',
-        padding: 15,
+        padding: 15
     },
     start: {
         flex: 1,
@@ -76,22 +68,19 @@ const styles = StyleSheet.create({
     },
     startText: {
         color: '#ffffff',
-        fontSize: 50,
-        fontFamily: 'gotham-rounded-medium'
+        fontSize: 50
     },
     locationErrorText: {
         textAlign: 'center',
         flex: 1,
-        color: '#007AC9',
-        fontSize: 20,
-        fontFamily: 'gotham-rounded-book'
+        color: colors.busBlue,
+        fontSize: 20
     },
     gettingLocationText: {
         textAlign: 'center',
         flex: 1,
-        color: '#007AC9',
-        fontSize: 30,
-        fontFamily: 'gotham-rounded-book'
+        color: colors.busBlue,
+        fontSize: 30
     },
     stopRequestStyle: {
         flex: 1,
@@ -106,27 +95,24 @@ const styles = StyleSheet.create({
     button: {
         marginBottom: 7,
         padding: 5,
-        backgroundColor: '#64BE14',
+        backgroundColor: colors.HSLgreen,
         borderRadius: 5,
         margin: 20
     },
     confirmText: {
         fontSize: 40,
         textAlign: 'center',
-        color: '#ffffff',
-        fontFamily: 'gotham-rounded-medium'
+        color: '#ffffff'
     },
     backText: {
         fontSize: 20,
         color: '#666666',
-        textAlign: 'center',
-        fontFamily: 'gotham-rounded-book'
+        textAlign: 'center'
     },
     busStopsAtText: {
         fontSize: 20,
         textAlign: 'center',
-        margin: 20,
-        fontFamily: 'gotham-rounded-book'
+        margin: 20
     },
     startImageStop: {
         width: 100,
@@ -141,7 +127,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#00B9E4',
+        backgroundColor: colors.ferryBlue,
         borderRadius: 10,
         marginBottom: 5
     },
@@ -150,7 +136,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#F092CD',
+        backgroundColor: colors.HSLpink,
         borderRadius: 10,
         marginTop: 5
     },
@@ -158,8 +144,7 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         fontSize: 40,
         textAlign: 'center',
-        margin: 15,
-        fontFamily: 'gotham-rounded-medium'
+        margin: 15
     },
     sliderText: {
         position: 'absolute',
@@ -176,7 +161,7 @@ const styles = StyleSheet.create({
     sliderBackgroundGreen: {
         width: undefined,
         height: 80,
-        backgroundColor: '#64BE14'
+        backgroundColor: colors.HSLgreen
     },
     sliderTextContainer: {
         height: 80,
@@ -185,8 +170,7 @@ const styles = StyleSheet.create({
     doYouWantToStopWrapper: {marginBottom: 10},
     doYouWantToStop: {
         fontSize: 40,
-        textAlign: 'center',
-        fontFamily: 'gotham-rounded-book'
+        textAlign: 'center'
     },
     busIcon: {
         width: 50,
