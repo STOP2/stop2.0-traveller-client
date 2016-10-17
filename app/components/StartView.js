@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ActivityIndicator, Text, View, TouchableOpacity } from 'react-native'
+import { ActivityIndicator, View, TouchableOpacity } from 'react-native'
 import { checkPermission, requestPermission } from 'react-native-android-permissions'
 
+
+import DefaultText from 'textComponents.js'
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
@@ -78,11 +80,11 @@ class StartView extends Component {
         if (this.state.locationError)
         {
             viewElement = <View>
-                          <Text style={styles.locationErrorText}>{strings.locationError}</Text>
-                          <TouchableOpacity onPress={this.getCurrentLocation()}><Text style={{
+                          <DefaultText style={styles.locationErrorText}>{strings.locationError}</DefaultText>
+                          <TouchableOpacity onPress={this.getCurrentLocation()}><DefaultText style={{
                               textAlign: 'center',
                               color: '#0000ff'
-                          }}>{strings.tryAgain}</Text></TouchableOpacity>
+                          }}>{strings.tryAgain}</DefaultText></TouchableOpacity>
                           </View>
         }
         else
@@ -93,7 +95,7 @@ class StartView extends Component {
             }
             else
            {
-                viewElement = <View><Text style={styles.gettingLocationText}>{strings.gettingLocation}</Text><ActivityIndicator /></View>
+                viewElement = <View><DefaultText style={styles.gettingLocationText}>{strings.gettingLocation}</DefaultText><ActivityIndicator /></View>
             }
         }
 
@@ -105,8 +107,10 @@ class StartView extends Component {
     }
 }
 
-StartView.propTypes = {coords: React.PropTypes.number.isRequired}
-
+StartView.propTypes = {
+    coords: React.PropTypes.number.isRequired,
+    setLocation: React.PropTypes.number.isRequired
+}
 
 const mapStateToProps = () =>
 {
