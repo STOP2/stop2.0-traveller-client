@@ -208,6 +208,15 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         fontSize: 15,
         padding: 10,
+    },
+    buslistIcon: {
+        width: 20,
+        height: 20,
+        marginLeft: 5
+    },
+    tryAgain: {
+        textAlign: 'center',
+        color: '#0000ff'
     }
 })
 

@@ -22,11 +22,7 @@ class BusListRow extends Component {
     return(
       <View style={styles.busrow}>
         <View style={styles.flex1}>
-          {(this.props.vehicleType == 1 || this.props.vehicleType == 2 || this.props.vehicleType == 4) ? <DefaultText>strings[vehicleTypes[this.props.vehicle.vehicle_type]]</DefaultText> : <Image style={{
-              width: 20,
-              height: 20,
-              marginLeft: 5
-          }} resizeMode="contain" source={this.props.vehicleType == 0 ? this.iconTram : this.iconBus}/>}
+          {(this.props.vehicleType == 1 || this.props.vehicleType == 2 || this.props.vehicleType == 4) ? <DefaultText>strings[vehicleTypes[this.props.vehicle.vehicle_type]]</DefaultText> : <Image style={styles.busListIcon} resizeMode="contain" source={this.props.vehicleType == 0 ? this.iconTram : this.iconBus}/>}
         </View>
         <DefaultText style={styles.busrowText}>{this.props.line}</DefaultText>
         <DefaultText style={styles.busrowTextBlack2}>{this.props.destination}</DefaultText>
