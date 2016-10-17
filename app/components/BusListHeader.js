@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 
-import { DefaultText } from '../components/textComponents'
+import {DefaultText} from '../components/textComponents'
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'

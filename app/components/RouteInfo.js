@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Text, View, Image } from 'react-native'
+import { View, Image } from 'react-native'
 
-import DefaultText from '../components/textComponents'
+import {DefaultText} from '../components/textComponents'
+
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
@@ -19,13 +20,13 @@ class RouteInfo extends Component {
     {
         return (<View style={styles.stopRequestStyle}>
           <View style={styles.doYouWantToStopWrapper}>
-            <Text style={styles.doYouWantToStop}>{strings.doYouWantToStop}</Text>
+            <DefaultText style={styles.doYouWantToStop}>{strings.doYouWantToStop}</DefaultText>
           </View>
           <View style={styles.flexRow}>
             <Image style={styles.busIcon} resizeMode="contain"
             source={this.props.vehicleType == 0 ? this.iconTram : this.iconBus}/>
             <View style={styles.vehicleInfoWrapper}>
-              <Text style={styles.vehicleInfo}>{this.props.vehicleLine} {this.props.vehicleDestination}</Text>
+              <DefaultText style={styles.vehicleInfo}>{this.props.vehicleLine} {this.props.vehicleDestination}</DefaultText>
             </View>
           </View>
         </View>)

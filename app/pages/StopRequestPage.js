@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import { sendStoprequest } from '../actions/sendStoprequest'
 
 import TitleBar from '../components/TitleBar'
 import RouteInfo from '../components/RouteInfo'
 import SlideConfirmButton from '../components/SlideConfirmButton'
+import {DefaultText} from '../components/textComponents'
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
@@ -37,7 +38,7 @@ class StopRequestPage extends Component{
       {
             return (
             <View style={styles.sliderBackgroundGreen}>
-              <Text style={styles.confirmedText}>{strings.stopsent}</Text>
+              <DefaultText style={styles.confirmedText}>{strings.stopsent}</DefaultText>
             </View>
           )
         }
