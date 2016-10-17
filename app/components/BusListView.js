@@ -4,6 +4,7 @@ import { ActivityIndicator, Text, ListView, View, TouchableOpacity, Image } from
 import { Actions } from 'react-native-router-flux'
 
 import TitleBar from './TitleBar'
+import BusListHeader from './BusListHeader'
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
@@ -77,7 +78,7 @@ class BusListView extends Component {
         return (
       <TouchableOpacity onPress={goToStopRequestPage}>
         <View style={styles.busrow}>
-          <View style={{flex: 1}}>
+          <View style={styles.flex1}>
             {(renderData.vehicle_type == 1 || renderData.vehicle_type == 2 || renderData.vehicle_type == 4) ? <Text>strings[vehicleTypes[this.props.vehicle.vehicle_type]]</Text> : <Image style={{
                 width: 20,
                 height: 20,
@@ -114,25 +115,19 @@ class BusListView extends Component {
     {
         return (
 
-      <View style={styles.flex1}>
-      <TitleBar title={strings.title + ' ' + this.props.stop.stop_name + ' (' + this.props.stop.stop_code + ')'} />
-          {this.props.error ? <Text style={styles.error}>{strings.backendError}</Text> : null}
+          <View style={styles.flex1}>
+            <TitleBar title={strings.title + ' ' + this.props.stop.stop_name + ' (' + this.props.stop.stop_code + ')'} />
+            {this.props.error ? <Text style={styles.error}>{strings.backendError}</Text> : null}
+              <BusListHeader />
+            <ListView
+              enableEmptySections={true}
+              dataSource={this.state.dataSource}
+              renderHeader={this.renderHeader}
+              renderRow={this.renderRow}
+              renderFooter={this.renderFooter}
+            />
+          </View>)
 
-        <View style={styles.busrowheader}>
-          <Text style={styles.busrowText}>{strings.type}</Text>
-          <Text style={styles.busrowText}>{strings.line}</Text>
-          <Text style={styles.busrowText2}>{strings.dest}</Text>
-          <Text style={styles.busrowText}>{strings.leaves}</Text>
-        </View>
-        <ListView
-          enableEmptySections={true}
-          dataSource={this.state.dataSource}
-          renderHeader={this.renderHeader}
-          renderRow={this.renderRow}
-          renderFooter={this.renderFooter}
-        />
-      </View>
-    )
     }
 }
 
