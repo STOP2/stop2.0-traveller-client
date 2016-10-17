@@ -42,4 +42,4 @@ before_script:
   - adb shell input keyevent 82 &
 
 script:
-  - calabash-android run app/build/outputs/apk/app-debugTesting.apk
+  - WAIT_TIMEOUT=60 calabash-android run app/build/outputs/apk/app-debugTesting.apk
