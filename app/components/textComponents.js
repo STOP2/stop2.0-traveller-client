@@ -6,11 +6,7 @@ import styles from '../styles/stylesheet'
 export class DefaultText extends Component {
     render()
     {
-        return (
-          <Text style={this.props.style}>
-            <Text style={styles.defaultText}>{this.props.children}</Text>
-          </Text>
-        )
+        return (<Text style={[styles.defaultText, this.props.style]}>{this.props.children}</Text>)
     }
 }
 
@@ -22,11 +18,7 @@ DefaultText.propTypes = {
 export class BoldText extends Component {
     render()
     {
-        return (
-            <Text style={this.props.style}>
-              <Text style={styles.boldText}>{this.props.children}</Text>
-            </Text>
-          )
+        return (<Text style={[styles.boldText, this.props.style]}>{this.props.children}</Text>)
     }
 }
 
