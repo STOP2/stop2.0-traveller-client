@@ -84,7 +84,8 @@ class BusListPage extends Component {
         return (
           <View style={styles.flex1}>
             <TitleBar title={strings.title + ' ' + this.props.stop.stop_name + ' (' + this.props.stop.stop_code + ')'} />
-            <BusListHeader />
+            {this.props.error ? <Text style={styles.error}>{strings.backendError}</Text> : null}
+              <BusListHeader />
             <ListView
               enableEmptySections={true}
               dataSource={this.state.dataSource}
@@ -100,6 +101,7 @@ const mapStateToProps = (state) =>
     return {
         stop: state.fetchReducer.stop,
         isFetching: state.fetchReducer.isFetching,
+        error: state.fetchReducer.error,
         locationData: state.locationReducer.locationData
     }
 }
