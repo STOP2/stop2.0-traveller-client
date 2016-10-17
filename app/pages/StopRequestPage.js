@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Text, View, Image } from 'react-native'
+import { Text, View } from 'react-native'
 import { sendStoprequest } from '../actions/sendStoprequest'
 
 import TitleBar from '../components/TitleBar'
+import RouteInfo from '../components/RouteInfo'
 import SlideConfirmButton from '../components/SlideConfirmButton'
 
 import styles from '../styles/stylesheet'
@@ -14,8 +15,6 @@ class StopRequestPage extends Component{
   {
         super(props)
         this.state = {renderConfirm: true}
-        this.iconTram = require('../resources/icons/hsl_reittiopas_tram.png')
-        this.iconBus = require('../resources/icons/hsl_reittiopas_bus.png')
     }
 
     componentWillReceiveProps = (nextProps) =>
@@ -23,11 +22,11 @@ class StopRequestPage extends Component{
         this.setState({renderConfirm: !nextProps.sent})
     }
 
-    renderCancel = () =>
+    renderSlider = () =>
   {
         const sendStoprequest = () =>
       {
-          this.props.sendStoprequest(this.props.vehicle.vehicle_id, this.props.stop.stopId, 'stop')
+            this.props.sendStoprequest(this.props.vehicle.vehicle_id, this.props.stop.stopId, 'stop')
         }
 
         if (this.state.renderConfirm)
@@ -48,21 +47,9 @@ class StopRequestPage extends Component{
   {
         return (
         <View style={styles.flex1}>
-            <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopId + ')'} />
-          <View style={styles.stopRequestStyle}>
-            <View style={styles.doYouWantToStopWrapper}>
-              <Text style={styles.doYouWantToStop}>{strings.doYouWantToStop}</Text>
-            </View>
-            <View style={styles.flexRow}>
-              <Image style={styles.busIcon} resizeMode="contain"
-              source={this.props.vehicle.vehicle_type == 0 ? this.iconTram : this.iconBus}/>
-              <View style={styles.vehicleInfoWrapper}>
-                <Text style={styles.vehicleInfo}>{this.props.vehicle.line} {this.props.vehicle.destination}</Text>
-              </View>
-            </View>
-          </View>
-
-          {this.renderCancel()}
+          <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopId + ')'} />
+          <RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/>
+          {this.renderSlider()}
         </View>
       )
     }
@@ -77,10 +64,24 @@ const mapDispatchToProps = (dispatch) =>
 {
     return {
         sendStoprequest: (busId, stopId, requestType) =>
-      {
+       {
             dispatch(sendStoprequest(busId, stopId, requestType))
         }
     }
+}
+
+StopRequestPage.propTypes = {
+    vehicle: React.PropTypes.shape({
+        vehicle_id: React.PropTypes.number.isRequired,
+        vehicle_type: React.PropTypes.number.isRequired,
+        line: React.PropTypes.string.isRequired,
+        destination: React.PropTypes.string.isRequired
+    }),
+    stop: React.PropTypes.shape({
+        stopId: React.PropTypes.number.isRequired,
+        stopName: React.PropTypes.string.isRequired
+    }),
+    sendStoprequest: React.PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StopRequestPage)

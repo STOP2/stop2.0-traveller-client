@@ -202,13 +202,12 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 20,
         textAlign: 'center',
-        fontFamily: 'gotham-rounded-book'
     },
     error: {
         backgroundColor: '#DC0451',
         color: '#ffffff',
         fontSize: 15,
-        padding: 10
+        padding: 10,
     }
 })
 
