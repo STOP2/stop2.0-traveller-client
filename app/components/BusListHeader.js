@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
+
+import { DefaultText } from '../components/textComponents'
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
@@ -16,10 +18,10 @@ class BusListHeader extends Component {
     {
         return (
           <View style={styles.busrowheader}>
-            <Text style={styles.busrowText}>{strings.type}</Text>
-            <Text style={styles.busrowText}>{strings.line}</Text>
-            <Text style={styles.busrowText2}>{strings.dest}</Text>
-            <Text style={styles.busrowText}>{strings.leaves}</Text>
+            <DefaultText style={styles.busrowText}>{strings.type}</DefaultText>
+            <DefaultText style={styles.busrowText}>{strings.line}</DefaultText>
+            <DefaultText style={styles.busrowText2}>{strings.dest}</DefaultText>
+            <DefaultText style={styles.busrowText}>{strings.leaves}</DefaultText>
           </View>)
     }
 }
