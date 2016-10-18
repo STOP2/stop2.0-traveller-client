@@ -105,6 +105,11 @@ class BusListPage extends Component {
         return (<StopTitle name={this.state.stopNames[sectionID]} line={sectionID} />)
     }
 
+    renderSeparator = () =>
+    {
+        return (<View style={styles.rowSeparator}></View>)
+    }
+
     renderList = () =>
     {
         return (
@@ -115,7 +120,9 @@ class BusListPage extends Component {
             dataSource={this.state.dataSource}
             renderRow={this.renderRow}
             renderSectionHeader={this.renderSectionHeader}
-            renderFooter={this.renderFooter} />
+            renderFooter={this.renderFooter}
+            renderSeparator={this.renderSeparator}
+             />
           </View>
         )
     }
