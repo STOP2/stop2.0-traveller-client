@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux'
 
 import { DefaultText } from '../components/textComponents'
 
-import TitleBar from '../components/TitleBar'
+import StopTitle from '../components/StopTitle'
 import BusListHeader from '../components/BusListHeader'
 import BusListRow from '../components/BusListRow'
 
@@ -111,7 +111,7 @@ class BusListPage extends Component {
             {
               return (
                 <View key={index}>
-                  <TitleBar title={stop.stop.stop_name + ' (' + stop.stop.stop_code + ')'} />
+                  <StopTitle name={stop.stop.stop_name} line={stop.stop.stop_code} />
                   <ListView
                     enableEmptySections={true}
                     dataSource={this.state.dataSources[index].ds}
