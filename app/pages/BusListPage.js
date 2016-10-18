@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ActivityIndicator, ListView, View, TouchableOpacity } from 'react-native'
+import { ActivityIndicator, ListView, View, TouchableOpacity, ScrollView } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
-import TitleBar from '../components/TitleBar'
+import { DefaultText } from '../components/textComponents'
+
+import StopTitle from '../components/StopTitle'
 import BusListHeader from '../components/BusListHeader'
 import BusListRow from '../components/BusListRow'
 
@@ -19,9 +21,7 @@ class BusListPage extends Component {
     {
         super(props)
 
-        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-
-        this.state = {dataSource: ds.cloneWithRows([])}
+        this.state = {dataSources: null}
     }
 
     componentWillMount = () =>
@@ -45,8 +45,29 @@ class BusListPage extends Component {
     componentWillReceiveProps = (nextProps) =>
     {
     // this.props.fetchDepartures(nextProps.locationData.latitude, nextProps.locationData.longitude)
+        if (nextProps.stops.length > 0)
+        {
+            if (!this.state.dataSources)
+            {
+                let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+                let dataSources = []
 
-        this.setState({dataSource: this.state.dataSource.cloneWithRows(nextProps.stop.schedule)})
+                for (let index = 0; index < nextProps.stops.length; index++)
+                {
+                    dataSources.push({ds: ds.cloneWithRows([])})
+                }
+                this.setState({dataSources: dataSources})
+            }
+
+            let dataSources = this.state.dataSources
+
+            for (let index = 0; index < nextProps.stops.length; index++)
+            {
+                dataSources[index] = {ds: this.state.dataSources[index].ds.cloneWithRows(nextProps.stops[index].stop.schedule)}
+            }
+
+            this.setState({dataSources: dataSources})
+        }
     }
 
     renderRow = (renderData) =>
@@ -56,8 +77,8 @@ class BusListPage extends Component {
             Actions.stopRequest({
                 vehicle: renderData,
                 stop: {
-                    stopName: this.props.stop.stop_name,
-                    stopId: this.props.stop.stop_code
+                    stopName: this.props.stops[0].stop.stop_name,
+                    stopId: this.props.stops[0].stop.stop_code
                 }
             })
         }
@@ -79,23 +100,34 @@ class BusListPage extends Component {
         )
     }
 
-    renderList = () => {
+    renderList = () =>
+    {
         return (
           <View style={styles.flex1}>
-            <TitleBar title={strings.title + ' ' + this.props.stop.stop_name + ' (' + this.props.stop.stop_code + ')'} />
-            {this.props.error ? <Text style={styles.error}>{strings.backendError}</Text> : null}
-              <BusListHeader />
-            <ListView
-              enableEmptySections={true}
-              dataSource={this.state.dataSource}
-              renderRow={this.renderRow}
-              renderFooter={this.renderFooter}
-            />
+          {this.props.error ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
+          <BusListHeader />
+          <ScrollView style={{height: 100}}>
+          {this.props.stops.map(function(stop, index)
+            {
+              return (
+                <View key={index}>
+                  <StopTitle name={stop.stop.stop_name} line={stop.stop.stop_code} />
+                  <ListView
+                    enableEmptySections={true}
+                    dataSource={this.state.dataSources[index].ds}
+                    renderRow={this.renderRow}
+                    renderFooter={this.renderFooter}
+                  />
+                </View>
+              )
+          }, this)}
+          </ScrollView>
           </View>
         )
     }
 
-    renderSpinner = () => {
+    renderSpinner = () =>
+    {
         return (
           <View style={styles.spinnerContainer}>
             <View style={styles.spinnerBackground}>
@@ -110,11 +142,14 @@ class BusListPage extends Component {
 
     render()
     {
-        if (this.props.isReady) {
+        if (this.props.isReady)
+        {
             return (
               this.renderList()
             )
-        } else {
+        }
+        else
+        {
             return (
               this.renderSpinner()
             )
@@ -125,7 +160,7 @@ class BusListPage extends Component {
 const mapStateToProps = (state) =>
 {
     return {
-        stop: state.fetchReducer.stop,
+        stops: state.fetchReducer.stops,
         isFetching: state.fetchReducer.isFetching,
         isReady: state.fetchReducer.isReady,
         error: state.fetchReducer.error,
@@ -149,11 +184,10 @@ BusListPage.propTypes = {
         latitude: React.PropTypes.number.isRequired,
         longitude: React.PropTypes.number.isRequired
     }),
-    stop: React.PropTypes.shape({
-        stop_name: React.PropTypes.string.isRequired,
-        stop_code: React.PropTypes.string.isRequired
-    }),
-    isFetching: React.PropTypes.bool.isRequired
+    stops: React.PropTypes.array.isRequired,
+    isFetching: React.PropTypes.bool.isRequired,
+    error: React.PropTypes.bool.isRequired,
+    isReady: React.PropTypes.bool.isRequired
 }
 
 

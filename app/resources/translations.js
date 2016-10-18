@@ -47,7 +47,7 @@ let strings = new LocalizedStrings({
         gettingLocation: 'Paikannetaan sijantia...',
         locationError: 'Paikantaminen epäonnistui. Varmista, että GPS on kytketty päälle.',
         locationPermissionsError: 'Sijainnin käyttöoikeuden asettaminen epäonnistui.',
-        chooseVehicle: 'Valitse ajoneuvo',
+        chooseVehicle: 'Valitse kulkuneuvo',
         stopRequest: 'Vahvista pysäytyspyyntö',
         slide: 'Vahvista liu\'uttamalla',
         doYouWantToStop: 'Pysäytetäänkö',
