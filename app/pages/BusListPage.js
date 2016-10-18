@@ -72,15 +72,14 @@ class BusListPage extends Component {
     {
         return (
         <View>
-        <ActivityIndicator
-          animating={this.props.isFetching}
-        />
-      </View>
-    )
+          <ActivityIndicator
+            animating={this.props.isFetching}
+          />
+        </View>
+        )
     }
 
-    render()
-    {
+    renderList = () => {
         return (
           <View style={styles.flex1}>
             <TitleBar title={strings.title + ' ' + this.props.stop.stop_name + ' (' + this.props.stop.stop_code + ')'} />
@@ -92,7 +91,34 @@ class BusListPage extends Component {
               renderRow={this.renderRow}
               renderFooter={this.renderFooter}
             />
-          </View>)
+          </View>
+        )
+    }
+
+    renderSpinner = () => {
+        return (
+          <View style={styles.spinnerContainer}>
+            <View style={styles.spinnerBackground}>
+              <ActivityIndicator
+                size="large"
+                animating={true}
+              />
+            </View>
+          </View>
+        )
+    }
+
+    render()
+    {
+        if (this.props.isReady) {
+            return (
+              this.renderList()
+            )
+        } else {
+            return (
+              this.renderSpinner()
+            )
+        }
     }
 }
 
@@ -101,6 +127,7 @@ const mapStateToProps = (state) =>
     return {
         stop: state.fetchReducer.stop,
         isFetching: state.fetchReducer.isFetching,
+        isReady: state.fetchReducer.isReady,
         error: state.fetchReducer.error,
         locationData: state.locationReducer.locationData
     }

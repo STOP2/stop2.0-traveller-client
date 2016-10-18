@@ -88,9 +88,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    spinnerBackground: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0
+    },
     spinnerContainer: {
         backgroundColor: 'transparent',
-        alignSelf: 'center'
+        position: 'absolute',
+        flex: 1,
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0
     },
     button: {
         marginBottom: 7,

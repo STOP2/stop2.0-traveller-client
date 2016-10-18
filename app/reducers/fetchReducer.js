@@ -4,6 +4,7 @@ import { SEND_STOPREQUEST, RECEIVE_CONFIRM } from '../actions/sendStoprequest'
 let initialState = {
     stop: {schedule: []},
     isFetching: false,
+    isReady: false,
     sentStoprequest: false,
     error: false
 }
@@ -18,6 +19,7 @@ const fetchReducer = (state = initialState, action) =>
     case RECEIVE_DEPARTURES:
         return Object.assign({}, state, {
             isFetching: false,
+            isReady: true,
             error: false,
             stop: action.departures[0].stop
         }) // return only the first stop (temporarily)
