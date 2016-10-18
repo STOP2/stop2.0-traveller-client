@@ -13,11 +13,12 @@ class StopTitle extends Component {
 
     render()
     {
-        return (<DefaultText style={styles.stopTitle}>{this.props.name} ({this.props.line})</DefaultText>)
+        return (<DefaultText onPress={this.props.onPress} style={styles.stopTitle}>{this.props.name} ({this.props.line})</DefaultText>)
     }
 }
 
 StopTitle.propTypes = {
+    onPress: React.PropTypes.func.isRequired,
     name: React.PropTypes.string.isRequired,
     line: React.PropTypes.string.isRequired
 }

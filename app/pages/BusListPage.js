@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ActivityIndicator, ListView, View, TouchableOpacity, ScrollView } from 'react-native'
+import { ActivityIndicator, ListView, View, TouchableOpacity, ScrollView, Modal } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
 import { DefaultText } from '../components/textComponents'
@@ -21,7 +21,10 @@ class BusListPage extends Component {
     {
         super(props)
 
-        this.state = {dataSources: null}
+        this.state = {
+            dataSources: null,
+            isModalOpen: true
+        }
     }
 
     componentWillMount = () =>
@@ -84,7 +87,7 @@ class BusListPage extends Component {
         }
 
         return (
-          <TouchableOpacity onPress={goToStopRequestPage}>
+         <TouchableOpacity onPress={goToStopRequestPage}>
             <BusListRow vehicleType={renderData.vehicle_type} line={renderData.line} destination={renderData.destination} arrival={renderData.arrival} />
           </TouchableOpacity>)
     }
@@ -100,6 +103,11 @@ class BusListPage extends Component {
         )
     }
 
+    changeModalStatus = () =>
+    {
+        this.setState({isModalOpen: !this.state.isModalOpen})
+    }
+
     renderList = () =>
     {
         return (
@@ -111,13 +119,14 @@ class BusListPage extends Component {
             {
               return (
                 <View key={index}>
-                  <StopTitle name={stop.stop.stop_name} line={stop.stop.stop_code} />
+                  <StopTitle onPress={this.changeModalStatus} name={stop.stop.stop_name} line={stop.stop.stop_code} />
+                  {this.state.isModalOpen &&
                   <ListView
                     enableEmptySections={true}
                     dataSource={this.state.dataSources[index].ds}
                     renderRow={this.renderRow}
                     renderFooter={this.renderFooter}
-                  />
+                  />}
                 </View>
               )
           }, this)}
