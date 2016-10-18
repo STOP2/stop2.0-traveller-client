@@ -7,16 +7,16 @@ const styles = StyleSheet.create({
     navBar: {
         height: 50,
         backgroundColor: colors.busBlue,
-        borderBottomColor: '#e9e9e9',
+        borderBottomColor: colors.stopBackground,
         justifyContent: 'center'
     },
     navBarTitle: {
-        color: '#ffffff',
+        color: 'white',
         fontSize: 25,
         marginTop: 2
     },
     backButton: {
-        tintColor: '#ffffff',
+        tintColor: 'white',
         marginTop: -4,
         marginLeft: 5
     },
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     flexRow: {flexDirection: 'row'},
     busrow: {
         flexDirection: 'row',
-        borderBottomColor: 666666,
+        borderBottomColor: colors.K40,
         borderBottomWidth: 1,
         height: 60,
         padding: 10,
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     busrowheader: {
         flexDirection: 'row',
         padding: 10,
-        backgroundColor: '#e9e9e9'
+        backgroundColor: colors.stopBackground
     },
     busrowText: {
         flex: 1,
@@ -64,10 +64,10 @@ const styles = StyleSheet.create({
         padding: 5,
         flexDirection: 'column',
         justifyContent: 'center',
-        backgroundColor: '#ffffff'
+        backgroundColor: 'white'
     },
     startText: {
-        color: '#ffffff',
+        color: 'white',
         fontSize: 50
     },
     locationErrorText: {
@@ -102,11 +102,11 @@ const styles = StyleSheet.create({
     confirmText: {
         fontSize: 40,
         textAlign: 'center',
-        color: '#ffffff'
+        color: 'white'
     },
     backText: {
         fontSize: 20,
-        color: '#666666',
+        color: colors.K40,
         textAlign: 'center'
     },
     busStopsAtText: {
@@ -141,14 +141,14 @@ const styles = StyleSheet.create({
         marginTop: 5
     },
     confirmedText: {
-        color: '#ffffff',
+        color: 'white',
         fontSize: 40,
         textAlign: 'center',
         margin: 15
     },
     sliderText: {
         position: 'absolute',
-        color: '#ffffff',
+        color: 'white',
         fontSize: 30,
         textAlign: 'center',
         margin: 20
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     sliderBackgroundRed: {
         width: undefined,
         height: 80,
-        backgroundColor: '#DC0451'
+        backgroundColor: colors.HSLalarmRed
     },
     sliderBackgroundGreen: {
         width: undefined,
@@ -188,8 +188,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     error: {
-        backgroundColor: '#DC0451',
-        color: '#ffffff',
+        backgroundColor: colors.HSLalarmRed,
+        color: 'white',
         fontSize: 15,
         padding: 10,
     },
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     },
     tryAgain: {
         textAlign: 'center',
-        color: '#0000ff'
+        color: colors.tryAgain
     }
 })
 
