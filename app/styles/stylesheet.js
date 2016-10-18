@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderBottomColor: colors.K40,
         borderBottomWidth: 1,
-        height: 60,
+        heigth: 60,
         padding: 10,
         alignItems: 'center'
     },
@@ -185,13 +185,13 @@ const styles = StyleSheet.create({
     vehicleInfo: {
         flex: 1,
         fontSize: 20,
-        textAlign: 'center',
+        textAlign: 'center'
     },
     error: {
         backgroundColor: colors.HSLalarmRed,
         color: 'white',
         fontSize: 15,
-        padding: 10,
+        padding: 10
     },
     buslistIcon: {
         width: 20,
