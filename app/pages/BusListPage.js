@@ -3,14 +3,9 @@ import { connect } from 'react-redux'
 import { ActivityIndicator, ListView, View, TouchableOpacity, ScrollView } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
-<<<<<<< HEAD
-import {DefaultText} from '../components/textComponents'
-import TitleBar from '../components/TitleBar'
-=======
 import { DefaultText } from '../components/textComponents'
 
 import StopTitle from '../components/StopTitle'
->>>>>>> master
 import BusListHeader from '../components/BusListHeader'
 import BusListRow from '../components/BusListRow'
 
