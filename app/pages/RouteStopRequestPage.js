@@ -12,7 +12,7 @@ import {DefaultText} from '../components/textComponents'
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
-class StopRequestPage extends Component{
+class RouteStopRequestPage extends Component{
     constructor(props)
   {
         super(props)
@@ -22,26 +22,6 @@ class StopRequestPage extends Component{
     componentWillReceiveProps = (nextProps) =>
       {
         this.setState({renderConfirm: !nextProps.sent})
-        BackAndroid.addEventListener('hardwareBackPress', this.backAndroidHandler)
-    }
-
-    backAndroidHandler = () =>
-    // when a user sends a stop request, the back button will be disabled
-       {
-        if (this.state.renderConfirm)
-           {
-            return false
-        }
-        else
-           {
-            return true
-        }
-    }
-
-
-    componentWillUnmount()
-       {
-        BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
     }
 
     renderSlider = () =>
@@ -65,40 +45,16 @@ class StopRequestPage extends Component{
         }
     }
 
-    renderButton = () =>
-    {
-        const goToStopRequestPage = () =>
-      {
-            Actions.routeStops({
-                tripId: this.props.vehicle.trip_id,
-                stopId: this.props.stop.stopId,
-                vehicleLine: this.props.vehicle.line,
-                vehicleDestination: this.props.vehicle.destination
-
-            })
-        }
-
-        if (!this.state.renderConfirm)
-        {
-            return (
-          <TouchableOpacity style={styles.goToRouteViewButton} onPress={goToStopRequestPage}>
-            <DefaultText style={styles.goToRouteViewButtonText}>{strings.goToRouteStopsView}</DefaultText>
-          </TouchableOpacity>)
-        }
-    }
-
     render()
   {
-        return (
+        /*return (
         <View style={styles.flex1}>
           <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopId + ')'} />
           <RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/>
-          <View style={styles.flex1}>
-            {this.renderButton()}
-          </View>
           {this.renderSlider()}
         </View>
-      )
+      )*/
+        return(<View><DefaultText>Heloooo</DefaultText></View>)
     }
 }
 
@@ -117,18 +73,8 @@ const mapDispatchToProps = (dispatch) =>
     }
 }
 
-StopRequestPage.propTypes = {
-    vehicle: React.PropTypes.shape({
-        trip_id: React.PropTypes.string.isRequired,
-        vehicle_type: React.PropTypes.number.isRequired,
-        line: React.PropTypes.string.isRequired,
-        destination: React.PropTypes.string.isRequired
-    }),
-    stop: React.PropTypes.shape({
-        stopId: React.PropTypes.string.isRequired,
-        stopName: React.PropTypes.string.isRequired
-    }),
-    sendStoprequest: React.PropTypes.func.isRequired
+RouteStopRequestPage.propTypes = {
+
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(StopRequestPage)
+export default connect(mapStateToProps, mapDispatchToProps)(RouteStopRequestPage)

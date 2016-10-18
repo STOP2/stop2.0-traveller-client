@@ -24,7 +24,9 @@ let strings = new LocalizedStrings({
         stopRequest: 'Confirm stop request',
         slide: 'Slide to confirm',
         doYouWantToStop: 'Stop?',
-        backendError: 'Error: No network connection'
+        backendError: 'Error: No network connection',
+        goToRouteStopsView: 'Stop bus at destination?',
+        routeStops: 'Choose a stop'
     },
 
     fi: {
@@ -51,7 +53,9 @@ let strings = new LocalizedStrings({
         stopRequest: 'Vahvista pysäytyspyyntö',
         slide: 'Vahvista liu\'uttamalla',
         doYouWantToStop: 'Pysäytetäänkö',
-        backendError: 'Virhe: Ei verkkoyhteyttä'
+        backendError: 'Virhe: Ei verkkoyhteyttä',
+        goToRouteStopsView: 'Pysäytetäänkö bussi kohteessa?',
+        routeStops: 'Valitse pysäkki'
     }
 })
 

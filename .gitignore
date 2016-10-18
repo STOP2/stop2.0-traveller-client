@@ -44,3 +44,6 @@ android/keystores/stop2.keystore
 android/app/src/main/assets/index.android.bundle
 android/app/src/main/assets/index.android.bundle.meta
 android/app/src/main/assets/index.android.map
+
+# Gradle
+android/gradle.properties
