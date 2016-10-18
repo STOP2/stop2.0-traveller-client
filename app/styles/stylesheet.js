@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native'
-import { colors } from 'colors'
+import colors from './colors'
 
 const styles = StyleSheet.create({
     defaultText: {fontFamily: 'gotham-rounded-book'},
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderBottomColor: colors.K40,
         borderBottomWidth: 1,
-        heigth: 60,
+        height: 60,
         padding: 10,
         alignItems: 'center'
     },
