@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity, BackAndroid } from 'react-native'
 import { sendStoprequest } from '../actions/sendStoprequest'
 import { Actions } from 'react-native-router-flux'
 
@@ -20,8 +20,28 @@ class StopRequestPage extends Component{
     }
 
     componentWillReceiveProps = (nextProps) =>
-  {
+      {
         this.setState({renderConfirm: !nextProps.sent})
+        BackAndroid.addEventListener('hardwareBackPress', this.backAndroidHandler)
+    }
+
+    backAndroidHandler = () =>
+    // when a user sends a stop request, the back button will be disabled
+       {
+        if (this.state.renderConfirm)
+           {
+            return false
+        }
+        else
+           {
+            return true
+        }
+    }
+
+
+    componentWillUnmount()
+       {
+        BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
     }
 
     renderSlider = () =>
