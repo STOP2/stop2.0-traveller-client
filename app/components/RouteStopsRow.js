@@ -26,7 +26,7 @@ class RouteStopsRow extends Component {
 RouteStopsRow.propTypes = {
     stopId: React.PropTypes.string.isRequired,
     stopName: React.PropTypes.string.isRequired,
-    arrivalTime: React.PropTypes.string.isRequired
+    arrivalTime: React.PropTypes.number.isRequired
 }
 
 export default RouteStopsRow

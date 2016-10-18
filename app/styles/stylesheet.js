@@ -215,6 +215,19 @@ const styles = StyleSheet.create({
     tryAgain: {
         textAlign: 'center',
         color: colors.tryAgain
+    },
+    goToRouteViewButton: {
+        marginBottom: 0,
+        padding: 5,
+        backgroundColor: colors.HSLpink,
+        borderRadius: 5,
+        margin: 20
+    },
+    goToRouteViewButtonText: {
+        color: 'white',
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 15
     }
 })
 

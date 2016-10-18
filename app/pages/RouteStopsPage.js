@@ -12,6 +12,7 @@ import strings from '../resources/translations'
 
 import { fetchRouteStops } from '../actions/fetchRouteStops'
 
+const UPDATE_INTERVAL_IN_SECS = 10
 
 class RouteStopsPage extends Component {
     constructor(props)
@@ -26,20 +27,26 @@ class RouteStopsPage extends Component {
     componentWillMount = () =>
     {
         this.props.fetchRouteStops(this.props.tripId, this.props.stopId)
+
+        this.fetchInterval = setInterval(() =>
+        {
+            if (!this.props.isFetching)
+            {
+                this.props.fetchRouteStops(this.props.tripId, this.props.stopId)
+            }
+        }, UPDATE_INTERVAL_IN_SECS * 1000)
     }
 
     componentWillReceiveProps = (nextProps) =>
     {
-      console.log(nextProps.routeStops)
         this.setState({dataSource: this.state.dataSource.cloneWithRows(nextProps.routeStops)})
-        console.log(this.state.dataSource)
     }
 
     renderRow = (renderData) =>
     {
         const goToStopVehicleRequestPage = () =>
         {
-            Actions.stopRequest({
+            Actions.routeStopRequest({
 
             })
         }
@@ -134,7 +141,7 @@ RouteStopsPage.propTypes = {
     routeIsReady: React.PropTypes.bool.isRequired,
     tripId: React.PropTypes.string.isRequired,
     stopId: React.PropTypes.string.isRequired,
-    error: React.PropTypes.boolean,
+    error: React.PropTypes.bool,
     vehicleLine: React.PropTypes.string.isRequired,
     vehicleDestination: React.PropTypes.string.isRequired
 }
