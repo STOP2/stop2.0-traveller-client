@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
 import { sendStoprequest } from '../actions/sendStoprequest'
+import { Actions } from 'react-native-router-flux'
 
 import TitleBar from '../components/TitleBar'
 import RouteInfo from '../components/RouteInfo'
@@ -27,7 +28,7 @@ class StopRequestPage extends Component{
   {
         const sendStoprequest = () =>
       {
-            this.props.sendStoprequest(this.props.vehicle.vehicle_id, this.props.stop.stopId, 'stop')
+            this.props.sendStoprequest(this.props.vehicle.trip_id, this.props.stop.stopId, 'stop')
         }
 
         if (this.state.renderConfirm)
@@ -44,12 +45,32 @@ class StopRequestPage extends Component{
         }
     }
 
+    renderButton = () =>
+    {
+        const goToStopRequestPage = () =>
+      {
+            Actions.routeStops({
+                tripId: this.props.vehicle.trip_id,
+                stopId: this.props.stop.stopId
+            })
+        }
+
+        if (!this.state.renderConfirm)
+        {
+            return (
+          <TouchableOpacity style={styles.button} onPress={goToStopRequestPage}>
+            <DefaultText style={styles.confirmedText}>{strings.goToRouteStopsView}</DefaultText>
+          </TouchableOpacity>)
+        }
+    }
+
     render()
   {
         return (
         <View style={styles.flex1}>
           <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopId + ')'} />
           <RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/>
+          {this.renderButton()}
           {this.renderSlider()}
         </View>
       )
@@ -73,7 +94,7 @@ const mapDispatchToProps = (dispatch) =>
 
 StopRequestPage.propTypes = {
     vehicle: React.PropTypes.shape({
-        vehicle_id: React.PropTypes.number.isRequired,
+        trip_id: React.PropTypes.string.isRequired,
         vehicle_type: React.PropTypes.number.isRequired,
         line: React.PropTypes.string.isRequired,
         destination: React.PropTypes.string.isRequired

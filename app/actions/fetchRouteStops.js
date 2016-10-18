@@ -4,17 +4,20 @@ export const REQUEST_ROUTE_STOPS = 'REQUEST_ROUTE_STOPS'
 export const RECEIVE_ROUTE_STOPS = 'RECEIVE_ROUTE_STOPS'
 export const REQUEST_ROUTE_STOPS_ERROR = 'REQUEST_ROUTE_STOPS_ERROR'
 
-let requestRouteStops = function(tripId, busId)
+let requestRouteStops = function(tripId, stopId)
 {
     return {
         type: REQUEST_ROUTE_STOPS,
         trip_id: tripId,
-        bus_id: busId
+        stop_id: stopId
     }
 }
 
 let receiveRouteStops = function(json)
 {
+    console.log('JAAAA')
+    console.log(json)
+
     return {
         type: RECEIVE_ROUTE_STOPS,
         stops: json.stops
@@ -23,19 +26,22 @@ let receiveRouteStops = function(json)
 
 let requestError = function(error)
 {
+  console.log(error)
     return {
         type: REQUEST_ROUTE_STOPS_ERROR,
         error: error
     }
 }
 
-export let fetchDepartures = function(tripId, busId)
+export let fetchRouteStops = function(tripId, stopId)
 {
+    console.log(tripId)
+      console.log(stopId)
     return dispatch =>
     {
-        dispatch(requestRouteStops(tripId, busId))
+        dispatch(requestRouteStops(tripId, stopId))
 
-        return fetch(config.API_URL + '/routes?trip_id=' + tripId + '&stop_id=' + busId)
+        return fetch(config.API_URL + '/routes?trip_id=' + tripId + '&stop=' + stopId)
       .then(response => response.json())
       .then(json => dispatch(receiveRouteStops(json)))
       .catch(error => dispatch(requestError(error)))
