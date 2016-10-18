@@ -11,7 +11,7 @@ class StartButton extends Component {
     render()
     {
         return (
-          <TouchableOpacity style={this.props.style} onPress={this.props.onPress}>
+          <TouchableOpacity accessibilityComponentType="button" accessibilityLabel={this.props.buttonText} style={this.props.style} onPress={this.props.onPress}>
             <Image style={this.props.imageStyle} source={this.props.image}></Image>
             <Text style={styles.startText}>{this.props.buttonText}</Text>
           </TouchableOpacity>

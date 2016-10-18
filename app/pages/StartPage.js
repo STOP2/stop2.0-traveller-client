@@ -91,7 +91,7 @@ class StartView extends Component {
           {
                 viewElement = <View>
                               <DefaultText style={styles.locationErrorText}>{strings.locationError}</DefaultText>
-                              <TouchableOpacity onPress={this.getCurrentLocation}>
+                              <TouchableOpacity accessibilityComponentType="button" accessibilityLabel={strings.tryAgain} onPress={this.getCurrentLocation}>
                                 <DefaultText style={styles.tryAgain}>{strings.tryAgain}</DefaultText>
                               </TouchableOpacity>
                             </View>

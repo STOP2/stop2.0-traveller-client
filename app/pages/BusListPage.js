@@ -84,7 +84,7 @@ class BusListPage extends Component {
         }
 
         return (
-          <TouchableOpacity onPress={goToStopRequestPage}>
+          <TouchableOpacity accessibilityComponentType="button" onPress={goToStopRequestPage}>
             <BusListRow vehicleType={renderData.vehicle_type} line={renderData.line} destination={renderData.destination} arrival={renderData.arrival} />
           </TouchableOpacity>)
     }

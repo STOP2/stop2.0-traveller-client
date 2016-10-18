@@ -81,7 +81,7 @@ class StopRequestPage extends Component{
         if (!this.state.renderConfirm)
         {
             return (
-          <TouchableOpacity style={styles.goToRouteViewButton} onPress={goToStopRequestPage}>
+          <TouchableOpacity accessibilityComponentType="button" accessibilityLabel={strings.goToRouteStopsView} style={styles.goToRouteViewButton} onPress={goToStopRequestPage}>
             <DefaultText style={styles.goToRouteViewButtonText}>{strings.goToRouteStopsView}</DefaultText>
           </TouchableOpacity>)
         }

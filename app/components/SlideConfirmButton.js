@@ -16,7 +16,7 @@ class SlideConfirmButton extends Component {
     render()
     {
         return (
-        <View style={styles.sliderBackgroundRed}>
+        <View style={styles.sliderBackgroundRed} accessibilityComponentType="button" accessibilityLabel={this.props.text}>
           <SlideButton width={500} height={80}
            onSlideSuccess={this.props.onSlideSuccess}>
             <View style={styles.sliderTextContainer}>
