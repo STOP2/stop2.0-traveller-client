@@ -43,7 +43,10 @@ before_script:
   - cd android
   - ./gradlew clean assembleDebugTesting -PdisablePreDex --continue --stacktrace
   - echo no | android create avd --force -n test -t android-23 --abi armeabi-v7a
-  - emulator -avd test -no-audio -no-window &
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+  - emulator -avd test -no-audio -no-boot-anim &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
 
