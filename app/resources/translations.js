@@ -19,7 +19,7 @@ let strings = new LocalizedStrings({
         stopsent: 'Confirmed!',
         gettingLocation: 'Finding your location...',
         locationError: 'Unable to find your location. Make sure that GPS enabled.',
-        locationPermissionsError: 'Couldn\'t set location permissions.',
+        locationPermissionsError: 'Couldn\'t grant location permissions.',
         chooseVehicle: 'Choose a vehicle',
         stopRequest: 'Confirm stop request',
         slide: 'Slide to confirm',
