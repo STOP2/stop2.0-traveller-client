@@ -67,6 +67,12 @@ const styles = StyleSheet.create({
         color: 'white',
         padding: 15,
     },
+    stopTitle: {
+      fontSize: 20,
+      backgroundColor: '#007AC9',
+      color: 'white',
+      padding: 5,
+    },
     start: {
         flex: 1,
         padding: 5,
