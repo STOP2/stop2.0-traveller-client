@@ -32,8 +32,7 @@ const fetchReducer = (state = initialState, action) =>
         return Object.assign({}, state, {sentStoprequest: true})
 
     case REQUEST_ERROR:
-      return Object.assign({}, state, {error: true});
-    break
+        return Object.assign({}, state, {error: true})
 
     default:
         return state
