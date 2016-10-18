@@ -19,6 +19,7 @@ class StartView extends Component {
         this.state = {
             locationData: '',
             gotLocation: false,
+            locationPermissionsError: false,
             locationError: false
         }
     }
@@ -37,7 +38,7 @@ class StartView extends Component {
                     this.getCurrentLocation()
                 }, () =>
             {
-                    alert(strings.locationPermissionsError)
+              this.setState({locationPermissionsError: true})
                 })
           // for the correct StatusBar behaviour with translucent={true} we need to wait a bit and ask for permission after the first render cycle
           // (check https://github.com/facebook/react-native/issues/9413 for more info)
@@ -47,6 +48,8 @@ class StartView extends Component {
 
     getCurrentLocation = () =>
     {
+        this.setState({locationError: false})
+
         navigator.geolocation.getCurrentPosition((position) =>
         {
             this.props.setLocation(position.coords)
@@ -76,22 +79,33 @@ class StartView extends Component {
     {
         let viewElement
 
-        if (this.state.locationError)
+        if (this.state.locationPermissionsError)
         {
             viewElement = <View>
-                          <DefaultText style={styles.locationErrorText}>{strings.locationError}</DefaultText>
-                          <TouchableOpacity onPress={this.getCurrentLocation()}><DefaultText style={styles.tryAgain}>{strings.tryAgain}</DefaultText></TouchableOpacity>
-                          </View>
+                          <DefaultText style={styles.locationErrorText}>{strings.locationPermissionsError}</DefaultText>
+                        </View>
         }
         else
         {
-            if (this.state.gotLocation)
-           {
-                viewElement = <StartViewButtons />
+            if (this.state.locationError)
+          {
+                viewElement = <View>
+                              <DefaultText style={styles.locationErrorText}>{strings.locationError}</DefaultText>
+                              <TouchableOpacity onPress={this.getCurrentLocation}>
+                                <DefaultText style={styles.tryAgain}>{strings.tryAgain}</DefaultText>
+                              </TouchableOpacity>
+                            </View>
             }
             else
-           {
-                viewElement = <View><DefaultText style={styles.gettingLocationText}>{strings.gettingLocation}</DefaultText><ActivityIndicator /></View>
+          {
+                if (this.state.gotLocation)
+             {
+                    viewElement = <StartViewButtons />
+                }
+                else
+             {
+                    viewElement = <View><DefaultText style={styles.gettingLocationText}>{strings.gettingLocation}</DefaultText><ActivityIndicator /></View>
+                }
             }
         }
 

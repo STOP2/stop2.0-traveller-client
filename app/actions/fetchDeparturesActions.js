@@ -26,10 +26,9 @@ let receiveDepartures = function(json)
 
 let requestError = function(error)
 {
-    console.log("requestErrorersers")
     return {
-      type: REQUEST_ERROR,
-      error: error
+        type: REQUEST_ERROR,
+        error: error
     }
 }
 
