@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux'
 
 import TitleBar from '../components/TitleBar'
 import {DefaultText} from '../components/textComponents'
-import BusListRow from '../components/BusListRow'
+import RouteStopsRow from '../components/RouteStopsRow'
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
@@ -25,15 +25,14 @@ class RouteStopsPage extends Component {
 
     componentWillMount = () =>
     {
-        console.log(this.props.tripId)
-        console.log(this.props.stopId)
         this.props.fetchRouteStops(this.props.tripId, this.props.stopId)
     }
 
     componentWillReceiveProps = (nextProps) =>
     {
-      console.log(nextProps.stops)
-        //this.setState({dataSource: this.state.dataSource.cloneWithRows(nextProps.stops)})
+      console.log(nextProps.routeStops)
+        this.setState({dataSource: this.state.dataSource.cloneWithRows(nextProps.routeStops)})
+        console.log(this.state.dataSource)
     }
 
     renderRow = (renderData) =>
@@ -47,7 +46,7 @@ class RouteStopsPage extends Component {
 
         return (
           <TouchableOpacity onPress={goToStopVehicleRequestPage}>
-            <BusListRow vehicleType={renderData.vehicle_type} line={renderData.line} destination={renderData.destination} arrival={renderData.arrival} />
+            <RouteStopsRow stopId={renderData.stop_code} stopName={renderData.stop_name} arrivalTime={renderData.arrives_in} />
           </TouchableOpacity>)
     }
 
@@ -66,7 +65,7 @@ class RouteStopsPage extends Component {
     {
         return (
           <View style={styles.flex1}>
-            <TitleBar title={strings.title} />
+            <TitleBar title={this.props.vehicleLine + ' ' + this.props.vehicleDestination} />
             {this.props.error ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
             <ListView
               enableEmptySections={true}
@@ -97,10 +96,7 @@ class RouteStopsPage extends Component {
         if (this.props.routeIsReady)
         {
             return (
-              //this.renderList()
-              <View>
-                <DefaultText>{this.props.stops}</DefaultText>
-              </View>
+              this.renderList()
             )
         }
         else
@@ -115,7 +111,7 @@ class RouteStopsPage extends Component {
 const mapStateToProps = (state) =>
 {
     return {
-        stop: state.fetchReducer.stop,
+        routeStops: state.fetchReducer.routeStops,
         isFetching: state.fetchReducer.isFetching,
         routeIsReady: state.fetchReducer.routeIsReady,
         error: state.fetchReducer.error
@@ -138,7 +134,9 @@ RouteStopsPage.propTypes = {
     routeIsReady: React.PropTypes.bool.isRequired,
     tripId: React.PropTypes.string.isRequired,
     stopId: React.PropTypes.string.isRequired,
-    error: React.PropTypes.boolean
+    error: React.PropTypes.boolean,
+    vehicleLine: React.PropTypes.string.isRequired,
+    vehicleDestination: React.PropTypes.string.isRequired
 }
 
 

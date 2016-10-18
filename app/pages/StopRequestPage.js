@@ -71,7 +71,10 @@ class StopRequestPage extends Component{
       {
             Actions.routeStops({
                 tripId: this.props.vehicle.trip_id,
-                stopId: this.props.stop.stopId
+                stopId: this.props.stop.stopId,
+                vehicleLine: this.props.vehicle.line,
+                vehicleDestination: this.props.vehicle.destination
+
             })
         }
 

@@ -8,7 +8,8 @@ let initialState = {
     isReady: false,
     routeIsReady: false,
     sentStoprequest: false,
-    error: false
+    error: false,
+    routeStops: {}
 }
 
 const fetchReducer = (state = initialState, action) =>
@@ -38,7 +39,7 @@ const fetchReducer = (state = initialState, action) =>
             isFetching: false,
             routeIsReady: true,
             error: false,
-            stop: action.stops
+            routeStops: action.stops
         })
 
     case REQUEST_ROUTE_STOPS_ERROR:

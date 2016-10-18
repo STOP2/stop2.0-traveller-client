@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { ActivityIndicator, ListView, View, TouchableOpacity } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
+import {DefaultText} from '../components/textComponents'
 import TitleBar from '../components/TitleBar'
 import BusListHeader from '../components/BusListHeader'
 import BusListRow from '../components/BusListRow'
@@ -83,7 +84,7 @@ class BusListPage extends Component {
         return (
           <View style={styles.flex1}>
             <TitleBar title={strings.title + ' ' + this.props.stop.stop_name + ' (' + this.props.stop.stop_code + ')'} />
-            {this.props.error ? <Text style={styles.error}>{strings.backendError}</Text> : null}
+            {this.props.error ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
               <BusListHeader />
             <ListView
               enableEmptySections={true}
