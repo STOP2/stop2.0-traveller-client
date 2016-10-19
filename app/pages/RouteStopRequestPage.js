@@ -48,14 +48,14 @@ class RouteStopRequestPage extends Component{
 
     render()
   {
-        /*return (
+        /* return (
         <View style={styles.flex1}>
           <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopId + ')'} />
           <RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/>
           {this.renderSlider()}
         </View>
       )*/
-        return(
+        return (
             <AccessibilityView name="routeStopRequest">
                 <DefaultText>Heloooo</DefaultText>
             </AccessibilityView>
@@ -65,10 +65,7 @@ class RouteStopRequestPage extends Component{
 
 const mapStateToProps = (state) =>
 {
-    return {
-        sent: state.fetchReducer.sentStoprequest,
-        scene: state.routes.scene
-    }
+    return {sent: state.fetchReducer.sentStoprequest}
 }
 
 const mapDispatchToProps = (dispatch) =>
@@ -81,8 +78,6 @@ const mapDispatchToProps = (dispatch) =>
     }
 }
 
-RouteStopRequestPage.propTypes = {
-
-}
+RouteStopRequestPage.propTypes = {sent: React.PropTypes.bool}
 
 export default connect(mapStateToProps, mapDispatchToProps)(RouteStopRequestPage)

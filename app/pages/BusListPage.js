@@ -36,7 +36,7 @@ class BusListPage extends Component {
 
         this.setState({fetchIntervalRunning: true})
 
-        this.createInterval(this.props);
+        this.createInterval(this.props)
     }
 
     createInterval = (props) => {
@@ -56,17 +56,16 @@ class BusListPage extends Component {
 
     componentWillReceiveProps = (nextProps) =>
     {
-        if(nextProps.scene.name == this.sceneName)
+        if (nextProps.scene.name == this.sceneName)
         {
-
-            if(!this.state.fetchIntervalRunning)
+            if (!this.state.fetchIntervalRunning)
             {
                 this.setState({fetchIntervalRunning: true})
 
-                this.createInterval(nextProps);
+                this.createInterval(nextProps)
             }
         } else {
-            if(this.state.fetchIntervalRunning)
+            if (this.state.fetchIntervalRunning)
             {
                 this.setState({fetchIntervalRunning: false})
 
@@ -218,7 +217,8 @@ BusListPage.propTypes = {
     stops: React.PropTypes.array.isRequired,
     isFetching: React.PropTypes.bool.isRequired,
     error: React.PropTypes.bool.isRequired,
-    isReady: React.PropTypes.bool.isRequired
+    isReady: React.PropTypes.bool.isRequired,
+    scene: React.PropTypes.object.isRequired
 }
 
 

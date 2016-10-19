@@ -39,7 +39,7 @@ class StartView extends Component {
                     this.getCurrentLocation()
                 }, () =>
             {
-              this.setState({locationPermissionsError: true})
+                    this.setState({locationPermissionsError: true})
                 })
           // for the correct StatusBar behaviour with translucent={true} we need to wait a bit and ask for permission after the first render cycle
           // (check https://github.com/facebook/react-native/issues/9413 for more info)
@@ -123,11 +123,9 @@ StartView.propTypes = {
     setLocation: React.PropTypes.func.isRequired
 }
 
-const mapStateToProps = (state) =>
+const mapStateToProps = () =>
 {
-    return {
-        scene: state.routes.scene
-    }
+    return {}
 }
 
 const mapDispatchToProps = (dispatch) =>

@@ -46,22 +46,21 @@ class RouteStopsPage extends Component {
 
         this.setState({fetchIntervalRunning: true})
 
-        this.createInterval(this.props);
+        this.createInterval(this.props)
     }
 
     componentWillReceiveProps = (nextProps) =>
     {
-        if(nextProps.scene.name == this.sceneName)
+        if (nextProps.scene.name == this.sceneName)
         {
-
-            if(!this.state.fetchIntervalRunning)
+            if (!this.state.fetchIntervalRunning)
             {
                 this.setState({fetchIntervalRunning: true})
 
-                this.createInterval(nextProps);
+                this.createInterval(nextProps)
             }
         } else {
-            if(this.state.fetchIntervalRunning)
+            if (this.state.fetchIntervalRunning)
             {
                 this.setState({fetchIntervalRunning: false})
 
@@ -76,9 +75,7 @@ class RouteStopsPage extends Component {
     {
         const goToStopVehicleRequestPage = () =>
         {
-            Actions.routeStopRequest({
-
-            })
+            Actions.routeStopRequest({})
         }
 
         return (
@@ -130,7 +127,7 @@ class RouteStopsPage extends Component {
 
     render()
     {
-        return(<AccessibilityView name={this.sceneName}>
+        return (<AccessibilityView name={this.sceneName}>
             {this.props.routeIsReady ? this.renderList() : this.renderSpinner() }
         </AccessibilityView>)
     }
@@ -165,7 +162,8 @@ RouteStopsPage.propTypes = {
     stopId: React.PropTypes.string.isRequired,
     error: React.PropTypes.bool,
     vehicleLine: React.PropTypes.string.isRequired,
-    vehicleDestination: React.PropTypes.string.isRequired
+    vehicleDestination: React.PropTypes.string.isRequired,
+    scene: React.PropTypes.object.isRequired
 }
 
 

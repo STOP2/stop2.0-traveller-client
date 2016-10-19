@@ -106,8 +106,7 @@ class StopRequestPage extends Component{
 const mapStateToProps = (state) =>
 {
     return {
-        sent: state.fetchReducer.sentStoprequest,
-        scene: state.routes.scene
+        sent: state.fetchReducer.sentStoprequest
     }
 }
 
@@ -132,7 +131,8 @@ StopRequestPage.propTypes = {
         stopId: React.PropTypes.string.isRequired,
         stopName: React.PropTypes.string.isRequired
     }),
-    sendStoprequest: React.PropTypes.func.isRequired
+    sendStoprequest: React.PropTypes.func.isRequired,
+    sent: React.PropTypes.bool.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StopRequestPage)
