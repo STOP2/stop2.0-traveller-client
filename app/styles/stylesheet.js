@@ -24,8 +24,6 @@ const styles = StyleSheet.create({
     flexRow: {flexDirection: 'row'},
     busrow: {
         flexDirection: 'row',
-        borderBottomColor: colors.K40,
-        borderBottomWidth: 1,
         height: 60,
         padding: 10,
         alignItems: 'center'
@@ -234,6 +232,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
         margin: 15
+    },
+    rowSeparator: {
+        flexDirection: 'row',
+        borderBottomColor: colors.K10,
+        borderBottomWidth: 1,
+        alignItems: 'center'
     }
 })
 
