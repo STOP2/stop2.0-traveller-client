@@ -6,6 +6,7 @@ import { Actions } from 'react-native-router-flux'
 import TitleBar from '../components/TitleBar'
 import {DefaultText} from '../components/textComponents'
 import RouteStopsRow from '../components/RouteStopsRow'
+import AccessibilityView from '../components/AccessibilityView'
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
@@ -129,10 +130,9 @@ class RouteStopsPage extends Component {
 
     render()
     {
-        return(<View importantForAccessibility={this.props.scene.name == 'routeStops' ?
-            'yes' : 'no-hide-descendants'}>
+        return(<AccessibilityView name="routeStops">
             {this.props.routeIsReady ? this.renderList() : this.renderSpinner() }
-        </View>)
+        </AccessibilityView>)
     }
 }
 

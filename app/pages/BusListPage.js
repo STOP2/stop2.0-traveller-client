@@ -8,6 +8,7 @@ import { DefaultText } from '../components/textComponents'
 import StopTitle from '../components/StopTitle'
 import BusListHeader from '../components/BusListHeader'
 import BusListRow from '../components/BusListRow'
+import AccessibilityView from '../components/AccessibilityView'
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
@@ -129,8 +130,7 @@ class BusListPage extends Component {
     renderList = () =>
     {
         return (
-          <View style={styles.flex1} importantForAccessibility={this.props.scene.name == 'departures' ?
-              'yes' : 'no-hide-descendants'}>
+          <AccessibilityView style={styles.flex1} name="departures">
           {this.props.error ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
           <BusListHeader />
           <ScrollView style={{height: 100}}>
@@ -149,7 +149,7 @@ class BusListPage extends Component {
               )
           }, this)}
           </ScrollView>
-          </View>
+          </AccessibilityView>
         )
     }
 

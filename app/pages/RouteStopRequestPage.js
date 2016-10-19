@@ -7,6 +7,7 @@ import { Actions } from 'react-native-router-flux'
 import TitleBar from '../components/TitleBar'
 import RouteInfo from '../components/RouteInfo'
 import SlideConfirmButton from '../components/SlideConfirmButton'
+import AccessibilityView from '../components/AccessibilityView'
 import {DefaultText} from '../components/textComponents'
 
 import styles from '../styles/stylesheet'
@@ -55,10 +56,9 @@ class RouteStopRequestPage extends Component{
         </View>
       )*/
         return(
-            <View importantForAccessibility={this.props.scene.name == 'routeStopRequest' ?
-                'yes' : 'no-hide-descendants'}>
+            <AccessibilityView name="routeStopRequest">
                 <DefaultText>Heloooo</DefaultText>
-            </View>
+            </AccessibilityView>
         )
     }
 }

@@ -8,6 +8,7 @@ import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
 import StartViewButtons from '../components/StartViewButtons'
+import AccessibilityView from '../components/AccessibilityView'
 
 import { setLocation } from '../actions/locationActions'
 
@@ -110,10 +111,9 @@ class StartView extends Component {
         }
 
         return (
-      <View style={styles.start} importantForAccessibility={this.props.scene.name == 'start' ?
-          'yes' : 'no-hide-descendants'}>
+      <AccessibilityView style={styles.start} name="start">
         {viewElement}
-      </View>
+      </AccessibilityView>
     )
     }
 }
