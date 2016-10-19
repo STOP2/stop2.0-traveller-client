@@ -21,13 +21,16 @@ class BusListPage extends Component {
     {
         super(props)
 
-        this.state = {dataSources: null}
+        this.state = {
+            dataSources: null,
+            timerRunning: false
+        }
     }
 
     componentWillMount = () =>
     {
         this.props.fetchDepartures(this.props.locationData.latitude, this.props.locationData.longitude)
-
+        this.setState({timerRunning: true})
         this.fetchInterval = setInterval(() =>
         {
             if (!this.props.isFetching)
@@ -44,6 +47,29 @@ class BusListPage extends Component {
 
     componentWillReceiveProps = (nextProps) =>
     {
+        if(nextProps.scene.name == 'departures')
+        {
+
+            if(!this.state.timerRunning)
+            {
+                this.setState({timerRunning: true})
+
+                this.fetchInterval = setInterval(() =>
+                {
+                    if (!nextProps.isFetching)
+                    {
+                        nextProps.fetchDepartures(nextProps.locationData.latitude, nextProps.locationData.longitude)
+                    }
+                }, UPDATE_INTERVAL_IN_SECS * 1000)
+            }
+        } else {
+            if(this.state.timerRunning)
+            {
+                this.setState({timerRunning: false})
+
+                clearInterval(this.fetchInterval)
+            }
+        }
     // this.props.fetchDepartures(nextProps.locationData.latitude, nextProps.locationData.longitude)
         if (nextProps.stops.length > 0)
         {
@@ -103,7 +129,8 @@ class BusListPage extends Component {
     renderList = () =>
     {
         return (
-          <View style={styles.flex1}>
+          <View style={styles.flex1} importantForAccessibility={this.props.scene.name == 'departures' ?
+              'yes' : 'no-hide-descendants'}>
           {this.props.error ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
           <BusListHeader />
           <ScrollView style={{height: 100}}>
@@ -164,7 +191,8 @@ const mapStateToProps = (state) =>
         isFetching: state.fetchReducer.isFetching,
         isReady: state.fetchReducer.isReady,
         error: state.fetchReducer.error,
-        locationData: state.locationReducer.locationData
+        locationData: state.locationReducer.locationData,
+        scene: state.routes.scene
     }
 }
 

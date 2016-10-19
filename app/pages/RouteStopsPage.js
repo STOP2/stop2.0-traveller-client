@@ -21,12 +21,17 @@ class RouteStopsPage extends Component {
 
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
 
-        this.state = {dataSource: ds.cloneWithRows([])}
+        this.state = {
+            dataSource: ds.cloneWithRows([]),
+            timerRunning: false
+        }
     }
 
     componentWillMount = () =>
     {
         this.props.fetchRouteStops(this.props.tripId, this.props.stopId)
+
+        this.setState({timerRunning: true})
 
         this.fetchInterval = setInterval(() =>
         {
@@ -39,6 +44,30 @@ class RouteStopsPage extends Component {
 
     componentWillReceiveProps = (nextProps) =>
     {
+        if(nextProps.scene.name == 'departures')
+        {
+
+            if(!this.state.timerRunning)
+            {
+                this.setState({timerRunning: true})
+
+                this.fetchInterval = setInterval(() =>
+                {
+                    if (!nextProps.isFetching)
+                    {
+                        nextProps.fetchDepartures(nextProps.locationData.latitude, nextProps.locationData.longitude)
+                    }
+                }, UPDATE_INTERVAL_IN_SECS * 1000)
+            }
+        } else {
+            if(this.state.timerRunning)
+            {
+                this.setState({timerRunning: false})
+
+                clearInterval(this.fetchInterval)
+            }
+        }
+
         this.setState({dataSource: this.state.dataSource.cloneWithRows(nextProps.routeStops)})
     }
 
@@ -100,18 +129,10 @@ class RouteStopsPage extends Component {
 
     render()
     {
-        if (this.props.routeIsReady)
-        {
-            return (
-              this.renderList()
-            )
-        }
-        else
-        {
-            return (
-              this.renderSpinner()
-            )
-        }
+        return(<View importantForAccessibility={this.props.scene.name == 'routeStops' ?
+            'yes' : 'no-hide-descendants'}>
+            {this.props.routeIsReady ? this.renderList() : this.renderSpinner() }
+        </View>)
     }
 }
 
@@ -121,7 +142,8 @@ const mapStateToProps = (state) =>
         routeStops: state.fetchReducer.routeStops,
         isFetching: state.fetchReducer.isFetching,
         routeIsReady: state.fetchReducer.routeIsReady,
-        error: state.fetchReducer.error
+        error: state.fetchReducer.error,
+        scene: state.routes.scene
     }
 }
 
