@@ -24,46 +24,46 @@ class RouteStopsPage extends Component {
 
         this.state = {
             dataSource: ds.cloneWithRows([]),
-            timerRunning: false
+            fetchIntervalRunning: false
         }
+
+        this.sceneName = 'routeStops'
+    }
+
+    createInterval = (props) => {
+        this.fetchInterval = setInterval(() =>
+        {
+            if (!props.isFetching)
+            {
+                props.fetchDepartures(props.locationData.latitude, props.locationData.longitude)
+            }
+        }, UPDATE_INTERVAL_IN_SECS * 1000)
     }
 
     componentWillMount = () =>
     {
         this.props.fetchRouteStops(this.props.tripId, this.props.stopId)
 
-        this.setState({timerRunning: true})
+        this.setState({fetchIntervalRunning: true})
 
-        this.fetchInterval = setInterval(() =>
-        {
-            if (!this.props.isFetching)
-            {
-                this.props.fetchRouteStops(this.props.tripId, this.props.stopId)
-            }
-        }, UPDATE_INTERVAL_IN_SECS * 1000)
+        this.createInterval(this.props);
     }
 
     componentWillReceiveProps = (nextProps) =>
     {
-        if(nextProps.scene.name == 'departures')
+        if(nextProps.scene.name == this.sceneName)
         {
 
-            if(!this.state.timerRunning)
+            if(!this.state.fetchIntervalRunning)
             {
-                this.setState({timerRunning: true})
+                this.setState({fetchIntervalRunning: true})
 
-                this.fetchInterval = setInterval(() =>
-                {
-                    if (!nextProps.isFetching)
-                    {
-                        nextProps.fetchDepartures(nextProps.locationData.latitude, nextProps.locationData.longitude)
-                    }
-                }, UPDATE_INTERVAL_IN_SECS * 1000)
+                this.createInterval(nextProps);
             }
         } else {
-            if(this.state.timerRunning)
+            if(this.state.fetchIntervalRunning)
             {
-                this.setState({timerRunning: false})
+                this.setState({fetchIntervalRunning: false})
 
                 clearInterval(this.fetchInterval)
             }
@@ -130,7 +130,7 @@ class RouteStopsPage extends Component {
 
     render()
     {
-        return(<AccessibilityView name="routeStops">
+        return(<AccessibilityView name={this.sceneName}>
             {this.props.routeIsReady ? this.renderList() : this.renderSpinner() }
         </AccessibilityView>)
     }

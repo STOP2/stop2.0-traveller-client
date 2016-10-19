@@ -24,19 +24,27 @@ class BusListPage extends Component {
 
         this.state = {
             dataSources: null,
-            timerRunning: false
+            fetchIntervalRunning: false
         }
+
+        this.sceneName = 'departures'
     }
 
     componentWillMount = () =>
     {
         this.props.fetchDepartures(this.props.locationData.latitude, this.props.locationData.longitude)
-        this.setState({timerRunning: true})
+
+        this.setState({fetchIntervalRunning: true})
+
+        this.createInterval(this.props);
+    }
+
+    createInterval = (props) => {
         this.fetchInterval = setInterval(() =>
         {
-            if (!this.props.isFetching)
+            if (!props.isFetching)
             {
-                this.props.fetchDepartures(this.props.locationData.latitude, this.props.locationData.longitude)
+                props.fetchDepartures(props.locationData.latitude, props.locationData.longitude)
             }
         }, UPDATE_INTERVAL_IN_SECS * 1000)
     }
@@ -48,29 +56,24 @@ class BusListPage extends Component {
 
     componentWillReceiveProps = (nextProps) =>
     {
-        if(nextProps.scene.name == 'departures')
+        if(nextProps.scene.name == this.sceneName)
         {
 
-            if(!this.state.timerRunning)
+            if(!this.state.fetchIntervalRunning)
             {
-                this.setState({timerRunning: true})
+                this.setState({fetchIntervalRunning: true})
 
-                this.fetchInterval = setInterval(() =>
-                {
-                    if (!nextProps.isFetching)
-                    {
-                        nextProps.fetchDepartures(nextProps.locationData.latitude, nextProps.locationData.longitude)
-                    }
-                }, UPDATE_INTERVAL_IN_SECS * 1000)
+                this.createInterval(nextProps);
             }
         } else {
-            if(this.state.timerRunning)
+            if(this.state.fetchIntervalRunning)
             {
-                this.setState({timerRunning: false})
+                this.setState({fetchIntervalRunning: false})
 
                 clearInterval(this.fetchInterval)
             }
         }
+
     // this.props.fetchDepartures(nextProps.locationData.latitude, nextProps.locationData.longitude)
         if (nextProps.stops.length > 0)
         {
@@ -130,7 +133,7 @@ class BusListPage extends Component {
     renderList = () =>
     {
         return (
-          <AccessibilityView style={styles.flex1} name="departures">
+          <AccessibilityView style={styles.flex1} name={this.sceneName}>
           {this.props.error ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
           <BusListHeader />
           <ScrollView style={{height: 100}}>
