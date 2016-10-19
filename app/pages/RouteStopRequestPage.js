@@ -54,13 +54,21 @@ class RouteStopRequestPage extends Component{
           {this.renderSlider()}
         </View>
       )*/
-        return(<View><DefaultText>Heloooo</DefaultText></View>)
+        return(
+            <View importantForAccessibility={this.props.scene.name == 'routeStopRequest' ?
+                'yes' : 'no-hide-descendants'}>
+                <DefaultText>Heloooo</DefaultText>
+            </View>
+        )
     }
 }
 
 const mapStateToProps = (state) =>
 {
-    return {sent: state.fetchReducer.sentStoprequest}
+    return {
+        sent: state.fetchReducer.sentStoprequest,
+        scene: state.routes.scene
+    }
 }
 
 const mapDispatchToProps = (dispatch) =>

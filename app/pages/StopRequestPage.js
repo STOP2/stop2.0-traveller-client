@@ -90,7 +90,8 @@ class StopRequestPage extends Component{
     render()
   {
         return (
-        <View style={styles.flex1}>
+        <View style={styles.flex1} importantForAccessibility={this.props.scene.name == 'stopRequest' ?
+            'yes' : 'no-hide-descendants'}>
           <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopId + ')'} />
           <RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/>
           <View style={styles.flex1}>
@@ -104,7 +105,10 @@ class StopRequestPage extends Component{
 
 const mapStateToProps = (state) =>
 {
-    return {sent: state.fetchReducer.sentStoprequest}
+    return {
+        sent: state.fetchReducer.sentStoprequest,
+        scene: state.routes.scene
+    }
 }
 
 const mapDispatchToProps = (dispatch) =>

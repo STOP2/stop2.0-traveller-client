@@ -110,7 +110,8 @@ class StartView extends Component {
         }
 
         return (
-      <View style={styles.start}>
+      <View style={styles.start} importantForAccessibility={this.props.scene.name == 'start' ?
+          'yes' : 'no-hide-descendants'}>
         {viewElement}
       </View>
     )
@@ -122,9 +123,11 @@ StartView.propTypes = {
     setLocation: React.PropTypes.func.isRequired
 }
 
-const mapStateToProps = () =>
+const mapStateToProps = (state) =>
 {
-    return {}
+    return {
+        scene: state.routes.scene
+    }
 }
 
 const mapDispatchToProps = (dispatch) =>
