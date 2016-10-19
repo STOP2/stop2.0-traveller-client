@@ -14,7 +14,7 @@ const colors = {
     K80: '#333333',
     CoolGray: '#616365',
     K40: '#666666',
-    K10: 'dddddc',
+    K10: '#dddddc',
     stopBackground: '#e9e9e9',
     tryAgain: '#0000ff'
 }

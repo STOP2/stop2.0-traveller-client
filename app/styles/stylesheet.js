@@ -233,7 +233,12 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         margin: 15
     },
-    rowSeparator: {}
+    rowSeparator: {
+        flexDirection: 'row',
+        borderBottomColor: colors.K10,
+        borderBottomWidth: 1,
+        alignItems: 'center'
+    }
 })
 
 export default styles
