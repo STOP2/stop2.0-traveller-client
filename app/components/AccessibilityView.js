@@ -13,8 +13,7 @@ class AccessibilityView extends Component {
     render()
     {
         return (
-            <View style={this.props.style} importantForAccessibility={this.props.scene.name == this.props.name ?
-                'yes' : 'no-hide-descendants'}>
+            <View style={this.props.style} importantForAccessibility={this.props.scene.name == this.props.name ? 'yes' : 'no-hide-descendants'}>
                 {this.props.children}
             </View>)
     }
@@ -22,9 +21,14 @@ class AccessibilityView extends Component {
 
 const mapStateToProps = (state) =>
 {
-    return {
-        scene: state.routes.scene
-    }
+    return {scene: state.routes.scene}
+}
+
+AccessibilityView.propTypes = {
+    children: React.PropTypes.node,
+    style: React.PropTypes.number,
+    scene: React.PropTypes.object,
+    name: React.PropTypes.string.isRequired
 }
 
 export default connect(mapStateToProps)(AccessibilityView)
