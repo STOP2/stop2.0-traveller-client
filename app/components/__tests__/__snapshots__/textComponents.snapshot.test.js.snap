@@ -1,0 +1,37 @@
+exports[`BoldText component renders correctly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "fontFamily": "gotham-rounded-medium",
+      },
+      Object {
+        "padding": 10,
+      },
+    ]
+  }>
+  x
+</Text>
+`;
+
+exports[`DefaultText component renders correctly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "fontFamily": "gotham-rounded-book",
+      },
+      Object {
+        "padding": 10,
+      },
+    ]
+  }>
+  x
+</Text>
+`;
