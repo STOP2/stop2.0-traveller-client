@@ -13,14 +13,3 @@ it('renders correctly', () => {
 
     expect(tree).toMatchSnapshot()
 })
-
-it('renders the TextInput component', () => {
-    const TextInput = require('TextInput')
-    const tree = renderer.create(
-      <TextInput
-          autoCorrect={false}
-          value="apple banana kiwi"
-      />
-  ).toJSON()
-    expect(tree).toMatchSnapshot()
-})
