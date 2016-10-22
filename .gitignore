@@ -47,3 +47,5 @@ android/app/src/main/assets/index.android.map
 
 # Gradle
 android/gradle.properties
+
+coverage/
