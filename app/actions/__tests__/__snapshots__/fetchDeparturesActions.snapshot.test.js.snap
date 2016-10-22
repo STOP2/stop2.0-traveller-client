@@ -1,8 +1,8 @@
 exports[`test should handle RECEIVE_DEPARTURES action 1`] = `
 Array [
   Object {
-    "latitude": 20.045,
-    "longitude": 15.234,
+    "latitude": 60.203978,
+    "longitude": 24.9633573,
     "type": "REQUEST_DEPARTURES",
   },
   Object {
