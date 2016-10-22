@@ -1,4 +1,4 @@
-exports[`test should handle RECEIVE_DEPARTURES action 1`] = `
+exports[`fetchDepartures actions should handle RECEIVE_DEPARTURES action 1`] = `
 Array [
   Object {
     "latitude": 60.203978,

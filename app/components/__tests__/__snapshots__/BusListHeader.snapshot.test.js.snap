@@ -1,4 +1,4 @@
-exports[`test renders correctly 1`] = `
+exports[`BusListHeader component renders correctly 1`] = `
 <View
   style={
     Object {

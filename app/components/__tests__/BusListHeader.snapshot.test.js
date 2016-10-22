@@ -8,8 +8,10 @@ import renderer from 'react-test-renderer'
 
 jest.mock('react-native-localization')
 
-it('renders correctly', () => {
-    let tree = renderer.create(<BusListHeader />).toJSON()
+describe('BusListHeader component', () => {
+    it('renders correctly', () => {
+        let tree = renderer.create(<BusListHeader />).toJSON()
 
-    expect(tree).toMatchSnapshot()
+        expect(tree).toMatchSnapshot()
+    })
 })

@@ -1,11 +1,13 @@
 import locationReducer, { initialState } from '../../reducers/locationReducer'
 import { setLocation } from '../../actions/locationActions'
 
-it('returns the same state on an unhandled action', () => {
-    expect(locationReducer(initialState, {type: '_NULL'})).toMatchSnapshot()
-})
+describe('location reducer', () => {
+    it('returns the same state on an unhandled action', () => {
+        expect(locationReducer(initialState, {type: '_NULL'})).toMatchSnapshot()
+    })
 
-it('handles SET_LOCATION action', () => {
-    let locationData = {coords: []}
-    expect(locationReducer(initialState, setLocation(locationData))).toMatchSnapshot()
+    it('handles SET_LOCATION action', () => {
+        let locationData = {coords: []}
+        expect(locationReducer(initialState, setLocation(locationData))).toMatchSnapshot()
+    })
 })
