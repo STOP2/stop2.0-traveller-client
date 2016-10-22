@@ -12,5 +12,4 @@ after_success:
 - coveralls-lcov coverage/lcov.info
 cache:
   directories:
-    - $HOME/.npm
     - node_modules
