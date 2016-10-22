@@ -1,4 +1,4 @@
-exports[`test handles SET_LOCATION action 1`] = `
+exports[`location reducer handles SET_LOCATION action 1`] = `
 Object {
   "locationData": Object {
     "coords": Array [],
@@ -6,7 +6,7 @@ Object {
 }
 `;
 
-exports[`test returns the same state on an unhandled action 1`] = `
+exports[`location reducer returns the same state on an unhandled action 1`] = `
 Object {
   "locationData": Object {},
 }
