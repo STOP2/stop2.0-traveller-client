@@ -77,9 +77,3 @@ exports[`test renders correctly 1`] = `
   </Text>
 </View>
 `;
-
-exports[`test renders the TextInput component 1`] = `
-<TextInput
-  autoCorrect={false}
-  value="apple banana kiwi" />
-`;
