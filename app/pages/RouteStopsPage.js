@@ -57,6 +57,11 @@ class RouteStopsPage extends Component {
           </TouchableOpacity>)
     }
 
+    renderSeparator = () =>
+    {
+        return (<View style={styles.rowSeparator}></View>)
+    }
+
     renderFooter = () =>
     {
         return (
@@ -79,6 +84,7 @@ class RouteStopsPage extends Component {
               dataSource={this.state.dataSource}
               renderRow={this.renderRow}
               renderFooter={this.renderFooter}
+              renderSeparator={this.renderSeparator}
             />
           </View>
         )
