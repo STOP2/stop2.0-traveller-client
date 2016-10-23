@@ -1,6 +1,4 @@
 language: android
-node_js:
-- '6'
 env:
   global:
   - secure: Q2NXQrC5iHGDj7xpQe3s/aZ58mwqea3k7XGGmK4Fobvuu0HpJvYJU5bsUMLIzYyXq4kkmtbRa5abLOYLcvn/vXrAWk/2xAm/hhvVMaJn0xnKjj7kH1tr4CeMb4LWwq4gKB0RIk+Mh5EqGqDWMDPz0dMKfuqzw8Q2zmo21v6yDuj7M1gXY/Dvtjip2OFiZReMU/0TAvToSIqwZzR2OQ4GMJHzJMOaGmNCIUrX7r/HMGBMLD1Feg08sAbGqaKCmwr2/uYSM1zDJnqza8Jl+xvqAVAP+3Pcu5klKmdgr9yt6mbjJrRMng7EdOLAuirwXQ8Y2wqrfAxw0ya8p4TzfVeem7ZqszxaigbHYsADQ5Nv8liCZ0zSFoCKfNLb09AVIMqrimuMdY8VeJJdUCdb5eD22DACAQbnFmGEKJSPaAdS4vx366ul3hbTqbBt03kGxOh1BC2iAsNEeeB/ORrR87D+PA5Q7rC/KERblUiL0wcBC/HnYhtmcMkwJqxPLp1rGsy6yXXvI4h7JB41xk3eKZMP7I+c08pvjp9cfwnoSZqkXPhQyofajhrJ0uCZ/xUz5pnJA+aYHrRRqLmaHmbDYTFJet/2OU+xWqCsEfEVwZFJz5z8lYpu03F3Jk4t2HUOQLvPGjn/MFlLes4FCsPdsxJu8pwDZMMzQzQDRGkFxEJbz0c=
@@ -19,6 +17,8 @@ script:
 - npm run test
 - cd android && ./gradlew assembleRelease
 before_install:
+- nvm install 6
+- node --version
 - openssl aes-256-cbc -K $encrypted_880ab629b699_key -iv $encrypted_880ab629b699_iv -in .keystore.enc -out .keystore -d
 - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
 - gem install coveralls-lcov
