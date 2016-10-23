@@ -38,6 +38,7 @@
     "verbose": true,
     "setupFiles": [
       "./config/jest/globalFetch.js"
-    ]
+    ],
+    "modulePathIgnorePatterns": ["/node_modules/"]
   }
 }
