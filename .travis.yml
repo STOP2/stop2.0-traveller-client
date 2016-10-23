@@ -1,12 +1,44 @@
-language: node_js
+language: android
 node_js:
-- '4'
+- '6'
+env:
+  global:
+  - secure: Q2NXQrC5iHGDj7xpQe3s/aZ58mwqea3k7XGGmK4Fobvuu0HpJvYJU5bsUMLIzYyXq4kkmtbRa5abLOYLcvn/vXrAWk/2xAm/hhvVMaJn0xnKjj7kH1tr4CeMb4LWwq4gKB0RIk+Mh5EqGqDWMDPz0dMKfuqzw8Q2zmo21v6yDuj7M1gXY/Dvtjip2OFiZReMU/0TAvToSIqwZzR2OQ4GMJHzJMOaGmNCIUrX7r/HMGBMLD1Feg08sAbGqaKCmwr2/uYSM1zDJnqza8Jl+xvqAVAP+3Pcu5klKmdgr9yt6mbjJrRMng7EdOLAuirwXQ8Y2wqrfAxw0ya8p4TzfVeem7ZqszxaigbHYsADQ5Nv8liCZ0zSFoCKfNLb09AVIMqrimuMdY8VeJJdUCdb5eD22DACAQbnFmGEKJSPaAdS4vx366ul3hbTqbBt03kGxOh1BC2iAsNEeeB/ORrR87D+PA5Q7rC/KERblUiL0wcBC/HnYhtmcMkwJqxPLp1rGsy6yXXvI4h7JB41xk3eKZMP7I+c08pvjp9cfwnoSZqkXPhQyofajhrJ0uCZ/xUz5pnJA+aYHrRRqLmaHmbDYTFJet/2OU+xWqCsEfEVwZFJz5z8lYpu03F3Jk4t2HUOQLvPGjn/MFlLes4FCsPdsxJu8pwDZMMzQzQDRGkFxEJbz0c=
+  - secure: aHnaDlLU7kAoL768Lm2YTHyPWNzThFEuPS+C1amFX4vTjQ8+Ux2lCG1BrsraJNevgnmWzCyL8f9lry5D8zfpxaZeonC8aylFmmw3+wy0y/7hjkbDDGaxPypObx9iB1Vwr8tnwCoexJ7G9V6fGz09G1+X4W9VU5so5AHtqBnopFLv9GTwQOtKSWQWvw85P85wV2lnGFdxysbJR0sNLl/j8czaqCEXHIYErhexLoUEmIBBbmtrhOqfhTiY4ek3uoopS+QXX+4F5IOYvqjKftELrzhc/uQPnuR4+/uhATeUPT0PrGURutqr+IgM0TJoL6pZIausVndcqGpIlm9PdBouSYxi1/d/I23W4PZ0XFN+RgLZkPOI0AiQBbKC3pF8M7iBc+o6roM4CDZ+/WV3mmWXJzsi1O6otmmPx2CnjDKaadiqkdVf6wtbWrrJgyWEfGkg3I60xizc8n+Wjjrd0Wj9lHgVLd5UZo5dghys/8+4iWWNw2mlBp4+1kCS9Y2nwj/yKxgepHjzommonvccqgJn+6mplUdDKyCmHP3kk95ZhFkdgOG3rGSxr+qb5QnYZW+a91VEneTpJ/M8haL+aGc3qhm+pLihxxqb8top/YGNoPMetHgYnwHbiv93U/mMFY3fWJryijRJoP2WTopb46fMDIHcbSmINRIAVtuxHBfDVKo=
+android:
+  components:
+  - build-tools-23.0.3
+  - android-23
+  - extra-android-m2repository
+  - extra-google-google_play_services
+  - extra-google-m2repository
+  - addon-google_apis-google-16
 script:
 - npm run test
+- cd android && ./gradlew assembleRelease
 before_install:
- - gem install coveralls-lcov
+- openssl aes-256-cbc -K $encrypted_880ab629b699_key -iv $encrypted_880ab629b699_iv -in .keystore.enc -out .keystore -d
+- if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
+- gem install coveralls-lcov
+before_deploy:
+- cp $TRAVIS_BUILD_DIR/.keystore $HOME
+- jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 $HOME/android/release-unsigned.apk
+  STOP2 -keystore $HOME/.keystore -storepass $storepass -keypass $keypass
+- "${ANDROID_HOME}/build-tools/23.0.3/zipalign 4 $HOME/android/release-unsigned.apk
+  $HOME/android/STOP2.apk"
+deploy:
+  provider: releases
+  api_key:
+    secure: VjuBp+IKx99ZOjp3/7+gBoDzKHWCYE7x9l70+2Q7X253BmMaQfAThP6aBDeXCBbsmTZNpjbYD1Vtx0JXcnmLZTwFevuLp5AeGmBGCecqi927mebMyoeRj49ZtS2FmoueDVhbRRasSgviVocsLXSa5BQKJ3J5CfcbCBbWj1cdylgSBA9a57UxHToYr0oFTbAoa3z7eOGfZhq3Yf00osMRm4zhlK18EEiC9Y6ibpppGRY6V9umzTnE3h0pV9IHvIf7Txr0aSy5WZSc35eYqVPtHbSZnp/j3gSIRgf3nxMWH1RCCv8g4GMQWoko9DGzLhlQpfUyHEvk4CzE5pa3LrfnKNVDnOPc8SiBmGUXtFdRs+4amH7wNAdqNrdQYOTgZbteYjRSDOYZWqT2+g9iuDb/nW/nQvfxLM2NEMiAnnvgsoORB1W2AjaCBCo4ytYIDM8PmdIqoGwCtDtz47GM/gmwbaCY2/62O94Vxd+35kylM9Wwa8VBIbXp20rfuDj3SoxBCwkGRUQyEZe7oMyN0tYi7QV+nd3aG5DqFyLnduWzqvwhLPzObNCoOe5v8aQzeryJwXePb5KUh3r/bFy+0H6LhEEYxtdwYW9DZjEnRPIIU5oeM6cf++Z4z9JVfnQTdQQ1V18b8SHoPu1EswrTXlO3BewgzvqnfUnz3JhsNjFMPKs=
+  file: "$HOME/android/STOP2.apk"
+  on:
+    repo: STOP2/stop2.0-traveller-client
+    tags: true
 notifications:
   slack:
     secure: FC6pCe4YbbDVGgGNcHxp3tTe8i4rD+jT/+9ZuNF6vS/7cSkzfABGoEIlJMtPgUNl0B8N8MHvKFslMazgboLjnzdjLnNxsqnhUY17Mnpx4uyUqjnppel+FsbNkty6pRxNibwK2N131YjsPhpnLnDOv50S7H0MH+q7dk36sBm2l55Xltqkt5B3LdLkT0QpplbgiR8GoK6uo8au/OBqC8O1AyQojFSezVH2ceh/NjHzeEhPGMwT1hnHricq1VCxU8ORB7YITiZ7KDgkv46dp4YME31Rrqh94oYY4OdunRDkTpWuZpe9VXDx4YqLM3x8Ew3DsN9R94YmHW3JJr4hZK1pwqXgZ9Lih6tqW0Qepf8fw4ciSEEXlr1iQsSFeJsALOg3e1X9LichY+4GoZFs35RD2TK1LSxmpyje2lWIuRA+jgv+bGuWJay4APJ/gDYtiSapq32dgJ13h/bMG6iwHCA+wWdkpMwfr45hEAr2oW9z4FKgb58OXfx4IcbFEXvHPR+4KB28Yo4KHPvOwa0HlZXL65tt3mkUhaJ5nOnTLhdbkFDp5L8JXT8ZKk8QO0gs6rTRyLjYvQVAWR+dxIYEWldnlpgOYGzdilj3VA+GOk/UJaaLHkjCq1mNzyY1YuVKpQzjB0MW3gyO7Yv9TXP8Ov57mOdsylvlIYu7uEFMpmC3GNM=
 after_success:
 - coveralls-lcov coverage/lcov.info
+cache:
+  directories:
+  - node_modules
