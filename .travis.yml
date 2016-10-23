@@ -5,6 +5,8 @@ env:
   - secure: aHnaDlLU7kAoL768Lm2YTHyPWNzThFEuPS+C1amFX4vTjQ8+Ux2lCG1BrsraJNevgnmWzCyL8f9lry5D8zfpxaZeonC8aylFmmw3+wy0y/7hjkbDDGaxPypObx9iB1Vwr8tnwCoexJ7G9V6fGz09G1+X4W9VU5so5AHtqBnopFLv9GTwQOtKSWQWvw85P85wV2lnGFdxysbJR0sNLl/j8czaqCEXHIYErhexLoUEmIBBbmtrhOqfhTiY4ek3uoopS+QXX+4F5IOYvqjKftELrzhc/uQPnuR4+/uhATeUPT0PrGURutqr+IgM0TJoL6pZIausVndcqGpIlm9PdBouSYxi1/d/I23W4PZ0XFN+RgLZkPOI0AiQBbKC3pF8M7iBc+o6roM4CDZ+/WV3mmWXJzsi1O6otmmPx2CnjDKaadiqkdVf6wtbWrrJgyWEfGkg3I60xizc8n+Wjjrd0Wj9lHgVLd5UZo5dghys/8+4iWWNw2mlBp4+1kCS9Y2nwj/yKxgepHjzommonvccqgJn+6mplUdDKyCmHP3kk95ZhFkdgOG3rGSxr+qb5QnYZW+a91VEneTpJ/M8haL+aGc3qhm+pLihxxqb8top/YGNoPMetHgYnwHbiv93U/mMFY3fWJryijRJoP2WTopb46fMDIHcbSmINRIAVtuxHBfDVKo=
 install:
 - npm install
+jdk:
+  - oraclejdk8
 android:
   components:
   - build-tools-23.0.3
@@ -15,6 +17,7 @@ android:
   - addon-google_apis-google-16
 script:
 - npm run test
+- jdk_switcher use oraclejdk8
 - cd android && ./gradlew assembleRelease
 before_install:
 - nvm install 6
