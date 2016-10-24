@@ -28,7 +28,8 @@ before_install:
 - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
 - gem install coveralls-lcov
 before_deploy:
-- jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 android/app/build/outputs/apk/app-release-unsigned.apk STOP2 -keystore .keystore -storepass $storepass -keypass $keypass
+- cp $TRAVIS_BUILD_DIR/.keystore $HOME
+- jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 android/app/build/outputs/apk/app-release-unsigned.apk STOP2 -keystore $HOME/.keystore -storepass $storepass -keypass $keypass
 - "${ANDROID_HOME}/build-tools/23.0.1/zipalign 4 android/app/build/outputs/apk/app-release-unsigned.apk android/STOP2.apk"
 deploy:
   provider: releases
