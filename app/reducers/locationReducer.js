@@ -1,6 +1,6 @@
 import { SET_LOCATION } from '../actions/locationActions'
 
-let initialState = {locationData: {}}
+export let initialState = {locationData: {}}
 
 const locationReducer = (state = initialState, action) =>
 {

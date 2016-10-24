@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ActivityIndicator, ListView, View, TouchableOpacity, ScrollView } from 'react-native'
+import { ActivityIndicator, ListView, View, TouchableOpacity } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
 import { DefaultText } from '../components/textComponents'
@@ -23,7 +23,12 @@ class BusListPage extends Component {
         super(props)
 
         this.state = {
-            dataSources: null,
+            dataBlob: {},
+            dataSource: new ListView.DataSource({
+                rowHasChanged: (r1, r2) => r1 !== r2,
+                sectionHeaderHasChanged: (s1, s2) => s1 !== s2
+            }),
+            stopNames: [],
             fetchIntervalRunning: false
         }
 
@@ -49,11 +54,6 @@ class BusListPage extends Component {
         }, UPDATE_INTERVAL_IN_SECS * 1000)
     }
 
-  /* DOESN'T WORK
-    componentWillUnmount = () => {
-      clearInterval(this.fetchInterval)
-  }*/
-
     componentWillReceiveProps = (nextProps) =>
     {
         if (nextProps.scene.name == this.sceneName)
@@ -74,48 +74,48 @@ class BusListPage extends Component {
         }
 
     // this.props.fetchDepartures(nextProps.locationData.latitude, nextProps.locationData.longitude)
+
         if (nextProps.stops.length > 0)
         {
-            if (!this.state.dataSources)
-            {
-                let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-                let dataSources = []
-
-                for (let index = 0; index < nextProps.stops.length; index++)
-                {
-                    dataSources.push({ds: ds.cloneWithRows([])})
-                }
-                this.setState({dataSources: dataSources})
-            }
-
-            let dataSources = this.state.dataSources
+            this.setState({stopNames: []})
 
             for (let index = 0; index < nextProps.stops.length; index++)
-            {
-                dataSources[index] = {ds: this.state.dataSources[index].ds.cloneWithRows(nextProps.stops[index].stop.schedule)}
-            }
+          {
+                let tempDataBlob = this.state.dataBlob
+                let sectionID = nextProps.stops[index].stop.stop_code
 
-            this.setState({dataSources: dataSources})
+                tempDataBlob[sectionID] = nextProps.stops[index].stop.schedule
+
+                let stopNamesTemp = this.state.stopNames
+
+                stopNamesTemp[nextProps.stops[index].stop.stop_code] = nextProps.stops[index].stop.stop_name
+
+                this.setState({dataBlob: tempDataBlob})
+                this.setState({
+                    dataSource: this.state.dataSource.cloneWithRowsAndSections(this.state.dataBlob),
+                    stopNames: stopNamesTemp
+                })
+            }
         }
     }
 
-    renderRow = (renderData) =>
-    {
+    renderRow = (rowData, sectionID, rowID) =>
+  {
         const goToStopRequestPage = () =>
-        {
+    {
             Actions.stopRequest({
-                vehicle: renderData,
+                vehicle: rowData,
                 stop: {
-                    stopName: this.props.stops[0].stop.stop_name,
-                    stopId: this.props.stops[0].stop.stop_code
+                    stopName: this.state.stopNames[sectionID],
+                    stopId: sectionID
                 }
             })
         }
 
         return (
-          <TouchableOpacity onPress={goToStopRequestPage}>
-            <BusListRow vehicleType={renderData.vehicle_type} line={renderData.line} destination={renderData.destination} arrival={renderData.arrival} />
-          </TouchableOpacity>)
+      <TouchableOpacity key={sectionID + '-' + rowID} onPress={goToStopRequestPage}>
+          <BusListRow vehicleType={rowData.vehicle_type} line={rowData.line} destination={rowData.destination} arrival={rowData.arrival} />
+        </TouchableOpacity>)
     }
 
     renderFooter = () =>
@@ -129,28 +129,29 @@ class BusListPage extends Component {
         )
     }
 
+    renderSectionHeader = (sectionData, sectionID) =>
+    {
+        return (<StopTitle name={this.state.stopNames[sectionID]} line={sectionID} />)
+    }
+
+    renderSeparator = (sectionID, rowID) =>
+    {
+        return (<View key={sectionID + '-' + rowID} style={styles.rowSeparator}></View>)
+    }
+
     renderList = () =>
     {
         return (
           <AccessibilityView style={styles.flex1} name={this.sceneName}>
           {this.props.error ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
-          <BusListHeader />
-          <ScrollView style={{height: 100}}>
-          {this.props.stops.map(function(stop, index)
-            {
-              return (
-                <View key={index}>
-                  <StopTitle name={stop.stop.stop_name} line={stop.stop.stop_code} />
-                  <ListView
-                    enableEmptySections={true}
-                    dataSource={this.state.dataSources[index].ds}
-                    renderRow={this.renderRow}
-                    renderFooter={this.renderFooter}
-                  />
-                </View>
-              )
-          }, this)}
-          </ScrollView>
+              <BusListHeader />
+              <ListView
+                  dataSource={this.state.dataSource}
+                  renderRow={this.renderRow}
+                  renderSectionHeader={this.renderSectionHeader}
+                  renderFooter={this.renderFooter}
+                  renderSeparator={this.renderSeparator}
+              />
           </AccessibilityView>
         )
     }

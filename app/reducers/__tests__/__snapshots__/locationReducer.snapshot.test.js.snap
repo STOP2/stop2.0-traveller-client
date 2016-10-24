@@ -1,0 +1,13 @@
+exports[`location reducer handles SET_LOCATION action 1`] = `
+Object {
+  "locationData": Object {
+    "coords": Array [],
+  },
+}
+`;
+
+exports[`location reducer returns the same state on an unhandled action 1`] = `
+Object {
+  "locationData": Object {},
+}
+`;
