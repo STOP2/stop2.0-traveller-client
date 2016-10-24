@@ -11,7 +11,7 @@ android:
   components:
   - platform-tools
   - tools
-  - build-tools-23.0.3
+  - build-tools-23.0.1
   - android-23
 licenses:
   - 'android-sdk-preview-license-.+'
@@ -29,7 +29,7 @@ before_install:
 before_deploy:
 - cp $TRAVIS_BUILD_DIR/.keystore $HOME
 - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 $HOME/android/release-unsigned.apk STOP2 -keystore $HOME/.keystore -storepass $storepass -keypass $keypass
-- "${ANDROID_HOME}/build-tools/23.0.3/zipalign 4 $HOME/android/release-unsigned.apk $HOME/android/STOP2.apk"
+- "${ANDROID_HOME}/build-tools/23.0.1/zipalign 4 $HOME/android/release-unsigned.apk $HOME/android/STOP2.apk"
 deploy:
   provider: releases
   api_key:
