@@ -7,7 +7,7 @@ import { DefaultText } from '../components/textComponents'
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
-import StartViewButtons from '../components/StartViewButtons'
+import StartButton from '../components/StartButton'
 
 import { setLocation } from '../actions/locationActions'
 
@@ -75,6 +75,11 @@ class StartView extends Component {
             })
     }
 
+    goToBusListView = () =>
+    {
+        this.props.navigator.push({id: 'BusListPage'})
+    }
+
     render()
     {
         let viewElement
@@ -98,9 +103,12 @@ class StartView extends Component {
             }
             else
           {
-                if (this.state.gotLocation)
+              if (this.state.gotLocation)
              {
-                    viewElement = <StartViewButtons />
+                    viewElement = <View style={styles.start}>
+                                  <StartButton style={styles.startUpper} imageStyle={styles.startImageStop} onPress={this.goToBusListView} buttonText={strings.onStop} image={require('../resources/images/rinkeli.png')}/>
+                                  <StartButton style={styles.startLower} imageStyle={styles.startImageVehicle} buttonText={strings.onBus} image={require('../resources/images/bussi.png')}/>
+                                  </View>
                 }
                 else
              {
