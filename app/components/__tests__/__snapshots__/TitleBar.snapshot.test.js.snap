@@ -10,7 +10,7 @@ exports[`TitleBar component renders correctly 1`] = `
       },
       Object {
         "backgroundColor": "#007AC9",
-        "color": "white",
+        "color": "#FFFFFF",
         "fontSize": 25,
         "padding": 15,
       },
