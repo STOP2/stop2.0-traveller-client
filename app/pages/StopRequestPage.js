@@ -33,42 +33,42 @@ class StopRequestPage extends Component{
             return false
         }
         else
-           {
+        {
             return true
         }
     }
 
 
     componentWillUnmount()
-       {
+    {
         BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
     }
 
     renderSlider = () =>
-  {
+    {
         const sendStoprequest = () =>
-      {
+        {
             this.props.sendStoprequest(this.props.vehicle.trip_id, this.props.stop.stopId, 'stop')
         }
 
         if (this.state.renderConfirm)
-      {
+        {
             return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide} />)
         }
         else
-      {
+        {
             return (
-            <View style={styles.sliderBackgroundGreen}>
-              <DefaultText style={styles.confirmedText}>{strings.stopsent}</DefaultText>
-            </View>
-          )
+                <View style={styles.sliderBackgroundGreen}>
+                  <DefaultText style={styles.confirmedText}>{strings.stopsent}</DefaultText>
+                </View>
+            )
         }
     }
 
     renderButton = () =>
     {
         const goToStopRequestPage = () =>
-      {
+        {
             Actions.routeStops({
                 tripId: this.props.vehicle.trip_id,
                 stopId: this.props.stop.stopId,
@@ -81,24 +81,24 @@ class StopRequestPage extends Component{
         if (!this.state.renderConfirm)
         {
             return (
-          <TouchableOpacity style={styles.goToRouteViewButton} onPress={goToStopRequestPage}>
-            <DefaultText style={styles.goToRouteViewButtonText}>{strings.goToRouteStopsView}</DefaultText>
-          </TouchableOpacity>)
+                <TouchableOpacity style={styles.goToRouteViewButton} onPress={goToStopRequestPage}>
+                  <DefaultText style={styles.goToRouteViewButtonText}>{strings.goToRouteStopsView}</DefaultText>
+                </TouchableOpacity>)
         }
     }
 
     render()
-  {
+    {
         return (
-        <View style={styles.flex1}>
-          <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopId + ')'} />
-          <RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/>
-          <View style={styles.flex1}>
-            {this.renderButton()}
-          </View>
-          {this.renderSlider()}
-        </View>
-      )
+            <View style={styles.flex1}>
+              <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopId + ')'} />
+              <RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/>
+              <View style={styles.flex1}>
+                {this.renderButton()}
+              </View>
+              {this.renderSlider()}
+            </View>
+        )
     }
 }
 
@@ -111,7 +111,7 @@ const mapDispatchToProps = (dispatch) =>
 {
     return {
         sendStoprequest: (busId, stopId, requestType) =>
-       {
+        {
             dispatch(sendStoprequest(busId, stopId, requestType))
         }
     }
