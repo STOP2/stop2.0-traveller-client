@@ -17,39 +17,39 @@ const fetchReducer = (state = initialState, action) =>
     switch (action.type)
     {
     case REQUEST_DEPARTURES:
-        return Object.assign({}, state, {isFetching: true})
+        return Object.assign({}, state, {isFetching: action.isFetching})
 
     case RECEIVE_DEPARTURES:
         return Object.assign({}, state, {
-            isFetching: false,
-            isReady: true,
-            error: false,
+            isFetching: action.isFetching,
+            isReady: action.isReady,
+            error: action.error,
             stops: action.departures
         }) // return only the first stop (temporarily)
 
 
     case SEND_STOPREQUEST:
-        return Object.assign({}, state, {sentStoprequest: false})
+        return Object.assign({}, state, {sentStoprequest: action.sentStoprequest})
 
     case REQUEST_ROUTE_STOPS:
-        return Object.assign({}, state, {isFetching: true})
+        return Object.assign({}, state, {isFetching: action.isFetching})
 
     case RECEIVE_ROUTE_STOPS:
         return Object.assign({}, state, {
-            isFetching: false,
-            routeIsReady: true,
-            error: false,
+            isFetching: action.isFetching,
+            routeIsReady: action.routeIsReady,
+            error: action.error,
             routeStops: action.stops
         })
 
     case REQUEST_ROUTE_STOPS_ERROR:
-        return Object.assign({}, state, {sentStoprequest: false})
+        return Object.assign({}, state, {sentStoprequest: action.sentStoprequest})
 
     case RECEIVE_CONFIRM:
-        return Object.assign({}, state, {sentStoprequest: true})
+        return Object.assign({}, state, {sentStoprequest: action.sentStoprequest})
 
     case REQUEST_ERROR:
-        return Object.assign({}, state, {error: true})
+        return Object.assign({}, state, {error: action.error})
 
     default:
         return state
