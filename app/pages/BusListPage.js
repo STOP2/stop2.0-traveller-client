@@ -25,7 +25,7 @@ class BusListPage extends Component {
         this.state = {
             dataBlob: {},
             dataSource: new ListView.DataSource({
-                rowHasChanged: (r1, r2) => r1 !== r2,
+                rowHasChanged: () => true,
                 sectionHeaderHasChanged: (s1, s2) => s1 !== s2
             }),
             stopNames: [],

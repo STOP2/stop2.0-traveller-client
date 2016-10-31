@@ -28,14 +28,16 @@ export let sendStoprequest = function(tripId, stopId, requestType)
     {
         dispatch(requestStoprequest(tripId, stopId, requestType))
 
+        let stopRequest = JSON.stringify({
+            trip_id: tripId,
+            stop_id: stopId,
+            request_type: requestType
+        })
+
         return fetch(config.API_URL + '/stoprequests', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                trip_id: tripId,
-                stop_id: stopId,
-                request_type: requestType
-            })
+            body: stopRequest
         })
       .then(dispatch(receiveConfirm()))
     }
