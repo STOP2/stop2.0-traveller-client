@@ -4,27 +4,32 @@ export const REQUEST_ROUTE_STOPS = 'REQUEST_ROUTE_STOPS'
 export const RECEIVE_ROUTE_STOPS = 'RECEIVE_ROUTE_STOPS'
 export const REQUEST_ROUTE_STOPS_ERROR = 'REQUEST_ROUTE_STOPS_ERROR'
 
-let requestRouteStops = function(tripId, stopId)
+export let requestRouteStops = function(tripId, stopId)
 {
     return {
         type: REQUEST_ROUTE_STOPS,
+        isFetching: true,
         trip_id: tripId,
         stop_id: stopId
     }
 }
 
-let receiveRouteStops = function(json)
+export let receiveRouteStops = function(json)
 {
     return {
         type: RECEIVE_ROUTE_STOPS,
+        isFetching: false,
+        routeIsReady: true,
+        error: false,
         stops: json.stops
     }
 }
 
-let requestError = function(error)
+export let requestError = function(error)
 {
     return {
         type: REQUEST_ROUTE_STOPS_ERROR,
+        sentStoprequest: false,
         error: error
     }
 }

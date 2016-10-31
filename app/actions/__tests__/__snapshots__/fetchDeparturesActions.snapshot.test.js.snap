@@ -1,6 +1,7 @@
 exports[`fetchDepartures actions should handle RECEIVE_DEPARTURES action 1`] = `
 Array [
   Object {
+    "isFetching": true,
     "latitude": 60.203978,
     "longitude": 24.9633573,
     "type": "REQUEST_DEPARTURES",
@@ -32,6 +33,9 @@ Array [
         },
       },
     ],
+    "error": false,
+    "isFetching": false,
+    "isReady": true,
     "type": "RECEIVE_DEPARTURES",
   },
 ]
