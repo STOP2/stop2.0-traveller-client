@@ -1,3 +1,7 @@
+plugins {
+    id 'com.gladed.androidgitversion' version '0.2.21'
+}
+
 apply plugin: "com.android.application"
 
 import com.android.build.OutputFile
@@ -90,8 +94,8 @@ android {
         applicationId "com.stop2travellerclient"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 6
         versionName "1.0"
+        versionCode 6
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
