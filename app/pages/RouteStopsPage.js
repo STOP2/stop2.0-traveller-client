@@ -35,7 +35,7 @@ class RouteStopsPage extends Component {
         {
             if (!props.isFetching)
             {
-                props.fetchDepartures(props.locationData.latitude, props.locationData.longitude)
+                props.fetchRouteStops(props.tripId, props.stopId)
             }
         }, UPDATE_INTERVAL_IN_SECS * 1000)
     }
