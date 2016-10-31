@@ -31,13 +31,13 @@ before_install:
 before_deploy:
 - rvm 1.9.3 do gem install octokit -v 4.3.0
 - cp $TRAVIS_BUILD_DIR/.keystore $HOME
-- jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 $TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release-unsigned.apk STOP2-$TRAVIS_TAG -keystore $HOME/.keystore -storepass $storepass -keypass $keypass
-- "${ANDROID_HOME}/build-tools/23.0.1/zipalign 4 $TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release-unsigned.apk $TRAVIS_BUILD_DIR/android/STOP2-$TRAVIS_TAG.apk"
+- jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 $TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release-unsigned.apk STOP2 -keystore $HOME/.keystore -storepass $storepass -keypass $keypass
+- "${ANDROID_HOME}/build-tools/23.0.1/zipalign 4 $TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release-unsigned.apk $TRAVIS_BUILD_DIR/android/STOP2.apk"
 deploy:
   provider: releases
   api_key:
     secure: VjuBp+IKx99ZOjp3/7+gBoDzKHWCYE7x9l70+2Q7X253BmMaQfAThP6aBDeXCBbsmTZNpjbYD1Vtx0JXcnmLZTwFevuLp5AeGmBGCecqi927mebMyoeRj49ZtS2FmoueDVhbRRasSgviVocsLXSa5BQKJ3J5CfcbCBbWj1cdylgSBA9a57UxHToYr0oFTbAoa3z7eOGfZhq3Yf00osMRm4zhlK18EEiC9Y6ibpppGRY6V9umzTnE3h0pV9IHvIf7Txr0aSy5WZSc35eYqVPtHbSZnp/j3gSIRgf3nxMWH1RCCv8g4GMQWoko9DGzLhlQpfUyHEvk4CzE5pa3LrfnKNVDnOPc8SiBmGUXtFdRs+4amH7wNAdqNrdQYOTgZbteYjRSDOYZWqT2+g9iuDb/nW/nQvfxLM2NEMiAnnvgsoORB1W2AjaCBCo4ytYIDM8PmdIqoGwCtDtz47GM/gmwbaCY2/62O94Vxd+35kylM9Wwa8VBIbXp20rfuDj3SoxBCwkGRUQyEZe7oMyN0tYi7QV+nd3aG5DqFyLnduWzqvwhLPzObNCoOe5v8aQzeryJwXePb5KUh3r/bFy+0H6LhEEYxtdwYW9DZjEnRPIIU5oeM6cf++Z4z9JVfnQTdQQ1V18b8SHoPu1EswrTXlO3BewgzvqnfUnz3JhsNjFMPKs=
-  file: "$TRAVIS_BUILD_DIR/android/STOP2-$TRAVIS_TAG.apk"
+  file: "$TRAVIS_BUILD_DIR/android/STOP2.apk"
   on:
     repo: STOP2/stop2.0-traveller-client
     tags: true
