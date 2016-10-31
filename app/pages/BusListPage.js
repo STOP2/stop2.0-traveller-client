@@ -8,6 +8,7 @@ import { DefaultText } from '../components/textComponents'
 import StopTitle from '../components/StopTitle'
 import BusListHeader from '../components/BusListHeader'
 import BusListRow from '../components/BusListRow'
+import AccessibilityView from '../components/AccessibilityView'
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
@@ -27,25 +28,53 @@ class BusListPage extends Component {
                 rowHasChanged: (r1, r2) => r1 !== r2,
                 sectionHeaderHasChanged: (s1, s2) => s1 !== s2
             }),
-            stopNames: []
+            stopNames: [],
+            fetchIntervalRunning: false
         }
+
+        this.sceneName = 'departures'
     }
 
     componentWillMount = () =>
     {
         this.props.fetchDepartures(this.props.locationData.latitude, this.props.locationData.longitude)
 
+        this.setState({fetchIntervalRunning: true})
+
+        this.createInterval(this.props)
+    }
+
+    createInterval = (props) => {
         this.fetchInterval = setInterval(() =>
         {
-            if (!this.props.isFetching)
+            if (!props.isFetching)
             {
-                this.props.fetchDepartures(this.props.locationData.latitude, this.props.locationData.longitude)
+                props.fetchDepartures(props.locationData.latitude, props.locationData.longitude)
             }
         }, UPDATE_INTERVAL_IN_SECS * 1000)
     }
 
     componentWillReceiveProps = (nextProps) =>
     {
+        if (nextProps.scene.name == this.sceneName)
+        {
+            if (!this.state.fetchIntervalRunning)
+            {
+                this.setState({fetchIntervalRunning: true})
+
+                this.createInterval(nextProps)
+            }
+        } else {
+            if (this.state.fetchIntervalRunning)
+            {
+                this.setState({fetchIntervalRunning: false})
+
+                clearInterval(this.fetchInterval)
+            }
+        }
+
+    // this.props.fetchDepartures(nextProps.locationData.latitude, nextProps.locationData.longitude)
+
         if (nextProps.stops.length > 0)
         {
             this.setState({stopNames: []})
@@ -70,7 +99,7 @@ class BusListPage extends Component {
         }
     }
 
-    renderRow = (rowData, sectionID) =>
+    renderRow = (rowData, sectionID, rowID) =>
   {
         const goToStopRequestPage = () =>
     {
@@ -84,7 +113,7 @@ class BusListPage extends Component {
         }
 
         return (
-      <TouchableOpacity onPress={goToStopRequestPage}>
+      <TouchableOpacity key={sectionID + '-' + rowID} onPress={goToStopRequestPage}>
           <BusListRow vehicleType={rowData.vehicle_type} line={rowData.line} destination={rowData.destination} arrival={rowData.arrival} />
         </TouchableOpacity>)
     }
@@ -105,25 +134,25 @@ class BusListPage extends Component {
         return (<StopTitle name={this.state.stopNames[sectionID]} line={sectionID} />)
     }
 
-    renderSeparator = () =>
+    renderSeparator = (sectionID, rowID) =>
     {
-        return (<View style={styles.rowSeparator}></View>)
+        return (<View key={sectionID + '-' + rowID} style={styles.rowSeparator}></View>)
     }
 
     renderList = () =>
     {
         return (
-          <View style={styles.flex1}>
-            {this.props.error ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
-            <BusListHeader />
-            <ListView
-            dataSource={this.state.dataSource}
-            renderRow={this.renderRow}
-            renderSectionHeader={this.renderSectionHeader}
-            renderFooter={this.renderFooter}
-            renderSeparator={this.renderSeparator}
-             />
-          </View>
+          <AccessibilityView style={styles.flex1} name={this.sceneName}>
+          {this.props.error ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
+              <BusListHeader />
+              <ListView
+                  dataSource={this.state.dataSource}
+                  renderRow={this.renderRow}
+                  renderSectionHeader={this.renderSectionHeader}
+                  renderFooter={this.renderFooter}
+                  renderSeparator={this.renderSeparator}
+              />
+          </AccessibilityView>
         )
     }
 
@@ -165,7 +194,8 @@ const mapStateToProps = (state) =>
         isFetching: state.fetchReducer.isFetching,
         isReady: state.fetchReducer.isReady,
         error: state.fetchReducer.error,
-        locationData: state.locationReducer.locationData
+        locationData: state.locationReducer.locationData,
+        scene: state.routes.scene
     }
 }
 
@@ -188,7 +218,8 @@ BusListPage.propTypes = {
     stops: React.PropTypes.array.isRequired,
     isFetching: React.PropTypes.bool.isRequired,
     error: React.PropTypes.bool.isRequired,
-    isReady: React.PropTypes.bool.isRequired
+    isReady: React.PropTypes.bool.isRequired,
+    scene: React.PropTypes.object.isRequired
 }
 
 

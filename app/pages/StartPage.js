@@ -8,6 +8,7 @@ import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
 import StartViewButtons from '../components/StartViewButtons'
+import AccessibilityView from '../components/AccessibilityView'
 
 import { setLocation } from '../actions/locationActions'
 
@@ -38,7 +39,7 @@ class StartView extends Component {
                     this.getCurrentLocation()
                 }, () =>
             {
-              this.setState({locationPermissionsError: true})
+                    this.setState({locationPermissionsError: true})
                 })
           // for the correct StatusBar behaviour with translucent={true} we need to wait a bit and ask for permission after the first render cycle
           // (check https://github.com/facebook/react-native/issues/9413 for more info)
@@ -110,9 +111,9 @@ class StartView extends Component {
         }
 
         return (
-      <View style={styles.start}>
+      <AccessibilityView style={styles.start} name="start">
         {viewElement}
-      </View>
+      </AccessibilityView>
     )
     }
 }

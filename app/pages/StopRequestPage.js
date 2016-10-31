@@ -7,6 +7,7 @@ import { Actions } from 'react-native-router-flux'
 import TitleBar from '../components/TitleBar'
 import RouteInfo from '../components/RouteInfo'
 import SlideConfirmButton from '../components/SlideConfirmButton'
+import AccessibilityView from '../components/AccessibilityView'
 import {DefaultText} from '../components/textComponents'
 
 import styles from '../styles/stylesheet'
@@ -90,21 +91,23 @@ class StopRequestPage extends Component{
     render()
   {
         return (
-        <View style={styles.flex1}>
+        <AccessibilityView style={styles.flex1} name="stopRequest">
           <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopId + ')'} />
           <RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/>
           <View style={styles.flex1}>
             {this.renderButton()}
           </View>
           {this.renderSlider()}
-        </View>
+        </AccessibilityView>
       )
     }
 }
 
 const mapStateToProps = (state) =>
 {
-    return {sent: state.fetchReducer.sentStoprequest}
+    return {
+        sent: state.fetchReducer.sentStoprequest
+    }
 }
 
 const mapDispatchToProps = (dispatch) =>
@@ -128,7 +131,8 @@ StopRequestPage.propTypes = {
         stopId: React.PropTypes.string.isRequired,
         stopName: React.PropTypes.string.isRequired
     }),
-    sendStoprequest: React.PropTypes.func.isRequired
+    sendStoprequest: React.PropTypes.func.isRequired,
+    sent: React.PropTypes.bool.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StopRequestPage)

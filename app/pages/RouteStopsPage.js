@@ -6,6 +6,7 @@ import { Actions } from 'react-native-router-flux'
 import TitleBar from '../components/TitleBar'
 import {DefaultText} from '../components/textComponents'
 import RouteStopsRow from '../components/RouteStopsRow'
+import AccessibilityView from '../components/AccessibilityView'
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
@@ -21,24 +22,52 @@ class RouteStopsPage extends Component {
 
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
 
-        this.state = {dataSource: ds.cloneWithRows([])}
+        this.state = {
+            dataSource: ds.cloneWithRows([]),
+            fetchIntervalRunning: false
+        }
+
+        this.sceneName = 'routeStops'
+    }
+
+    createInterval = (props) => {
+        this.fetchInterval = setInterval(() =>
+        {
+            if (!props.isFetching)
+            {
+                props.fetchDepartures(props.locationData.latitude, props.locationData.longitude)
+            }
+        }, UPDATE_INTERVAL_IN_SECS * 1000)
     }
 
     componentWillMount = () =>
     {
         this.props.fetchRouteStops(this.props.tripId, this.props.stopId)
 
-        this.fetchInterval = setInterval(() =>
-        {
-            if (!this.props.isFetching)
-            {
-                this.props.fetchRouteStops(this.props.tripId, this.props.stopId)
-            }
-        }, UPDATE_INTERVAL_IN_SECS * 1000)
+        this.setState({fetchIntervalRunning: true})
+
+        this.createInterval(this.props)
     }
 
     componentWillReceiveProps = (nextProps) =>
     {
+        if (nextProps.scene.name == this.sceneName)
+        {
+            if (!this.state.fetchIntervalRunning)
+            {
+                this.setState({fetchIntervalRunning: true})
+
+                this.createInterval(nextProps)
+            }
+        } else {
+            if (this.state.fetchIntervalRunning)
+            {
+                this.setState({fetchIntervalRunning: false})
+
+                clearInterval(this.fetchInterval)
+            }
+        }
+
         this.setState({dataSource: this.state.dataSource.cloneWithRows(nextProps.routeStops)})
     }
 
@@ -46,9 +75,7 @@ class RouteStopsPage extends Component {
     {
         const goToStopVehicleRequestPage = () =>
         {
-            Actions.routeStopRequest({
-
-            })
+            Actions.routeStopRequest({})
         }
 
         return (
@@ -106,18 +133,9 @@ class RouteStopsPage extends Component {
 
     render()
     {
-        if (this.props.routeIsReady)
-        {
-            return (
-              this.renderList()
-            )
-        }
-        else
-        {
-            return (
-              this.renderSpinner()
-            )
-        }
+        return (<AccessibilityView name={this.sceneName}>
+            {this.props.routeIsReady ? this.renderList() : this.renderSpinner() }
+        </AccessibilityView>)
     }
 }
 
@@ -127,7 +145,8 @@ const mapStateToProps = (state) =>
         routeStops: state.fetchReducer.routeStops,
         isFetching: state.fetchReducer.isFetching,
         routeIsReady: state.fetchReducer.routeIsReady,
-        error: state.fetchReducer.error
+        error: state.fetchReducer.error,
+        scene: state.routes.scene
     }
 }
 
@@ -149,7 +168,8 @@ RouteStopsPage.propTypes = {
     stopId: React.PropTypes.string.isRequired,
     error: React.PropTypes.bool,
     vehicleLine: React.PropTypes.string.isRequired,
-    vehicleDestination: React.PropTypes.string.isRequired
+    vehicleDestination: React.PropTypes.string.isRequired,
+    scene: React.PropTypes.object.isRequired
 }
 
 

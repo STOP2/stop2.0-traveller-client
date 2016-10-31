@@ -7,6 +7,7 @@ import { Actions } from 'react-native-router-flux'
 import TitleBar from '../components/TitleBar'
 import RouteInfo from '../components/RouteInfo'
 import SlideConfirmButton from '../components/SlideConfirmButton'
+import AccessibilityView from '../components/AccessibilityView'
 import {DefaultText} from '../components/textComponents'
 
 import styles from '../styles/stylesheet'
@@ -47,14 +48,18 @@ class RouteStopRequestPage extends Component{
 
     render()
   {
-        /*return (
+        /* return (
         <View style={styles.flex1}>
           <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopId + ')'} />
           <RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/>
           {this.renderSlider()}
         </View>
       )*/
-        return(<View><DefaultText>Heloooo</DefaultText></View>)
+        return (
+            <AccessibilityView name="routeStopRequest">
+                <DefaultText>Heloooo</DefaultText>
+            </AccessibilityView>
+        )
     }
 }
 
@@ -73,8 +78,6 @@ const mapDispatchToProps = (dispatch) =>
     }
 }
 
-RouteStopRequestPage.propTypes = {
-
-}
+RouteStopRequestPage.propTypes = {sent: React.PropTypes.bool}
 
 export default connect(mapStateToProps, mapDispatchToProps)(RouteStopRequestPage)
