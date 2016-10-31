@@ -1,0 +1,5 @@
+exports[`routes reducer returns the same state on an unhandled action 1`] = `
+Object {
+  "scene": Object {},
+}
+`;
