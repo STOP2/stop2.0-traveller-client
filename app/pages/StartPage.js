@@ -34,14 +34,14 @@ class StartView extends Component {
             setTimeout(() =>
             {
                 requestPermission('android.permission.ACCESS_FINE_LOCATION').then(() =>
-            {
+                {
                     this.getCurrentLocation()
                 }, () =>
-            {
-              this.setState({locationPermissionsError: true})
+                {
+                    this.setState({locationPermissionsError: true})
                 })
-          // for the correct StatusBar behaviour with translucent={true} we need to wait a bit and ask for permission after the first render cycle
-          // (check https://github.com/facebook/react-native/issues/9413 for more info)
+                // for the correct StatusBar behaviour with translucent={true} we need to wait a bit and ask for permission after the first render cycle
+                // (check https://github.com/facebook/react-native/issues/9413 for more info)
             }, 0)
         })
     }
@@ -82,38 +82,32 @@ class StartView extends Component {
         if (this.state.locationPermissionsError)
         {
             viewElement = <View>
-                          <DefaultText style={styles.locationErrorText}>{strings.locationPermissionsError}</DefaultText>
-                        </View>
+                            <DefaultText style={styles.locationErrorText}>{strings.locationPermissionsError}</DefaultText>
+                          </View>
+        }
+        else if (this.state.locationError)
+        {
+            viewElement = <View>
+                            <DefaultText style={styles.locationErrorText}>{strings.locationError}</DefaultText>
+                            <TouchableOpacity onPress={this.getCurrentLocation}>
+                            <DefaultText style={styles.tryAgain}>{strings.tryAgain}</DefaultText>
+                            </TouchableOpacity>
+                          </View>
+        }
+        else if (this.state.gotLocation)
+        {
+            viewElement = <StartViewButtons />
         }
         else
         {
-            if (this.state.locationError)
-          {
-                viewElement = <View>
-                              <DefaultText style={styles.locationErrorText}>{strings.locationError}</DefaultText>
-                              <TouchableOpacity onPress={this.getCurrentLocation}>
-                                <DefaultText style={styles.tryAgain}>{strings.tryAgain}</DefaultText>
-                              </TouchableOpacity>
-                            </View>
-            }
-            else
-          {
-                if (this.state.gotLocation)
-             {
-                    viewElement = <StartViewButtons />
-                }
-                else
-             {
-                    viewElement = <View><DefaultText style={styles.gettingLocationText}>{strings.gettingLocation}</DefaultText><ActivityIndicator /></View>
-                }
-            }
+            viewElement = <View><DefaultText style={styles.gettingLocationText}>{strings.gettingLocation}</DefaultText><ActivityIndicator /></View>
         }
 
         return (
-      <View style={styles.start}>
-        {viewElement}
-      </View>
-    )
+            <View style={styles.start}>
+              {viewElement}
+            </View>
+        )
     }
 }
 

@@ -52,7 +52,7 @@ exports[`BusListRow component renders correctly 1`] = `
           "fontFamily": "gotham-rounded-book",
         },
         Object {
-          "color": "black",
+          "color": "#000000",
           "flex": 3,
           "fontSize": 15,
         },
@@ -70,7 +70,7 @@ exports[`BusListRow component renders correctly 1`] = `
           "fontFamily": "gotham-rounded-book",
         },
         Object {
-          "color": "black",
+          "color": "#000000",
           "flex": 1,
           "fontSize": 15,
         },

@@ -11,6 +11,7 @@ describe('location reducer', () =>
     it('handles SET_LOCATION action', () =>
     {
         let locationData = {coords: []}
+
         expect(locationReducer(initialState, setLocation(locationData))).toMatchSnapshot()
     })
 })

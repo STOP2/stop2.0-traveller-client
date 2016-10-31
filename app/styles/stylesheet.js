@@ -4,6 +4,7 @@ import colors from './colors'
 const styles = StyleSheet.create({
     defaultText: {fontFamily: 'gotham-rounded-book'},
     boldText: {fontFamily: 'gotham-rounded-medium'},
+    routerScene: {paddingTop: 50},
     navBar: {
         height: 50,
         backgroundColor: colors.busBlue,
@@ -11,12 +12,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     navBarTitle: {
-        color: 'white',
+        color: colors.white,
         fontSize: 25,
         marginTop: 2
     },
     backButton: {
-        tintColor: 'white',
+        tintColor: colors.white,
         marginTop: -4,
         marginLeft: 5
     },
@@ -43,35 +44,35 @@ const styles = StyleSheet.create({
     },
     busrowTextBlack: {
         flex: 1,
-        color: 'black',
+        color: colors.black,
         fontSize: 15
     },
     busrowTextBlack2: {
         flex: 3,
-        color: 'black',
+        color: colors.black,
         fontSize: 15
     },
     title: {
         fontSize: 25,
         backgroundColor: colors.busBlue,
-        color: 'white',
+        color: colors.white,
         padding: 15
     },
     stopTitle: {
-      fontSize: 20,
-      backgroundColor: '#007AC9',
-      color: 'white',
-      padding: 5,
+        fontSize: 20,
+        backgroundColor: colors.busBlue,
+        color: colors.white,
+        padding: 5
     },
     start: {
         flex: 1,
         padding: 5,
         flexDirection: 'column',
         justifyContent: 'center',
-        backgroundColor: 'white'
+        backgroundColor: colors.white
     },
     startText: {
-        color: 'white',
+        color: colors.white,
         fontSize: 50
     },
     locationErrorText: {
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
         right: 0
     },
     spinnerContainer: {
-        backgroundColor: 'transparent',
+        backgroundColor: colors.transparent,
         position: 'absolute',
         flex: 1,
         top: 0,
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
     confirmText: {
         fontSize: 40,
         textAlign: 'center',
-        color: 'white'
+        color: colors.white
     },
     backText: {
         fontSize: 20,
@@ -159,14 +160,14 @@ const styles = StyleSheet.create({
         marginTop: 5
     },
     confirmedText: {
-        color: 'white',
+        color: colors.white,
         fontSize: 40,
         textAlign: 'center',
         margin: 15
     },
     sliderText: {
         position: 'absolute',
-        color: 'white',
+        color: colors.white,
         fontSize: 30,
         textAlign: 'center',
         margin: 20
@@ -207,11 +208,11 @@ const styles = StyleSheet.create({
     },
     error: {
         backgroundColor: colors.HSLalarmRed,
-        color: 'white',
+        color: colors.white,
         fontSize: 15,
         padding: 10
     },
-    buslistIcon: {
+    busListIcon: {
         width: 20,
         height: 20,
         marginLeft: 5
@@ -228,7 +229,7 @@ const styles = StyleSheet.create({
         margin: 20
     },
     goToRouteViewButtonText: {
-        color: 'white',
+        color: colors.white,
         fontSize: 20,
         textAlign: 'center',
         margin: 15

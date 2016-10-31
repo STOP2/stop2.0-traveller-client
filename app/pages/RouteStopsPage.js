@@ -46,9 +46,7 @@ class RouteStopsPage extends Component {
     {
         const goToStopVehicleRequestPage = () =>
         {
-            Actions.routeStopRequest({
-
-            })
+            Actions.routeStopRequest({})
         }
 
         return (
