@@ -12,6 +12,8 @@ import AccessibilityView from '../components/AccessibilityView'
 
 import { setLocation } from '../actions/locationActions'
 
+const GPS_TIMEOUT_IN_SECS = 60
+
 class StartView extends Component {
     constructor(props)
     {
@@ -71,7 +73,7 @@ class StartView extends Component {
       },
             {
                 enableHighAccuracy: false,
-                timeout: 20000,
+                timeout: GPS_TIMEOUT_IN_SECS * 1000,
                 maximumAge: 1000
             })
     }
