@@ -138,6 +138,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-beacons-android')
     compile project(':RNPermissionsModule')
     compile project(':react-native-localization')
     compile fileTree(dir: "libs", include: ["*.jar"])
