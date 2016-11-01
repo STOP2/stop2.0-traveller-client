@@ -86,35 +86,30 @@ class StartView extends Component {
                           <DefaultText style={styles.locationErrorText}>{strings.locationPermissionsError}</DefaultText>
                         </View>
         }
-        else
-        {
-            if (this.state.locationError)
-          {
-                viewElement = <View>
+        else if (this.state.locationError)
+            {
+            viewElement = <View>
                               <DefaultText style={styles.locationErrorText}>{strings.locationError}</DefaultText>
                               <TouchableOpacity onPress={this.getCurrentLocation}>
                                 <DefaultText style={styles.tryAgain}>{strings.tryAgain}</DefaultText>
                               </TouchableOpacity>
                             </View>
-            }
-            else
-          {
-                if (this.state.gotLocation)
-             {
-                    viewElement = <StartViewButtons />
-                }
-                else
-             {
-                    viewElement = <View><DefaultText style={styles.gettingLocationText}>{strings.gettingLocation}</DefaultText><ActivityIndicator /></View>
-                }
-            }
         }
+        else if (this.state.gotLocation)
+        {
+            viewElement = <StartViewButtons />
+        }
+        else
+        {
+            viewElement = <View><DefaultText style={styles.gettingLocationText}>{strings.gettingLocation}</DefaultText><ActivityIndicator /></View>
+        }
+
 
         return (
       <AccessibilityView style={styles.start} name="start">
         {viewElement}
       </AccessibilityView>
-    )
+        )
     }
 }
 

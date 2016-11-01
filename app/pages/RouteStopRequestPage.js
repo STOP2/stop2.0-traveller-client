@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, TouchableOpacity, BackAndroid } from 'react-native'
+import { View } from 'react-native'
 import { sendStoprequest } from '../actions/sendStoprequest'
-import { Actions } from 'react-native-router-flux'
 
-import TitleBar from '../components/TitleBar'
-import RouteInfo from '../components/RouteInfo'
 import SlideConfirmButton from '../components/SlideConfirmButton'
 import AccessibilityView from '../components/AccessibilityView'
 import {DefaultText} from '../components/textComponents'
@@ -42,19 +39,12 @@ class RouteStopRequestPage extends Component{
             <View style={styles.sliderBackgroundGreen}>
               <DefaultText style={styles.confirmedText}>{strings.stopsent}</DefaultText>
             </View>
-          )
+            )
         }
     }
 
     render()
-  {
-        /* return (
-        <View style={styles.flex1}>
-          <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopId + ')'} />
-          <RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/>
-          {this.renderSlider()}
-        </View>
-      )*/
+    {
         return (
             <AccessibilityView name="routeStopRequest">
                 <DefaultText>Heloooo</DefaultText>
@@ -78,6 +68,11 @@ const mapDispatchToProps = (dispatch) =>
     }
 }
 
-RouteStopRequestPage.propTypes = {sent: React.PropTypes.bool}
+RouteStopRequestPage.propTypes = {
+    sent: React.PropTypes.bool,
+    sendStoprequest: React.PropTypes.func,
+    vehicle: React.PropTypes.object,
+    stop: React.PropTypes.object
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(RouteStopRequestPage)

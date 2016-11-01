@@ -30,7 +30,8 @@ class RouteStopsPage extends Component {
         this.sceneName = 'routeStops'
     }
 
-    createInterval = (props) => {
+    createInterval = (props) =>
+    {
         this.fetchInterval = setInterval(() =>
         {
             if (!props.isFetching)
@@ -59,14 +60,14 @@ class RouteStopsPage extends Component {
 
                 this.createInterval(nextProps)
             }
-        } else {
-            if (this.state.fetchIntervalRunning)
-            {
-                this.setState({fetchIntervalRunning: false})
-
-                clearInterval(this.fetchInterval)
-            }
         }
+        else if (this.state.fetchIntervalRunning)
+        {
+            this.setState({fetchIntervalRunning: false})
+
+            clearInterval(this.fetchInterval)
+        }
+
 
         this.setState({dataSource: this.state.dataSource.cloneWithRows(nextProps.routeStops)})
     }
