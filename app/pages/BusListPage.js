@@ -25,7 +25,7 @@ class BusListPage extends Component {
         this.state = {
             dataBlob: {},
             dataSource: new ListView.DataSource({
-                rowHasChanged: () => true,
+                rowHasChanged: (r1, r2) => r1 !== r2,
                 sectionHeaderHasChanged: (s1, s2) => s1 !== s2
             }),
             stopNames: [],
@@ -81,7 +81,7 @@ class BusListPage extends Component {
 
             for (let index = 0; index < nextProps.stops.length; index++)
           {
-                let tempDataBlob = this.state.dataBlob
+                let tempDataBlob = Object.assign({}, this.state.dataBlob)
                 let sectionID = nextProps.stops[index].stop.stop_code
 
                 tempDataBlob[sectionID] = nextProps.stops[index].stop.schedule
