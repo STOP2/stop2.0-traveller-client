@@ -31,7 +31,7 @@ export let sendStoprequest = function(tripId, stopId, requestType)
         let stopRequest = JSON.stringify({
             trip_id: tripId,
             stop_id: stopId,
-            requestType: requestType
+            request_type: requestType
         })
 
         return fetch(config.API_URL + '/stoprequests', {
