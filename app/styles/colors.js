@@ -1,4 +1,7 @@
 const colors = {
+    white: 'white',
+    black: 'black',
+    transparent: 'transparent',
     busBlue: '#007AC9',
     tramGreen: '#00985F',
     trainViolet: '#8C4799',
