@@ -13,6 +13,8 @@ import {DefaultText} from '../components/textComponents'
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
+import PushController from '../components/PushController'
+
 class StopRequestPage extends Component{
     constructor(props)
   {
@@ -49,7 +51,7 @@ class StopRequestPage extends Component{
   {
         const sendStoprequest = () =>
       {
-            this.props.sendStoprequest(this.props.vehicle.trip_id, this.props.stop.stopId, 'stop')
+            this.props.sendStoprequest(this.props.vehicle.trip_id, this.props.stop.stopId, this.props.fcmToken)
         }
 
         if (this.state.renderConfirm)
@@ -92,6 +94,7 @@ class StopRequestPage extends Component{
   {
         return (
         <AccessibilityView style={styles.flex1} name="stopRequest">
+            <PushController />
           <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopId + ')'} />
           <RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/>
           <View style={styles.flex1}>
@@ -106,7 +109,8 @@ class StopRequestPage extends Component{
 const mapStateToProps = (state) =>
 {
     return {
-        sent: state.fetchReducer.sentStoprequest
+        sent: state.fetchReducer.sentStoprequest,
+        fcmToken: state.fcmReducer.token
     }
 }
 
@@ -132,7 +136,8 @@ StopRequestPage.propTypes = {
         stopName: React.PropTypes.string.isRequired
     }),
     sendStoprequest: React.PropTypes.func.isRequired,
-    sent: React.PropTypes.bool.isRequired
+    sent: React.PropTypes.bool.isRequired,
+    fcmToken: React.PropTypes.string
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StopRequestPage)
