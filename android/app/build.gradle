@@ -3,6 +3,7 @@ plugins {
 }
 
 apply plugin: "com.android.application"
+apply plugin: 'com.google.gms.google-services'
 
 import com.android.build.OutputFile
 
@@ -138,6 +139,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-fcm')
     compile project(':RNPermissionsModule')
     compile project(':react-native-localization')
     compile fileTree(dir: "libs", include: ["*.jar"])
