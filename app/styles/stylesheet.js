@@ -160,14 +160,14 @@ const styles = StyleSheet.create({
     },
     confirmedText: {
         color: 'white',
-        fontSize: 40,
+        fontSize: 20,
         textAlign: 'center',
         margin: 15
     },
     sliderText: {
         position: 'absolute',
         color: 'white',
-        fontSize: 30,
+        fontSize: 25,
         textAlign: 'center',
         margin: 20
     },
