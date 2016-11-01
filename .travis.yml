@@ -21,9 +21,9 @@ licenses:
   - 'google-gdk-license-.+'
 script:
 - npm run test
-- cd android && ./gradlew assembleRelease
-before_install:
 - cd android/app && openssl aes-256-cbc -K $encrypted_880ab629b699_key -iv $encrypted_880ab629b699_iv -in google-services.json.enc -out google-services.json -d
+- cd .. && ./gradlew assembleRelease
+before_install:
 - nvm install 6
 - node --version
 - openssl aes-256-cbc -K $encrypted_880ab629b699_key -iv $encrypted_880ab629b699_iv -in .keystore.enc -out .keystore -d
