@@ -29,6 +29,7 @@ class BusListPage extends Component {
                 sectionHeaderHasChanged: (s1, s2) => s1 !== s2
             }),
             stopNames: [],
+            stopIds: [],
             fetchIntervalRunning: false
         }
 
@@ -44,7 +45,8 @@ class BusListPage extends Component {
         this.createInterval(this.props)
     }
 
-    createInterval = (props) => {
+    createInterval = (props) =>
+    {
         this.fetchInterval = setInterval(() =>
         {
             if (!props.isFetching)
@@ -64,20 +66,23 @@ class BusListPage extends Component {
 
                 this.createInterval(nextProps)
             }
-        } else {
-            if (this.state.fetchIntervalRunning)
-            {
-                this.setState({fetchIntervalRunning: false})
-
-                clearInterval(this.fetchInterval)
-            }
         }
+        else if (this.state.fetchIntervalRunning)
+        {
+            this.setState({fetchIntervalRunning: false})
+
+            clearInterval(this.fetchInterval)
+        }
+
 
     // this.props.fetchDepartures(nextProps.locationData.latitude, nextProps.locationData.longitude)
 
         if (nextProps.stops.length > 0)
         {
-            this.setState({stopNames: []})
+            this.setState({
+                stopNames: [],
+                stopIds: []
+            })
 
             for (let index = 0; index < nextProps.stops.length; index++)
           {
@@ -87,13 +92,16 @@ class BusListPage extends Component {
                 tempDataBlob[sectionID] = nextProps.stops[index].stop.schedule
 
                 let stopNamesTemp = this.state.stopNames
+                let stopIdsTemp = this.state.stopIds
 
                 stopNamesTemp[nextProps.stops[index].stop.stop_code] = nextProps.stops[index].stop.stop_name
+                stopIdsTemp[nextProps.stops[index].stop.stop_code] = nextProps.stops[index].stop.stop_id
 
                 this.setState({dataBlob: tempDataBlob})
                 this.setState({
                     dataSource: this.state.dataSource.cloneWithRowsAndSections(this.state.dataBlob),
-                    stopNames: stopNamesTemp
+                    stopNames: stopNamesTemp,
+                    stopIds: stopIdsTemp
                 })
             }
         }
@@ -107,7 +115,8 @@ class BusListPage extends Component {
                 vehicle: rowData,
                 stop: {
                     stopName: this.state.stopNames[sectionID],
-                    stopId: sectionID
+                    stopCode: sectionID,
+                    stopId: this.state.stopIds[sectionID]
                 }
             })
         }
