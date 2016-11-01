@@ -133,7 +133,7 @@ class RouteStopsPage extends Component {
 
     render()
     {
-        return (<AccessibilityView name={this.sceneName}>
+        return (<AccessibilityView name={this.sceneName} style={styles.flex1}>
             {this.props.routeIsReady ? this.renderList() : this.renderSpinner() }
         </AccessibilityView>)
     }
