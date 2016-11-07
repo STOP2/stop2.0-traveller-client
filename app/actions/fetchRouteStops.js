@@ -9,8 +9,8 @@ export let requestRouteStops = function(tripId, stopId)
     return {
         type: REQUEST_ROUTE_STOPS,
         isFetching: true,
-        trip_id: tripId,
-        stop_id: stopId
+        tripId: tripId,
+        stopId: stopId
     }
 }
 
@@ -40,7 +40,7 @@ export let fetchRouteStops = function(tripId, stopId)
     {
         dispatch(requestRouteStops(tripId, stopId))
 
-        return fetch(config.API_URL + '/routes?trip_id=' + tripId + '&stop_code=' + stopId)
+        return fetch(config.API_URL + '/routes?trip_id=' + tripId + '&stop_id=' + stopId)
       .then(response => response.json())
       .then(json => dispatch(receiveRouteStops(json)))
       .catch(error => dispatch(requestError(error)))
