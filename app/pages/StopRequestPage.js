@@ -13,17 +13,65 @@ import {DefaultText} from '../components/textComponents'
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
+import { fetchRouteStops } from '../actions/fetchRouteStops'
+
+const UPDATE_INTERVAL_IN_SECS = 10
+
 class StopRequestPage extends Component{
     constructor(props)
   {
         super(props)
-        this.state = {renderConfirm: true}
+
+        this.state = {
+            renderConfirm: true,
+            minutesLeft: '??',
+            fetchIntervalRunning: false
+        }
+
+        this.sceneName = 'stopRequest'
+    }
+
+
+    createInterval = (props) =>
+    {
+        this.fetchInterval = setInterval(() =>
+        {
+            if (!props.isFetching)
+            {
+                this.props.fetchRouteStops(this.props.vehicle.trip_id, this.props.stop.stopId)
+            }
+        }, UPDATE_INTERVAL_IN_SECS * 1000)
+    }
+
+    componentWillMount = () =>
+    {
+        this.props.fetchRouteStops(this.props.vehicle.trip_id, this.props.stop.stopId)
+        this.setState({fetchIntervalRunning: true})
+        this.createInterval(this.props)
     }
 
     componentWillReceiveProps = (nextProps) =>
       {
         this.setState({renderConfirm: !nextProps.sent})
         BackAndroid.addEventListener('hardwareBackPress', this.backAndroidHandler)
+
+        if (nextProps.scene.name == this.sceneName)
+        {
+            if (!this.state.fetchIntervalRunning)
+            {
+                this.setState({fetchIntervalRunning: true})
+                this.createInterval(nextProps)
+            }
+        }
+        else if (this.state.fetchIntervalRunning)
+        {
+            this.setState({fetchIntervalRunning: false})
+            clearInterval(this.fetchInterval)
+        }
+        if (typeof nextProps.routeStops[0] !== 'undefined')
+        {
+            this.setState({minutesLeft: '' + nextProps.routeStops[0].arrives_in})
+        }
     }
 
     backAndroidHandler = () =>
@@ -45,10 +93,15 @@ class StopRequestPage extends Component{
         BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
     }
 
+    renderRouteInfo = () =>
+    {
+        return (<RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination} vehicleMinutesLeft={this.state.minutesLeft}/>)
+    }
+
     renderSlider = () =>
   {
         const sendStoprequest = () =>
-      {
+        {
             this.props.sendStoprequest(this.props.vehicle.trip_id, this.props.stop.stopId, 'stop')
         }
 
@@ -93,7 +146,9 @@ class StopRequestPage extends Component{
         return (
         <AccessibilityView style={styles.flex1} name="stopRequest">
           <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopCode + ')'} />
-          <RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/>
+          <View style={styles.flex3}>
+            {this.renderRouteInfo()}
+          </View>
           <View style={styles.flex1}>
             {this.renderButton()}
           </View>
@@ -105,7 +160,14 @@ class StopRequestPage extends Component{
 
 const mapStateToProps = (state) =>
 {
-    return { sent: state.fetchReducer.sentStoprequest }
+    return {
+        sent: state.fetchReducer.sentStoprequest,
+        routeStops: state.fetchReducer.routeStops,
+        isFetching: state.fetchReducer.isFetching,
+        routeIsReady: state.fetchReducer.routeIsReady,
+        error: state.fetchReducer.error,
+        scene: state.routes.scene
+    }
 }
 
 const mapDispatchToProps = (dispatch) =>
@@ -114,11 +176,17 @@ const mapDispatchToProps = (dispatch) =>
         sendStoprequest: (busId, stopId, requestType) =>
        {
             dispatch(sendStoprequest(busId, stopId, requestType))
+        },
+        fetchRouteStops: (tripId, BusId) =>
+        {
+            dispatch(fetchRouteStops(tripId, BusId))
         }
     }
 }
 
+
 StopRequestPage.propTypes = {
+    fetchRouteStops: React.PropTypes.func.isRequired,
     vehicle: React.PropTypes.shape({
         trip_id: React.PropTypes.string.isRequired,
         vehicle_type: React.PropTypes.number.isRequired,

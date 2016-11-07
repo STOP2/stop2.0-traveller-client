@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
         marginLeft: 5
     },
     flex1: {flex: 1},
+    flex3: {flex: 3},
     flexRow: {flexDirection: 'row'},
     busrow: {
         flexDirection: 'row',
@@ -233,8 +234,21 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         margin: 20
     },
+    placeholderButton: {
+        marginBottom: 0,
+        padding: 5,
+        backgroundColor: colors.transparent,
+        borderRadius: 5,
+        margin: 20
+    },
     goToRouteViewButtonText: {
         color: colors.white,
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 15
+    },
+    placeholderButtonText: {
+        color: colors.transparent,
         fontSize: 20,
         textAlign: 'center',
         margin: 15
@@ -244,6 +258,19 @@ const styles = StyleSheet.create({
         borderBottomColor: colors.K10,
         borderBottomWidth: 1,
         alignItems: 'center'
+    },
+    vehicleArrivesInText: {
+        fontSize: 20,
+        textAlign: 'center'
+    },
+    vehicleArrivesInWrapper: {marginBottom: 2},
+    stopRequestVehicleInfo: {
+        marginBottom: 20,
+        flexDirection: 'row'
+    },
+    vehicleMinutesLeft: {
+        fontSize: 40,
+        textAlign: 'center'
     }
 })
 

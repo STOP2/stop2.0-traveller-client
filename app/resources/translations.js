@@ -26,7 +26,9 @@ let strings = new LocalizedStrings({
         doYouWantToStop: 'Stop?',
         backendError: 'Error: No network connection',
         goToRouteStopsView: 'Stop bus at destination?',
-        routeStops: 'Choose a stop'
+        routeStops: 'Choose a stop',
+        vehicleArrivesIn: 'Vehicle arrives in: ',
+        minutes: 'minutes'
     },
 
     fi: {
@@ -55,7 +57,9 @@ let strings = new LocalizedStrings({
         doYouWantToStop: 'Pysäytetäänkö',
         backendError: 'Virhe: Ei verkkoyhteyttä',
         goToRouteStopsView: 'Pysäytetäänkö bussi kohteessa?',
-        routeStops: 'Valitse pysäkki'
+        routeStops: 'Valitse pysäkki',
+        vehicleArrivesIn: 'Aika kulkuneuvon saapumiseen: ',
+        minutes: 'minuuttia'
     }
 })
 
