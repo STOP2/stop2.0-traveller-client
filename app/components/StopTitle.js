@@ -13,13 +13,16 @@ class StopTitle extends Component {
 
     render()
     {
-        return (<DefaultText style={styles.stopTitle}>{this.props.name} ({this.props.line})</DefaultText>)
+        return (<DefaultText style={styles.stopTitle}>
+                  {this.props.name} ({this.props.line}) — {this.props.distance}m
+                </DefaultText>)
     }
 }
 
 StopTitle.propTypes = {
     name: React.PropTypes.string.isRequired,
-    line: React.PropTypes.string.isRequired
+    line: React.PropTypes.string.isRequired,
+    distance: React.PropTypes.number.isRequired
 }
 
 export default StopTitle
