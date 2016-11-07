@@ -12,7 +12,7 @@ export class DefaultText extends Component {
 
 DefaultText.propTypes = {
     children: React.PropTypes.node,
-    style: React.PropTypes.object
+    style: React.PropTypes.number
 }
 
 export class BoldText extends Component {
@@ -24,5 +24,5 @@ export class BoldText extends Component {
 
 BoldText.propTypes = {
     children: React.PropTypes.node,
-    style: React.PropTypes.object
+    style: React.PropTypes.number
 }

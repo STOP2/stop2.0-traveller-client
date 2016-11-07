@@ -12,6 +12,8 @@ import AccessibilityView from '../components/AccessibilityView'
 
 import { getLocation } from '../actions/locationActions'
 
+const GPS_TIMEOUT_IN_SECS = 60
+
 class StartView extends Component {
     constructor(props)
     {
@@ -43,7 +45,7 @@ class StartView extends Component {
             }, 0)
         })
     }
-
+    
     render()
     {
         let viewElement

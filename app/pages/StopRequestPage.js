@@ -54,7 +54,7 @@ class StopRequestPage extends Component{
 
         if (this.state.renderConfirm)
       {
-            return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide} />)
+            return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide + ' →'} />)
         }
         else
       {
@@ -92,8 +92,8 @@ class StopRequestPage extends Component{
   {
         return (
         <AccessibilityView style={styles.flex1} name="stopRequest">
-          <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopCode + ')'} />
-          <RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/>
+            <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopCode + ')'} />
+            {this.state.renderConfirm ? <RouteInfo title={strings.doYouWantToStop} vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/> : <RouteInfo title={strings.aboutToStop} vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/>}
           <View style={styles.flex1}>
             {this.renderButton()}
           </View>

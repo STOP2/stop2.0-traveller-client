@@ -17,11 +17,12 @@ class StartViewButtons extends Component {
     render()
     {
         const goToBusListView = () => Actions.departures()
+        const goToRouteStopsView = () => null
 
         return (
         <View style={styles.start}>
           <StartButton style={styles.startUpper} imageStyle={styles.startImageStop} onPress={goToBusListView} buttonText={strings.onStop} image={require('../resources/images/rinkeli.png')}/>
-          <StartButton style={styles.startLower} imageStyle={styles.startImageVehicle} buttonText={strings.onBus} image={require('../resources/images/bussi.png')}/>
+          <StartButton style={styles.startLower} imageStyle={styles.startImageVehicle} onPress={goToRouteStopsView} buttonText={strings.onBus} image={require('../resources/images/bussi.png')}/>
         </View>)
     }
 }

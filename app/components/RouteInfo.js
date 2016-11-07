@@ -20,7 +20,7 @@ class RouteInfo extends Component {
     {
         return (<View style={styles.stopRequestStyle}>
           <View style={styles.doYouWantToStopWrapper}>
-            <DefaultText style={styles.doYouWantToStop}>{strings.doYouWantToStop}</DefaultText>
+            <DefaultText style={styles.doYouWantToStop}>{this.props.title}</DefaultText>
           </View>
           <View style={styles.flexRow}>
             <Image style={styles.busIcon} resizeMode="contain"
@@ -34,6 +34,7 @@ class RouteInfo extends Component {
 }
 
 RouteInfo.propTypes = {
+    title: React.PropTypes.string.isRequired,
     vehicleType: React.PropTypes.number.isRequired,
     vehicleLine: React.PropTypes.string.isRequired,
     vehicleDestination: React.PropTypes.string.isRequired
