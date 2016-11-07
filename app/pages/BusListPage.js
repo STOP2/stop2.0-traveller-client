@@ -23,15 +23,15 @@ class BusListPage extends Component {
     {
         super(props)
 
+        let ds = new ListView.DataSource({
+            rowHasChanged: (r1, r2) => r1 !== r2,
+            sectionHeaderHasChanged: (s1, s2) => s1 !== s2
+        })
+
         this.state = {
             dataBlob: {},
-            dataSource: new ListView.DataSource({
-                rowHasChanged: () => true,
-                sectionHeaderHasChanged: (s1, s2) => s1 !== s2
-            }),
-            stopNames: [],
-            stopIds: [],
-            stopDistances: [],
+            dataSource: ds.cloneWithRowsAndSections({}, []),
+            stops: [],
             fetchIntervalRunning: false
         }
 
@@ -81,35 +81,24 @@ class BusListPage extends Component {
 
         if (nextProps.stops.length > 0)
         {
-            this.setState({
-                stopNames: [],
-                stopIds: [],
-                stopDistances: []
-            })
+            let tempDataBlob = Object.assign({}, this.state.dataBlob)
+            let stopsTemp = this.state.stops
+            let sections = []
 
             for (let index = 0; index < nextProps.stops.length; index++)
-          {
-                let tempDataBlob = this.state.dataBlob
+            {
                 let sectionID = nextProps.stops[index].stop.stop_code
 
+                sections.push(sectionID)
                 tempDataBlob[sectionID] = nextProps.stops[index].stop.schedule
 
-                let stopNamesTemp = this.state.stopNames
-                let stopIdsTemp = this.state.stopIds
-                let stopDistancesTemp = this.state.stopDistances
-
-                stopNamesTemp[nextProps.stops[index].stop.stop_code] = nextProps.stops[index].stop.stop_name
-                stopIdsTemp[nextProps.stops[index].stop.stop_code] = nextProps.stops[index].stop.stop_id
-                stopDistancesTemp[nextProps.stops[index].stop.stop_code] = nextProps.stops[index].stop.distance
-
-                this.setState({dataBlob: tempDataBlob})
-                this.setState({
-                    dataSource: this.state.dataSource.cloneWithRowsAndSections(this.state.dataBlob),
-                    stopNames: stopNamesTemp,
-                    stopIds: stopIdsTemp,
-                    stopDistances: stopDistancesTemp
-                })
+                stopsTemp[nextProps.stops[index].stop.stop_code] = nextProps.stops[index].stop
             }
+            this.setState({
+                dataBlob: tempDataBlob,
+                dataSource: this.state.dataSource.cloneWithRowsAndSections(tempDataBlob, sections),
+                stops: stopsTemp
+            })
         }
     }
 
@@ -120,9 +109,9 @@ class BusListPage extends Component {
             Actions.stopRequest({
                 vehicle: rowData,
                 stop: {
-                    stopName: this.state.stopNames[sectionID],
+                    stopName: this.state.stops[sectionID].stop_name,
                     stopCode: sectionID,
-                    stopId: this.state.stopIds[sectionID]
+                    stopId: this.state.stops[sectionID].stop_id
                 }
             })
         }
@@ -147,9 +136,9 @@ class BusListPage extends Component {
     renderSectionHeader = (sectionData, sectionID) =>
     {
         return (<StopTitle
-                  name={this.state.stopNames[sectionID]}
+                  name={this.state.stops[sectionID].stop_name}
                   line={sectionID}
-                  distance={this.state.stopDistances[sectionID]}
+                  distance={this.state.stops[sectionID].distance}
                 />)
     }
 
