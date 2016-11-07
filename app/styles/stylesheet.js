@@ -165,15 +165,15 @@ const styles = StyleSheet.create({
         marginTop: 5
     },
     confirmedText: {
+        fontSize: 20,
         color: colors.white,
-        fontSize: 40,
         textAlign: 'center',
         margin: 15
     },
     sliderText: {
         position: 'absolute',
+        fontSize: 25,
         color: colors.white,
-        fontSize: 30,
         textAlign: 'center',
         margin: 20
     },
