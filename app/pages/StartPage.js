@@ -12,6 +12,9 @@ import AccessibilityView from '../components/AccessibilityView'
 
 import { setLocation } from '../actions/locationActions'
 
+import { DeviceEventEmitter } from 'react-native'
+import Beacons from 'react-native-beacons-android'
+
 class StartView extends Component {
     constructor(props)
     {
@@ -21,10 +24,43 @@ class StartView extends Component {
             locationData: '',
             gotLocation: false,
             locationPermissionsError: false,
-            locationError: false
+            locationError: false,
+            beaconDetected: false
         }
     }
 
+    async getBeacons() {
+        Beacons.setForegroundScanPeriod(5000)
+        Beacons.setBackgroundScanPeriod(5000)
+
+        try {
+            await Beacons.startRangingBeaconsInRegion('REGION1', 'ebefd083-70a2-47c8-9837-e7b5634df524')
+            console.log(`Beacons ranging started succesfully!`)
+        } catch (err) {
+            console.log(`Beacons ranging not started, error: ${error}`)
+        }
+
+        // Print a log of the detected iBeacons (1 per second)
+        DeviceEventEmitter.addListener('beaconsDidRange', (data) => {
+            console.log(data)
+            if(data.beacons.length > 0) {
+                if(!this.state.beaconDetected) {
+                    this.props.setLocation({latitude: 60.19942, longitude: 24.93461})
+
+                    this.setState({
+                        locationData: {latitude: 60.19942, longitude: 24.93461},
+                        gotLocation: true
+                    })
+                    alert('Olet pysäkillä Pasilan asema (2181)')
+                }
+                this.setState({beaconDetected: true})
+            } else {
+                if(this.state.beaconDetected)
+                    alert('Poistuit pysäkiltä Pasilan asema (2181)')
+                this.setState({beaconDetected: false})
+            }
+        })
+    }
     componentWillMount = () =>
     {
         checkPermission('android.permission.ACCESS_FINE_LOCATION').then(() =>
@@ -59,6 +95,9 @@ class StartView extends Component {
                 locationData: position.coords,
                 gotLocation: true
             })
+
+            Beacons.detectIBeacons()
+            this.getBeacons()
         },
       () =>
       {
