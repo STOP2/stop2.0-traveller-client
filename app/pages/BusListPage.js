@@ -30,6 +30,7 @@ class BusListPage extends Component {
             }),
             stopNames: [],
             stopIds: [],
+            stopDistances: [],
             fetchIntervalRunning: false
         }
 
@@ -81,7 +82,8 @@ class BusListPage extends Component {
         {
             this.setState({
                 stopNames: [],
-                stopIds: []
+                stopIds: [],
+                stopDistances: []
             })
 
             for (let index = 0; index < nextProps.stops.length; index++)
@@ -93,15 +95,18 @@ class BusListPage extends Component {
 
                 let stopNamesTemp = this.state.stopNames
                 let stopIdsTemp = this.state.stopIds
+                let stopDistancesTemp = this.state.stopDistances
 
                 stopNamesTemp[nextProps.stops[index].stop.stop_code] = nextProps.stops[index].stop.stop_name
                 stopIdsTemp[nextProps.stops[index].stop.stop_code] = nextProps.stops[index].stop.stop_id
+                stopDistancesTemp[nextProps.stops[index].stop.stop_code] = nextProps.stops[index].stop.distance
 
                 this.setState({dataBlob: tempDataBlob})
                 this.setState({
                     dataSource: this.state.dataSource.cloneWithRowsAndSections(this.state.dataBlob),
                     stopNames: stopNamesTemp,
-                    stopIds: stopIdsTemp
+                    stopIds: stopIdsTemp,
+                    stopDistances: stopDistancesTemp
                 })
             }
         }
@@ -140,7 +145,11 @@ class BusListPage extends Component {
 
     renderSectionHeader = (sectionData, sectionID) =>
     {
-        return (<StopTitle name={this.state.stopNames[sectionID]} line={sectionID} />)
+        return (<StopTitle
+                  name={this.state.stopNames[sectionID]}
+                  line={sectionID}
+                  distance={this.state.stopDistances[sectionID]}
+                />)
     }
 
     renderSeparator = (sectionID, rowID) =>
