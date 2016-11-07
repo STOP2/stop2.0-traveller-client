@@ -92,7 +92,7 @@ android {
 
     defaultConfig {
         applicationId "com.stop2travellerclient"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 23
         versionName "1.0"
         versionCode 6
