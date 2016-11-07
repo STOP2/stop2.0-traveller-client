@@ -8,6 +8,7 @@ import { DefaultText } from '../components/textComponents'
 import StopTitle from '../components/StopTitle'
 import BusListHeader from '../components/BusListHeader'
 import BusListRow from '../components/BusListRow'
+import { BoldTitleBar } from '../components/TitleBar'
 import AccessibilityView from '../components/AccessibilityView'
 
 import styles from '../styles/stylesheet'
@@ -161,6 +162,7 @@ class BusListPage extends Component {
     {
         return (
           <AccessibilityView style={styles.flex1} name={this.sceneName}>
+          <BoldTitleBar title={strings.chooseVehicle} noBorder={true}/>
           {this.props.error ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
               <BusListHeader />
               <ListView

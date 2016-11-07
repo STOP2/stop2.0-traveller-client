@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { View } from 'react-native'
 import { sendStoprequest } from '../actions/sendStoprequest'
 
+import { BoldTitleBar } from '../components/TitleBar'
+
 import SlideConfirmButton from '../components/SlideConfirmButton'
 import AccessibilityView from '../components/AccessibilityView'
 import {DefaultText} from '../components/textComponents'
@@ -47,6 +49,7 @@ class RouteStopRequestPage extends Component{
     {
         return (
             <AccessibilityView name="routeStopRequest">
+                <BoldTitleBar title={strings.stopRequest}/>
                 <DefaultText>Heloooo</DefaultText>
             </AccessibilityView>
         )

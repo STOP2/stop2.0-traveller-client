@@ -4,7 +4,7 @@ import { View, TouchableOpacity, BackAndroid } from 'react-native'
 import { sendStoprequest } from '../actions/sendStoprequest'
 import { Actions } from 'react-native-router-flux'
 
-import TitleBar from '../components/TitleBar'
+import { TitleBar, BoldTitleBar } from '../components/TitleBar'
 import RouteInfo from '../components/RouteInfo'
 import SlideConfirmButton from '../components/SlideConfirmButton'
 import AccessibilityView from '../components/AccessibilityView'
@@ -92,7 +92,8 @@ class StopRequestPage extends Component{
   {
         return (
         <AccessibilityView style={styles.flex1} name="stopRequest">
-            <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopCode + ')'} />
+          <BoldTitleBar title={strings.stopRequest}/>
+          <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopCode + ')'} />
             {this.state.renderConfirm ? <RouteInfo title={strings.doYouWantToStop} vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/> : <RouteInfo title={strings.aboutToStop} vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/>}
           <View style={styles.flex1}>
             {this.renderButton()}
