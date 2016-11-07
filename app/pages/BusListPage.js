@@ -42,7 +42,7 @@ class BusListPage extends Component {
     {
         this.props.fetchDepartures(this.props.locationData.latitude, this.props.locationData.longitude)
 
-        this.setState({fetchIntervalRunning: false})
+        this.setState({fetchIntervalRunning: true})
 
         this.createInterval(this.props)
     }
