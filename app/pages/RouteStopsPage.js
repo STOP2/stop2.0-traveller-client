@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { ActivityIndicator, ListView, View, TouchableOpacity } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
-import TitleBar from '../components/TitleBar'
+import { TitleBar, BoldTitleBar } from '../components/TitleBar'
 import {DefaultText} from '../components/textComponents'
 import RouteStopsRow from '../components/RouteStopsRow'
 import AccessibilityView from '../components/AccessibilityView'
@@ -105,6 +105,7 @@ class RouteStopsPage extends Component {
     {
         return (
           <View style={styles.flex1}>
+            <BoldTitleBar title={strings.routeStops}/>
             <TitleBar title={this.props.vehicleLine + ' ' + this.props.vehicleDestination} />
             {this.props.error ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
             <ListView
