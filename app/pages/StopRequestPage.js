@@ -4,7 +4,7 @@ import { View, TouchableOpacity, BackAndroid } from 'react-native'
 import { sendStoprequest } from '../actions/sendStoprequest'
 import { Actions } from 'react-native-router-flux'
 
-import TitleBar from '../components/TitleBar'
+import { TitleBar, BoldTitleBar } from '../components/TitleBar'
 import RouteInfo from '../components/RouteInfo'
 import SlideConfirmButton from '../components/SlideConfirmButton'
 import AccessibilityView from '../components/AccessibilityView'
@@ -54,7 +54,7 @@ class StopRequestPage extends Component{
 
         if (this.state.renderConfirm)
       {
-            return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide} />)
+            return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide + ' →'} />)
         }
         else
       {
@@ -62,7 +62,7 @@ class StopRequestPage extends Component{
             <View style={styles.sliderBackgroundGreen}>
               <DefaultText style={styles.confirmedText}>{strings.stopsent}</DefaultText>
             </View>
-          )
+            )
         }
     }
 
@@ -92,22 +92,21 @@ class StopRequestPage extends Component{
   {
         return (
         <AccessibilityView style={styles.flex1} name="stopRequest">
-          <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopId + ')'} />
-          <RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/>
+          <BoldTitleBar title={strings.stopRequest}/>
+          <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopCode + ')'} />
+            {this.state.renderConfirm ? <RouteInfo title={strings.doYouWantToStop} vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/> : <RouteInfo title={strings.aboutToStop} vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination}/>}
           <View style={styles.flex1}>
             {this.renderButton()}
           </View>
           {this.renderSlider()}
         </AccessibilityView>
-      )
+        )
     }
 }
 
 const mapStateToProps = (state) =>
 {
-    return {
-        sent: state.fetchReducer.sentStoprequest
-    }
+    return { sent: state.fetchReducer.sentStoprequest }
 }
 
 const mapDispatchToProps = (dispatch) =>
@@ -128,8 +127,9 @@ StopRequestPage.propTypes = {
         destination: React.PropTypes.string.isRequired
     }),
     stop: React.PropTypes.shape({
-        stopId: React.PropTypes.string.isRequired,
-        stopName: React.PropTypes.string.isRequired
+        stopCode: React.PropTypes.string.isRequired,
+        stopName: React.PropTypes.string.isRequired,
+        stopId: React.PropTypes.string.isRequired
     }),
     sendStoprequest: React.PropTypes.func.isRequired,
     sent: React.PropTypes.bool.isRequired

@@ -12,7 +12,7 @@ describe('StopTitle component', () =>
 {
     it('renders correctly', () =>
     {
-        let tree = renderer.create(<StopTitle name="A.I. Virtasen aukio" line="5302" />).toJSON()
+        let tree = renderer.create(<StopTitle name="A.I. Virtasen aukio" line="5302" distance={394}/>).toJSON()
 
         expect(tree).toMatchSnapshot()
     })

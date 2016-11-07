@@ -10,7 +10,9 @@ import strings from '../resources/translations'
 import StartViewButtons from '../components/StartViewButtons'
 import AccessibilityView from '../components/AccessibilityView'
 
-import { setLocation } from '../actions/locationActions'
+import { getLocation, setLocation } from '../actions/locationActions'
+
+const GPS_TIMEOUT_IN_SECS = 60
 
 import { DeviceEventEmitter } from 'react-native'
 import Beacons from 'react-native-beacons-android'
@@ -25,7 +27,8 @@ class StartView extends Component {
             gotLocation: false,
             locationPermissionsError: false,
             locationError: false,
-            beaconDetected: false
+            beaconDetected: false,
+            locationPermissionsError: false
         }
     }
 
@@ -72,7 +75,7 @@ class StartView extends Component {
             {
                 requestPermission('android.permission.ACCESS_FINE_LOCATION').then(() =>
             {
-                    this.getCurrentLocation()
+                this.getCurrentLocation()
                 }, () =>
             {
                     this.setState({locationPermissionsError: true})
@@ -125,54 +128,57 @@ class StartView extends Component {
                           <DefaultText style={styles.locationErrorText}>{strings.locationPermissionsError}</DefaultText>
                         </View>
         }
-        else
-        {
-            if (this.state.locationError)
-          {
-                viewElement = <View>
+        else if (this.props.locationError)
+            {
+            viewElement = <View>
                               <DefaultText style={styles.locationErrorText}>{strings.locationError}</DefaultText>
-                              <TouchableOpacity onPress={this.getCurrentLocation}>
+                              <TouchableOpacity onPress={this.props.getLocation}>
                                 <DefaultText style={styles.tryAgain}>{strings.tryAgain}</DefaultText>
                               </TouchableOpacity>
                             </View>
-            }
-            else
-          {
-                if (this.state.gotLocation)
-             {
-                    viewElement = <StartViewButtons />
-                }
-                else
-             {
-                    viewElement = <View><DefaultText style={styles.gettingLocationText}>{strings.gettingLocation}</DefaultText><ActivityIndicator /></View>
-                }
-            }
         }
+        else if (this.props.gettingLocation == false)
+        {
+            viewElement = <StartViewButtons />
+        }
+        else
+        {
+            viewElement = <View><DefaultText style={styles.gettingLocationText}>{strings.gettingLocation}</DefaultText><ActivityIndicator /></View>
+        }
+
 
         return (
       <AccessibilityView style={styles.start} name="start">
         {viewElement}
       </AccessibilityView>
-    )
+        )
     }
 }
 
 StartView.propTypes = {
-    coords: React.PropTypes.object,
-    setLocation: React.PropTypes.func.isRequired
+    gettingLocation: React.PropTypes.bool.isRequired,
+    locationError: React.PropTypes.string,
+    getLocation: React.PropTypes.func.isRequired
 }
 
-const mapStateToProps = () =>
+const mapStateToProps = (state) =>
 {
-    return {}
+    return {
+        gettingLocation: state.locationReducer.gettingLocation,
+        locationError: state.locationReducer.error
+    }
 }
 
 const mapDispatchToProps = (dispatch) =>
 {
     return {
-        setLocation: (locationData) =>
+        getLocation: () =>
         {
-            dispatch(setLocation(locationData))
+            dispatch(getLocation())
+        },
+        setLocation: (coords) =>
+        {
+            dispatch(setLocation(coords))
         }
     }
 }

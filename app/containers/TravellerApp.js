@@ -21,12 +21,12 @@ class TravellerApp extends Component {
     render()
     {
         const scenes = Actions.create(
-            <Scene key="root">
-                <Scene key="start" component={StartPage} initial={true} hideNavBar={true} panHandlers={null}/>
-                <Scene title={strings.chooseVehicle} key="departures" component={BusListPage} panHandlers={null} navigationBarStyle={styles.navBar} titleStyle={styles.navBarTitle} leftButtonIconStyle={styles.backButton} sceneStyle={{paddingTop: 50}} hideNavBar={false}/>
-                <Scene title={strings.stopRequest} key="stopRequest" component={StopRequestPage} panHandlers={null} navigationBarStyle={styles.navBar} titleStyle={styles.navBarTitle} leftButtonIconStyle={styles.backButton} sceneStyle={{paddingTop: 50}} hideNavBar={false}/>
-                <Scene title={strings.routeStops} key="routeStops" component={RouteStopsPage} panHandlers={null} navigationBarStyle={styles.navBar} titleStyle={styles.navBarTitle} leftButtonIconStyle={styles.backButton} sceneStyle={{paddingTop: 50}} hideNavBar={false}/>
-                <Scene title={strings.stopRequest} key="routeStopRequest" component={RouteStopRequestPage} panHandlers={null} navigationBarStyle={styles.navBar} titleStyle={styles.navBarTitle} leftButtonIconStyle={styles.backButton} sceneStyle={{paddingTop: 50}} hideNavBar={false}/>
+            <Scene key="root" hideNavBar={true} panHandlers={null}>
+                <Scene key="start" component={StartPage} initial={true}/>
+                <Scene key="departures" component={BusListPage}/>
+                <Scene key="stopRequest" component={StopRequestPage}/>
+                <Scene key="routeStops" component={RouteStopsPage}/>
+                <Scene key="routeStopRequest" component={RouteStopRequestPage}/>
             </Scene>
         )
 

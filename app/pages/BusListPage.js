@@ -8,6 +8,7 @@ import { DefaultText } from '../components/textComponents'
 import StopTitle from '../components/StopTitle'
 import BusListHeader from '../components/BusListHeader'
 import BusListRow from '../components/BusListRow'
+import { BoldTitleBar } from '../components/TitleBar'
 import AccessibilityView from '../components/AccessibilityView'
 
 import styles from '../styles/stylesheet'
@@ -25,10 +26,12 @@ class BusListPage extends Component {
         this.state = {
             dataBlob: {},
             dataSource: new ListView.DataSource({
-                rowHasChanged: (r1, r2) => r1 !== r2,
+                rowHasChanged: () => true,
                 sectionHeaderHasChanged: (s1, s2) => s1 !== s2
             }),
             stopNames: [],
+            stopIds: [],
+            stopDistances: [],
             fetchIntervalRunning: false
         }
 
@@ -44,7 +47,8 @@ class BusListPage extends Component {
         this.createInterval(this.props)
     }
 
-    createInterval = (props) => {
+    createInterval = (props) =>
+    {
         this.fetchInterval = setInterval(() =>
         {
             if (!props.isFetching)
@@ -64,36 +68,46 @@ class BusListPage extends Component {
 
                 this.createInterval(nextProps)
             }
-        } else {
-            if (this.state.fetchIntervalRunning)
-            {
-                this.setState({fetchIntervalRunning: false})
-
-                clearInterval(this.fetchInterval)
-            }
         }
+        else if (this.state.fetchIntervalRunning)
+        {
+            this.setState({fetchIntervalRunning: false})
+
+            clearInterval(this.fetchInterval)
+        }
+
 
     // this.props.fetchDepartures(nextProps.locationData.latitude, nextProps.locationData.longitude)
 
         if (nextProps.stops.length > 0)
         {
-            this.setState({stopNames: []})
+            this.setState({
+                stopNames: [],
+                stopIds: [],
+                stopDistances: []
+            })
 
             for (let index = 0; index < nextProps.stops.length; index++)
           {
-                let tempDataBlob = Object.assign({}, this.state.dataBlob)
+                let tempDataBlob = this.state.dataBlob
                 let sectionID = nextProps.stops[index].stop.stop_code
 
                 tempDataBlob[sectionID] = nextProps.stops[index].stop.schedule
 
                 let stopNamesTemp = this.state.stopNames
+                let stopIdsTemp = this.state.stopIds
+                let stopDistancesTemp = this.state.stopDistances
 
                 stopNamesTemp[nextProps.stops[index].stop.stop_code] = nextProps.stops[index].stop.stop_name
+                stopIdsTemp[nextProps.stops[index].stop.stop_code] = nextProps.stops[index].stop.stop_id
+                stopDistancesTemp[nextProps.stops[index].stop.stop_code] = nextProps.stops[index].stop.distance
 
                 this.setState({dataBlob: tempDataBlob})
                 this.setState({
                     dataSource: this.state.dataSource.cloneWithRowsAndSections(this.state.dataBlob),
-                    stopNames: stopNamesTemp
+                    stopNames: stopNamesTemp,
+                    stopIds: stopIdsTemp,
+                    stopDistances: stopDistancesTemp
                 })
             }
         }
@@ -107,7 +121,8 @@ class BusListPage extends Component {
                 vehicle: rowData,
                 stop: {
                     stopName: this.state.stopNames[sectionID],
-                    stopId: sectionID
+                    stopCode: sectionID,
+                    stopId: this.state.stopIds[sectionID]
                 }
             })
         }
@@ -131,7 +146,11 @@ class BusListPage extends Component {
 
     renderSectionHeader = (sectionData, sectionID) =>
     {
-        return (<StopTitle name={this.state.stopNames[sectionID]} line={sectionID} />)
+        return (<StopTitle
+                  name={this.state.stopNames[sectionID]}
+                  line={sectionID}
+                  distance={this.state.stopDistances[sectionID]}
+                />)
     }
 
     renderSeparator = (sectionID, rowID) =>
@@ -143,6 +162,7 @@ class BusListPage extends Component {
     {
         return (
           <AccessibilityView style={styles.flex1} name={this.sceneName}>
+          <BoldTitleBar title={strings.chooseVehicle} noBorder={true}/>
           {this.props.error ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
               <BusListHeader />
               <ListView

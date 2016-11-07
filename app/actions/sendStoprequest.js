@@ -8,9 +8,9 @@ export let requestStoprequest = function(tripId, stopId, requestType)
     return {
         type: SEND_STOPREQUEST,
         sentStoprequest: false,
-        trip_id: tripId,
-        stop_id: stopId,
-        request_type: requestType
+        tripId: tripId,
+        stopId: stopId,
+        requestType: requestType
     }
 }
 
