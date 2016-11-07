@@ -24,7 +24,7 @@ class StopRequestPage extends Component{
 
         this.state = {
             renderConfirm: true,
-            minutesLeft: '??',
+            minutesLeft: '?? ' + strings.minutes,
             fetchIntervalRunning: false
         }
 
@@ -38,14 +38,14 @@ class StopRequestPage extends Component{
         {
             if (!props.isFetching)
             {
-                this.props.fetchRouteStops(this.props.vehicle.trip_id, this.props.stop.stopId)
+                this.props.fetchRouteStops(this.props.vehicle.trip_id, this.props.stop.stopId, true)
             }
         }, UPDATE_INTERVAL_IN_SECS * 1000)
     }
 
     componentWillMount = () =>
     {
-        this.props.fetchRouteStops(this.props.vehicle.trip_id, this.props.stop.stopId)
+        this.props.fetchRouteStops(this.props.vehicle.trip_id, this.props.stop.stopId, true)
         this.setState({fetchIntervalRunning: true})
         this.createInterval(this.props)
     }
@@ -68,9 +68,17 @@ class StopRequestPage extends Component{
             this.setState({fetchIntervalRunning: false})
             clearInterval(this.fetchInterval)
         }
+        
         if (typeof nextProps.routeStops[0] !== 'undefined')
         {
-            this.setState({minutesLeft: '' + nextProps.routeStops[0].arrives_in})
+            if (nextProps.routeStops[0].arrives_in < 0)
+            {
+                this.setState({minutesLeft: strings.vehiclePassedStop})
+            }
+            else
+            {
+                this.setState({minutesLeft: nextProps.routeStops[0].arrives_in + ' ' + strings.minutes})
+            }
         }
     }
 
@@ -177,9 +185,9 @@ const mapDispatchToProps = (dispatch) =>
        {
             dispatch(sendStoprequest(busId, stopId, requestType))
         },
-        fetchRouteStops: (tripId, BusId) =>
+        fetchRouteStops: (tripId, BusId, current) =>
         {
-            dispatch(fetchRouteStops(tripId, BusId))
+            dispatch(fetchRouteStops(tripId, BusId, current))
         }
     }
 }

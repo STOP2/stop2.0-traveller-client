@@ -33,7 +33,7 @@ class RouteInfo extends Component {
             <DefaultText style={styles.vehicleArrivesInText}>{strings.vehicleArrivesIn}</DefaultText>
           </View>
           <View>
-            <DefaultText style={styles.vehicleMinutesLeft}>{this.props.vehicleMinutesLeft} {strings.minutes}</DefaultText>
+            <DefaultText style={styles.vehicleMinutesLeft}>{this.props.vehicleMinutesLeft}</DefaultText>
           </View>
         </View>)
     }

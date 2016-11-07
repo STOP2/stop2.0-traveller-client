@@ -36,14 +36,14 @@ class RouteStopsPage extends Component {
         {
             if (!props.isFetching)
             {
-                props.fetchRouteStops(props.tripId, props.stopId)
+                props.fetchRouteStops(props.tripId, props.stopId, false)
             }
         }, UPDATE_INTERVAL_IN_SECS * 1000)
     }
 
     componentWillMount = () =>
     {
-        this.props.fetchRouteStops(this.props.tripId, this.props.stopId)
+        this.props.fetchRouteStops(this.props.tripId, this.props.stopId, false)
 
         this.setState({fetchIntervalRunning: true})
 
@@ -154,9 +154,9 @@ const mapStateToProps = (state) =>
 const mapDispatchToProps = (dispatch) =>
 {
     return {
-        fetchRouteStops: (tripId, BusId) =>
+        fetchRouteStops: (tripId, BusId, current) =>
         {
-            dispatch(fetchRouteStops(tripId, BusId))
+            dispatch(fetchRouteStops(tripId, BusId, current))
         }
     }
 }

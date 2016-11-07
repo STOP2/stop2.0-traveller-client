@@ -28,7 +28,8 @@ let strings = new LocalizedStrings({
         goToRouteStopsView: 'Stop bus at destination?',
         routeStops: 'Choose a stop',
         vehicleArrivesIn: 'Vehicle arrives in: ',
-        minutes: 'minutes'
+        minutes: 'minutes',
+        vehiclePassedStop: 'Vehicle has left the stop'
     },
 
     fi: {
@@ -59,7 +60,8 @@ let strings = new LocalizedStrings({
         goToRouteStopsView: 'Pysäytetäänkö bussi kohteessa?',
         routeStops: 'Valitse pysäkki',
         vehicleArrivesIn: 'Aika kulkuneuvon saapumiseen: ',
-        minutes: 'minuuttia'
+        minutes: 'minuuttia',
+        vehiclePassedStop: 'Kulkuneuvo ohitti pysäkin'
     }
 })
 
