@@ -117,7 +117,7 @@ class BusListPage extends Component {
         }
 
         return (
-      <TouchableOpacity key={sectionID + '-' + rowID} onPress={goToStopRequestPage}>
+      <TouchableOpacity accessibilityComponentType="button" key={sectionID + '-' + rowID} onPress={goToStopRequestPage}>
           <BusListRow vehicleType={rowData.vehicle_type} line={rowData.line} destination={rowData.destination} arrival={rowData.arrival} />
         </TouchableOpacity>)
     }

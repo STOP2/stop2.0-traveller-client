@@ -10,10 +10,6 @@ import strings from '../resources/translations'
 import StartViewButtons from '../components/StartViewButtons'
 import AccessibilityView from '../components/AccessibilityView'
 
-import { getLocation } from '../actions/locationActions'
-
-const GPS_TIMEOUT_IN_SECS = 60
-
 class StartView extends Component {
     constructor(props)
     {
@@ -60,7 +56,7 @@ class StartView extends Component {
             {
             viewElement = <View>
                               <DefaultText style={styles.locationErrorText}>{strings.locationError}</DefaultText>
-                              <TouchableOpacity onPress={this.props.getLocation}>
+                              <TouchableOpacity onPress={this.props.getLocation} accessibilityComponentType="button" accessibilityLabel={strings.tryAgain}>
                                 <DefaultText style={styles.tryAgain}>{strings.tryAgain}</DefaultText>
                               </TouchableOpacity>
                             </View>
