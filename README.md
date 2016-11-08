@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/STOP2/stop2.0-traveller-client.svg?branch=master)](https://travis-ci.org/STOP2/stop2.0-traveller-client)
-[![Coverage Status](https://coveralls.io/repos/github/STOP2/stop2.0-traveller-client/badge.svg?branch=master)](https://coveralls.io/github/STOP2/stop2.0-traveller-client?branch=master)
+[![codecov](https://codecov.io/gh/STOP2/stop2.0-traveller-client/branch/master/graph/badge.svg)](https://codecov.io/gh/STOP2/stop2.0-traveller-client)
 
 # stop2.0
 Digital stop button for your mobile phone
