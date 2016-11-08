@@ -4,7 +4,7 @@ import { View, TouchableOpacity, BackAndroid } from 'react-native'
 import { sendStoprequest } from '../actions/sendStoprequest'
 import { Actions } from 'react-native-router-flux'
 
-import TitleBar from '../components/TitleBar'
+import { TitleBar, BoldTitleBar } from '../components/TitleBar'
 import RouteInfo from '../components/RouteInfo'
 import SlideConfirmButton from '../components/SlideConfirmButton'
 import AccessibilityView from '../components/AccessibilityView'
@@ -102,7 +102,7 @@ class StopRequestPage extends Component{
 
     renderRouteInfo = () =>
     {
-        return (<RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination} vehicleMinutesLeft={this.state.minutesLeft}/>)
+        return (this.state.renderConfirm ? <RouteInfo title={strings.doYouWantToStop} vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination} vehicleMinutesLeft={this.state.minutesLeft}/> : <RouteInfo title={strings.aboutToStop} vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination} vehicleMinutesLeft={this.state.minutesLeft}/>)
     }
 
     renderSlider = () =>
@@ -114,7 +114,7 @@ class StopRequestPage extends Component{
 
         if (this.state.renderConfirm)
       {
-            return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide} />)
+            return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide + ' →'} />)
         }
         else
       {
@@ -152,6 +152,7 @@ class StopRequestPage extends Component{
   {
         return (
         <AccessibilityView style={styles.flex1} name="stopRequest">
+          <BoldTitleBar title={strings.stopRequest}/>
           <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopCode + ')'} />
           <View style={styles.flex3}>
             {this.renderRouteInfo()}

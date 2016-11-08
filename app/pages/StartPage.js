@@ -10,7 +10,9 @@ import strings from '../resources/translations'
 import StartViewButtons from '../components/StartViewButtons'
 import AccessibilityView from '../components/AccessibilityView'
 
-import { setLocation } from '../actions/locationActions'
+import { getLocation } from '../actions/locationActions'
+
+const GPS_TIMEOUT_IN_SECS = 60
 
 class StartView extends Component {
     constructor(props)
@@ -18,10 +20,7 @@ class StartView extends Component {
         super(props)
 
         this.state = {
-            locationData: '',
-            gotLocation: false,
-            locationPermissionsError: false,
-            locationError: false
+            locationPermissionsError: false
         }
     }
 
@@ -29,14 +28,14 @@ class StartView extends Component {
     {
         checkPermission('android.permission.ACCESS_FINE_LOCATION').then(() =>
         {
-            this.getCurrentLocation()
+            this.props.getLocation()
         }, () =>
         {
             setTimeout(() =>
             {
                 requestPermission('android.permission.ACCESS_FINE_LOCATION').then(() =>
             {
-                    this.getCurrentLocation()
+                    this.props.getLocation()
                 }, () =>
             {
                     this.setState({locationPermissionsError: true})
@@ -46,36 +45,7 @@ class StartView extends Component {
             }, 0)
         })
     }
-
-    getCurrentLocation = () =>
-    {
-        this.setState({locationError: false})
-
-        navigator.geolocation.getCurrentPosition((position) =>
-        {
-            this.props.setLocation(position.coords)
-
-            this.setState({
-                locationData: position.coords,
-                gotLocation: true
-            })
-        },
-      () =>
-      {
-          this.setState(
-              {
-                  locationData: '',
-                  locationError: true
-              }
-          )
-      },
-            {
-                enableHighAccuracy: false,
-                timeout: 20000,
-                maximumAge: 1000
-            })
-    }
-
+    
     render()
     {
         let viewElement
@@ -86,16 +56,16 @@ class StartView extends Component {
                           <DefaultText style={styles.locationErrorText}>{strings.locationPermissionsError}</DefaultText>
                         </View>
         }
-        else if (this.state.locationError)
+        else if (this.props.locationError)
             {
             viewElement = <View>
                               <DefaultText style={styles.locationErrorText}>{strings.locationError}</DefaultText>
-                              <TouchableOpacity onPress={this.getCurrentLocation}>
+                              <TouchableOpacity onPress={this.props.getLocation}>
                                 <DefaultText style={styles.tryAgain}>{strings.tryAgain}</DefaultText>
                               </TouchableOpacity>
                             </View>
         }
-        else if (this.state.gotLocation)
+        else if (this.props.gettingLocation == false)
         {
             viewElement = <StartViewButtons />
         }
@@ -114,21 +84,25 @@ class StartView extends Component {
 }
 
 StartView.propTypes = {
-    coords: React.PropTypes.object,
-    setLocation: React.PropTypes.func.isRequired
+    gettingLocation: React.PropTypes.bool.isRequired,
+    locationError: React.PropTypes.string,
+    getLocation: React.PropTypes.func.isRequired
 }
 
-const mapStateToProps = () =>
+const mapStateToProps = (state) =>
 {
-    return {}
+    return {
+        gettingLocation: state.locationReducer.gettingLocation,
+        locationError: state.locationReducer.error
+    }
 }
 
 const mapDispatchToProps = (dispatch) =>
 {
     return {
-        setLocation: (locationData) =>
+        getLocation: () =>
         {
-            dispatch(setLocation(locationData))
+            dispatch(getLocation())
         }
     }
 }

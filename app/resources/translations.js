@@ -16,7 +16,7 @@ let strings = new LocalizedStrings({
         metro: 'Metro',
         ferry: 'Ferry',
         confirm: 'Confirm',
-        stopsent: 'Confirmed!',
+        stopsent: 'Stop request sent',
         gettingLocation: 'Finding your location...',
         locationError: 'Unable to find your location. Make sure that GPS enabled.',
         locationPermissionsError: 'Couldn\'t grant location permissions.',
@@ -25,8 +25,9 @@ let strings = new LocalizedStrings({
         slide: 'Slide to confirm',
         doYouWantToStop: 'Stop?',
         backendError: 'Error: No network connection',
-        goToRouteStopsView: 'Stop bus at destination?',
+        goToRouteStopsView: 'Choose your destination',
         routeStops: 'Choose a stop',
+        aboutToStop: 'You\'re about to stop'
         vehicleArrivesIn: 'Vehicle arrives in: ',
         minutes: 'minutes',
         vehiclePassedStop: 'Vehicle has left the stop'
@@ -47,7 +48,7 @@ let strings = new LocalizedStrings({
         metro: 'Metro',
         ferry: 'Lautta',
         confirm: 'Vahvista',
-        stopsent: 'Vahvistettu!',
+        stopsent: 'Pysähtymispyyntö lähetetty',
         tryAgain: 'Yritä uudelleen',
         gettingLocation: 'Paikannetaan sijantia...',
         locationError: 'Paikantaminen epäonnistui. Varmista, että GPS on kytketty päälle.',
@@ -57,11 +58,15 @@ let strings = new LocalizedStrings({
         slide: 'Vahvista liu\'uttamalla',
         doYouWantToStop: 'Pysäytetäänkö',
         backendError: 'Virhe: Ei verkkoyhteyttä',
-        goToRouteStopsView: 'Pysäytetäänkö bussi kohteessa?',
+        goToRouteStopsView: 'Valitse määränpää',
         routeStops: 'Valitse pysäkki',
+        aboutToStop: 'Olet pysäyttämässä'
         vehicleArrivesIn: 'Aika kulkuneuvon saapumiseen: ',
         minutes: 'minuuttia',
         vehiclePassedStop: 'Kulkuneuvo ohitti pysäkin'
+        goToRouteStopsView: 'Valitse määränpää',
+        routeStops: 'Valitse pysäkki',
+        aboutToStop: 'Olet pysäyttämässä'
     }
 })
 

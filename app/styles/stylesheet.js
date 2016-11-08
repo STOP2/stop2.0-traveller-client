@@ -4,23 +4,6 @@ import colors from './colors'
 const styles = StyleSheet.create({
     defaultText: {fontFamily: 'gotham-rounded-book'},
     boldText: {fontFamily: 'gotham-rounded-medium'},
-    navBar: {
-        height: 50,
-        backgroundColor: colors.busBlue,
-        borderBottomColor: colors.stopBackground,
-        justifyContent: 'center'
-    },
-    navBarPadding: { paddingTop: 50 },
-    navBarTitle: {
-        color: colors.white,
-        fontSize: 25,
-        marginTop: 2
-    },
-    backButton: {
-        tintColor: colors.white,
-        marginTop: -4,
-        marginLeft: 5
-    },
     flex1: {flex: 1},
     flex3: {flex: 3},
     flexRow: {flexDirection: 'row'},
@@ -57,6 +40,20 @@ const styles = StyleSheet.create({
         width: 20,
         height: 20,
         marginLeft: 5
+    },
+    bottomBorder: {
+        borderBottomColor: colors.white,
+        borderBottomWidth: 0.5
+    },
+    mainTitleCont: {
+        height: 50,
+        backgroundColor: colors.busBlue,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    mainTitle: {
+        fontSize: 25,
+        color: colors.white
     },
     title: {
         fontSize: 25,
@@ -166,15 +163,15 @@ const styles = StyleSheet.create({
         marginTop: 5
     },
     confirmedText: {
+        fontSize: 20,
         color: colors.white,
-        fontSize: 40,
         textAlign: 'center',
         margin: 15
     },
     sliderText: {
         position: 'absolute',
+        fontSize: 25,
         color: colors.white,
-        fontSize: 30,
         textAlign: 'center',
         margin: 20
     },
