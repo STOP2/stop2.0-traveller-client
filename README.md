@@ -67,3 +67,9 @@ Install Eslint (https://eslint.org/) support for Atom:
 ```bash
 apm install linter-eslint
 ```
+
+### Tests
+Run test with
+```bash
+npm test
+```
