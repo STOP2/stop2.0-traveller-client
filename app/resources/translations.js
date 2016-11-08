@@ -23,11 +23,10 @@ let strings = new LocalizedStrings({
         chooseVehicle: 'Choose a vehicle',
         stopRequest: 'Confirm stop request',
         slide: 'Slide to confirm',
-        doYouWantToStop: 'Stop?',
         backendError: 'Error: No network connection',
         goToRouteStopsView: 'Choose your destination',
         routeStops: 'Choose a stop',
-        aboutToStop: 'You\'re about to stop'
+        aboutToStop: 'You\'re about to stop',
         vehicleArrivesIn: 'Vehicle arrives in: ',
         minutes: 'minutes',
         vehiclePassedStop: 'Vehicle has left the stop'
@@ -56,17 +55,13 @@ let strings = new LocalizedStrings({
         chooseVehicle: 'Valitse kulkuneuvo',
         stopRequest: 'Vahvista pysäytyspyyntö',
         slide: 'Vahvista liu\'uttamalla',
-        doYouWantToStop: 'Pysäytetäänkö',
         backendError: 'Virhe: Ei verkkoyhteyttä',
-        goToRouteStopsView: 'Valitse määränpää',
-        routeStops: 'Valitse pysäkki',
-        aboutToStop: 'Olet pysäyttämässä'
+        aboutToStop: 'Olet pysäyttämässä',
         vehicleArrivesIn: 'Aika kulkuneuvon saapumiseen: ',
         minutes: 'minuuttia',
-        vehiclePassedStop: 'Kulkuneuvo ohitti pysäkin'
+        vehiclePassedStop: 'Kulkuneuvo ohitti pysäkin',
         goToRouteStopsView: 'Valitse määränpää',
-        routeStops: 'Valitse pysäkki',
-        aboutToStop: 'Olet pysäyttämässä'
+        routeStops: 'Valitse pysäkki'
     }
 })
 
