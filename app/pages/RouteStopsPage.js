@@ -34,7 +34,7 @@ class RouteStopsPage extends Component {
     {
         this.fetchInterval = setInterval(() =>
         {
-            if (!props.isFetching)
+            if (!props.isFetchingStops)
             {
                 props.fetchRouteStops(props.tripId, props.stopId, false)
             }
@@ -95,7 +95,7 @@ class RouteStopsPage extends Component {
         return (
         <View>
           <ActivityIndicator
-            animating={this.props.isFetching}
+            animating={this.props.isFetchingStops}
           />
         </View>
         )
@@ -106,7 +106,7 @@ class RouteStopsPage extends Component {
         return (
           <View style={styles.flex1}>
             <TitleBar title={this.props.vehicleLine + ' ' + this.props.vehicleDestination} />
-            {this.props.error ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
+            {this.props.errorFetchingStops ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
             <ListView
               enableEmptySections={true}
               dataSource={this.state.dataSource}
@@ -143,10 +143,10 @@ class RouteStopsPage extends Component {
 const mapStateToProps = (state) =>
 {
     return {
-        routeStops: state.fetchReducer.routeStops,
-        isFetching: state.fetchReducer.isFetching,
-        routeIsReady: state.fetchReducer.routeIsReady,
-        error: state.fetchReducer.error,
+        routeStops: state.fetchRouteStopsReducer.routeStops,
+        isFetchingStops: state.fetchRouteStopsReducer.isFetchingStops,
+        routeIsReady: state.fetchRouteStopsReducer.routeIsReady,
+        errorFetchingStops: state.fetchRouteStopsReducer.errorFetchingStops,
         scene: state.routes.scene
     }
 }
@@ -163,11 +163,11 @@ const mapDispatchToProps = (dispatch) =>
 
 RouteStopsPage.propTypes = {
     fetchRouteStops: React.PropTypes.func.isRequired,
-    isFetching: React.PropTypes.bool.isRequired,
+    isFetchingStops: React.PropTypes.bool.isRequired,
     routeIsReady: React.PropTypes.bool.isRequired,
     tripId: React.PropTypes.string.isRequired,
     stopId: React.PropTypes.string.isRequired,
-    error: React.PropTypes.bool,
+    errorFetchingStops: React.PropTypes.bool,
     vehicleLine: React.PropTypes.string.isRequired,
     vehicleDestination: React.PropTypes.string.isRequired,
     scene: React.PropTypes.object.isRequired

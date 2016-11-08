@@ -36,9 +36,9 @@ class StopRequestPage extends Component{
     {
         this.fetchInterval = setInterval(() =>
         {
-            if (!props.isFetching)
+            if (!props.isFetchingStops)
             {
-                this.props.fetchRouteStops(this.props.vehicle.trip_id, this.props.stop.stopId, true)
+                props.fetchRouteStops(this.props.vehicle.trip_id, this.props.stop.stopId, true)
             }
         }, UPDATE_INTERVAL_IN_SECS * 1000)
     }
@@ -62,23 +62,22 @@ class StopRequestPage extends Component{
                 this.setState({fetchIntervalRunning: true})
                 this.createInterval(nextProps)
             }
+            if (typeof nextProps.routeStops[0] !== 'undefined' && nextProps.routeStops.length == 1)
+            {
+                if (nextProps.routeStops[0].arrives_in < 0)
+                {
+                    this.setState({minutesLeft: strings.vehiclePassedStop})
+                }
+                else
+                {
+                    this.setState({minutesLeft: nextProps.routeStops[0].arrives_in + ' ' + strings.minutes})
+                }
+            }
         }
         else if (this.state.fetchIntervalRunning)
         {
             this.setState({fetchIntervalRunning: false})
             clearInterval(this.fetchInterval)
-        }
-        
-        if (typeof nextProps.routeStops[0] !== 'undefined')
-        {
-            if (nextProps.routeStops[0].arrives_in < 0)
-            {
-                this.setState({minutesLeft: strings.vehiclePassedStop})
-            }
-            else
-            {
-                this.setState({minutesLeft: nextProps.routeStops[0].arrives_in + ' ' + strings.minutes})
-            }
         }
     }
 
@@ -170,9 +169,10 @@ const mapStateToProps = (state) =>
 {
     return {
         sent: state.fetchReducer.sentStoprequest,
-        routeStops: state.fetchReducer.routeStops,
-        isFetching: state.fetchReducer.isFetching,
-        routeIsReady: state.fetchReducer.routeIsReady,
+        routeStops: state.fetchRouteStopsReducer.routeStops,
+        isFetchingStops: state.fetchRouteStopsReducer.isFetchingStops,
+        routeIsReady: state.fetchRouteStopsReducer.routeIsReady,
+        errorFetchingStops: state.fetchRouteStopsReducer.errorFetchingStops,
         error: state.fetchReducer.error,
         scene: state.routes.scene
     }
