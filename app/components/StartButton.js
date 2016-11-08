@@ -24,8 +24,8 @@ StartButton.propTypes = {
     image: React.PropTypes.number.isRequired,
     buttonText: React.PropTypes.string.isRequired,
     onPress: React.PropTypes.func.isRequired,
-    style: React.PropTypes.number.isRequired,
-    imageStyle: React.PropTypes.number.isRequired
+    style: React.PropTypes.object.isRequired,
+    imageStyle: React.PropTypes.object.isRequired
 }
 
 
