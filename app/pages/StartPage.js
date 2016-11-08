@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { ActivityIndicator, View, TouchableOpacity } from 'react-native'
-import { checkPermission, requestPermission } from 'react-native-android-permissions'
 
 import { DefaultText } from '../components/textComponents'
 import styles from '../styles/stylesheet'
@@ -10,119 +9,26 @@ import strings from '../resources/translations'
 import StartViewButtons from '../components/StartViewButtons'
 import AccessibilityView from '../components/AccessibilityView'
 
-import { getLocation, setLocation } from '../actions/locationActions'
+import { checkLocationPermissionAndGetLocation } from '../actions/locationActions'
 
-const GPS_TIMEOUT_IN_SECS = 60
-
-import { DeviceEventEmitter } from 'react-native'
-import Beacons from 'react-native-beacons-android'
+import BeaconController from '../components/BeaconController'
 
 class StartView extends Component {
     constructor(props)
     {
         super(props)
-
-        this.state = {
-            locationData: '',
-            gotLocation: false,
-            locationPermissionsError: false,
-            locationError: false,
-            beaconDetected: false,
-            locationPermissionsError: false
-        }
     }
 
-    async getBeacons() {
-        Beacons.setForegroundScanPeriod(5000)
-        Beacons.setBackgroundScanPeriod(5000)
-
-        try {
-            await Beacons.startRangingBeaconsInRegion('REGION1', 'ebefd083-70a2-47c8-9837-e7b5634df524')
-            console.log(`Beacons ranging started succesfully!`)
-        } catch (err) {
-            console.log(`Beacons ranging not started, error: ${error}`)
-        }
-
-        // Print a log of the detected iBeacons (1 per second)
-        DeviceEventEmitter.addListener('beaconsDidRange', (data) => {
-            console.log(data)
-            if(data.beacons.length > 0) {
-                if(!this.state.beaconDetected) {
-                    this.props.setLocation({latitude: 60.19942, longitude: 24.93461})
-
-                    this.setState({
-                        locationData: {latitude: 60.19942, longitude: 24.93461},
-                        gotLocation: true
-                    })
-                    alert('Olet pysäkillä Pasilan asema (2181)')
-                }
-                this.setState({beaconDetected: true})
-            } else {
-                if(this.state.beaconDetected)
-                    alert('Poistuit pysäkiltä Pasilan asema (2181)')
-                this.setState({beaconDetected: false})
-            }
-        })
-    }
     componentWillMount = () =>
     {
-        checkPermission('android.permission.ACCESS_FINE_LOCATION').then(() =>
-        {
-            this.getCurrentLocation()
-        }, () =>
-        {
-            setTimeout(() =>
-            {
-                requestPermission('android.permission.ACCESS_FINE_LOCATION').then(() =>
-            {
-                this.getCurrentLocation()
-                }, () =>
-            {
-                    this.setState({locationPermissionsError: true})
-                })
-          // for the correct StatusBar behaviour with translucent={true} we need to wait a bit and ask for permission after the first render cycle
-          // (check https://github.com/facebook/react-native/issues/9413 for more info)
-            }, 0)
-        })
-    }
-
-    getCurrentLocation = () =>
-    {
-        this.setState({locationError: false})
-
-        navigator.geolocation.getCurrentPosition((position) =>
-        {
-            this.props.setLocation(position.coords)
-
-            this.setState({
-                locationData: position.coords,
-                gotLocation: true
-            })
-
-            Beacons.detectIBeacons()
-            this.getBeacons()
-        },
-      () =>
-      {
-          this.setState(
-              {
-                  locationData: '',
-                  locationError: true
-              }
-          )
-      },
-            {
-                enableHighAccuracy: false,
-                timeout: 20000,
-                maximumAge: 1000
-            })
+        this.props.getLocation()
     }
 
     render()
     {
         let viewElement
 
-        if (this.state.locationPermissionsError)
+        if (this.props.locationPermissionError)
         {
             viewElement = <View>
                           <DefaultText style={styles.locationErrorText}>{strings.locationPermissionsError}</DefaultText>
@@ -139,7 +45,7 @@ class StartView extends Component {
         }
         else if (this.props.gettingLocation == false)
         {
-            viewElement = <StartViewButtons />
+            viewElement = <View style={styles.start}><BeaconController /><StartViewButtons /></View>
         }
         else
         {
@@ -158,6 +64,7 @@ class StartView extends Component {
 StartView.propTypes = {
     gettingLocation: React.PropTypes.bool.isRequired,
     locationError: React.PropTypes.string,
+    locationPermissionError: React.PropTypes.string,
     getLocation: React.PropTypes.func.isRequired
 }
 
@@ -165,7 +72,8 @@ const mapStateToProps = (state) =>
 {
     return {
         gettingLocation: state.locationReducer.gettingLocation,
-        locationError: state.locationReducer.error
+        locationError: state.locationReducer.error,
+        locationPermissionError: state.locationReducer.locationPermissionError
     }
 }
 
@@ -174,11 +82,7 @@ const mapDispatchToProps = (dispatch) =>
     return {
         getLocation: () =>
         {
-            dispatch(getLocation())
-        },
-        setLocation: (coords) =>
-        {
-            dispatch(setLocation(coords))
+            dispatch(checkLocationPermissionAndGetLocation())
         }
     }
 }
