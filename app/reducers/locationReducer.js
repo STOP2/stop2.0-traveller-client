@@ -1,8 +1,9 @@
-import { SET_LOCATION, LOCATION_ERROR, REQUEST_LOCATION } from '../actions/locationActions'
+import { SET_LOCATION, LOCATION_ERROR, REQUEST_LOCATION, LOCATION_PERMISSION_ERROR } from '../actions/locationActions'
 
 export let initialState = {
     locationData: {},
     error: null,
+    locationPermissionError: null,
     gettingLocation: false
 }
 
@@ -21,6 +22,10 @@ const locationReducer = (state = initialState, action) =>
 
     case LOCATION_ERROR:
         return Object.assign({}, state, {error: action.error})
+
+    case LOCATION_PERMISSION_ERROR:
+        return Object.assign({}, state, {locationPermissionError: action.error})
+
 
     default:
         return state
