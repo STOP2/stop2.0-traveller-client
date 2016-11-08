@@ -7,28 +7,32 @@ export const REQUEST_DEPARTURES = 'REQUEST_DEPARTURES'
 export const RECEIVE_DEPARTURES = 'RECEIVE_DEPARTURES'
 export const REQUEST_ERROR = 'REQUEST_ERROR'
 
-let requestDepartures = function(latitude, longitude)
+export let requestDepartures = function(latitude, longitude)
 {
     return {
         type: REQUEST_DEPARTURES,
+        isFetching: true,
         latitude: latitude,
         longitude: longitude
     }
 }
 
-let receiveDepartures = function(json)
+export let receiveDepartures = function(json)
 {
     return {
         type: RECEIVE_DEPARTURES,
+        isFetching: false,
+        isReady: true,
+        error: false,
         departures: json.stops
     }
 }
 
-let requestError = function(error)
+export let requestError = function()
 {
     return {
         type: REQUEST_ERROR,
-        error: error
+        error: true
     }
 }
 

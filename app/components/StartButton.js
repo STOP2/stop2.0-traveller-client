@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Text, TouchableOpacity, Image } from 'react-native'
+import {  TouchableOpacity, Image } from 'react-native'
+import { BoldText } from '../components/textComponents'
 import styles from '../styles/stylesheet'
 
 class StartButton extends Component {
@@ -13,7 +14,7 @@ class StartButton extends Component {
         return (
           <TouchableOpacity accessibilityComponentType="button" accessibilityLabel={this.props.buttonText} style={this.props.style} onPress={this.props.onPress}>
             <Image style={this.props.imageStyle} source={this.props.image}></Image>
-            <Text style={styles.startText}>{this.props.buttonText}</Text>
+            <BoldText style={styles.startText}>{this.props.buttonText}</BoldText>
           </TouchableOpacity>
         )
     }

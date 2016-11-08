@@ -1,4 +1,7 @@
 const colors = {
+    white: 'white',
+    black: 'black',
+    transparent: 'transparent',
     busBlue: '#007AC9',
     tramGreen: '#00985F',
     trainViolet: '#8C4799',
@@ -14,7 +17,7 @@ const colors = {
     K80: '#333333',
     CoolGray: '#616365',
     K40: '#666666',
-    K10: 'dddddc',
+    K10: '#dddddc',
     stopBackground: '#e9e9e9',
     tryAgain: '#0000ff'
 }

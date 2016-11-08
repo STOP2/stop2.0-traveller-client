@@ -1,0 +1,9 @@
+exports[`location actions creates a SET_LOCATION action 1`] = `
+Object {
+  "gettingLocation": false,
+  "locationData": Object {
+    "coords": Array [],
+  },
+  "type": "SET_LOCATION",
+}
+`;

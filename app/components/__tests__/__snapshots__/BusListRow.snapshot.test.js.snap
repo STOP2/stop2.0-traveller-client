@@ -1,0 +1,83 @@
+exports[`BusListRow component renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "height": 60,
+      "padding": 10,
+    }
+  }>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }>
+    <Image
+      resizeMode="contain"
+      source={1}
+      style={
+        Object {
+          "height": 20,
+          "marginLeft": 5,
+          "width": 20,
+        }
+      } />
+  </View>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": "gotham-rounded-book",
+        },
+        Object {
+          "flex": 1,
+          "fontSize": 15,
+        },
+      ]
+    }>
+    506
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": "gotham-rounded-book",
+        },
+        Object {
+          "color": "black",
+          "flex": 3,
+          "fontSize": 15,
+        },
+      ]
+    }>
+    Pasila
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": "gotham-rounded-book",
+        },
+        Object {
+          "color": "black",
+          "flex": 1,
+          "fontSize": 15,
+        },
+      ]
+    }>
+    5
+     min
+  </Text>
+</View>
+`;

@@ -1,0 +1,26 @@
+exports[`StopTitle component renders correctly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "fontFamily": "gotham-rounded-book",
+      },
+      Object {
+        "backgroundColor": "#007AC9",
+        "color": "white",
+        "fontSize": 20,
+        "padding": 5,
+      },
+    ]
+  }>
+  A.I. Virtasen aukio
+   (
+  5302
+  ) — 
+  394
+  m
+</Text>
+`;

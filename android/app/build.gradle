@@ -1,3 +1,7 @@
+plugins {
+    id 'com.gladed.androidgitversion' version '0.2.21'
+}
+
 apply plugin: "com.android.application"
 
 import com.android.build.OutputFile
@@ -84,14 +88,14 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    buildToolsVersion "23.0.1"
 
     defaultConfig {
         applicationId "com.stop2travellerclient"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 6
         versionName "1.0"
+        versionCode 6
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -102,10 +106,6 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file(MYAPP_RELEASE_STORE_FILE)
-            storePassword MYAPP_RELEASE_STORE_PASSWORD
-            keyAlias MYAPP_RELEASE_KEY_ALIAS
-            keyPassword MYAPP_RELEASE_KEY_PASSWORD
         }
     }
     splits {
@@ -120,7 +120,6 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release

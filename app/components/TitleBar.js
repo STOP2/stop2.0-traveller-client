@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { DefaultText } from '../components/textComponents'
+import { View } from 'react-native'
+import { DefaultText, BoldText } from '../components/textComponents'
 
 import styles from '../styles/stylesheet'
 
-class TitleBar extends Component {
+export class TitleBar extends Component {
     constructor(props)
     {
         super(props)
@@ -19,4 +20,25 @@ class TitleBar extends Component {
 
 TitleBar.propTypes = {title: React.PropTypes.string.isRequired}
 
-export default TitleBar
+export class BoldTitleBar extends Component {
+    constructor(props)
+    {
+        super(props)
+
+        this.state = {}
+    }
+
+    render()
+    {
+        return (<View style={this.props.noBorder ? styles.mainTitleCont : [styles.mainTitleCont, styles.bottomBorder]}>
+                  <BoldText style={styles.mainTitle}>{this.props.title}</BoldText>
+                </View>)
+    }
+}
+
+BoldTitleBar.defaultProps = { noBorder: false }
+
+BoldTitleBar.propTypes = {
+    title: React.PropTypes.string.isRequired,
+    noBorder: React.PropTypes.bool
+}
