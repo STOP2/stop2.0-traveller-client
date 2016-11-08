@@ -27,7 +27,7 @@ let strings = new LocalizedStrings({
         goToRouteStopsView: 'Choose your destination',
         routeStops: 'Choose a stop',
         aboutToStop: 'You\'re about to stop',
-        vehicleArrivesIn: 'Vehicle arrives in: ',
+        vehicleArrivesIn: 'Arrives in: ',
         minutes: 'minutes',
         vehiclePassedStop: 'Vehicle has left the stop'
     },
@@ -57,7 +57,7 @@ let strings = new LocalizedStrings({
         slide: 'Vahvista liu\'uttamalla',
         backendError: 'Virhe: Ei verkkoyhteyttä',
         aboutToStop: 'Olet pysäyttämässä',
-        vehicleArrivesIn: 'Aika kulkuneuvon saapumiseen: ',
+        vehicleArrivesIn: 'Saapumiseen: ',
         minutes: 'minuuttia',
         vehiclePassedStop: 'Kulkuneuvo ohitti pysäkin',
         goToRouteStopsView: 'Valitse määränpää',

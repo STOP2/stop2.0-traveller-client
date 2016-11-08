@@ -111,7 +111,7 @@ class BusListPage extends Component {
                 stop: {
                     stopName: this.state.stops[sectionID].stop_name,
                     stopCode: sectionID,
-                    stopId: this.state.stops[sectionID].stop_id
+                    stopId: this.state.stops[sectionID].stop_id,
                 }
             })
         }
