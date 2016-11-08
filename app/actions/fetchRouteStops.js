@@ -43,7 +43,7 @@ export let fetchRouteStops = function(tripId, stopId, current)
 
         let current_str = ''
 
-        if(!current) current_str = 'false'
+        if(current) current_str = 'true'
 
         return fetch(config.API_URL + '/routes?trip_id=' + tripId + '&stop_id=' + stopId + '&current=' + current_str)
       .then(response => response.json())
