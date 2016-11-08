@@ -8,9 +8,20 @@ Array [
     "type": "REQUEST_ROUTE_STOPS",
   },
   Object {
-    "error": [SyntaxError: Unexpected string in JSON at position 56],
-    "sentStoprequest": false,
-    "type": "REQUEST_ROUTE_STOPS_ERROR",
+    "error": false,
+    "isFetching": false,
+    "routeIsReady": true,
+    "stops": Array [
+      Object {
+        "stop": Object {
+          "arrives_in": 4,
+          "stop_code": 3028,
+          "stop_id": "HSL:1240118",
+          "stop_name": "Kumpulan kampus",
+        },
+      },
+    ],
+    "type": "RECEIVE_ROUTE_STOPS",
   },
 ]
 `;
