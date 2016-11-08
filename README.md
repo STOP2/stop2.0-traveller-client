@@ -69,7 +69,7 @@ apm install linter-eslint
 ```
 
 ### Tests
-Run test with
+Run tests with
 ```bash
 npm test
 ```
