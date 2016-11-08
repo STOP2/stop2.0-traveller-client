@@ -34,16 +34,16 @@ class RouteStopsPage extends Component {
     {
         this.fetchInterval = setInterval(() =>
         {
-            if (!props.isFetching)
+            if (!props.isFetchingStops)
             {
-                props.fetchRouteStops(props.tripId, props.stopId)
+                props.fetchRouteStops(props.tripId, props.stopId, false)
             }
         }, UPDATE_INTERVAL_IN_SECS * 1000)
     }
 
     componentWillMount = () =>
     {
-        this.props.fetchRouteStops(this.props.tripId, this.props.stopId)
+        this.props.fetchRouteStops(this.props.tripId, this.props.stopId, false)
 
         this.setState({fetchIntervalRunning: true})
 
@@ -95,7 +95,7 @@ class RouteStopsPage extends Component {
         return (
         <View>
           <ActivityIndicator
-            animating={this.props.isFetching}
+            animating={this.props.isFetchingStops}
           />
         </View>
         )
@@ -107,7 +107,7 @@ class RouteStopsPage extends Component {
           <View style={styles.flex1}>
             <BoldTitleBar title={strings.routeStops}/>
             <TitleBar title={this.props.vehicleLine + ' ' + this.props.vehicleDestination} />
-            {this.props.error ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
+            {this.props.errorFetchingStops ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
             <ListView
               enableEmptySections={true}
               dataSource={this.state.dataSource}
@@ -144,10 +144,10 @@ class RouteStopsPage extends Component {
 const mapStateToProps = (state) =>
 {
     return {
-        routeStops: state.fetchReducer.routeStops,
-        isFetching: state.fetchReducer.isFetching,
-        routeIsReady: state.fetchReducer.routeIsReady,
-        error: state.fetchReducer.error,
+        routeStops: state.fetchRouteStopsReducer.routeStops,
+        isFetchingStops: state.fetchRouteStopsReducer.isFetchingStops,
+        routeIsReady: state.fetchRouteStopsReducer.routeIsReady,
+        errorFetchingStops: state.fetchRouteStopsReducer.errorFetchingStops,
         scene: state.routes.scene
     }
 }
@@ -155,20 +155,20 @@ const mapStateToProps = (state) =>
 const mapDispatchToProps = (dispatch) =>
 {
     return {
-        fetchRouteStops: (tripId, BusId) =>
+        fetchRouteStops: (tripId, BusId, current) =>
         {
-            dispatch(fetchRouteStops(tripId, BusId))
+            dispatch(fetchRouteStops(tripId, BusId, current))
         }
     }
 }
 
 RouteStopsPage.propTypes = {
     fetchRouteStops: React.PropTypes.func.isRequired,
-    isFetching: React.PropTypes.bool.isRequired,
+    isFetchingStops: React.PropTypes.bool.isRequired,
     routeIsReady: React.PropTypes.bool.isRequired,
     tripId: React.PropTypes.string.isRequired,
     stopId: React.PropTypes.string.isRequired,
-    error: React.PropTypes.bool,
+    errorFetchingStops: React.PropTypes.bool,
     vehicleLine: React.PropTypes.string.isRequired,
     vehicleDestination: React.PropTypes.string.isRequired,
     scene: React.PropTypes.object.isRequired

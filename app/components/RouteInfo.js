@@ -22,12 +22,18 @@ class RouteInfo extends Component {
           <View style={styles.doYouWantToStopWrapper}>
             <DefaultText style={styles.doYouWantToStop}>{this.props.title}</DefaultText>
           </View>
-          <View style={styles.flexRow}>
+          <View style={styles.stopRequestVehicleInfo}>
             <Image style={styles.busIcon} resizeMode="contain"
             source={this.props.vehicleType == 0 ? this.iconTram : this.iconBus}/>
             <View style={styles.vehicleInfoWrapper}>
               <DefaultText style={styles.vehicleInfo}>{this.props.vehicleLine} {this.props.vehicleDestination}</DefaultText>
             </View>
+          </View>
+          <View style={styles.vehicleArrivesInWrapper}>
+            <DefaultText style={styles.vehicleArrivesInText}>{strings.vehicleArrivesIn}</DefaultText>
+          </View>
+          <View>
+            <DefaultText style={styles.vehicleMinutesLeft}>{this.props.vehicleMinutesLeft}</DefaultText>
           </View>
         </View>)
     }
@@ -37,7 +43,8 @@ RouteInfo.propTypes = {
     title: React.PropTypes.string.isRequired,
     vehicleType: React.PropTypes.number.isRequired,
     vehicleLine: React.PropTypes.string.isRequired,
-    vehicleDestination: React.PropTypes.string.isRequired
+    vehicleDestination: React.PropTypes.string.isRequired,
+    vehicleMinutesLeft: React.PropTypes.string.isRequired
 }
 
 export default RouteInfo
