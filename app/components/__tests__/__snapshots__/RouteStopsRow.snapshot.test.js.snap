@@ -1,0 +1,66 @@
+exports[`RouteStopsRow component renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "height": 60,
+      "padding": 10,
+    }
+  }>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": "gotham-rounded-book",
+        },
+        Object {
+          "flex": 1,
+          "fontSize": 15,
+        },
+      ]
+    }>
+    5124
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": "gotham-rounded-book",
+        },
+        Object {
+          "color": "black",
+          "flex": 3,
+          "fontSize": 15,
+        },
+      ]
+    }>
+    Kumpulan kampus
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": "gotham-rounded-book",
+        },
+        Object {
+          "color": "black",
+          "flex": 1,
+          "fontSize": 15,
+        },
+      ]
+    }>
+    5
+     min
+  </Text>
+</View>
+`;
