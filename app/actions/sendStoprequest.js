@@ -37,7 +37,10 @@ export let sendStoprequest = function(tripId, stopId, fcmToken)
 
         return fetch(config.API_URL + '/stoprequests', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             body: stopRequest
         })
       .then(dispatch(receiveConfirm()))
