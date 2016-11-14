@@ -81,17 +81,6 @@ Object {
 }
 `;
 
-exports[`fetch reducer handles RECEIVE_ROUTE_STOPS action 1`] = `
-Object {
-  "error": false,
-  "isFetching": false,
-  "isReady": false,
-  "routeStops": Object {},
-  "sentStoprequest": false,
-  "stops": Array [],
-}
-`;
-
 exports[`fetch reducer handles REQUEST_DEPARTURES action 1`] = `
 Object {
   "error": false,
@@ -106,28 +95,6 @@ Object {
 exports[`fetch reducer handles REQUEST_ERROR action 1`] = `
 Object {
   "error": true,
-  "isFetching": false,
-  "isReady": false,
-  "routeStops": Object {},
-  "sentStoprequest": false,
-  "stops": Array [],
-}
-`;
-
-exports[`fetch reducer handles REQUEST_ROUTE_STOPS action 1`] = `
-Object {
-  "error": false,
-  "isFetching": false,
-  "isReady": false,
-  "routeStops": Object {},
-  "sentStoprequest": false,
-  "stops": Array [],
-}
-`;
-
-exports[`fetch reducer handles REQUEST_ROUTE_STOPS_ERROR action 1`] = `
-Object {
-  "error": false,
   "isFetching": false,
   "isReady": false,
   "routeStops": Object {},
