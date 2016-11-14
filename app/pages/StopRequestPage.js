@@ -155,7 +155,7 @@ class StopRequestPage extends Component{
         return (
         <AccessibilityView style={styles.flex1} name="stopRequest">
         <BoldTitleBar title={strings.stopRequest}/>
-          <PushController />
+          <PushController vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} />
           <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopCode + ')'} />
 
           <View style={styles.flex3}>
