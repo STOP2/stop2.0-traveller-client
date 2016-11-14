@@ -11,30 +11,6 @@ exports[`RouteInfo component renders correctly 1`] = `
   <View
     style={
       Object {
-        "marginBottom": 10,
-      }
-    }>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": "gotham-rounded-book",
-          },
-          Object {
-            "fontSize": 40,
-            "textAlign": "center",
-          },
-        ]
-      }>
-      title
-    </Text>
-  </View>
-  <View
-    style={
-      Object {
         "flexDirection": "row",
         "marginBottom": 20,
       }
@@ -100,7 +76,7 @@ exports[`RouteInfo component renders correctly 1`] = `
           },
         ]
       }>
-      Vehicle arrives in: 
+      Arrives in: 
     </Text>
   </View>
   <View>

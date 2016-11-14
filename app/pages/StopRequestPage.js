@@ -24,7 +24,7 @@ class StopRequestPage extends Component{
 
         this.state = {
             renderConfirm: true,
-            minutesLeft: '?? ' + strings.minutes,
+            minutesLeft: this.props.vehicle.arrival + ' ' + strings.minutes,
             fetchIntervalRunning: false
         }
 
@@ -200,7 +200,8 @@ StopRequestPage.propTypes = {
         trip_id: React.PropTypes.string.isRequired,
         vehicle_type: React.PropTypes.number.isRequired,
         line: React.PropTypes.string.isRequired,
-        destination: React.PropTypes.string.isRequired
+        destination: React.PropTypes.string.isRequired,
+        arrival: React.PropTypes.number.isRequired
     }),
     stop: React.PropTypes.shape({
         stopCode: React.PropTypes.string.isRequired,

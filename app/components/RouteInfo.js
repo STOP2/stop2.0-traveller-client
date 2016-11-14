@@ -19,9 +19,6 @@ class RouteInfo extends Component {
     render()
     {
         return (<View style={styles.stopRequestStyle}>
-          <View style={styles.doYouWantToStopWrapper}>
-            <DefaultText style={styles.doYouWantToStop}>{this.props.title}</DefaultText>
-          </View>
           <View style={styles.stopRequestVehicleInfo}>
             <Image style={styles.busIcon} resizeMode="contain"
             source={this.props.vehicleType == 0 ? this.iconTram : this.iconBus}/>
