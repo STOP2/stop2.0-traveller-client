@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import FCM from 'react-native-fcm'
 
+import strings from '../resources/translations'
+
 import { setFCMToken } from '../actions/fcmActions'
 
 class PushController extends Component {
@@ -19,10 +21,11 @@ class PushController extends Component {
         this.notificationUnsubscribe = FCM.on('notification', (notification) =>
         {
             if(!notification.local_notification && !notification.opened_from_tray) {
+                let body = (this.props.vehicleType == 0 ? strings.tram : strings.bus) + " " + this.props.vehicleLine + " " + strings.arrivesShortly
                 FCM.presentLocalNotification({
                     id: "UNIQ_ID_STRING",                               // (optional for instant notification)
-                    title: "My Notification Title",                     // as FCM payload
-                    body: "My Notification Message",                    // as FCM payload (required)
+                    title: strings.arrivalNotificationTitle,                     // as FCM payload
+                    body: body,                    // as FCM payload (required)
                     sound: "default",                                   // as FCM payload
                     priority: "high",                                   // as FCM payload
                     click_action: "ACTION",                             // as FCM payload
@@ -32,8 +35,8 @@ class PushController extends Component {
                     auto_cancel: true,                                  // Android only (default true)
                     /*large_icon: "ic_launcher",                           // Android only
                      icon: "ic_notification",                            // as FCM payload*/
-                    big_text: "Show when notification is expanded",     // Android only
-                    sub_text: "This is a subText",                      // Android only
+                    big_text: body,     // Android only
+                    sub_text: "Stop2",                      // Android only
                     color: "red",                                       // Android only
                     vibrate: 300,                                       // Android only default: 300, no vibration if you pass null
                     tag: 'some_tag',                                    // Android only
@@ -65,7 +68,9 @@ class PushController extends Component {
 
 
 PushController.propTypes = {
-    setFCMToken: React.PropTypes.func
+    setFCMToken: React.PropTypes.func,
+    vehicleType: React.PropTypes.number,
+    vehicleLine: React.PropTypes.string
 }
 
 const mapStateToProps = () =>
