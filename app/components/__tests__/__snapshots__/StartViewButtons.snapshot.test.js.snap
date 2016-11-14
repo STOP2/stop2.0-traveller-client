@@ -1,0 +1,117 @@
+exports[`StartViewButtons component renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "center",
+      "padding": 5,
+    }
+  }>
+  <View
+    accessibilityComponentType="button"
+    accessibilityLabel="On the stop"
+    accessibilityTraits={undefined}
+    accessible={true}
+    hitSlop={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#00B9E4",
+        "borderRadius": 10,
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "marginBottom": 5,
+        "opacity": 1,
+      }
+    }
+    testID={undefined}>
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 100,
+          "width": 100,
+        }
+      } />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": "gotham-rounded-medium",
+          },
+          Object {
+            "color": "white",
+            "fontSize": 50,
+          },
+        ]
+      }>
+      On the stop
+    </Text>
+  </View>
+  <View
+    accessibilityComponentType="button"
+    accessibilityLabel="On the bus"
+    accessibilityTraits={undefined}
+    accessible={true}
+    hitSlop={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#F092CD",
+        "borderRadius": 10,
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "marginTop": 5,
+        "opacity": 1,
+      }
+    }
+    testID={undefined}>
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 100,
+          "width": 90,
+        }
+      } />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": "gotham-rounded-medium",
+          },
+          Object {
+            "color": "white",
+            "fontSize": 50,
+          },
+        ]
+      }>
+      On the bus
+    </Text>
+  </View>
+</View>
+`;

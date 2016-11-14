@@ -1,6 +1,6 @@
 import 'react-native'
 import React from 'react'
-import { TitleBar } from '../TitleBar'
+import StartViewButtons from '../StartViewButtons'
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
@@ -8,11 +8,11 @@ import renderer from 'react-test-renderer'
 
 jest.mock('react-native-localization')
 
-describe('TitleBar component', () =>
+describe('StartViewButtons component', () =>
 {
     it('renders correctly', () =>
     {
-        let tree = renderer.create(<TitleBar title="otsikko" />).toJSON()
+        let tree = renderer.create(<StartViewButtons />).toJSON()
 
         expect(tree).toMatchSnapshot()
     })

@@ -3,7 +3,6 @@ Object {
   "error": false,
   "isFetching": false,
   "isReady": false,
-  "routeIsReady": false,
   "routeStops": Object {},
   "sentStoprequest": true,
   "stops": Array [],
@@ -15,7 +14,6 @@ Object {
   "error": false,
   "isFetching": false,
   "isReady": true,
-  "routeIsReady": false,
   "routeStops": Object {},
   "sentStoprequest": false,
   "stops": Array [
@@ -52,7 +50,6 @@ Object {
   "error": false,
   "isFetching": false,
   "isReady": true,
-  "routeIsReady": false,
   "routeStops": Object {},
   "sentStoprequest": false,
   "stops": Array [
@@ -84,24 +81,11 @@ Object {
 }
 `;
 
-exports[`fetch reducer handles RECEIVE_ROUTE_STOPS action 1`] = `
-Object {
-  "error": false,
-  "isFetching": false,
-  "isReady": false,
-  "routeIsReady": true,
-  "routeStops": Array [],
-  "sentStoprequest": false,
-  "stops": Array [],
-}
-`;
-
 exports[`fetch reducer handles REQUEST_DEPARTURES action 1`] = `
 Object {
   "error": false,
   "isFetching": true,
   "isReady": false,
-  "routeIsReady": false,
   "routeStops": Object {},
   "sentStoprequest": false,
   "stops": Array [],
@@ -113,31 +97,6 @@ Object {
   "error": true,
   "isFetching": false,
   "isReady": false,
-  "routeIsReady": false,
-  "routeStops": Object {},
-  "sentStoprequest": false,
-  "stops": Array [],
-}
-`;
-
-exports[`fetch reducer handles REQUEST_ROUTE_STOPS action 1`] = `
-Object {
-  "error": false,
-  "isFetching": true,
-  "isReady": false,
-  "routeIsReady": false,
-  "routeStops": Object {},
-  "sentStoprequest": false,
-  "stops": Array [],
-}
-`;
-
-exports[`fetch reducer handles REQUEST_ROUTE_STOPS_ERROR action 1`] = `
-Object {
-  "error": false,
-  "isFetching": false,
-  "isReady": false,
-  "routeIsReady": false,
   "routeStops": Object {},
   "sentStoprequest": false,
   "stops": Array [],
@@ -149,7 +108,6 @@ Object {
   "error": false,
   "isFetching": false,
   "isReady": false,
-  "routeIsReady": false,
   "routeStops": Object {},
   "sentStoprequest": false,
   "stops": Array [],
@@ -161,7 +119,6 @@ Object {
   "error": false,
   "isFetching": false,
   "isReady": false,
-  "routeIsReady": false,
   "routeStops": Object {},
   "sentStoprequest": false,
   "stops": Array [],

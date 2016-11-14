@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/STOP2/stop2.0-traveller-client.svg?branch=master)](https://travis-ci.org/STOP2/stop2.0-traveller-client)
-[![Coverage Status](https://coveralls.io/repos/github/STOP2/stop2.0-traveller-client/badge.svg?branch=master)](https://coveralls.io/github/STOP2/stop2.0-traveller-client?branch=master)
+[![codecov](https://codecov.io/gh/STOP2/stop2.0-traveller-client/branch/master/graph/badge.svg)](https://codecov.io/gh/STOP2/stop2.0-traveller-client)
 
 # stop2.0
 Digital stop button for your mobile phone
@@ -31,7 +31,7 @@ npm install https://github.com/sreejithr/react-native-slide-button/archive/v1.3.
 
 Download and install Android Studio: https://developer.android.com/studio/index.html
 
-Open Android Studio -> configure -> SDK Manager -> Launch SDK Manager (or in command line: cd tools && ./android on android SDK folder) and install Android 6.0 and Android SDK Build-tools 23.0.3.
+Open Android Studio -> tools -> SDK Manager -> Launch SDK Manager (or in command line: cd tools && ./android on android SDK folder) and install Android 6.0 and Android SDK Build-tools 23.0.3.
 
 Set up Android keystore: Follow steps "Generating a signing key" and "Setting up gradle variables" at https://facebook.github.io/react-native/docs/signed-apk-android.html
 
@@ -66,4 +66,10 @@ apm install nuclide
 Install Eslint (https://eslint.org/) support for Atom:
 ```bash
 apm install linter-eslint
+```
+
+### Tests
+Run tests with
+```bash
+npm test
 ```

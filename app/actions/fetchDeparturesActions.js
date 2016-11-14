@@ -28,7 +28,7 @@ export let receiveDepartures = function(json)
     }
 }
 
-export let requestError = function(error)
+export let requestError = function()
 {
     return {
         type: REQUEST_ERROR,

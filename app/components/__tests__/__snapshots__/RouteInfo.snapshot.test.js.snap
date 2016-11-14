@@ -1,0 +1,102 @@
+exports[`RouteInfo component renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "center",
+    }
+  }>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "marginBottom": 20,
+      }
+    }>
+    <Image
+      resizeMode="contain"
+      source={1}
+      style={
+        Object {
+          "height": 50,
+          "width": 50,
+        }
+      } />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "marginLeft": 10,
+        }
+      }>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": "gotham-rounded-book",
+            },
+            Object {
+              "flex": 1,
+              "fontSize": 20,
+              "textAlign": "center",
+            },
+          ]
+        }>
+        506
+         
+        Meilahti
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "marginBottom": 2,
+      }
+    }>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": "gotham-rounded-book",
+          },
+          Object {
+            "fontSize": 20,
+            "textAlign": "center",
+          },
+        ]
+      }>
+      Arrives in: 
+    </Text>
+  </View>
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": "gotham-rounded-book",
+          },
+          Object {
+            "fontSize": 40,
+            "textAlign": "center",
+          },
+        ]
+      }>
+      5 min
+    </Text>
+  </View>
+</View>
+`;

@@ -8,6 +8,7 @@ import { DefaultText } from '../components/textComponents'
 import StopTitle from '../components/StopTitle'
 import BusListHeader from '../components/BusListHeader'
 import BusListRow from '../components/BusListRow'
+import { BoldTitleBar } from '../components/TitleBar'
 import AccessibilityView from '../components/AccessibilityView'
 
 import styles from '../styles/stylesheet'
@@ -22,13 +23,15 @@ class BusListPage extends Component {
     {
         super(props)
 
+        let ds = new ListView.DataSource({
+            rowHasChanged: (r1, r2) => r1 !== r2,
+            sectionHeaderHasChanged: (s1, s2) => s1 !== s2
+        })
+
         this.state = {
             dataBlob: {},
-            dataSource: new ListView.DataSource({
-                rowHasChanged: () => true,
-                sectionHeaderHasChanged: (s1, s2) => s1 !== s2
-            }),
-            stopNames: [],
+            dataSource: ds.cloneWithRowsAndSections({}, []),
+            stops: [],
             fetchIntervalRunning: false
         }
 
@@ -44,7 +47,8 @@ class BusListPage extends Component {
         this.createInterval(this.props)
     }
 
-    createInterval = (props) => {
+    createInterval = (props) =>
+    {
         this.fetchInterval = setInterval(() =>
         {
             if (!props.isFetching)
@@ -64,38 +68,37 @@ class BusListPage extends Component {
 
                 this.createInterval(nextProps)
             }
-        } else {
-            if (this.state.fetchIntervalRunning)
-            {
-                this.setState({fetchIntervalRunning: false})
-
-                clearInterval(this.fetchInterval)
-            }
         }
+        else if (this.state.fetchIntervalRunning)
+        {
+            this.setState({fetchIntervalRunning: false})
+
+            clearInterval(this.fetchInterval)
+        }
+
 
     // this.props.fetchDepartures(nextProps.locationData.latitude, nextProps.locationData.longitude)
 
         if (nextProps.stops.length > 0)
         {
-            this.setState({stopNames: []})
+            let tempDataBlob = Object.assign({}, this.state.dataBlob)
+            let stopsTemp = this.state.stops
+            let sections = []
 
             for (let index = 0; index < nextProps.stops.length; index++)
-          {
-                let tempDataBlob = this.state.dataBlob
-                let sectionID = nextProps.stops[index].stop.stop_code
+            {
+                let sectionID = nextProps.stops[index].stop.stop_id
 
+                sections.push(sectionID)
                 tempDataBlob[sectionID] = nextProps.stops[index].stop.schedule
 
-                let stopNamesTemp = this.state.stopNames
-
-                stopNamesTemp[nextProps.stops[index].stop.stop_code] = nextProps.stops[index].stop.stop_name
-
-                this.setState({dataBlob: tempDataBlob})
-                this.setState({
-                    dataSource: this.state.dataSource.cloneWithRowsAndSections(this.state.dataBlob),
-                    stopNames: stopNamesTemp
-                })
+                stopsTemp[nextProps.stops[index].stop.stop_id] = nextProps.stops[index].stop
             }
+            this.setState({
+                dataBlob: tempDataBlob,
+                dataSource: this.state.dataSource.cloneWithRowsAndSections(tempDataBlob, sections),
+                stops: stopsTemp
+            })
         }
     }
 
@@ -106,14 +109,15 @@ class BusListPage extends Component {
             Actions.stopRequest({
                 vehicle: rowData,
                 stop: {
-                    stopName: this.state.stopNames[sectionID],
+                    stopName: this.state.stops[sectionID].stop_name,
+                    stopCode: this.state.stops[sectionID].stop_code,
                     stopId: sectionID
                 }
             })
         }
 
         return (
-      <TouchableOpacity key={sectionID + '-' + rowID} onPress={goToStopRequestPage}>
+      <TouchableOpacity accessibilityComponentType="button" key={sectionID + '-' + rowID} onPress={goToStopRequestPage}>
           <BusListRow vehicleType={rowData.vehicle_type} line={rowData.line} destination={rowData.destination} arrival={rowData.arrival} />
         </TouchableOpacity>)
     }
@@ -131,7 +135,11 @@ class BusListPage extends Component {
 
     renderSectionHeader = (sectionData, sectionID) =>
     {
-        return (<StopTitle name={this.state.stopNames[sectionID]} line={sectionID} />)
+        return (<StopTitle
+                  name={this.state.stops[sectionID].stop_name}
+                  line={this.state.stops[sectionID].stop_code}
+                  distance={this.state.stops[sectionID].distance}
+                />)
     }
 
     renderSeparator = (sectionID, rowID) =>
@@ -143,6 +151,7 @@ class BusListPage extends Component {
     {
         return (
           <AccessibilityView style={styles.flex1} name={this.sceneName}>
+          <BoldTitleBar title={strings.chooseVehicle} noBorder={true}/>
           {this.props.error ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
               <BusListHeader />
               <ListView
