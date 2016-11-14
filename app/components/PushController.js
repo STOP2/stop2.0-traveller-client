@@ -37,7 +37,7 @@ class PushController extends Component {
                      icon: "ic_notification",                            // as FCM payload*/
                     big_text: body,     // Android only
                     sub_text: "Stop2",                      // Android only
-                    color: "red",                                       // Android only
+                    color: "blue",                                       // Android only
                     vibrate: 300,                                       // Android only default: 300, no vibration if you pass null
                     tag: 'some_tag',                                    // Android only
                     group: "group",                                     // Android only
