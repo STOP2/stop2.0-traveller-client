@@ -29,7 +29,9 @@ let strings = new LocalizedStrings({
         aboutToStop: 'You\'re about to stop',
         vehicleArrivesIn: 'Arrives in: ',
         minutes: 'minutes',
-        vehiclePassedStop: 'Vehicle has left the stop'
+        vehiclePassedStop: 'Vehicle has left the stop',
+        arrivesShortly: 'arrives shortly',
+        arrivalNotificationTitle: 'Get ready'
     },
 
     fi: {
@@ -40,7 +42,7 @@ let strings = new LocalizedStrings({
         line: 'Linja',
         dest: 'Määränpää',
         leaves: 'Lähtee',
-        bus: 'bussi',
+        bus: 'Bussi',
         stopsAt: 'Pysähtyy pysäkillä',
         back: 'Takaisin',
         tram: 'Ratikka',
@@ -61,7 +63,9 @@ let strings = new LocalizedStrings({
         minutes: 'minuuttia',
         vehiclePassedStop: 'Kulkuneuvo ohitti pysäkin',
         goToRouteStopsView: 'Valitse määränpää',
-        routeStops: 'Valitse pysäkki'
+        routeStops: 'Valitse pysäkki',
+        arrivesShortly: 'saapuu hetken kuluttua pysäkillesi',
+        arrivalNotificationTitle: 'Ole valmiina'
     }
 })
 
