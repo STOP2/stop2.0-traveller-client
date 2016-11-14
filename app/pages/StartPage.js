@@ -10,6 +10,8 @@ import strings from '../resources/translations'
 import StartViewButtons from '../components/StartViewButtons'
 import AccessibilityView from '../components/AccessibilityView'
 
+import { getLocation } from '../actions/locationActions'
+
 class StartView extends Component {
     constructor(props)
     {
