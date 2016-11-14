@@ -41,5 +41,8 @@
     ],
     "modulePathIgnorePatterns": ["node_modules/react-native/node_modules/"],
     "collectCoverageFrom": ["app/**/*.{js,jsx}", "!app/{config,store}/*", "!app/reducers/index.js"]
+  },
+  "rnpm": {
+    "assets": ["assets"] 
   }
 }
