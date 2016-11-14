@@ -15,7 +15,7 @@ describe('fetch route stops reducer', () =>
 
     it('handles REQUEST_ROUTE_STOPS_ERROR action', () =>
     {
-        expect(fetchRouteStopsReducer(initialState, requestError('error'))).toMatchSnapshot()
+        expect(fetchRouteStopsReducer(initialState, requestError(true))).toMatchSnapshot()
     })
 
     it('handles RECEIVE_ROUTE_STOPS action', () =>

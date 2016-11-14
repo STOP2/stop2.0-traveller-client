@@ -1,7 +1,6 @@
 import fetchReducer, { initialState } from '../../reducers/fetchReducer'
 import { requestDepartures, receiveDepartures, requestError } from '../../actions/fetchDeparturesActions'
 import { requestStoprequest, receiveConfirm  } from '../../actions/sendStoprequest'
-import { requestRouteStops, receiveRouteStops, requestError as requestRouteStopsError } from '../../actions/fetchRouteStops'
 
 describe('fetch reducer', () =>
 {
@@ -42,20 +41,5 @@ describe('fetch reducer', () =>
     it('handles SEND_STOPREQUEST action', () =>
     {
         expect(fetchReducer(initialState, requestStoprequest(1, 2, 'stop'))).toMatchSnapshot()
-    })
-
-    it('handles REQUEST_ROUTE_STOPS action', () =>
-    {
-        expect(fetchReducer(initialState, requestRouteStops(1, 2))).toMatchSnapshot()
-    })
-
-    it('handles RECEIVE_ROUTE_STOPS action', () =>
-    {
-        expect(fetchReducer(initialState, receiveRouteStops({stops: []}))).toMatchSnapshot()
-    })
-
-    it('handles REQUEST_ROUTE_STOPS_ERROR action', () =>
-    {
-        expect(fetchReducer(initialState, requestRouteStopsError(true))).toMatchSnapshot()
     })
 })
