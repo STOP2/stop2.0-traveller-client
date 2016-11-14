@@ -1,0 +1,5 @@
+exports[`AccessibilityView component renders correctly 1`] = `
+<View
+  importantForAccessibility="yes"
+  style={undefined} />
+`;
