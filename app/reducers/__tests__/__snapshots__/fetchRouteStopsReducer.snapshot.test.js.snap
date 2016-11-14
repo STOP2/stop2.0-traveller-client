@@ -1,0 +1,41 @@
+exports[`fetch route stops reducer handles RECEIVE_ROUTE_STOPS action 1`] = `
+Object {
+  "errorFetchingStops": false,
+  "isFetchingStops": false,
+  "routeIsReady": true,
+  "routeStops": Array [],
+  "stops": Array [],
+}
+`;
+
+exports[`fetch route stops reducer handles REQUEST_ROUTE_STOPS action 1`] = `
+Object {
+  "errorFetchingStops": false,
+  "isFetching": true,
+  "isFetchingStops": false,
+  "routeIsReady": false,
+  "routeStops": Object {},
+  "stops": Array [],
+}
+`;
+
+exports[`fetch route stops reducer handles REQUEST_ROUTE_STOPS_ERROR action 1`] = `
+Object {
+  "errorFetchingStops": false,
+  "isFetchingStops": false,
+  "routeIsReady": false,
+  "routeStops": Object {},
+  "sentStoprequest": false,
+  "stops": Array [],
+}
+`;
+
+exports[`fetch route stops reducer returns the same state on an unhandled action 1`] = `
+Object {
+  "errorFetchingStops": false,
+  "isFetchingStops": false,
+  "routeIsReady": false,
+  "routeStops": Object {},
+  "stops": Array [],
+}
+`;

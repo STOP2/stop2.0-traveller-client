@@ -1,4 +1,4 @@
 import React, { AppRegistry } from 'react-native';
-import App from './app/containers/app.js';
+import AppIos from './app/containers/appIos.js';
 
-AppRegistry.registerComponent('Stop2TravellerClient', () => App);
+AppRegistry.registerComponent('Stop2TravellerClient', () => AppIos);

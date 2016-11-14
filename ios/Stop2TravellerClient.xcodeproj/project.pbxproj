@@ -22,6 +22,9 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		146E264946774D3EB95E1471 /* libRNFIRMessaging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE2CBA35AB840E3A317CDC6 /* libRNFIRMessaging.a */; };
+		6299AE231DD2004300EF657A /* gotham-rounded-book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6299AE211DD2004300EF657A /* gotham-rounded-book.otf */; };
+		6299AE241DD2004300EF657A /* gotham-rounded-medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6299AE221DD2004300EF657A /* gotham-rounded-medium.otf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		BD9E593009FC47548DB14909 /* libReactNativeLocalization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EF517655BE94AD7B3264E1D /* libReactNativeLocalization.a */; };
 /* End PBXBuildFile section */
@@ -90,6 +93,13 @@
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
 		};
+		6299AE1F1DD2001F00EF657A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 770A5441D3F04C7985E4E991 /* RNFIRMessaging.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNFIRMessaging;
+		};
 		629FC4A11D915DDB0097180E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C9B62DC9494F416A93FD0672 /* ReactNativeLocalization.xcodeproj */;
@@ -134,7 +144,11 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Stop2TravellerClient/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		4EF517655BE94AD7B3264E1D /* libReactNativeLocalization.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeLocalization.a; sourceTree = "<group>"; };
+		6299AE211DD2004300EF657A /* gotham-rounded-book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "gotham-rounded-book.otf"; path = "../android/app/src/main/assets/fonts/gotham-rounded-book.otf"; sourceTree = "<group>"; };
+		6299AE221DD2004300EF657A /* gotham-rounded-medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "gotham-rounded-medium.otf"; path = "../android/app/src/main/assets/fonts/gotham-rounded-medium.otf"; sourceTree = "<group>"; };
+		770A5441D3F04C7985E4E991 /* RNFIRMessaging.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFIRMessaging.xcodeproj; path = "../node_modules/react-native-fcm/ios/RNFIRMessaging.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		7DE2CBA35AB840E3A317CDC6 /* libRNFIRMessaging.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFIRMessaging.a; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		C9B62DC9494F416A93FD0672 /* ReactNativeLocalization.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeLocalization.xcodeproj; path = "../node_modules/react-native-localization/ReactNativeLocalization.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +177,7 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				BD9E593009FC47548DB14909 /* libReactNativeLocalization.a in Frameworks */,
+				146E264946774D3EB95E1471 /* libRNFIRMessaging.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +279,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		6299AE111DD2001F00EF657A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6299AE201DD2001F00EF657A /* libRNFIRMessaging.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		629FC4941D915DDB0097180E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +317,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				C9B62DC9494F416A93FD0672 /* ReactNativeLocalization.xcodeproj */,
+				770A5441D3F04C7985E4E991 /* RNFIRMessaging.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -309,6 +333,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				6299AE211DD2004300EF657A /* gotham-rounded-book.otf */,
+				6299AE221DD2004300EF657A /* gotham-rounded-medium.otf */,
 				13B07FAE1A68108700A75B9A /* Stop2TravellerClient */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* Stop2TravellerClientTests */,
@@ -437,6 +463,10 @@
 					ProductGroup = 629FC4941D915DDB0097180E /* Products */;
 					ProjectRef = C9B62DC9494F416A93FD0672 /* ReactNativeLocalization.xcodeproj */;
 				},
+				{
+					ProductGroup = 6299AE111DD2001F00EF657A /* Products */;
+					ProjectRef = 770A5441D3F04C7985E4E991 /* RNFIRMessaging.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -503,6 +533,13 @@
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		6299AE201DD2001F00EF657A /* libRNFIRMessaging.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFIRMessaging.a;
+			remoteRef = 6299AE1F1DD2001F00EF657A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		629FC4A21D915DDB0097180E /* libReactNativeLocalization.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -538,7 +575,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6299AE241DD2004300EF657A /* gotham-rounded-medium.otf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				6299AE231DD2004300EF657A /* gotham-rounded-book.otf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -617,6 +656,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stop2TravellerClient.app/Stop2TravellerClient";
@@ -634,6 +674,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stop2TravellerClient.app/Stop2TravellerClient";
@@ -650,6 +691,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-localization",
+					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
 				);
 				INFOPLIST_FILE = Stop2TravellerClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -671,6 +713,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-localization",
+					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
 				);
 				INFOPLIST_FILE = Stop2TravellerClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -722,6 +765,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-localization",
+					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -763,6 +807,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-localization",
+					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;

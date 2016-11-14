@@ -87,12 +87,12 @@ class BusListPage extends Component {
 
             for (let index = 0; index < nextProps.stops.length; index++)
             {
-                let sectionID = nextProps.stops[index].stop.stop_code
+                let sectionID = nextProps.stops[index].stop.stop_id
 
                 sections.push(sectionID)
                 tempDataBlob[sectionID] = nextProps.stops[index].stop.schedule
 
-                stopsTemp[nextProps.stops[index].stop.stop_code] = nextProps.stops[index].stop
+                stopsTemp[nextProps.stops[index].stop.stop_id] = nextProps.stops[index].stop
             }
             this.setState({
                 dataBlob: tempDataBlob,
@@ -110,8 +110,8 @@ class BusListPage extends Component {
                 vehicle: rowData,
                 stop: {
                     stopName: this.state.stops[sectionID].stop_name,
-                    stopCode: sectionID,
-                    stopId: this.state.stops[sectionID].stop_id,
+                    stopCode: this.state.stops[sectionID].stop_code,
+                    stopId: sectionID
                 }
             })
         }
@@ -137,7 +137,7 @@ class BusListPage extends Component {
     {
         return (<StopTitle
                   name={this.state.stops[sectionID].stop_name}
-                  line={sectionID}
+                  line={this.state.stops[sectionID].stop_code}
                   distance={this.state.stops[sectionID].distance}
                 />)
     }
