@@ -150,7 +150,7 @@ class BusListPage extends Component {
     renderList = () =>
     {
         return (
-            <View>
+            <View style={styles.flex1}>
               {this.props.fetchDeparturesError &&
                <DefaultText style={styles.error}>
                  {strings.backendError}
