@@ -14,7 +14,7 @@ const fetchRouteStopsReducer = (state = initialState, action) =>
     {
 
     case REQUEST_ROUTE_STOPS:
-        return Object.assign({}, state, {isFetching: action.isFetching})
+        return Object.assign({}, state, {isFetchingStops: action.isFetching})
 
     case RECEIVE_ROUTE_STOPS:
         return Object.assign({}, state, {
