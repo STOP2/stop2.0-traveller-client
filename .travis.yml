@@ -6,13 +6,14 @@ env:
 install:
 - npm install https://github.com/sreejithr/react-native-slide-button/archive/v1.3.0.tar.gz
 - npm install
+- sed -i "s/23\.0\.1/25.0.0/g" node_modules/react-native-localization/android/build.gradle
 jdk:
   - oraclejdk8
 android:
   components:
   - platform-tools
   - tools
-  - build-tools-23.0.1
+  - build-tools-25.0.0
   - android-23
   - extra-android-m2repository
 licenses:
