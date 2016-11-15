@@ -186,8 +186,9 @@ class BusListPage extends Component {
             return (
               this.renderList()
             )
-        }
-        else
+        } else if (this.props.error) {
+            return (<DefaultText style={styles.error}>{strings.backendError}</DefaultText>)
+        } else
         {
             return (
               this.renderSpinner()
