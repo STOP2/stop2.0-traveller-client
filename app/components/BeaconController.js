@@ -10,41 +10,41 @@ const FOREGROUND_SCAN_PERIOD = 5000
 const BACKGROUND_SCAN_PERIOD = 5000
 
 class BeaconController extends Component {
-    constructor(props) 
+    constructor(props)
 {
         super(props)
 
         this.state = {beaconDetected: false }
 
         this.beacons = [{
-            id: 'ebefd083-70a2-47c8-9837-e7b5634df524',
+            id: '3D80997D-5415-4F7E-8117-82CE9B407E3E',
             latitude: 60.19942,
             longitude: 24.93461
         }]
     }
 
-    async getBeacons() 
+    async getBeacons()
 {
         Beacons.setForegroundScanPeriod(FOREGROUND_SCAN_PERIOD)
         Beacons.setBackgroundScanPeriod(BACKGROUND_SCAN_PERIOD)
 
-        try 
+        try
 {
             await Beacons.startRangingBeaconsInRegion('REGION1', this.beacons[0].id)
             console.log('Beacons ranging started succesfully!')
         }
-        catch (err) 
+        catch (err)
 {
             console.log(`Beacons ranging not started, error: ${error}`)
         }
 
         // Print a log of the detected iBeacons (1 per second)
-        DeviceEventEmitter.addListener('beaconsDidRange', (data) => 
+        DeviceEventEmitter.addListener('beaconsDidRange', (data) =>
 {
             console.log(data)
-            if (data.beacons.length > 0) 
+            if (data.beacons.length > 0)
 {
-                if (!this.state.beaconDetected) 
+                if (!this.state.beaconDetected)
 {
                     this.props.setLocation({latitude: this.beacons[0].latitude, longitude: this.beacons[0].longitude})
 
@@ -52,7 +52,7 @@ class BeaconController extends Component {
                 }
                 this.setState({beaconDetected: true})
             }
-            else 
+            else
 {
                 if (this.state.beaconDetected)
                     alert('Poistuit pysäkiltä Pasilan asema (2181)')
@@ -61,7 +61,7 @@ class BeaconController extends Component {
         })
     }
 
-    componentWillMount() 
+    componentWillMount()
 {
         this.getBeacons()
     }
