@@ -4,6 +4,8 @@ export const SEND_STOPREQUEST = 'SEND_STOPREQUEST'
 export const RECEIVE_CONFIRM = 'RECEIVE_CONFIRM'
 export const REQUEST_ERROR = 'REQUEST_ERROR'
 
+const API_ENDPOINT = '/stoprequests'
+
 export let requestStoprequest = function(tripId, stopId, requestType)
 {
     return {
@@ -43,7 +45,7 @@ export let sendStoprequest = function(tripId, stopId, requestType)
             request_type: requestType
         })
 
-        return fetch(config.API_URL + '/stoprequests', {
+        return fetch(config.API_URL + API_ENDPOINT, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: stopRequest
