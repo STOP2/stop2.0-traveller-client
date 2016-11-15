@@ -268,6 +268,10 @@ const styles = StyleSheet.create({
     vehicleMinutesLeft: {
         fontSize: 40,
         textAlign: 'center'
+    },
+    fetchDeparturesError: {
+        textAlign: 'center',
+        fontSize: 30
     }
 })
 

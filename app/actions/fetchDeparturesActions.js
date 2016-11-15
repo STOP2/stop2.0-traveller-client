@@ -7,6 +7,8 @@ export const REQUEST_DEPARTURES = 'REQUEST_DEPARTURES'
 export const RECEIVE_DEPARTURES = 'RECEIVE_DEPARTURES'
 export const REQUEST_ERROR = 'REQUEST_ERROR'
 
+const API_ENDPOINT = '/stops'
+
 export let requestDepartures = function(latitude, longitude)
 {
     return {
@@ -36,19 +38,24 @@ export let requestError = function()
     }
 }
 
-export let fetchDepartures = function(latitude, longitude)
-{
+export let fetchDepartures = function(latitude, longitude) {
     let radiusString = ''
 
     if (USE_LOCATION_RADIUS) radiusString = '&rad=' + LOCATION_RADIUS
 
-    return dispatch =>
-    {
+    return dispatch => {
         dispatch(requestDepartures(latitude, longitude))
 
-        return fetch(config.API_URL + '/stops?lat=' + latitude + '&lon=' + longitude + radiusString)
-      .then(response => response.json())
-      .then(json => dispatch(receiveDepartures(json)))
-      .catch(error => dispatch(requestError(error)))
+        return fetch(config.API_URL + API_ENDPOINT + '?lat=' + latitude + '&lon=' + longitude + radiusString)
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                }
+                else {
+                    dispatch(requestError())
+                }
+            })
+            .then(json => dispatch(receiveDepartures(json)))
+            .catch(error => dispatch(requestError(error)))
     }
 }
