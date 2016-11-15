@@ -109,7 +109,7 @@ class StopRequestPage extends Component{
   {
         const sendStoprequest = () =>
         {
-            this.props.sendStoprequest(this.props.vehicle.trip_id, this.props.stop.stopId, 'stop')
+            this.props.sendStoprequest(this.props.vehicle, this.props.stop, 'stop')
         }
 
         if (this.state.renderConfirm)
@@ -130,13 +130,7 @@ class StopRequestPage extends Component{
     {
         const goToStopRequestPage = () =>
       {
-            Actions.routeStops({
-                tripId: this.props.vehicle.trip_id,
-                stopId: this.props.stop.stopId,
-                vehicleLine: this.props.vehicle.line,
-                vehicleDestination: this.props.vehicle.destination
-
-            })
+            Actions.routeStops({})
         }
 
         if (!this.state.renderConfirm)
@@ -169,12 +163,12 @@ class StopRequestPage extends Component{
 const mapStateToProps = (state) =>
 {
     return {
-        sent: state.fetchReducer.sentStoprequest,
+        sent: state.stopRequestReducer.sentStoprequest,
         routeStops: state.fetchRouteStopsReducer.routeStops,
         isFetchingStops: state.fetchRouteStopsReducer.isFetchingStops,
         routeIsReady: state.fetchRouteStopsReducer.routeIsReady,
         errorFetchingStops: state.fetchRouteStopsReducer.errorFetchingStops,
-        error: state.fetchReducer.error,
+        error: state.stopRequestReducer.error,
         scene: state.routes.scene
     }
 }
@@ -182,9 +176,9 @@ const mapStateToProps = (state) =>
 const mapDispatchToProps = (dispatch) =>
 {
     return {
-        sendStoprequest: (busId, stopId, requestType) =>
+        sendStoprequest: (vehicle, stop, requestType) =>
        {
-            dispatch(sendStoprequest(busId, stopId, requestType))
+            dispatch(sendStoprequest(vehicle, stop, requestType))
         },
         fetchRouteStops: (tripId, BusId, current) =>
         {
