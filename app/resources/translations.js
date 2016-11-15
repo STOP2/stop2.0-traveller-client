@@ -31,7 +31,8 @@ let strings = new LocalizedStrings({
         minutes: 'minutes',
         vehiclePassedStop: 'Vehicle has left the stop',
         locationPermissionTitle: 'Location Permission',
-        locationPermissionMessage: 'We need permission to use your location. Please grant the permission on the next view.'
+        locationPermissionMessage: 'We need permission to use your location. Please grant the permission on the next view.',
+        fetchDeparturesError: 'Could not fetch departures.'
     },
 
     fi: {
@@ -65,7 +66,8 @@ let strings = new LocalizedStrings({
         goToRouteStopsView: 'Valitse määränpää',
         routeStops: 'Valitse pysäkki',
         locationPermissionTitle: 'Sijainnin määritys',
-        locationPermissionMessage: 'Tarvitsemme luvan määrittää sijaintisi. Hyväksy lupapyyntö seuraavassa näkymässä.'
+        locationPermissionMessage: 'Tarvitsemme luvan määrittää sijaintisi. Hyväksy lupapyyntö seuraavassa näkymässä.',
+        fetchDeparturesError: 'Virhe aikataulutietojen hakemisessa'
     }
 })
 
