@@ -3,13 +3,6 @@ import { connect } from 'react-redux'
 import { View } from 'react-native'
 
 export class AccessibilityView extends Component {
-    constructor(props)
-    {
-        super(props)
-
-        this.state = {}
-    }
-
     render()
     {
         return (

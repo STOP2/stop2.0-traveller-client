@@ -18,9 +18,9 @@ import { fetchRouteStops } from '../actions/fetchRouteStops'
 const UPDATE_INTERVAL_IN_SECS = 10
 
 class StopRequestPage extends Component{
-    constructor(props)
-  {
-        super(props)
+    constructor()
+    {
+        super()
 
         this.state = {
             renderConfirm: true,
