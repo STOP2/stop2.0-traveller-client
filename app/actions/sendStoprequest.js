@@ -2,6 +2,7 @@ import config from '../config/config'
 
 export const SEND_STOPREQUEST = 'SEND_STOPREQUEST'
 export const RECEIVE_CONFIRM = 'RECEIVE_CONFIRM'
+export const REQUEST_ERROR = 'REQUEST_ERROR'
 
 export let requestStoprequest = function(tripId, stopId, requestType)
 {
@@ -22,6 +23,14 @@ export let receiveConfirm = function()
     }
 }
 
+export let requestError = function()
+{
+    return {
+        type: REQUEST_ERROR,
+        error: true
+    }
+}
+
 export let sendStoprequest = function(tripId, stopId, requestType)
 {
     return dispatch =>
@@ -39,6 +48,16 @@ export let sendStoprequest = function(tripId, stopId, requestType)
             headers: {'Content-Type': 'application/json'},
             body: stopRequest
         })
-      .then(dispatch(receiveConfirm()))
+            .then(response =>
+            {
+                if (response.ok) {
+                    return response.json()
+                }
+                else {
+                    dispatch(requestError())
+                }
+            })
+            .then(dispatch(receiveConfirm()))
+            .catch(error => dispatch(requestError(error)))
     }
 }
