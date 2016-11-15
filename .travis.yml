@@ -33,7 +33,7 @@ before_deploy:
 - rvm 1.9.3 do gem install octokit -v 4.3.0
 - cp $TRAVIS_BUILD_DIR/.keystore $HOME
 - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 $TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release-unsigned.apk STOP2 -keystore $HOME/.keystore -storepass $storepass -keypass $keypass
-- "${ANDROID_HOME}/build-tools/23.0.1/zipalign 4 $TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release-unsigned.apk $TRAVIS_BUILD_DIR/android/STOP2.apk"
+- "${ANDROID_HOME}/build-tools/25.0.0/zipalign 4 $TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release-unsigned.apk $TRAVIS_BUILD_DIR/android/STOP2.apk"
 deploy:
   provider: releases
   api_key:
