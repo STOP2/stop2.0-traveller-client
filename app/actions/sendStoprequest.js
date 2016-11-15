@@ -27,6 +27,8 @@ export let receiveConfirm = function()
 
 export let requestError = function()
 {
+    alert("Vituiks meni")
+    
     return {
         type: REQUEST_ERROR,
         error: true
@@ -44,8 +46,8 @@ export let sendStoprequest = function(tripId, stopId, requestType)
             stop_id: stopId,
             request_type: requestType
         })
-
-        return fetch(config.API_URL + API_ENDPOINT, {
+//config.API_URL + API_ENDPOINT
+        return fetch('http://httpstat.us/404', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: stopRequest

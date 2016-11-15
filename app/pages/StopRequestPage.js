@@ -112,7 +112,7 @@ class StopRequestPage extends Component{
             this.props.sendStoprequest(this.props.vehicle.trip_id, this.props.stop.stopId, 'stop')
         }
 
-        if (this.state.renderConfirm)
+        if (!this.state.sent || this.props.error)
       {
             return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide + ' →'} />)
         }
@@ -139,7 +139,7 @@ class StopRequestPage extends Component{
             })
         }
 
-        if (!this.state.renderConfirm)
+        if (!this.state.sent && !this.props.error)
         {
             return (
           <TouchableOpacity accessibilityComponentType="button" accessibilityLabel={strings.goToRouteStopsView} style={styles.goToRouteViewButton} onPress={goToStopRequestPage}>
@@ -196,6 +196,7 @@ const mapDispatchToProps = (dispatch) =>
 
 StopRequestPage.propTypes = {
     fetchRouteStops: React.PropTypes.func.isRequired,
+    error: React.PropTypes.bool.isRequired,
     vehicle: React.PropTypes.shape({
         trip_id: React.PropTypes.string.isRequired,
         vehicle_type: React.PropTypes.number.isRequired,
