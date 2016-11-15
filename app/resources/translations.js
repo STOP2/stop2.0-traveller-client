@@ -31,7 +31,7 @@ let strings = new LocalizedStrings({
         minutes: 'minutes',
         vehiclePassedStop: 'Vehicle has left the stop',
         locationPermissionTitle: 'Location Permission',
-        locationPermissionMessage: 'Location Permission'
+        locationPermissionMessage: 'We need permission to use your location. Please grant the permission on the next view.'
     },
 
     fi: {
@@ -64,8 +64,8 @@ let strings = new LocalizedStrings({
         vehiclePassedStop: 'Kulkuneuvo ohitti pysäkin',
         goToRouteStopsView: 'Valitse määränpää',
         routeStops: 'Valitse pysäkki',
-        locationPermissionTitle: 'Sijainnin käyttölupa',
-        locationPermissionMessage: 'Sijainnin käyttölupa'
+        locationPermissionTitle: 'Sijainnin määritys',
+        locationPermissionMessage: 'Tarvitsemme luvan määrittää sijaintisi. Hyväksy lupapyyntö seuraavassa näkymässä.'
     }
 })
 
