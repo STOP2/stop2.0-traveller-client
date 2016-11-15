@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { ActivityIndicator, View, TouchableOpacity } from 'react-native'
-import { checkPermission, requestPermission } from 'react-native-android-permissions'
 
 import { DefaultText } from '../components/textComponents'
 import styles from '../styles/stylesheet'
