@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ActivityIndicator, View, TouchableOpacity } from 'react-native'
-import { checkPermission, requestPermission } from 'react-native-android-permissions'
+import { ActivityIndicator, View, TouchableOpacity, PermissionsAndroid } from 'react-native'
 
 import { DefaultText } from '../components/textComponents'
 import styles from '../styles/stylesheet'
@@ -22,26 +21,29 @@ class StartView extends Component {
         }
     }
 
+    async requestLocationPermission() {
+        try {
+            const granted = await PermissionsAndroid.requestPermission(
+                PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+                {
+                    'title': strings.locationPermissionTitle,
+                    'message': strings.locationPermissionMessage
+                }
+            )
+
+            if (granted) {
+                this.props.getLocation()
+            } else {
+                this.setState({locationPermissionsError: true})
+            }
+        } catch (err) {
+            this.setState({locationError: true})
+        }
+    }
+
     componentWillMount = () =>
     {
-        checkPermission('android.permission.ACCESS_FINE_LOCATION').then(() =>
-        {
-            this.props.getLocation()
-        }, () =>
-        {
-            setTimeout(() =>
-            {
-                requestPermission('android.permission.ACCESS_FINE_LOCATION').then(() =>
-            {
-                    this.props.getLocation()
-                }, () =>
-            {
-                    this.setState({locationPermissionsError: true})
-                })
-          // for the correct StatusBar behaviour with translucent={true} we need to wait a bit and ask for permission after the first render cycle
-          // (check https://github.com/facebook/react-native/issues/9413 for more info)
-            }, 0)
-        })
+        this.requestLocationPermission()
     }
     
     render()
