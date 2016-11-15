@@ -150,60 +150,73 @@ class BusListPage extends Component {
     renderList = () =>
     {
         return (
-          <AccessibilityView style={styles.flex1} name={this.sceneName}>
-          <BoldTitleBar title={strings.chooseVehicle} noBorder={true}/>
-          {this.props.fetchDeparturesError ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
+            <View>
+              {this.props.fetchDeparturesError &&
+               <DefaultText style={styles.error}>
+                 {strings.backendError}
+               </DefaultText>}
               <BusListHeader />
               <ListView
-                  dataSource={this.state.dataSource}
-                  renderRow={this.renderRow}
-                  renderSectionHeader={this.renderSectionHeader}
-                  renderFooter={this.renderFooter}
-                  renderSeparator={this.renderSeparator}
+               dataSource={this.state.dataSource}
+               renderRow={this.renderRow}
+               renderSectionHeader={this.renderSectionHeader}
+               renderFooter={this.renderFooter}
+               renderSeparator={this.renderSeparator}
               />
-          </AccessibilityView>
+            </View>
         )
     }
 
     renderSpinner = () =>
     {
         return (
-            <AccessibilityView name={this.sceneName}>
-          <View style={styles.spinnerContainer}>
-            <View style={styles.spinnerBackground}>
-              <ActivityIndicator
-                size="large"
-                animating={true}
-              />
+            <View style={styles.spinnerContainer}>
+              <View style={styles.spinnerBackground}>
+                <ActivityIndicator
+                 size="large"
+                 animating={true}
+                />
+              </View>
             </View>
-          </View>
-                </AccessibilityView>
         )
     }
 
     renderFetchError = () =>
     {
         return (
-            <AccessibilityView name={this.sceneName}>
-                <DefaultText style={styles.fetchDeparturesError}>{strings.fetchDeparturesError}</DefaultText>
-            </AccessibilityView>
+            <View style={styles.spinnerContainer}>
+              <View style={styles.spinnerBackground}>
+                <DefaultText style={styles.fetchDeparturesError}>
+                  {strings.fetchDeparturesError}
+                </DefaultText>
+              </View>
+            </View>
         )
     }
 
     render()
     {
+        let viewElement
+
         if (this.props.isDeparturesReady)
         {
-            return this.renderList()
+            viewElement = this.renderList()
         }
         else if (this.props.fetchDeparturesError)
         {
-            return this.renderFetchError()
+            viewElement = this.renderFetchError()
         }
         else
         {
-            return this.renderSpinner()
+            viewElement = this.renderSpinner()
         }
+
+        return (
+            <AccessibilityView style={styles.flex1} name={this.sceneName}>
+              <BoldTitleBar title={strings.chooseVehicle} noBorder={true}/>
+              {viewElement}
+            </AccessibilityView>
+        )
     }
 }
 
