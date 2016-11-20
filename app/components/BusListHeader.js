@@ -7,13 +7,6 @@ import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
 class BusListHeader extends Component {
-    constructor(props)
-    {
-        super(props)
-
-        this.state = {}
-    }
-
     render()
     {
         return (

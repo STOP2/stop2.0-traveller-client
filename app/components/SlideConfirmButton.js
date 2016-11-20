@@ -6,13 +6,6 @@ import { BoldText } from '../components/textComponents'
 import styles from '../styles/stylesheet'
 
 class SlideConfirmButton extends Component {
-    constructor(props)
-    {
-        super(props)
-
-        this.state = {}
-    }
-
     render()
     {
         return (
