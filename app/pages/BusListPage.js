@@ -32,6 +32,7 @@ class BusListPage extends Component {
             dataBlob: {},
             dataSource: ds.cloneWithRowsAndSections({}, []),
             stops: [],
+            stopCount: 0,
             fetchIntervalRunning: false
         }
 
@@ -97,7 +98,8 @@ class BusListPage extends Component {
             this.setState({
                 dataBlob: tempDataBlob,
                 dataSource: this.state.dataSource.cloneWithRowsAndSections(tempDataBlob, sections),
-                stops: stopsTemp
+                stops: stopsTemp,
+                stopCount: nextProps.stops.length
             })
         }
     }
@@ -149,6 +151,39 @@ class BusListPage extends Component {
 
     renderList = () =>
     {
+        let listElement
+        if (this.state.dataSource.getRowCount() > 0)
+        {
+            listElement = <ListView
+                           dataSource={this.state.dataSource}
+                           renderRow={this.renderRow}
+                           renderSectionHeader={this.renderSectionHeader}
+                           renderFooter={this.renderFooter}
+                           renderSeparator={this.renderSeparator}
+                          />
+        }
+        else
+        {
+            let infoText
+
+            if (this.state.stopCount > 0)
+            {
+                infoText = strings.noDepartures
+            }
+            else
+            {
+                infoText = strings.noStops
+            }
+
+            listElement = <View style={styles.spinnerContainer}>
+                            <View style={styles.spinnerBackground}>
+                              <DefaultText style={styles.fetchDeparturesError}>
+                                {infoText}
+                              </DefaultText>
+                            </View>
+                          </View>
+        }
+
         return (
             <View style={styles.flex1}>
               {this.props.fetchDeparturesError &&
@@ -156,13 +191,7 @@ class BusListPage extends Component {
                  {strings.backendError}
                </DefaultText>}
               <BusListHeader />
-              <ListView
-               dataSource={this.state.dataSource}
-               renderRow={this.renderRow}
-               renderSectionHeader={this.renderSectionHeader}
-               renderFooter={this.renderFooter}
-               renderSeparator={this.renderSeparator}
-              />
+              {listElement}
             </View>
         )
     }
