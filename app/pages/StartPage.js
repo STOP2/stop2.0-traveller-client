@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ActivityIndicator, View, TouchableOpacity, PermissionsAndroid } from 'react-native'
+import { ActivityIndicator, View, TouchableOpacity, PermissionsAndroid, Linking } from 'react-native'
 
 import { DefaultText } from '../components/textComponents'
 import styles from '../styles/stylesheet'
@@ -10,7 +10,7 @@ import StartViewButtons from '../components/StartViewButtons'
 import AccessibilityView from '../components/AccessibilityView'
 
 import { getLocation } from '../actions/locationActions'
-import * as Linking from "react-native/Libraries/Components/Intent/IntentAndroid.android";
+
 
 class StartView extends Component {
     constructor()
@@ -45,6 +45,10 @@ class StartView extends Component {
     componentWillMount = () =>
     {
         this.requestLocationPermission()
+    }
+
+    componentDidMount = () =>
+    {
         var url = Linking.getInitialURL().then((url) => {
             if (url) {
                 console.log('Initial url is: ' + url);
