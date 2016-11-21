@@ -4,7 +4,7 @@ import { View, BackAndroid } from 'react-native'
 import { sendStoprequest } from '../actions/sendStoprequest'
 
 import { TitleBar, BoldTitleBar } from '../components/TitleBar'
-import RouteInfo from '../components/RouteInfo'
+import { RouteInfoForStop } from '../components/RouteInfo'
 import SlideConfirmButton from '../components/SlideConfirmButton'
 import AccessibilityView from '../components/AccessibilityView'
 import {DefaultText} from '../components/textComponents'
@@ -125,13 +125,11 @@ class RouteStopRequestPage extends Component{
     {
         return (
           <View>
-            <View style={styles.flex1}>
-              <TitleBar title={this.props.startStop.stopName + '  (' + this.props.startStop.stopCode + ')'} />
-              <RouteInfo title={strings.aboutToStop} vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination} vehicleMinutesLeft={this.state.minutesLeftToStart}/>
+            <View>
+              <RouteInfoForStop stopName={this.props.startStop.stopName} stopCode={this.props.startStop.stopCode} vehicleMinutesLeft={this.state.minutesLeftToStart}/>
             </View>
-            <View style={styles.flex1}>
-              <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopCode + ')'} />
-              <RouteInfo title={strings.aboutToStop} vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination} vehicleMinutesLeft={this.state.minutesLeftToEnd}/>
+            <View>
+              <RouteInfoForStop stopName={this.props.stop.stopName} stopCode={this.props.stop.stopCode} vehicleMinutesLeft={this.state.minutesLeftToEnd}/>
             </View>
           </View>
         )
@@ -141,7 +139,7 @@ class RouteStopRequestPage extends Component{
   {
         const sendStoprequest = () =>
         {
-            this.props.sendStoprequest(this.props.vehicle.trip_id, this.props.stop.stopId, 'stop')
+            this.props.sendStoprequest(this.props.vehicle, this.props.stop, 'stop')
         }
 
         if (this.state.renderConfirm)
@@ -163,7 +161,8 @@ class RouteStopRequestPage extends Component{
         return (
         <AccessibilityView style={styles.flex1} name="stopRequest">
           <BoldTitleBar title={strings.stopRequest}/>
-          <View style={{flex: 5}}>
+          <TitleBar title={this.props.vehicle.line + ' ' + this.props.vehicle.destination} />
+          <View style={styles.flex3}>
             {this.renderRouteInfo()}
           </View>
           {this.renderSlider()}
