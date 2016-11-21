@@ -5,6 +5,7 @@ import { sendStoprequest } from '../actions/sendStoprequest'
 import { Actions } from 'react-native-router-flux'
 
 import { TitleBar, BoldTitleBar } from '../components/TitleBar'
+import VehicleImage from '../components/VehicleImage'
 import RouteInfo from '../components/RouteInfo'
 import SlideConfirmButton from '../components/SlideConfirmButton'
 import AccessibilityView from '../components/AccessibilityView'
@@ -103,7 +104,7 @@ class RouteStopRequestPage extends Component{
 
     renderRouteInfo = () =>
     {
-        return (this.state.renderConfirm ? <RouteInfo title={strings.aboutToStop} vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination} vehicleMinutesLeft={this.state.minutesLeft}/> : <RouteInfo title={strings.aboutToStop} vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination} vehicleMinutesLeft={this.state.minutesLeft}/>)
+        return (<VehicleImage vehicleType={this.props.vehicle.vehicle_type}/>)
     }
 
     renderSlider = () =>
