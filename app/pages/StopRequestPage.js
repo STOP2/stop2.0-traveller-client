@@ -62,10 +62,11 @@ class StopRequestPage extends Component{
                 this.setState({fetchIntervalRunning: true})
                 this.createInterval(nextProps)
             }
-
-            for (let routeStop in nextProps.routeStops)
+            for (let index in nextProps.routeStops)
             {
-                if (stop.stopId == this.props.stop.stopCode)
+                let routeStop = nextProps.routeStops[index]
+
+                if (routeStop.stop_code == this.props.stop.stopCode)
                 {
                     this.setState({minutesLeft: routeStop.arrives_in})
                     if (routeStop.arrives_in < 0)
@@ -78,24 +79,10 @@ class StopRequestPage extends Component{
                     }
                     else
                     {
-                        this.setState({minutesLeft: routeStop.arrives_in})
+                        this.setState({minutesLeft: routeStop.arrives_in + ' ' + strings.minutes})
                     }
                 }
             }
-
-            /*
-            if (typeof nextProps.routeStops[0] !== 'undefined' && nextProps.routeStops.length == 1)
-            {
-                if (nextProps.routeStops[0].arrives_in < 0)
-                {
-                    this.setState({minutesLeft: strings.vehiclePassedStop})
-                }
-                else
-                {
-                    this.setState({minutesLeft: nextProps.routeStops[0].arrives_in + ' ' + strings.minutes})
-                }
-            }
-            */
         }
         else if (this.state.fetchIntervalRunning)
         {

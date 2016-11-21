@@ -68,7 +68,22 @@ class RouteStopsPage extends Component {
             clearInterval(this.fetchInterval)
         }
 
-        this.setState({dataSource: this.state.dataSource.cloneWithRows(nextProps.routeStops)})
+        let rawData = nextProps.routeStops
+
+        console.log(rawData)
+        for (let index in rawData)
+{
+            if (rawData[index].arrives_in < 0)
+          {
+                rawData[index] = null
+            }
+            else if (rawData.arrives_in == 0)
+          {
+                rawData[index].arrives_in = strings.now
+            }
+        }
+        console.log(rawData)
+        this.setState({dataSource: this.state.dataSource.cloneWithRows(rawData)})
     }
 
     renderRow = (renderData) =>
