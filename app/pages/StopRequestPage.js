@@ -18,13 +18,13 @@ import { fetchRouteStops } from '../actions/fetchRouteStops'
 const UPDATE_INTERVAL_IN_SECS = 10
 
 class StopRequestPage extends Component{
-    constructor(props)
+    constructor()
     {
-        super(props)
+        super()
 
         this.state = {
             renderConfirm: true,
-            minutesLeft: this.props.vehicle.arrival + ' ' + strings.minutes,
+            minutesLeft: '',
             fetchIntervalRunning: false
         }
 
@@ -47,6 +47,7 @@ class StopRequestPage extends Component{
     {
         this.props.fetchRouteStops(this.props.vehicle.trip_id, this.props.stop.stopId, true)
         this.setState({fetchIntervalRunning: true})
+        this.setState({minutesLeft: this.props.vehicle.arrival + ' ' + strings.minutes})
         this.createInterval(this.props)
     }
 
@@ -69,6 +70,7 @@ class StopRequestPage extends Component{
                 if (routeStop.stop_code == this.props.stop.stopCode)
                 {
                     this.setState({minutesLeft: routeStop.arrives_in})
+
                     if (routeStop.arrives_in < 0)
                     {
                         this.setState({minutesLeft: strings.vehiclePassedStop})
@@ -106,7 +108,7 @@ class StopRequestPage extends Component{
 
 
     componentWillUnmount()
-       {
+    {
         BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
     }
 
@@ -116,7 +118,7 @@ class StopRequestPage extends Component{
     }
 
     renderSlider = () =>
-  {
+    {
         const sendStoprequest = () =>
         {
             this.props.sendStoprequest(this.props.vehicle, this.props.stop, 'stop')

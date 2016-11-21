@@ -11,7 +11,7 @@ class RouteStopsRow extends Component {
       <View style={styles.busrow}>
         <DefaultText style={styles.busrowText}>{this.props.stopId}</DefaultText>
         <DefaultText style={styles.busrowTextBlack2}>{this.props.stopName}</DefaultText>
-        <DefaultText style={styles.busrowTextBlack}>{this.props.arrivalTime} min</DefaultText>
+        <DefaultText style={styles.busrowTextBlack}>{this.props.arrivalTime}</DefaultText>
       </View>)
     }
 }

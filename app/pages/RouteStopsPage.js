@@ -68,21 +68,30 @@ class RouteStopsPage extends Component {
             clearInterval(this.fetchInterval)
         }
 
-        let rawData = nextProps.routeStops
+        let rawData = JSON.parse(JSON.stringify(nextProps.routeStops))
+        let beforeCurrent = true
 
-        console.log(rawData)
         for (let index in rawData)
 {
-            if (rawData[index].arrives_in < 0)
+            if (beforeCurrent)
             {
+                if (rawData[index].stop_code == this.props.stop.stopCode)
+                {
+                    beforeCurrent = false
+                }
                 delete rawData[index]
             }
             else if (rawData[index].arrives_in == 0)
             {
                 rawData[index].arrives_in = strings.now
             }
+            else
+            {
+                rawData[index].arrives_in += ' min'
+            }
+
+
         }
-        console.log(rawData)
         this.setState({dataSource: this.state.dataSource.cloneWithRows(rawData)})
     }
 
