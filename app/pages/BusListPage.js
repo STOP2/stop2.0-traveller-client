@@ -19,9 +19,9 @@ import { fetchDepartures } from '../actions/fetchDeparturesActions'
 const UPDATE_INTERVAL_IN_SECS = 10
 
 class BusListPage extends Component {
-    constructor(props)
+    constructor()
     {
-        super(props)
+        super()
 
         let ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 !== r2,

@@ -12,9 +12,9 @@ import AccessibilityView from '../components/AccessibilityView'
 import { getLocation } from '../actions/locationActions'
 
 class StartView extends Component {
-    constructor(props)
+    constructor()
     {
-        super(props)
+        super()
 
         this.state = {
             locationPermissionsError: false

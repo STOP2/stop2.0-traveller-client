@@ -7,17 +7,9 @@ import StartPageIos from '../pages/StartPageIos'
 import RouteStopsPage from '../pages/RouteStopsPage'
 import RouteStopRequestPage from '../pages/RouteStopRequestPage'
 
-import strings from '../resources/translations'
-import styles from '../styles/stylesheet'
-
 const RouterWithRedux = connect()(Router)
 
 class TravellerApp extends Component {
-    constructor(props)
-    {
-        super(props)
-    }
-
     render()
     {
         const scenes = Actions.create(
@@ -33,14 +25,5 @@ class TravellerApp extends Component {
         return (<RouterWithRedux scenes={scenes} />)
     }
 }
-const mapStateProps = () =>
-{
-    return {}
-}
 
-const mapDispatchToProps = () =>
-{
-    return {}
-}
-
-export default connect(mapStateProps, mapDispatchToProps)(TravellerApp)
+export default TravellerApp

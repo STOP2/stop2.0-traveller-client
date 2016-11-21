@@ -5,13 +5,6 @@ import { DefaultText } from '../components/textComponents'
 import styles from '../styles/stylesheet'
 
 class RouteStopsRow extends Component {
-    constructor(props)
-  {
-        super(props)
-
-        this.state = {}
-    }
-
     render()
   {
         return (

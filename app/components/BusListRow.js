@@ -5,14 +5,14 @@ import { DefaultText } from '../components/textComponents'
 import styles from '../styles/stylesheet'
 
 class BusListRow extends Component {
-    constructor(props)
+    constructor()
     {
-        super(props)
+        super()
 
-        this.state = {}
-
-        this.iconTram = require('../resources/icons/hsl_reittiopas_tram.png')
-        this.iconBus = require('../resources/icons/hsl_reittiopas_bus.png')
+        this.icons = {
+            tram: require('../resources/icons/hsl_reittiopas_tram.png'),
+            bus: require('../resources/icons/hsl_reittiopas_bus.png')
+        }
     }
 
     render()
@@ -20,7 +20,7 @@ class BusListRow extends Component {
         return (
           <View style={styles.busrow}>
             <View style={styles.flex1}>
-              {(this.props.vehicleType == 1 || this.props.vehicleType == 2 || this.props.vehicleType == 4) ? <DefaultText></DefaultText> : <Image style={styles.busrowImage} resizeMode="contain" source={this.props.vehicleType == 0 ? this.iconTram : this.iconBus}/>}
+              {(this.props.vehicleType == 1 || this.props.vehicleType == 2 || this.props.vehicleType == 4) ? <DefaultText></DefaultText> : <Image style={styles.busrowImage} resizeMode="contain" source={this.props.vehicleType == 0 ? this.icons.tram : this.icons.bus}/>}
             </View>
             <DefaultText style={styles.busrowText}>{this.props.line}</DefaultText>
             <DefaultText style={styles.busrowTextBlack2}>{this.props.destination}</DefaultText>
