@@ -33,6 +33,7 @@ let strings = new LocalizedStrings({
         locationPermissionTitle: 'Location Permission',
         locationPermissionMessage: 'We need permission to use your location. Please grant the permission on the next view.',
         now: 'Now',
+        stopRequestError: 'Stop request failed. Try again.',
         fetchDeparturesError: 'Could not fetch departures.'
     },
 
@@ -69,6 +70,7 @@ let strings = new LocalizedStrings({
         locationPermissionTitle: 'Sijainnin määritys',
         locationPermissionMessage: 'Tarvitsemme luvan määrittää sijaintisi. Hyväksy lupapyyntö seuraavassa näkymässä.',
         now: 'Nyt',
+        stopRequestError: 'Pysäytyspyyntö epäonnistui. Yritä uudestaan.',
         fetchDeparturesError: 'Virhe aikataulutietojen hakemisessa'
     }
 })

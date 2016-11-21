@@ -53,7 +53,7 @@ class StopRequestPage extends Component{
 
     componentWillReceiveProps = (nextProps) =>
       {
-        this.setState({renderConfirm: !nextProps.sent})
+        this.setState({renderConfirm: !nextProps.successfulStopRequest})
         BackAndroid.addEventListener('hardwareBackPress', this.backAndroidHandler)
 
         if (nextProps.scene.name == this.sceneName)
@@ -124,7 +124,7 @@ class StopRequestPage extends Component{
             this.props.sendStoprequest(this.props.vehicle, this.props.stop, 'stop')
         }
 
-        if (this.state.renderConfirm)
+        if (!this.props.successfulStopRequest)
       {
             return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide + ' →'} />)
         }
@@ -145,7 +145,7 @@ class StopRequestPage extends Component{
             Actions.routeStops({})
         }
 
-        if (!this.state.renderConfirm)
+        if (this.props.successfulStopRequest)
         {
             return (
           <TouchableOpacity accessibilityComponentType="button" accessibilityLabel={strings.goToRouteStopsView} style={styles.goToRouteViewButton} onPress={goToStopRequestPage}>
@@ -175,12 +175,11 @@ class StopRequestPage extends Component{
 const mapStateToProps = (state) =>
 {
     return {
-        sent: state.stopRequestReducer.sentStoprequest,
+        successfulStopRequest: state.stopRequestReducer.sentStoprequest,
         routeStops: state.fetchRouteStopsReducer.routeStops,
         isFetchingStops: state.fetchRouteStopsReducer.isFetchingStops,
-        routeIsReady: state.fetchRouteStopsReducer.routeIsReady,
         errorFetchingStops: state.fetchRouteStopsReducer.errorFetchingStops,
-        error: state.stopRequestReducer.error,
+        stopRequestFailed: state.stopRequestReducer.error,
         scene: state.routes.scene
     }
 }
@@ -202,6 +201,7 @@ const mapDispatchToProps = (dispatch) =>
 
 StopRequestPage.propTypes = {
     fetchRouteStops: React.PropTypes.func.isRequired,
+    stopRequestFailed: React.PropTypes.bool.isRequired,
     vehicle: React.PropTypes.shape({
         trip_id: React.PropTypes.string.isRequired,
         vehicle_type: React.PropTypes.number.isRequired,
@@ -215,7 +215,7 @@ StopRequestPage.propTypes = {
         stopId: React.PropTypes.string.isRequired
     }),
     sendStoprequest: React.PropTypes.func.isRequired,
-    sent: React.PropTypes.bool.isRequired
+    successfulStopRequest: React.PropTypes.bool.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StopRequestPage)
