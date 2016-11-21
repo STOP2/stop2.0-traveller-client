@@ -56,13 +56,13 @@ export let sendStoprequest = function(tripId, stopId, requestType)
             .then(response =>
             {
                 if (response.ok)
-{
+                {
                     dispatch(receiveConfirm())
 
                     return response.json()
                 }
                 else
-{
+                {
                     dispatch(requestError())
                 }
             })

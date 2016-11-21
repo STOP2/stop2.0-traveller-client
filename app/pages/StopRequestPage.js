@@ -52,7 +52,7 @@ class StopRequestPage extends Component{
 
     componentWillReceiveProps = (nextProps) =>
       {
-        this.setState({renderConfirm: !nextProps.sent})
+        this.setState({renderConfirm: !nextProps.successfulStopRequest})
         BackAndroid.addEventListener('hardwareBackPress', this.backAndroidHandler)
 
         if (nextProps.scene.name == this.sceneName)
@@ -112,7 +112,7 @@ class StopRequestPage extends Component{
             this.props.sendStoprequest(this.props.vehicle.trip_id, this.props.stop.stopId, 'stop')
         }
 
-        if (!this.props.sent || this.props.error)
+        if (!this.props.successfulStopRequest || this.props.error)
       {
             return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide + ' →'} />)
         }
@@ -139,7 +139,7 @@ class StopRequestPage extends Component{
             })
         }
 
-        if (this.props.sent && !this.props.error)
+        if (this.props.successfulStopRequest && !this.props.error)
         {
             return (
           <TouchableOpacity accessibilityComponentType="button" accessibilityLabel={strings.goToRouteStopsView} style={styles.goToRouteViewButton} onPress={goToStopRequestPage}>
@@ -169,10 +169,9 @@ class StopRequestPage extends Component{
 const mapStateToProps = (state) =>
 {
     return {
-        sent: state.fetchReducer.sentStoprequest,
+        successfulStopRequest: state.fetchReducer.sentStoprequest,
         routeStops: state.fetchRouteStopsReducer.routeStops,
         isFetchingStops: state.fetchRouteStopsReducer.isFetchingStops,
-        routeIsReady: state.fetchRouteStopsReducer.routeIsReady,
         errorFetchingStops: state.fetchRouteStopsReducer.errorFetchingStops,
         error: state.fetchReducer.error,
         scene: state.routes.scene
@@ -210,8 +209,7 @@ StopRequestPage.propTypes = {
         stopId: React.PropTypes.string.isRequired
     }),
     sendStoprequest: React.PropTypes.func.isRequired,
-    sent: React.PropTypes.bool.isRequired,
-    routeIsReady: React.PropTypes.bool
+    successfulStopRequest: React.PropTypes.bool.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StopRequestPage)
