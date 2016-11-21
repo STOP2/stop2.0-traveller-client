@@ -67,36 +67,30 @@ class RouteStopRequestPage extends Component{
             {
                 let routeStop = nextProps.routeStops[index]
 
-                if (routeStop.stop_code == this.props.startStop.stopCode)
+                if (routeStop.stop_code == this.props.startStop.stopCode || routeStop.stop_code == this.props.stop.stopCode)
                 {
-                    this.setState({minutesLeftToStart: routeStop.arrives_in})
+                    let minutesLeft = ''
+
                     if (routeStop.arrives_in < 0)
                     {
-                        this.setState({minutesLeftToStart: strings.vehiclePassedStop})
+                        minutesLeft = strings.vehiclePassedStop
                     }
                     else if (routeStop.arrives_in == 0)
                     {
-                        this.setState({minutesLeftToStart: strings.now})
+                        minutesLeft = strings.now
                     }
                     else
                     {
-                        this.setState({minutesLeftToStart: routeStop.arrives_in + ' ' + strings.minutes})
+                        minutesLeft = routeStop.arrives_in + ' ' + strings.minutes
                     }
-                }
-                else if (routeStop.stop_code == this.props.stop.stopCode)
-                {
-                    this.setState({minutesLeftToEnd: routeStop.arrives_in})
-                    if (routeStop.arrives_in < 0)
+
+                    if (routeStop.stop_code == this.props.startStop.stopCode)
                     {
-                        this.setState({minutesLeftToEnd: strings.vehiclePassedStop})
-                    }
-                    else if (routeStop.arrives_in == 0)
-                    {
-                        this.setState({minutesLeftToEnd: strings.now})
+                        this.setState({minutesLeftToStart: minutesLeft})
                     }
                     else
                     {
-                        this.setState({minutesLeftToEnd: routeStop.arrives_in + ' ' + strings.minutes})
+                        this.setState({minutesLeftToEnd: minutesLeft})
                     }
                 }
             }
