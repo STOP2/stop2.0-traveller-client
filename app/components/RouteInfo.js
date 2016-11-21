@@ -7,13 +7,14 @@ import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
 class RouteInfo extends Component {
-    constructor(props)
+    constructor()
     {
-        super(props)
+        super()
 
-        this.state = {}
-        this.iconTram = require('../resources/icons/hsl_reittiopas_tram.png')
-        this.iconBus = require('../resources/icons/hsl_reittiopas_bus.png')
+        this.icons = {
+            tram: require('../resources/icons/hsl_reittiopas_tram.png'),
+            bus: require('../resources/icons/hsl_reittiopas_bus.png')
+        }
     }
 
     render()
@@ -21,7 +22,7 @@ class RouteInfo extends Component {
         return (<View style={styles.stopRequestStyle}>
           <View style={styles.stopRequestVehicleInfo}>
             <Image style={styles.busIcon} resizeMode="contain"
-            source={this.props.vehicleType == 0 ? this.iconTram : this.iconBus}/>
+            source={this.props.vehicleType == 0 ? this.icons.tram : this.icons.bus}/>
             <View style={styles.vehicleInfoWrapper}>
               <DefaultText style={styles.vehicleInfo}>{this.props.vehicleLine} {this.props.vehicleDestination}</DefaultText>
             </View>

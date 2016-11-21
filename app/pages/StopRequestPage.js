@@ -19,7 +19,7 @@ const UPDATE_INTERVAL_IN_SECS = 10
 
 class StopRequestPage extends Component{
     constructor(props)
-  {
+    {
         super(props)
 
         this.state = {

@@ -47,6 +47,12 @@ Connect the phone to PC with USB
 Run the app (the app will run on the device if it's connected, otherwise it will run on the emulator):
 
 In debug mode (shows errors & warnings):
+
+First start react-native:
+```bash
+react-native start
+```
+In a new terminal window:
 ```bash
 react-native run-android
 ```
