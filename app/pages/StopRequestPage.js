@@ -125,11 +125,11 @@ class StopRequestPage extends Component{
         }
 
         if (!this.props.successfulStopRequest)
-      {
+        {
             return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide + ' →'} />)
         }
         else
-      {
+        {
             return (
             <View style={styles.sliderBackgroundGreen}>
               <DefaultText style={styles.confirmedText}>{strings.stopsent}</DefaultText>
