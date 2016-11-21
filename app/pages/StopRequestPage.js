@@ -210,7 +210,8 @@ StopRequestPage.propTypes = {
         stopId: React.PropTypes.string.isRequired
     }),
     sendStoprequest: React.PropTypes.func.isRequired,
-    sent: React.PropTypes.bool.isRequired
+    sent: React.PropTypes.bool.isRequired,
+    routeIsReady: React.PropTypes.bool
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StopRequestPage)

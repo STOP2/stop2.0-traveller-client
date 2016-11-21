@@ -55,14 +55,17 @@ export let sendStoprequest = function(tripId, stopId, requestType)
         })
             .then(response =>
             {
-                if (response.ok) {
+                if (response.ok)
+{
+                    dispatch(receiveConfirm())
+
                     return response.json()
                 }
-                else {
+                else
+{
                     dispatch(requestError())
                 }
             })
-            .then(dispatch(receiveConfirm()))
             .catch(error => dispatch(requestError(error)))
     }
 }
