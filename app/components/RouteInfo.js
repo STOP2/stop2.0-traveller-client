@@ -7,7 +7,7 @@ import VehicleImage from '../components/VehicleImage'
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
-class RouteInfo extends Component {
+export default class RouteInfo extends Component {
     render()
     {
         return (<View style={styles.stopRequestStyle}>
@@ -28,11 +28,28 @@ class RouteInfo extends Component {
 }
 
 RouteInfo.propTypes = {
-    title: React.PropTypes.string.isRequired,
     vehicleType: React.PropTypes.number.isRequired,
     vehicleLine: React.PropTypes.string.isRequired,
     vehicleDestination: React.PropTypes.string.isRequired,
     vehicleMinutesLeft: React.PropTypes.string.isRequired
 }
 
-export default RouteInfo
+export class RouteInfoForStop extends Component {
+    render()
+    {
+        return (<View style={styles.stopRequestStyle}>
+          <View style={styles.vehicleArrivesInWrapper}>
+            <DefaultText style={styles.vehicleArrivesInText}>{strings.arrives} {this.props.stopName} ({this.props.stopCode}) {strings.in}:</DefaultText>
+          </View>
+          <View>
+            <DefaultText style={styles.vehicleMinutesLeft}>{this.props.vehicleMinutesLeft}</DefaultText>
+          </View>
+        </View>)
+    }
+}
+
+RouteInfoForStop.propTypes = {
+    stopName: React.PropTypes.string.isRequired,
+    stopCode: React.PropTypes.string.isRequired,
+    vehicleMinutesLeft: React.PropTypes.string.isRequired
+}
