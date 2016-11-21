@@ -74,11 +74,11 @@ class RouteStopsPage extends Component {
         for (let index in rawData)
 {
             if (rawData[index].arrives_in < 0)
-          {
-                rawData[index] = null
+            {
+                delete rawData[index]
             }
-            else if (rawData.arrives_in == 0)
-          {
+            else if (rawData[index].arrives_in == 0)
+            {
                 rawData[index].arrives_in = strings.now
             }
         }
