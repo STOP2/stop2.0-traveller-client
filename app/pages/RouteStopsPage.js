@@ -90,7 +90,13 @@ class RouteStopsPage extends Component {
     {
         const goToStopVehicleRequestPage = () =>
         {
-            Actions.routeStopRequest({})
+            Actions.routeStopRequest({
+                stop: {
+                    stopName: renderData.stop_name,
+                    stopCode: renderData.stop_code,
+                    stopId: renderData.stop_id
+                }
+            })
         }
 
         return (

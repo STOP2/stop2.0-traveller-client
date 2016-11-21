@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, TouchableOpacity, BackAndroid } from 'react-native'
+import { View, BackAndroid } from 'react-native'
 import { sendStoprequest } from '../actions/sendStoprequest'
-import { Actions } from 'react-native-router-flux'
 
 import { TitleBar, BoldTitleBar } from '../components/TitleBar'
-import VehicleImage from '../components/VehicleImage'
 import RouteInfo from '../components/RouteInfo'
 import SlideConfirmButton from '../components/SlideConfirmButton'
 import AccessibilityView from '../components/AccessibilityView'
@@ -26,7 +24,8 @@ class RouteStopRequestPage extends Component{
 
         this.state = {
             renderConfirm: true,
-            minutesLeft: this.props.vehicle.arrival + ' ' + strings.minutes,
+            minutesLeftToStart: strings.minutes,
+            minutesLeftToEnd: strings.minutes,
             fetchIntervalRunning: false
         }
 
@@ -64,15 +63,41 @@ class RouteStopRequestPage extends Component{
                 this.setState({fetchIntervalRunning: true})
                 this.createInterval(nextProps)
             }
-            if (typeof nextProps.routeStops[0] !== 'undefined' && nextProps.routeStops.length == 1)
+            for (let index in nextProps.routeStops)
             {
-                if (nextProps.routeStops[0].arrives_in < 0)
+                let routeStop = nextProps.routeStops[index]
+
+                if (routeStop.stop_code == this.props.startStop.stopCode)
                 {
-                    this.setState({minutesLeft: strings.vehiclePassedStop})
+                    this.setState({minutesLeftToStart: routeStop.arrives_in})
+                    if (routeStop.arrives_in < 0)
+                    {
+                        this.setState({minutesLeftToStart: strings.vehiclePassedStop})
+                    }
+                    else if (routeStop.arrives_in == 0)
+                    {
+                        this.setState({minutesLeftToStart: strings.now})
+                    }
+                    else
+                    {
+                        this.setState({minutesLeftToStart: routeStop.arrives_in + ' ' + strings.minutes})
+                    }
                 }
-                else
+                else if (routeStop.stop_code == this.props.stop.stopCode)
                 {
-                    this.setState({minutesLeft: nextProps.routeStops[0].arrives_in + ' ' + strings.minutes})
+                    this.setState({minutesLeftToEnd: routeStop.arrives_in})
+                    if (routeStop.arrives_in < 0)
+                    {
+                        this.setState({minutesLeftToEnd: strings.vehiclePassedStop})
+                    }
+                    else if (routeStop.arrives_in == 0)
+                    {
+                        this.setState({minutesLeftToEnd: strings.now})
+                    }
+                    else
+                    {
+                        this.setState({minutesLeftToEnd: routeStop.arrives_in + ' ' + strings.minutes})
+                    }
                 }
             }
         }
@@ -104,7 +129,18 @@ class RouteStopRequestPage extends Component{
 
     renderRouteInfo = () =>
     {
-        return (<VehicleImage vehicleType={this.props.vehicle.vehicle_type}/>)
+        return (
+          <View>
+            <View style={styles.flex1}>
+              <TitleBar title={this.props.startStop.stopName + '  (' + this.props.startStop.stopCode + ')'} />
+              <RouteInfo title={strings.aboutToStop} vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination} vehicleMinutesLeft={this.state.minutesLeftToStart}/>
+            </View>
+            <View style={styles.flex1}>
+              <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopCode + ')'} />
+              <RouteInfo title={strings.aboutToStop} vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination} vehicleMinutesLeft={this.state.minutesLeftToEnd}/>
+            </View>
+          </View>
+        )
     }
 
     renderSlider = () =>
@@ -133,7 +169,7 @@ class RouteStopRequestPage extends Component{
         return (
         <AccessibilityView style={styles.flex1} name="stopRequest">
           <BoldTitleBar title={strings.stopRequest}/>
-          <View style={styles.flex3}>
+          <View style={{flex: 5}}>
             {this.renderRouteInfo()}
           </View>
           {this.renderSlider()}
@@ -182,6 +218,11 @@ RouteStopRequestPage.propTypes = {
         arrival: React.PropTypes.number.isRequired
     }),
     startStop: React.PropTypes.shape({
+        stopCode: React.PropTypes.string.isRequired,
+        stopName: React.PropTypes.string.isRequired,
+        stopId: React.PropTypes.string.isRequired
+    }),
+    stop: React.PropTypes.shape({
         stopCode: React.PropTypes.string.isRequired,
         stopName: React.PropTypes.string.isRequired,
         stopId: React.PropTypes.string.isRequired
