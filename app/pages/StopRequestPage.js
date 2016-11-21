@@ -112,6 +112,7 @@ class StopRequestPage extends Component{
             this.props.sendStoprequest(this.props.vehicle.trip_id, this.props.stop.stopId, 'stop')
         }
 
+        if (!this.props.successfulStopRequest)
       {
             return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide + ' →'} />)
         }
@@ -138,6 +139,7 @@ class StopRequestPage extends Component{
             })
         }
 
+        if (this.props.successfulStopRequest)
         {
             return (
           <TouchableOpacity accessibilityComponentType="button" accessibilityLabel={strings.goToRouteStopsView} style={styles.goToRouteViewButton} onPress={goToStopRequestPage}>

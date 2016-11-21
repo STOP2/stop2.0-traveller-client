@@ -22,7 +22,8 @@ export let receiveConfirm = function()
 {
     return {
         type: RECEIVE_CONFIRM,
-        sentStoprequest: true
+        sentStoprequest: true,
+        error: false
     }
 }
 
