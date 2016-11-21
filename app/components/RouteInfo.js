@@ -1,28 +1,18 @@
 import React, { Component } from 'react'
-import { View, Image } from 'react-native'
+import { View } from 'react-native'
 
 import {DefaultText} from '../components/textComponents'
+import VehicleImage from '../components/VehicleImage'
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
 class RouteInfo extends Component {
-    constructor()
-    {
-        super()
-
-        this.icons = {
-            tram: require('../resources/icons/hsl_reittiopas_tram.png'),
-            bus: require('../resources/icons/hsl_reittiopas_bus.png')
-        }
-    }
-
     render()
     {
         return (<View style={styles.stopRequestStyle}>
           <View style={styles.stopRequestVehicleInfo}>
-            <Image style={styles.busIcon} resizeMode="contain"
-            source={this.props.vehicleType == 0 ? this.icons.tram : this.icons.bus}/>
+            <VehicleImage style={styles.busIcon} vehicleType={this.props.vehicleType}/>
             <View style={styles.vehicleInfoWrapper}>
               <DefaultText style={styles.vehicleInfo}>{this.props.vehicleLine} {this.props.vehicleDestination}</DefaultText>
             </View>
