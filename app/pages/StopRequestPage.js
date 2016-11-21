@@ -109,7 +109,7 @@ class StopRequestPage extends Component{
   {
         const sendStoprequest = () =>
         {
-            this.props.sendStoprequest(this.props.vehicle.trip_id, this.props.stop.stopId, 'stop')
+            this.props.sendStoprequest(this.props.vehicle.trip_id, this.props.stop.stopId)
         }
 
         if (this.state.renderConfirm)
@@ -182,9 +182,9 @@ const mapStateToProps = (state) =>
 const mapDispatchToProps = (dispatch) =>
 {
     return {
-        sendStoprequest: (busId, stopId, requestType) =>
+        sendStoprequest: (busId, stopId) =>
        {
-            dispatch(sendStoprequest(busId, stopId, requestType))
+            dispatch(sendStoprequest(busId, stopId))
         },
         fetchRouteStops: (tripId, BusId, current) =>
         {
