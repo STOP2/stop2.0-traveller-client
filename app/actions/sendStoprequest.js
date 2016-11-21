@@ -14,9 +14,8 @@ export let requestStoprequest = function(tripId, stopId, requestType)
     }
 }
 
-export let receiveConfirm = function(json)
+export let receiveConfirm = function()
 {
-  console.log(json)
     return {
         type: RECEIVE_CONFIRM,
         sentStoprequest: true
@@ -34,7 +33,7 @@ export let sendStoprequest = function(tripId, stopId, requestType)
             stop_id: stopId,
             request_type: requestType
         })
-        console.log(stopRequest)
+
         return fetch(config.API_URL + '/stoprequests', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
