@@ -45,42 +45,6 @@ Object {
 }
 `;
 
-exports[`fetch reducer handles RECEIVE_DEPARTURES action 2`] = `
-Object {
-  "error": false,
-  "isFetching": false,
-  "isReady": true,
-  "routeStops": Object {},
-  "sentStoprequest": false,
-  "stops": Array [
-    Object {
-      "stop": Object {
-        "schedule": Array [
-          Object {
-            "arrival": 7,
-            "destination": "Rautatientori",
-            "line": "55",
-            "route_id": "HSL:1055",
-            "trip_id": "HSL:1055_20161003_La_2_1412",
-            "vehicle_type": 3,
-          },
-          Object {
-            "arrival": 21,
-            "destination": "Rautatientori",
-            "line": "55",
-            "route_id": "HSL:1055",
-            "trip_id": "HSL:1055_20161003_La_2_1427",
-            "vehicle_type": 3,
-          },
-        ],
-        "stop_code": "3597",
-        "stop_name": "A.I. Virtasen aukio",
-      },
-    },
-  ],
-}
-`;
-
 exports[`fetch reducer handles REQUEST_DEPARTURES action 1`] = `
 Object {
   "error": false,

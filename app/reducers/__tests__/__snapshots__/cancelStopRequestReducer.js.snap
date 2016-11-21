@@ -1,0 +1,31 @@
+exports[`cancelStopRequest reducer handles SEND_STOPREQUEST_CANCELLATION action 1`] = `
+Object {
+  "isCancellingStopRequest": false,
+  "stopRequestCancellationError": null,
+  "stopRequestCancelled": false,
+}
+`;
+
+exports[`cancelStopRequest reducer handles STOPREQUEST_CANCELLATION_ERROR action 1`] = `
+Object {
+  "isCancellingStopRequest": false,
+  "stopRequestCancellationError": "error",
+  "stopRequestCancelled": false,
+}
+`;
+
+exports[`cancelStopRequest reducer handles STOPREQUEST_CANCELLED action 1`] = `
+Object {
+  "isCancellingStopRequest": false,
+  "stopRequestCancellationError": null,
+  "stopRequestCancelled": true,
+}
+`;
+
+exports[`cancelStopRequest reducer returns the same state on an unhandled action 1`] = `
+Object {
+  "isCancellingStopRequest": false,
+  "stopRequestCancellationError": null,
+  "stopRequestCancelled": false,
+}
+`;
