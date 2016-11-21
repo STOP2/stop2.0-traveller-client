@@ -10,6 +10,7 @@ import StartViewButtons from '../components/StartViewButtons'
 import AccessibilityView from '../components/AccessibilityView'
 
 import { getLocation } from '../actions/locationActions'
+import * as Linking from "react-native/Libraries/Components/Intent/IntentAndroid.android";
 
 class StartView extends Component {
     constructor()
@@ -44,6 +45,11 @@ class StartView extends Component {
     componentWillMount = () =>
     {
         this.requestLocationPermission()
+        var url = Linking.getInitialURL().then((url) => {
+            if (url) {
+                console.log('Initial url is: ' + url);
+            }
+        }).catch(err => console.error('An error occurred', err));
     }
     
     render()
