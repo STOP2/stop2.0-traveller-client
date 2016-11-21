@@ -18,6 +18,7 @@ import { fetchRouteStops } from '../actions/fetchRouteStops'
 const UPDATE_INTERVAL_IN_SECS = 10
 
 class RouteStopRequestPage extends Component{
+
     constructor(props)
   {
         super(props)

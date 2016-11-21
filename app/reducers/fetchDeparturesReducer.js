@@ -21,7 +21,7 @@ const fetchDepartures = (state = initialState, action) =>
             isReady: action.isReady,
             error: action.error,
             stops: action.departures
-        }) // return only the first stop (temporarily)
+        })
 
     case REQUEST_ERROR:
         return Object.assign({}, state, {error: action.error})

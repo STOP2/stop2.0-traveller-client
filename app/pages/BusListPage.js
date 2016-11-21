@@ -19,9 +19,9 @@ import { fetchDepartures } from '../actions/fetchDeparturesActions'
 const UPDATE_INTERVAL_IN_SECS = 10
 
 class BusListPage extends Component {
-    constructor(props)
+    constructor()
     {
-        super(props)
+        super()
 
         let ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 !== r2,
@@ -51,7 +51,7 @@ class BusListPage extends Component {
     {
         this.fetchInterval = setInterval(() =>
         {
-            if (!props.isFetching)
+            if (!props.isFetchingDepartures)
             {
                 props.fetchDepartures(props.locationData.latitude, props.locationData.longitude)
             }
@@ -127,7 +127,7 @@ class BusListPage extends Component {
         return (
         <View>
           <ActivityIndicator
-            animating={this.props.isFetching}
+            animating={this.props.isFetchingDepartures}
           />
         </View>
         )
@@ -150,49 +150,73 @@ class BusListPage extends Component {
     renderList = () =>
     {
         return (
-          <AccessibilityView style={styles.flex1} name={this.sceneName}>
-          <BoldTitleBar title={strings.chooseVehicle} noBorder={true}/>
-          {this.props.error ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
+            <View style={styles.flex1}>
+              {this.props.fetchDeparturesError &&
+               <DefaultText style={styles.error}>
+                 {strings.backendError}
+               </DefaultText>}
               <BusListHeader />
               <ListView
-                  dataSource={this.state.dataSource}
-                  renderRow={this.renderRow}
-                  renderSectionHeader={this.renderSectionHeader}
-                  renderFooter={this.renderFooter}
-                  renderSeparator={this.renderSeparator}
+               dataSource={this.state.dataSource}
+               renderRow={this.renderRow}
+               renderSectionHeader={this.renderSectionHeader}
+               renderFooter={this.renderFooter}
+               renderSeparator={this.renderSeparator}
               />
-          </AccessibilityView>
+            </View>
         )
     }
 
     renderSpinner = () =>
     {
         return (
-          <View style={styles.spinnerContainer}>
-            <View style={styles.spinnerBackground}>
-              <ActivityIndicator
-                size="large"
-                animating={true}
-              />
+            <View style={styles.spinnerContainer}>
+              <View style={styles.spinnerBackground}>
+                <ActivityIndicator
+                 size="large"
+                 animating={true}
+                />
+              </View>
             </View>
-          </View>
+        )
+    }
+
+    renderFetchError = () =>
+    {
+        return (
+            <View style={styles.spinnerContainer}>
+              <View style={styles.spinnerBackground}>
+                <DefaultText style={styles.fetchDeparturesError}>
+                  {strings.fetchDeparturesError}
+                </DefaultText>
+              </View>
+            </View>
         )
     }
 
     render()
     {
-        if (this.props.isReady)
+        let viewElement
+
+        if (this.props.isDeparturesReady)
         {
-            return (
-              this.renderList()
-            )
+            viewElement = this.renderList()
+        }
+        else if (this.props.fetchDeparturesError)
+        {
+            viewElement = this.renderFetchError()
         }
         else
         {
-            return (
-              this.renderSpinner()
-            )
+            viewElement = this.renderSpinner()
         }
+
+        return (
+            <AccessibilityView style={styles.flex1} name={this.sceneName}>
+              <BoldTitleBar title={strings.chooseVehicle} noBorder={true}/>
+              {viewElement}
+            </AccessibilityView>
+        )
     }
 }
 
@@ -200,9 +224,9 @@ const mapStateToProps = (state) =>
 {
     return {
         stops: state.fetchDeparturesReducer.stops,
-        isFetching: state.fetchDeparturesReducer.isFetching,
-        isReady: state.fetchDeparturesReducer.isReady,
-        error: state.fetchDeparturesReducer.error,
+        isFetchingDepartures: state.fetchDeparturesReducer.isFetching,
+        isDeparturesReady: state.fetchDeparturesReducer.isReady,
+        fetchDeparturesError: state.fetchDeparturesReducer.error,
         locationData: state.locationReducer.locationData,
         scene: state.routes.scene
     }
@@ -225,9 +249,9 @@ BusListPage.propTypes = {
         longitude: React.PropTypes.number.isRequired
     }),
     stops: React.PropTypes.array.isRequired,
-    isFetching: React.PropTypes.bool.isRequired,
-    error: React.PropTypes.bool.isRequired,
-    isReady: React.PropTypes.bool.isRequired,
+    isFetchingDepartures: React.PropTypes.bool.isRequired,
+    fetchDeparturesError: React.PropTypes.bool.isRequired,
+    isDeparturesReady: React.PropTypes.bool.isRequired,
     scene: React.PropTypes.object.isRequired
 }
 
