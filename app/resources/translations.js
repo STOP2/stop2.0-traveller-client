@@ -41,7 +41,10 @@ let strings = new LocalizedStrings({
         fetchDeparturesError: 'Could not fetch departures.',
         arrives: 'Arrives',
         in: 'in',
-        goToBackToFrontPage: 'Start from the beginning'
+        goToBackToFrontPage: 'Start from the beginning',
+        cancelStopRequest: 'Cancel your stop request?',
+        yes: 'Yes',
+        no: 'No'
     },
 
     fi: {
@@ -85,7 +88,10 @@ let strings = new LocalizedStrings({
         fetchDeparturesError: 'Virhe aikataulutietojen hakemisessa',
         arrives: 'Saapumiseen pysäkille',
         in: '',
-        goToBackToFrontPage: 'Aloita alusta'
+        goToBackToFrontPage: 'Aloita alusta',
+        cancelStopRequest: 'Perutaanko pysäytyspyyntö?',
+        yes: 'Kyllä',
+        no: 'Ei'
     }
 })
 
