@@ -7,6 +7,7 @@ import { TitleBar, BoldTitleBar } from '../components/TitleBar'
 import {DefaultText} from '../components/textComponents'
 import RouteStopsRow from '../components/RouteStopsRow'
 import AccessibilityView from '../components/AccessibilityView'
+import { RouteListHeader } from '../components/BusListHeader'
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
@@ -137,6 +138,7 @@ class RouteStopsPage extends Component {
             <BoldTitleBar title={strings.routeStops}/>
             <TitleBar title={this.props.vehicle.line + ' ' + this.props.vehicle.destination} />
             {this.props.errorFetchingStops ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
+            <RouteListHeader />
             <ListView
               enableEmptySections={true}
               dataSource={this.state.dataSource}
