@@ -32,7 +32,6 @@ export let receiveConfirm = function(vehicle, stop)
 
 export let requestError = function()
 {
-  //  alert(strings.stopRequestError)
     Alert.alert(
         'Error',
         strings.stopRequestError,
