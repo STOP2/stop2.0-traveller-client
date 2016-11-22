@@ -4,7 +4,8 @@ Object {
   "error": false,
   "isFetching": false,
   "isReady": false,
-  "sentStoprequest": true,
+  "sentStoprequestFromStop": true,
+  "sentStoprequestFromVehicle": false,
   "startStop": undefined,
   "stops": Array [],
 }
@@ -16,7 +17,8 @@ Object {
   "error": false,
   "isFetching": false,
   "isReady": false,
-  "sentStoprequest": false,
+  "sentStoprequestFromStop": false,
+  "sentStoprequestFromVehicle": false,
   "startStop": null,
   "stops": Array [],
 }
@@ -28,7 +30,8 @@ Object {
   "error": false,
   "isFetching": false,
   "isReady": false,
-  "sentStoprequest": false,
+  "sentStoprequestFromStop": false,
+  "sentStoprequestFromVehicle": false,
   "startStop": null,
   "stops": Array [],
 }

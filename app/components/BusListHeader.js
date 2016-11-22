@@ -6,7 +6,7 @@ import {DefaultText} from '../components/textComponents'
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
-class BusListHeader extends Component {
+export default class BusListHeader extends Component {
     render()
     {
         return (
@@ -19,4 +19,14 @@ class BusListHeader extends Component {
     }
 }
 
-export default BusListHeader
+export class RouteListHeader extends Component {
+    render()
+    {
+        return (
+          <View style={styles.busrowheader}>
+            <DefaultText style={styles.busrowText}>{strings.stopCode}</DefaultText>
+            <DefaultText style={styles.busrowText2}>{strings.stopName}</DefaultText>
+            <DefaultText style={styles.busrowText}>{strings.arrivesIn}</DefaultText>
+          </View>)
+    }
+}

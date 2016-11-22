@@ -14,6 +14,7 @@ import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
 import { fetchRouteStops } from '../actions/fetchRouteStops'
+import { resetState } from '../actions/resetStateAction'
 
 const UPDATE_INTERVAL_IN_SECS = 10
 
@@ -155,7 +156,7 @@ class RouteStopRequestPage extends Component{
   {
         const sendStoprequest = () =>
         {
-            this.props.sendStoprequest(this.props.vehicle, this.props.stop, this.props.fcmToken)
+            this.props.sendStoprequest(this.props.vehicle, this.props.stop, this.props.fcmToken, true)
         }
 
         if (this.state.renderConfirm)
@@ -176,6 +177,8 @@ class RouteStopRequestPage extends Component{
     {
         const goToStopRequestPage = () =>
       {
+            clearInterval(this.fetchInterval)
+            this.props.resetState()
             Actions.start()
         }
 
@@ -209,7 +212,7 @@ class RouteStopRequestPage extends Component{
 const mapStateToProps = (state) =>
 {
     return {
-        sent: state.stopRequestReducer.sentStoprequest,
+        sent: state.stopRequestReducer.sentStoprequestFromVehicle,
         routeStops: state.fetchRouteStopsReducer.routeStops,
         isFetchingStops: state.fetchRouteStopsReducer.isFetchingStops,
         routeIsReady: state.fetchRouteStopsReducer.routeIsReady,
@@ -225,13 +228,17 @@ const mapStateToProps = (state) =>
 const mapDispatchToProps = (dispatch) =>
 {
     return {
-        sendStoprequest: (busId, stopId, fcmToken) =>
+        sendStoprequest: (busId, stopId, fcmToken, fromVehicle) =>
        {
-            dispatch(sendStoprequest(busId, stopId, fcmToken))
+            dispatch(sendStoprequest(busId, stopId, fcmToken, fromVehicle))
         },
         fetchRouteStops: (tripId, BusId, current) =>
         {
             dispatch(fetchRouteStops(tripId, BusId, current))
+        },
+        resetState: () =>
+       {
+            dispatch(resetState())
         }
     }
 }
@@ -257,7 +264,9 @@ RouteStopRequestPage.propTypes = {
         stopId: React.PropTypes.string.isRequired
     }),
     sendStoprequest: React.PropTypes.func.isRequired,
-    sent: React.PropTypes.bool.isRequired
+    sent: React.PropTypes.bool.isRequired,
+    resetState: React.PropTypes.func.isRequired,
+    fcmToken: state.fcmReducer.token
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RouteStopRequestPage)

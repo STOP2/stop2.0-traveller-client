@@ -1,4 +1,5 @@
 import { REQUEST_DEPARTURES, RECEIVE_DEPARTURES, REQUEST_ERROR } from '../actions/fetchDeparturesActions'
+import {RESET_STATE} from '../actions/resetStateAction'
 
 let initialState = {
     stops: [],
@@ -25,6 +26,9 @@ const fetchDepartures = (state = initialState, action) =>
 
     case REQUEST_ERROR:
         return Object.assign({}, state, {error: action.error})
+
+    case RESET_STATE:
+        return Object.assign({}, state, initialState)
 
     default:
         return state
