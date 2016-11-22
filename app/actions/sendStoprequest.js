@@ -18,11 +18,13 @@ export let requestStoprequest = function(tripId, stopId, requestType)
     }
 }
 
-export let receiveConfirm = function()
+export let receiveConfirm = function(vehicle, stop)
 {
     return {
         type: RECEIVE_CONFIRM,
         sentStoprequest: true,
+        vehicle: vehicle,
+        stop: stop,
         error: false
     }
 }
@@ -37,15 +39,15 @@ export let requestError = function()
     }
 }
 
-export let sendStoprequest = function(tripId, stopId, requestType)
+export let sendStoprequest = function(vehicle, stop, requestType)
 {
     return dispatch =>
     {
-        dispatch(requestStoprequest(tripId, stopId, requestType))
+        dispatch(requestStoprequest(vehicle.trip_id, stop.stopId, requestType))
 
         let stopRequest = JSON.stringify({
-            trip_id: tripId,
-            stop_id: stopId,
+            trip_id: vehicle.trip_id,
+            stop_id: stop.stopId,
             request_type: requestType
         })
 
@@ -54,19 +56,19 @@ export let sendStoprequest = function(tripId, stopId, requestType)
             headers: {'Content-Type': 'application/json'},
             body: stopRequest
         })
-            .then(response =>
+        .then(response =>
             {
-                if (response.ok)
-                {
-                    dispatch(receiveConfirm())
+            if (response.ok)
+            {
+                dispatch(receiveConfirm(vehicle, stop))
 
-                    return response.json()
-                }
-                else
-                {
-                    dispatch(requestError())
-                }
-            })
-            .catch(error => dispatch(requestError(error)))
+                return response.json()
+            }
+            else
+            {
+                dispatch(requestError())
+            }
+        })
+        .catch(error => dispatch(requestError(error)))
     }
 }
