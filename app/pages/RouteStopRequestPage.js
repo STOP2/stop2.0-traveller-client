@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, BackAndroid } from 'react-native'
+import { View, TouchableOpacity, BackAndroid } from 'react-native'
 import { sendStoprequest } from '../actions/sendStoprequest'
+import { Actions } from 'react-native-router-flux'
 
 import { TitleBar, BoldTitleBar } from '../components/TitleBar'
 import { RouteInfoForStop } from '../components/RouteInfo'
@@ -156,6 +157,22 @@ class RouteStopRequestPage extends Component{
         }
     }
 
+    renderButton = () =>
+    {
+        const goToStopRequestPage = () =>
+      {
+            Actions.start()
+        }
+
+        if (this.props.sent)
+        {
+            return (
+          <TouchableOpacity accessibilityComponentType="button" accessibilityLabel={strings.goToBackToFrontPage} style={styles.goToRouteViewButton} onPress={goToStopRequestPage}>
+            <DefaultText style={styles.goToRouteViewButtonText}>{strings.goToBackToFrontPage}</DefaultText>
+          </TouchableOpacity>)
+        }
+    }
+
     render()
   {
         return (
@@ -164,6 +181,9 @@ class RouteStopRequestPage extends Component{
           <TitleBar title={this.props.vehicle.line + ' ' + this.props.vehicle.destination} />
           <View style={styles.flex3}>
             {this.renderRouteInfo()}
+          </View>
+          <View style={styles.flex1}>
+            {this.renderButton()}
           </View>
           {this.renderSlider()}
         </AccessibilityView>
