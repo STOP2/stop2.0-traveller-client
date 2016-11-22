@@ -90,8 +90,6 @@ class RouteStopsPage extends Component {
             {
                 rawData[index].arrives_in += ' min'
             }
-
-
         }
         this.setState({dataSource: this.state.dataSource.cloneWithRows(rawData)})
     }

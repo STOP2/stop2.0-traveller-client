@@ -14,6 +14,7 @@ import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
 import { fetchRouteStops } from '../actions/fetchRouteStops'
+import { resetState } from '../actions/resetStateAction'
 
 const UPDATE_INTERVAL_IN_SECS = 10
 
@@ -162,6 +163,7 @@ class RouteStopRequestPage extends Component{
         const goToStopRequestPage = () =>
       {
             clearInterval(this.fetchInterval)
+            this.props.resetState()
             Actions.start()
         }
 
@@ -217,6 +219,10 @@ const mapDispatchToProps = (dispatch) =>
         fetchRouteStops: (tripId, BusId, current) =>
         {
             dispatch(fetchRouteStops(tripId, BusId, current))
+        },
+        resetState: () =>
+       {
+            dispatch(resetState())
         }
     }
 }
@@ -242,7 +248,8 @@ RouteStopRequestPage.propTypes = {
         stopId: React.PropTypes.string.isRequired
     }),
     sendStoprequest: React.PropTypes.func.isRequired,
-    sent: React.PropTypes.bool.isRequired
+    sent: React.PropTypes.bool.isRequired,
+    resetState: React.PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RouteStopRequestPage)

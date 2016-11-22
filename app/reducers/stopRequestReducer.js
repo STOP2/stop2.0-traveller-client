@@ -1,4 +1,5 @@
 import { SEND_STOPREQUEST, RECEIVE_CONFIRM } from '../actions/sendStoprequest'
+import {RESET_STATE} from '../actions/resetStateAction'
 import { ActionConst } from 'react-native-router-flux'
 
 let initialState = {
@@ -27,6 +28,9 @@ const stopRequestReducer = (state = initialState, action) =>
             startStop: stop,
             currentVehicle: action.vehicle
         })
+
+    case RESET_STATE:
+        return Object.assign({}, state, initialState)
 
     case ActionConst.FOCUS:
         return Object.assign({}, state, { sentStoprequest: false })
