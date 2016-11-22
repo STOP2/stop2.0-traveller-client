@@ -1,0 +1,35 @@
+exports[`fetch reducer handles RECEIVE_CONFIRM action 1`] = `
+Object {
+  "currentVehicle": undefined,
+  "error": false,
+  "isFetching": false,
+  "isReady": false,
+  "sentStoprequest": true,
+  "startStop": undefined,
+  "stops": Array [],
+}
+`;
+
+exports[`fetch reducer handles SEND_STOPREQUEST action 1`] = `
+Object {
+  "currentVehicle": null,
+  "error": false,
+  "isFetching": false,
+  "isReady": false,
+  "sentStoprequest": false,
+  "startStop": null,
+  "stops": Array [],
+}
+`;
+
+exports[`fetch reducer returns the same state on an unhandled action 1`] = `
+Object {
+  "currentVehicle": null,
+  "error": false,
+  "isFetching": false,
+  "isReady": false,
+  "sentStoprequest": false,
+  "startStop": null,
+  "stops": Array [],
+}
+`;
