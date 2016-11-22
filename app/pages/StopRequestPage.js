@@ -102,24 +102,22 @@ class StopRequestPage extends Component{
         }
         else
            {
-               let back = true
                Alert.alert(
-                   'Cancel stop request?', 'moimoi',
+                   strings.cancelStopRequest, '',
                    [
-                       {text: 'Cancel', onPress: () => {
-                           back = false
-                           console.log('dksjfdsjdfshkj' + back)
+                       {text: strings.no, onPress: () => {
+                           console.log('canceled cancel')
                        }},
-                       {text: 'OK', onPress: () => {
+                       {text: strings.yes, onPress: () => {
                            Actions.pop()
-                           console.log('okokokokokokok' + back)
+                           console.log('request canceled')
                        }},
                    ],
                    {
                        cancelable: false
                    }
                )
-            return back
+            return true
         }
     }
 
