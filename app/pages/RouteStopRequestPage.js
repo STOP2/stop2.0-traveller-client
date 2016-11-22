@@ -161,6 +161,7 @@ class RouteStopRequestPage extends Component{
     {
         const goToStopRequestPage = () =>
       {
+            clearInterval(this.fetchInterval)
             Actions.start()
         }
 

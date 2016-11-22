@@ -14,11 +14,11 @@ class TravellerApp extends Component {
     {
         const scenes = Actions.create(
             <Scene key="root" hideNavBar={true} panHandlers={null}>
-                <Scene key="start" component={StartPage} initial={true}/>
-                <Scene key="departures" component={BusListPage} type='reset'/>
-                <Scene key="stopRequest" component={StopRequestPage} type='reset'/>
-                <Scene key="routeStops" component={RouteStopsPage} type='reset'/>
-                <Scene key="routeStopRequest" component={RouteStopRequestPage} type='reset'/>
+                <Scene key="start" component={StartPage} initial={true} type='reset'/>
+                <Scene key="departures" component={BusListPage}/>
+                <Scene key="stopRequest" component={StopRequestPage}/>
+                <Scene key="routeStops" component={RouteStopsPage}/>
+                <Scene key="routeStopRequest" component={RouteStopRequestPage}/>
             </Scene>
         )
 

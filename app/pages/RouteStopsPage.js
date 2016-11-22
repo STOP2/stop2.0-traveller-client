@@ -100,6 +100,7 @@ class RouteStopsPage extends Component {
     {
         const goToStopVehicleRequestPage = () =>
         {
+            clearInterval(this.fetchInterval)
             Actions.routeStopRequest({
                 stop: {
                     stopName: renderData.stop_name,
