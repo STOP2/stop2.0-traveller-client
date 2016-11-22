@@ -102,7 +102,14 @@ class StopRequestPage extends Component{
         }
         else
            {
-            return true
+               let back = true
+               alert('Cancel stop request?',
+                   [
+                       {text: 'Ok', onPress: () => (back = false) },
+                       {text: 'Cancel', onPress: () => (back = true)},
+                   ]
+               )
+            return back
         }
     }
 
