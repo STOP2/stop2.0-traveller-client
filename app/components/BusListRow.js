@@ -1,26 +1,17 @@
 import React, { Component } from 'react'
-import { View, Image } from 'react-native'
+import { View } from 'react-native'
 import { DefaultText } from '../components/textComponents'
+import VehicleImage from '../components/VehicleImage'
 
 import styles from '../styles/stylesheet'
 
 class BusListRow extends Component {
-    constructor(props)
-    {
-        super(props)
-
-        this.state = {}
-
-        this.iconTram = require('../resources/icons/hsl_reittiopas_tram.png')
-        this.iconBus = require('../resources/icons/hsl_reittiopas_bus.png')
-    }
-
     render()
     {
         return (
           <View style={styles.busrow}>
             <View style={styles.flex1}>
-              {(this.props.vehicleType == 1 || this.props.vehicleType == 2 || this.props.vehicleType == 4) ? <DefaultText></DefaultText> : <Image style={styles.busrowImage} resizeMode="contain" source={this.props.vehicleType == 0 ? this.iconTram : this.iconBus}/>}
+              <VehicleImage style={styles.busrowImage} vehicleType={this.props.vehicleType}/>
             </View>
             <DefaultText style={styles.busrowText}>{this.props.line}</DefaultText>
             <DefaultText style={styles.busrowTextBlack2}>{this.props.destination}</DefaultText>

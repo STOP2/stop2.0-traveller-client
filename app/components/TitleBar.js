@@ -5,13 +5,6 @@ import { DefaultText, BoldText } from '../components/textComponents'
 import styles from '../styles/stylesheet'
 
 export class TitleBar extends Component {
-    constructor(props)
-    {
-        super(props)
-
-        this.state = {}
-    }
-
     render()
     {
         return (<DefaultText style={styles.title}>{this.props.title}</DefaultText>)
@@ -21,13 +14,6 @@ export class TitleBar extends Component {
 TitleBar.propTypes = {title: React.PropTypes.string.isRequired}
 
 export class BoldTitleBar extends Component {
-    constructor(props)
-    {
-        super(props)
-
-        this.state = {}
-    }
-
     render()
     {
         return (<View style={this.props.noBorder ? styles.mainTitleCont : [styles.mainTitleCont, styles.bottomBorder]}>

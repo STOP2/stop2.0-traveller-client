@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { ActivityIndicator, View, TouchableOpacity } from 'react-native'
-import { checkPermission, requestPermission } from 'react-native-android-permissions'
 
 import { DefaultText } from '../components/textComponents'
 import styles from '../styles/stylesheet'
@@ -13,9 +12,9 @@ import AccessibilityView from '../components/AccessibilityView'
 import { getLocation } from '../actions/locationActions'
 
 class StartView extends Component {
-    constructor(props)
+    constructor()
     {
-        super(props)
+        super()
 
         this.state = {
             locationPermissionsError: false

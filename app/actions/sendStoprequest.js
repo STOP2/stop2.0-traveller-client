@@ -1,7 +1,11 @@
 import config from '../config/config'
+import strings from '../resources/translations'
 
 export const SEND_STOPREQUEST = 'SEND_STOPREQUEST'
 export const RECEIVE_CONFIRM = 'RECEIVE_CONFIRM'
+export const REQUEST_ERROR = 'REQUEST_ERROR'
+
+const API_ENDPOINT = '/stoprequests'
 
 export let requestStoprequest = function(tripId, stopId)
 {
@@ -13,29 +17,40 @@ export let requestStoprequest = function(tripId, stopId)
     }
 }
 
-export let receiveConfirm = function()
+export let receiveConfirm = function(vehicle, stop)
 {
     return {
         type: RECEIVE_CONFIRM,
-        sentStoprequest: true
+        sentStoprequest: true,
+        vehicle: vehicle,
+        stop: stop,
+        error: false
     }
 }
 
-export let sendStoprequest = function(tripId, stopId, fcmToken)
+export let requestError = function()
+{
+    alert(strings.stopRequestError)
+
+    return {
+        type: REQUEST_ERROR,
+        error: true
+    }
+}
+
+export let sendStoprequest = function(vehicle, stop, fcmToken)
 {
     return dispatch =>
     {
-        dispatch(requestStoprequest(tripId, stopId))
-
-        console.log(fcmToken)
+        dispatch(requestStoprequest(vehicle.trip_id, stop.stopId))
 
         let stopRequest = JSON.stringify({
-            trip_id: tripId,
-            stop_id: stopId,
+            trip_id: vehicle.trip_id,
+            stop_id: stop.stopId,
             device_id: fcmToken
         })
 
-        return fetch(config.API_URL + '/stoprequests', {
+        return fetch(config.API_URL + API_ENDPOINT, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -43,6 +58,19 @@ export let sendStoprequest = function(tripId, stopId, fcmToken)
             },
             body: stopRequest
         })
-      .then(dispatch(receiveConfirm()))
+        .then(response =>
+            {
+            if (response.ok)
+            {
+                dispatch(receiveConfirm(vehicle, stop))
+
+                return response.json()
+            }
+            else
+            {
+                dispatch(requestError())
+            }
+        })
+        .catch(error => dispatch(requestError(error)))
     }
 }

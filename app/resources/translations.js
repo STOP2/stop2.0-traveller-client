@@ -21,6 +21,8 @@ let strings = new LocalizedStrings({
         locationError: 'Unable to find your location. Make sure that GPS enabled.',
         locationPermissionsError: 'Couldn\'t grant location permissions.',
         chooseVehicle: 'Choose a vehicle',
+        noDepartures: 'No departures found, try again later',
+        noStops: 'No stops found',
         stopRequest: 'Confirm stop request',
         slide: 'Slide to confirm',
         backendError: 'Error: No network connection',
@@ -31,7 +33,15 @@ let strings = new LocalizedStrings({
         minutes: 'minutes',
         vehiclePassedStop: 'Vehicle has left the stop',
         arrivesShortly: 'arrives shortly',
-        arrivalNotificationTitle: 'Get ready'
+        arrivalNotificationTitle: 'Get ready',
+        locationPermissionTitle: 'Location Permission',
+        locationPermissionMessage: 'We need permission to use your location. Please grant the permission on the next view.',
+        now: 'Now',
+        stopRequestError: 'Stop request failed. Try again.',
+        fetchDeparturesError: 'Could not fetch departures.',
+        arrives: 'Arrives',
+        in: 'in',
+        goToBackToFrontPage: 'Start from the beginning'
     },
 
     fi: {
@@ -55,6 +65,8 @@ let strings = new LocalizedStrings({
         locationError: 'Paikantaminen epäonnistui. Varmista, että GPS on kytketty päälle.',
         locationPermissionsError: 'Sijainnin käyttöoikeuden asettaminen epäonnistui.',
         chooseVehicle: 'Valitse kulkuneuvo',
+        noDepartures: 'Lähtöjä ei löytynyt, yritä myöhemmin uudelleen',
+        noStops: 'Pysäkkejä ei löytynyt',
         stopRequest: 'Vahvista pysäytyspyyntö',
         slide: 'Vahvista liu\'uttamalla',
         backendError: 'Virhe: Ei verkkoyhteyttä',
@@ -65,7 +77,15 @@ let strings = new LocalizedStrings({
         goToRouteStopsView: 'Valitse määränpää',
         routeStops: 'Valitse pysäkki',
         arrivesShortly: 'saapuu hetken kuluttua pysäkillesi',
-        arrivalNotificationTitle: 'Ole valmiina'
+        arrivalNotificationTitle: 'Ole valmiina',
+        locationPermissionTitle: 'Sijainnin määritys',
+        locationPermissionMessage: 'Tarvitsemme luvan määrittää sijaintisi. Hyväksy lupapyyntö seuraavassa näkymässä.',
+        now: 'Nyt',
+        stopRequestError: 'Pysäytyspyyntö epäonnistui. Yritä uudestaan.',
+        fetchDeparturesError: 'Virhe aikataulutietojen hakemisessa',
+        arrives: 'Saapumiseen pysäkille',
+        in: '',
+        goToBackToFrontPage: 'Aloita alusta'
     }
 })
 
