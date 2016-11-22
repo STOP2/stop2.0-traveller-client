@@ -1,16 +1,14 @@
 import { REQUEST_DEPARTURES, RECEIVE_DEPARTURES, REQUEST_ERROR } from '../actions/fetchDeparturesActions'
-import { SEND_STOPREQUEST, RECEIVE_CONFIRM } from '../actions/sendStoprequest'
 
 let initialState = {
     stops: [],
     isFetching: false,
     isReady: false,
     sentStoprequest: false,
-    error: false,
-    routeStops: {}
+    error: false
 }
 
-const fetchReducer = (state = initialState, action) =>
+const fetchDepartures = (state = initialState, action) =>
 {
     switch (action.type)
     {
@@ -25,14 +23,6 @@ const fetchReducer = (state = initialState, action) =>
             stops: action.departures
         })
 
-
-    case SEND_STOPREQUEST:
-        return Object.assign({}, state, {sentStoprequest: action.sentStoprequest})
-
-
-    case RECEIVE_CONFIRM:
-        return Object.assign({}, state, {sentStoprequest: action.sentStoprequest})
-
     case REQUEST_ERROR:
         return Object.assign({}, state, {error: action.error})
 
@@ -41,4 +31,4 @@ const fetchReducer = (state = initialState, action) =>
     }
 }
 
-export default fetchReducer
+export default fetchDepartures

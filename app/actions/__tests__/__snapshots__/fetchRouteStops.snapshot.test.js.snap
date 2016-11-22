@@ -1,9 +1,7 @@
 exports[`fetchRouteStops actions should handle REQUEST_ROUTE_STOPS action 1`] = `
 Array [
   Object {
-    "current": false,
     "isFetching": true,
-    "stopId": "1234",
     "tripId": "HSL:1240118",
     "type": "REQUEST_ROUTE_STOPS",
   },

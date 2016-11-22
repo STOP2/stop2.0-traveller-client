@@ -252,10 +252,10 @@ class BusListPage extends Component {
 const mapStateToProps = (state) =>
 {
     return {
-        stops: state.fetchReducer.stops,
-        isFetchingDepartures: state.fetchReducer.isFetching,
-        isDeparturesReady: state.fetchReducer.isReady,
-        fetchDeparturesError: state.fetchReducer.error,
+        stops: state.fetchDeparturesReducer.stops,
+        isFetchingDepartures: state.fetchDeparturesReducer.isFetching,
+        isDeparturesReady: state.fetchDeparturesReducer.isReady,
+        fetchDeparturesError: state.fetchDeparturesReducer.error,
         locationData: state.locationReducer.locationData,
         scene: state.routes.scene
     }

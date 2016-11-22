@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux'
 
-import fetchReducer from './fetchReducer'
+import fetchDeparturesReducer from './fetchDeparturesReducer'
+import stopRequestReducer from './stopRequestReducer'
 import fetchRouteStopsReducer from './fetchRouteStopsReducer'
 import locationReducer from './locationReducer'
 import routes from './routes'
 
 const reducers = combineReducers({
-    fetchReducer,
+    fetchDeparturesReducer,
+    stopRequestReducer,
     fetchRouteStopsReducer,
     locationReducer,
     routes
