@@ -25,8 +25,8 @@ export class RouteListHeader extends Component {
         return (
           <View style={styles.busrowheader}>
             <DefaultText style={styles.busrowText}>{strings.stopCode}</DefaultText>
-            <DefaultText style={styles.busrowText}>{strings.stopName}</DefaultText>
-            <DefaultText style={styles.busrowText2}>{strings.arrivesIn}</DefaultText>
+            <DefaultText style={styles.busrowText2}>{strings.stopName}</DefaultText>
+            <DefaultText style={styles.busrowText}>{strings.arrivesIn}</DefaultText>
           </View>)
     }
 }
