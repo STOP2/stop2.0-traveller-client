@@ -7,6 +7,7 @@ import { TitleBar, BoldTitleBar } from '../components/TitleBar'
 import {DefaultText} from '../components/textComponents'
 import RouteStopsRow from '../components/RouteStopsRow'
 import AccessibilityView from '../components/AccessibilityView'
+import { RouteListHeader } from '../components/BusListHeader'
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
@@ -73,7 +74,7 @@ class RouteStopsPage extends Component {
 
         for (let index in rawData)
 {
-            if (beforeCurrent)
+            if (beforeCurrent || rawData[index].arrives_in < 0)
             {
                 if (rawData[index].stop_code == this.props.stop.stopCode)
                 {
@@ -89,8 +90,6 @@ class RouteStopsPage extends Component {
             {
                 rawData[index].arrives_in += ' min'
             }
-
-
         }
         this.setState({dataSource: this.state.dataSource.cloneWithRows(rawData)})
     }
@@ -99,6 +98,7 @@ class RouteStopsPage extends Component {
     {
         const goToStopVehicleRequestPage = () =>
         {
+            clearInterval(this.fetchInterval)
             Actions.routeStopRequest({
                 stop: {
                     stopName: renderData.stop_name,
@@ -137,6 +137,7 @@ class RouteStopsPage extends Component {
             <BoldTitleBar title={strings.routeStops}/>
             <TitleBar title={this.props.vehicle.line + ' ' + this.props.vehicle.destination} />
             {this.props.errorFetchingStops ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
+            <RouteListHeader />
             <ListView
               enableEmptySections={true}
               dataSource={this.state.dataSource}

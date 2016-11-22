@@ -1,4 +1,5 @@
 import { SET_LOCATION, LOCATION_ERROR, REQUEST_LOCATION } from '../actions/locationActions'
+import {RESET_STATE} from '../actions/resetStateAction'
 
 export let initialState = {
     locationData: {},
@@ -21,6 +22,9 @@ const locationReducer = (state = initialState, action) =>
 
     case LOCATION_ERROR:
         return Object.assign({}, state, {error: action.error})
+
+    case RESET_STATE:
+        return Object.assign({}, state, initialState)
 
     default:
         return state

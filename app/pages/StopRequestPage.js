@@ -138,13 +138,13 @@ class StopRequestPage extends Component{
         {
             this.props.sendStoprequest(this.props.vehicle, this.props.stop, 'stop')
         }
-
+  
         if (!this.props.successfulStopRequest)
-      {
+        {
             return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide + ' →'} />)
         }
         else
-      {
+        {
             return (
             <View style={styles.sliderBackgroundGreen}>
               <DefaultText style={styles.confirmedText}>{strings.stopsent}</DefaultText>
@@ -157,6 +157,7 @@ class StopRequestPage extends Component{
     {
         const goToStopRequestPage = () =>
       {
+            clearInterval(this.fetchInterval)
             Actions.routeStops({})
         }
 
@@ -190,7 +191,7 @@ class StopRequestPage extends Component{
 const mapStateToProps = (state) =>
 {
     return {
-        successfulStopRequest: state.stopRequestReducer.sentStoprequest,
+        successfulStopRequest: state.stopRequestReducer.sentStoprequestFromStop,
         routeStops: state.fetchRouteStopsReducer.routeStops,
         isFetchingStops: state.fetchRouteStopsReducer.isFetchingStops,
         errorFetchingStops: state.fetchRouteStopsReducer.errorFetchingStops,
