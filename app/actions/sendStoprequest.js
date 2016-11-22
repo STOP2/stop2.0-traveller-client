@@ -18,13 +18,14 @@ export let requestStoprequest = function(tripId, stopId, requestType)
     }
 }
 
-export let receiveConfirm = function(vehicle, stop)
+export let receiveConfirm = function(vehicle, stop, fromVehicle)
 {
     return {
         type: RECEIVE_CONFIRM,
         sentStoprequest: true,
         vehicle: vehicle,
         stop: stop,
+        fromVehicle: fromVehicle,
         error: false
     }
 }
@@ -39,7 +40,7 @@ export let requestError = function()
     }
 }
 
-export let sendStoprequest = function(vehicle, stop, requestType)
+export let sendStoprequest = function(vehicle, stop, requestType, fromVehicle)
 {
     return dispatch =>
     {
@@ -60,7 +61,7 @@ export let sendStoprequest = function(vehicle, stop, requestType)
             {
             if (response.ok)
             {
-                dispatch(receiveConfirm(vehicle, stop))
+                dispatch(receiveConfirm(vehicle, stop, fromVehicle))
 
                 return response.json()
             }
