@@ -60,7 +60,6 @@ exports[`RouteStopsRow component renders correctly 1`] = `
       ]
     }>
     5
-     min
   </Text>
 </View>
 `;

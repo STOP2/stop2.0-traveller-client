@@ -4,18 +4,15 @@ Object {
   "isFetchingStops": false,
   "routeIsReady": true,
   "routeStops": Array [],
-  "stops": Array [],
 }
 `;
 
 exports[`fetch route stops reducer handles REQUEST_ROUTE_STOPS action 1`] = `
 Object {
   "errorFetchingStops": false,
-  "isFetching": true,
-  "isFetchingStops": false,
+  "isFetchingStops": true,
   "routeIsReady": false,
   "routeStops": Object {},
-  "stops": Array [],
 }
 `;
 
@@ -26,7 +23,6 @@ Object {
   "routeIsReady": false,
   "routeStops": Object {},
   "sentStoprequest": false,
-  "stops": Array [],
 }
 `;
 
@@ -36,6 +32,5 @@ Object {
   "isFetchingStops": false,
   "routeIsReady": false,
   "routeStops": Object {},
-  "stops": Array [],
 }
 `;

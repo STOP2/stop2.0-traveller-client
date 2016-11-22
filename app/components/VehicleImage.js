@@ -23,5 +23,5 @@ export default class VehicleImage extends Component {
 
 VehicleImage.propTypes = {
     vehicleType: React.PropTypes.number.isRequired,
-    style: React.PropTypes.number
+    style: React.PropTypes.object
 }
