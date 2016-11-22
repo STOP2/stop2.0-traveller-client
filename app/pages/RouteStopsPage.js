@@ -74,7 +74,7 @@ class RouteStopsPage extends Component {
 
         for (let index in rawData)
 {
-            if (beforeCurrent)
+            if (beforeCurrent || rawData[index].arrives_in == 0)
             {
                 if (rawData[index].stop_code == this.props.stop.stopCode)
                 {
