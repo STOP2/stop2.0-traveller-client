@@ -45,7 +45,7 @@ class StartView extends Component {
     {
         this.requestLocationPermission()
     }
-    
+
     render()
     {
         let viewElement
