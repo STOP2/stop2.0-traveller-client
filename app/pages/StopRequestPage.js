@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, TouchableOpacity, BackAndroid } from 'react-native'
+import { View, TouchableOpacity, BackAndroid, Alert } from 'react-native'
 import { sendStoprequest } from '../actions/sendStoprequest'
 import { Actions } from 'react-native-router-flux'
 
@@ -102,6 +102,21 @@ class StopRequestPage extends Component{
         }
         else
            {
+               Alert.alert(
+                   strings.cancelStopRequest, '',
+                   [
+                       {text: strings.no, onPress: () => {
+                           console.log('canceled cancel')
+                       }},
+                       {text: strings.yes, onPress: () => {
+                           Actions.pop()
+                           console.log('request canceled')
+                       }},
+                   ],
+                   {
+                       cancelable: false
+                   }
+               )
             return true
         }
     }

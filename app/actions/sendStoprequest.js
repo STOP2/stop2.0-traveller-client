@@ -1,5 +1,6 @@
 import config from '../config/config'
 import strings from '../resources/translations'
+import {Alert} from 'react-native'
 
 export const SEND_STOPREQUEST = 'SEND_STOPREQUEST'
 export const RECEIVE_CONFIRM = 'RECEIVE_CONFIRM'
@@ -32,7 +33,16 @@ export let receiveConfirm = function(vehicle, stop, fromVehicle)
 
 export let requestError = function()
 {
-    alert(strings.stopRequestError)
+    Alert.alert(
+        'Error',
+        strings.stopRequestError,
+        [
+            {text: 'OK', onPress: () => console.log('confirmed server error')}
+        ],
+        {
+        cancelable: false
+        }
+    )
 
     return {
         type: REQUEST_ERROR,
