@@ -266,7 +266,7 @@ RouteStopRequestPage.propTypes = {
     sendStoprequest: React.PropTypes.func.isRequired,
     sent: React.PropTypes.bool.isRequired,
     resetState: React.PropTypes.func.isRequired,
-    fcmToken: state.fcmReducer.token
+    fcmToken: React.PropTypes.string.token
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RouteStopRequestPage)
