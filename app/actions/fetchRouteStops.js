@@ -39,7 +39,14 @@ export let fetchRouteStops = function(tripId)
     {
         dispatch(requestRouteStops(tripId))
 
-        return fetch(config.API_URL + '/routes?trip_id=' + tripId)
+        return fetch(config.API_URL + '/routes?trip_id=' + tripId,
+        {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
       .then(response => response.json())
       .then(json => dispatch(receiveRouteStops(json)))
       .catch(error => dispatch(requestError(error)))
