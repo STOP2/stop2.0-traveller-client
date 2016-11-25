@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.stop2travellerclient"
-    android:versionCode="6"
+    android:versionCode="10"
     android:versionName="1.0">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
