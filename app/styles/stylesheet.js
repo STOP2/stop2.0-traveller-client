@@ -272,6 +272,10 @@ const styles = StyleSheet.create({
     fetchDeparturesError: {
         textAlign: 'center',
         fontSize: 30
+    },
+    loadingDeparturesText: {
+        textAlign: 'center',
+        fontSize: 25
     }
 })
 
