@@ -46,7 +46,8 @@ let strings = new LocalizedStrings({
         goToBackToFrontPage: 'Start from the beginning',
         cancelStopRequest: 'Cancel your stop request?',
         yes: 'Yes',
-        no: 'No'
+        no: 'No',
+        loadingDepartures: 'Fetching departures...'
     },
 
     fi: {
@@ -95,7 +96,8 @@ let strings = new LocalizedStrings({
         goToBackToFrontPage: 'Aloita alusta',
         cancelStopRequest: 'Perutaanko pysäytyspyyntö?',
         yes: 'Kyllä',
-        no: 'Ei'
+        no: 'Ei',
+        loadingDepartures: 'Ladataan aikataulutietoja...'
     }
 })
 
