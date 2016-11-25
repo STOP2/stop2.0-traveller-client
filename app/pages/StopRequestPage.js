@@ -51,12 +51,13 @@ class StopRequestPage extends Component{
         this.setState({fetchIntervalRunning: true})
         this.setState({minutesLeft: this.props.vehicle.arrival + ' ' + strings.minutes})
         this.createInterval(this.props)
+        BackAndroid.addEventListener('hardwareBackPress', this.backAndroidHandler)
     }
 
     componentWillReceiveProps = (nextProps) =>
       {
         this.setState({renderConfirm: !nextProps.successfulStopRequest})
-        BackAndroid.addEventListener('hardwareBackPress', this.backAndroidHandler)
+
 
         if (nextProps.scene.name == this.sceneName)
         {
@@ -108,11 +109,10 @@ class StopRequestPage extends Component{
                    strings.cancelStopRequest, '',
                    [
                        {text: strings.no, onPress: () => {
-                           console.log('canceled cancel')
                        }},
                        {text: strings.yes, onPress: () => {
+                          BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
                            Actions.pop()
-                           console.log('request canceled')
                        }},
                    ],
                    {
@@ -121,12 +121,6 @@ class StopRequestPage extends Component{
                )
             return true
         }
-    }
-
-
-    componentWillUnmount()
-    {
-        BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
     }
 
     renderRouteInfo = () =>
@@ -160,6 +154,7 @@ class StopRequestPage extends Component{
         const goToStopRequestPage = () =>
       {
             clearInterval(this.fetchInterval)
+            BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
             Actions.routeStops({})
         }
 
