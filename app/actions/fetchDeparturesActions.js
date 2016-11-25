@@ -46,7 +46,14 @@ export let fetchDepartures = function(latitude, longitude) {
     return dispatch => {
         dispatch(requestDepartures(latitude, longitude))
 
-        return fetch(config.API_URL + API_ENDPOINT + '?lat=' + latitude + '&lon=' + longitude + radiusString)
+        return fetch(config.API_URL + API_ENDPOINT + '?lat=' + latitude + '&lon=' + longitude + radiusString,
+            {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
             .then(response => {
                 if (response.ok) {
                     return response.json()
