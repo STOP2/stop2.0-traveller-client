@@ -13,6 +13,8 @@ import {DefaultText} from '../components/textComponents'
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
+import PushController from '../components/PushController'
+
 import { fetchRouteStops } from '../actions/fetchRouteStops'
 
 const UPDATE_INTERVAL_IN_SECS = 10
@@ -135,10 +137,10 @@ class StopRequestPage extends Component{
     renderSlider = () =>
     {
         const sendStoprequest = () =>
-        {
-            this.props.sendStoprequest(this.props.vehicle, this.props.stop, 'stop')
+      {
+            this.props.sendStoprequest(this.props.vehicle, this.props.stop, this.props.fcmToken)
         }
-  
+
         if (!this.props.successfulStopRequest)
         {
             return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide + ' →'} />)
@@ -174,11 +176,14 @@ class StopRequestPage extends Component{
   {
         return (
         <AccessibilityView style={styles.flex1} name="stopRequest">
-          <BoldTitleBar title={strings.stopRequest}/>
+        <BoldTitleBar title={strings.stopRequest}/>
+          <PushController vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} />
           <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopCode + ')'} />
+
           <View style={styles.flex3}>
             {this.renderRouteInfo()}
           </View>
+
           <View style={styles.flex1}>
             {this.renderButton()}
           </View>
@@ -191,6 +196,7 @@ class StopRequestPage extends Component{
 const mapStateToProps = (state) =>
 {
     return {
+        fcmToken: state.fcmReducer.token,
         successfulStopRequest: state.stopRequestReducer.sentStoprequestFromStop,
         routeStops: state.fetchRouteStopsReducer.routeStops,
         isFetchingStops: state.fetchRouteStopsReducer.isFetchingStops,
@@ -203,9 +209,9 @@ const mapStateToProps = (state) =>
 const mapDispatchToProps = (dispatch) =>
 {
     return {
-        sendStoprequest: (vehicle, stop, requestType) =>
+        sendStoprequest: (vehicle, stop, fcmToken) =>
        {
-            dispatch(sendStoprequest(vehicle, stop, requestType))
+            dispatch(sendStoprequest(vehicle, stop, fcmToken))
         },
         fetchRouteStops: (tripId, BusId, current) =>
         {
@@ -231,6 +237,7 @@ StopRequestPage.propTypes = {
         stopId: React.PropTypes.string.isRequired
     }),
     sendStoprequest: React.PropTypes.func.isRequired,
+    fcmToken: React.PropTypes.string,
     successfulStopRequest: React.PropTypes.bool.isRequired
 }
 

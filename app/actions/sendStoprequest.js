@@ -8,14 +8,13 @@ export const REQUEST_ERROR = 'REQUEST_ERROR'
 
 const API_ENDPOINT = '/stoprequests'
 
-export let requestStoprequest = function(tripId, stopId, requestType)
+export let requestStoprequest = function(tripId, stopId)
 {
     return {
         type: SEND_STOPREQUEST,
         sentStoprequest: false,
-        tripId: tripId,
-        stopId: stopId,
-        requestType: requestType
+        trip_id: tripId,
+        stop_id: stopId
     }
 }
 
@@ -50,21 +49,24 @@ export let requestError = function()
     }
 }
 
-export let sendStoprequest = function(vehicle, stop, requestType, fromVehicle)
+export let sendStoprequest = function(vehicle, stop, fcmToken, fromVehicle)
 {
     return dispatch =>
     {
-        dispatch(requestStoprequest(vehicle.trip_id, stop.stopId, requestType))
+        dispatch(requestStoprequest(vehicle.trip_id, stop.stopId))
 
         let stopRequest = JSON.stringify({
             trip_id: vehicle.trip_id,
             stop_id: stop.stopId,
-            request_type: requestType
+            device_id: fcmToken
         })
 
         return fetch(config.API_URL + API_ENDPOINT, {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             body: stopRequest
         })
         .then(response =>

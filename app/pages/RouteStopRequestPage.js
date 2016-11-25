@@ -156,7 +156,7 @@ class RouteStopRequestPage extends Component{
   {
         const sendStoprequest = () =>
         {
-            this.props.sendStoprequest(this.props.vehicle, this.props.stop, 'stop', true)
+            this.props.sendStoprequest(this.props.vehicle, this.props.stop, this.props.fcmToken, true)
         }
 
         if (this.state.renderConfirm)
@@ -220,16 +220,17 @@ const mapStateToProps = (state) =>
         error: state.stopRequestReducer.error,
         scene: state.routes.scene,
         startStop: state.stopRequestReducer.startStop,
-        vehicle: state.stopRequestReducer.currentVehicle
+        vehicle: state.stopRequestReducer.currentVehicle,
+        fcmToken: state.fcmReducer.token
     }
 }
 
 const mapDispatchToProps = (dispatch) =>
 {
     return {
-        sendStoprequest: (busId, stopId, requestType, fromVehicle) =>
+        sendStoprequest: (busId, stopId, fcmToken, fromVehicle) =>
        {
-            dispatch(sendStoprequest(busId, stopId, requestType, fromVehicle))
+            dispatch(sendStoprequest(busId, stopId, fcmToken, fromVehicle))
         },
         fetchRouteStops: (tripId, BusId, current) =>
         {
@@ -264,7 +265,8 @@ RouteStopRequestPage.propTypes = {
     }),
     sendStoprequest: React.PropTypes.func.isRequired,
     sent: React.PropTypes.bool.isRequired,
-    resetState: React.PropTypes.func.isRequired
+    resetState: React.PropTypes.func.isRequired,
+    fcmToken: React.PropTypes.string.token
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RouteStopRequestPage)
