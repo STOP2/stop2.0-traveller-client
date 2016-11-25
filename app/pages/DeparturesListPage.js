@@ -18,7 +18,7 @@ import { fetchDepartures } from '../actions/fetchDeparturesActions'
 
 const UPDATE_INTERVAL_IN_SECS = 10
 
-class BusListPage extends Component {
+class DeparturesListPage extends Component {
     constructor()
     {
         super()
@@ -275,7 +275,7 @@ const mapDispatchToProps = (dispatch) =>
     }
 }
 
-BusListPage.propTypes = {
+DeparturesListPage.propTypes = {
     fetchDepartures: React.PropTypes.func.isRequired,
     locationData: React.PropTypes.shape({
         latitude: React.PropTypes.number.isRequired,
@@ -288,5 +288,4 @@ BusListPage.propTypes = {
     scene: React.PropTypes.object.isRequired
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(BusListPage)
+export default connect(mapStateToProps, mapDispatchToProps)(DeparturesListPage)

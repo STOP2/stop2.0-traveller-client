@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ActivityIndicator, ListView, View, TouchableOpacity } from 'react-native'
+import { ActivityIndicator, ListView, View, TouchableOpacity, BackAndroid } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
 import { TitleBar, BoldTitleBar } from '../components/TitleBar'
@@ -45,14 +45,14 @@ class RouteStopsPage extends Component {
     componentWillMount = () =>
     {
         this.props.fetchRouteStops(this.props.vehicle.trip_id, this.props.stop.stopId, false)
-
         this.setState({fetchIntervalRunning: true})
-
         this.createInterval(this.props)
+
     }
 
     componentWillReceiveProps = (nextProps) =>
     {
+        BackAndroid.addEventListener('hardwareBackPress', this.backAndroidHandler)
         if (nextProps.scene.name == this.sceneName)
         {
             if (!this.state.fetchIntervalRunning)
@@ -94,11 +94,19 @@ class RouteStopsPage extends Component {
         this.setState({dataSource: this.state.dataSource.cloneWithRows(rawData)})
     }
 
+    backAndroidHandler = () =>
+    {
+        BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
+
+        return false
+    }
+
     renderRow = (renderData) =>
     {
         const goToStopVehicleRequestPage = () =>
         {
             clearInterval(this.fetchInterval)
+            BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
             Actions.routeStopRequest({
                 stop: {
                     stopName: renderData.stop_name,
