@@ -201,12 +201,15 @@ class BusListPage extends Component {
     {
         return (
             <View style={styles.spinnerContainer}>
-              <View style={styles.spinnerBackground}>
-                <ActivityIndicator
-                 size="large"
-                 animating={true}
-                />
-              </View>
+                <View style={styles.spinnerBackground}>
+                    <DefaultText style={styles.loadingDeparturesText}>
+                        {strings.loadingDepartures}
+                    </DefaultText>
+                    <ActivityIndicator
+                        size="large"
+                        animating={true}
+                    />
+                </View>
             </View>
         )
     }
