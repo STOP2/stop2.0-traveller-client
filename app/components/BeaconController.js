@@ -11,7 +11,7 @@ const BACKGROUND_SCAN_PERIOD = 5000
 
 class BeaconController extends Component {
     constructor(props)
-{
+    {
         super(props)
 
         this.state = {beaconDetected: false }
@@ -24,23 +24,24 @@ class BeaconController extends Component {
     }
 
     async getBeacons()
-{
+    {
+        Beacons.detectIBeacons()
         Beacons.setForegroundScanPeriod(FOREGROUND_SCAN_PERIOD)
         Beacons.setBackgroundScanPeriod(BACKGROUND_SCAN_PERIOD)
 
         try
-{
+        {
             await Beacons.startRangingBeaconsInRegion('REGION1', this.beacons[0].id)
             console.log('Beacons ranging started succesfully!')
         }
-        catch (error) 
-{
+        catch (error)
+        {
             console.log(`Beacons ranging not started, error: ${error}`)
         }
 
         // Print a log of the detected iBeacons (1 per second)
         DeviceEventEmitter.addListener('beaconsDidRange', (data) =>
-{
+        {
             console.log(data)
             if (data.beacons.length > 0)
 {
