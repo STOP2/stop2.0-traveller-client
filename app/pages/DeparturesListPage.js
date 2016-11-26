@@ -246,7 +246,7 @@ class DeparturesListPage extends Component {
 
         return (
             <AccessibilityView style={styles.flex1} name={this.sceneName}>
-              <BoldTitleBar title={strings.chooseVehicle} noBorder={true}/>
+              <BoldTitleBar title={strings.nearestStops} noBorder={true}/>
               {viewElement}
             </AccessibilityView>
         )
