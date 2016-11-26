@@ -53,37 +53,10 @@ class StartView extends Component {
 
     render()
     {
-        let viewElement
-
-        if (this.props.locationPermissionError)
-        {
-            viewElement = <View>
-                          <DefaultText style={styles.locationErrorText}>{strings.locationPermissionsError}</DefaultText>
-                        </View>
-        }
-        else if (this.props.locationError)
-            {
-            viewElement = <View>
-                              <DefaultText style={styles.locationErrorText}>{strings.locationError}</DefaultText>
-                              <TouchableOpacity onPress={this.props.getLocation} accessibilityComponentType="button" accessibilityLabel={strings.tryAgain}>
-                                <DefaultText style={styles.tryAgain}>{strings.tryAgain}</DefaultText>
-                              </TouchableOpacity>
-                            </View>
-        }
-        else if (this.props.gettingLocation == false)
-        {
-            viewElement = <View style={styles.start}><BeaconController /><StartViewButtons /></View>
-        }
-        else
-        {
-            viewElement = <View><DefaultText style={styles.gettingLocationText}>{strings.gettingLocation}</DefaultText><ActivityIndicator /></View>
-        }
-
-
         return (
-      <AccessibilityView style={styles.start} name="start">
-        {viewElement}
-      </AccessibilityView>
+            <AccessibilityView style={styles.start} name="start">
+                <StartViewButtons />
+            </AccessibilityView>
         )
     }
 }
