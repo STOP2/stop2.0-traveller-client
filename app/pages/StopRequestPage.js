@@ -16,6 +16,7 @@ import strings from '../resources/translations'
 import PushController from '../components/PushController'
 
 import { fetchRouteStops } from '../actions/fetchRouteStops'
+import { cancelStopRequest } from '../actions/cancelStopRequest'
 
 const UPDATE_INTERVAL_IN_SECS = 10
 
@@ -97,30 +98,42 @@ class StopRequestPage extends Component{
     }
 
     backAndroidHandler = () =>
-    // when a user sends a stop request, the back button will be disabled
-       {
+   {
         if (this.state.renderConfirm)
-           {
+        {
             return false
         }
-        else
-           {
-               Alert.alert(
-                   strings.cancelStopRequest, '',
-                   [
-                       {text: strings.no, onPress: () => {
-                       }},
-                       {text: strings.yes, onPress: () => {
-                          BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
-                           Actions.pop()
-                       }},
-                   ],
-                   {
-                       cancelable: false
-                   }
-               )
-            return true
+
+        this.showStopRequestCancelConfirmation()
+        return true
+    }
+
+    showStopRequestCancelConfirmation = () =>
+    {
+        function cancelStopRequestCallback(error) {
+            if(!error) {
+                BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
+
+                Actions.pop()
+            } else {
+                Alert.alert( strings.stopRequestCancellationErrorTitle, strings.stopRequestCancellationErrorMsg,
+                    [ {text: 'Ok', onPress: () => {}}] )
+            }
         }
+
+        Alert.alert(
+        strings.cancelStopRequest, '',
+        [
+            {text: strings.no, onPress: () => {
+            }},
+    {text: strings.yes, onPress: () => {
+            this.props.cancelStopRequest(this.props.fromRequestId, cancelStopRequestCallback)
+    }},
+    ],
+    {
+        cancelable: false
+    }
+    )
     }
 
     renderRouteInfo = () =>
@@ -131,8 +144,8 @@ class StopRequestPage extends Component{
     renderSlider = () =>
     {
         const sendStoprequest = () =>
-      {
-            this.props.sendStoprequest(this.props.vehicle, this.props.stop, this.props.fcmToken)
+        {
+            this.props.sendStoprequest(this.props.vehicle, this.props.stop, this.props.fcmToken, false)
         }
 
         if (!this.props.successfulStopRequest)
@@ -197,20 +210,26 @@ const mapStateToProps = (state) =>
         isFetchingStops: state.fetchRouteStopsReducer.isFetchingStops,
         errorFetchingStops: state.fetchRouteStopsReducer.errorFetchingStops,
         stopRequestFailed: state.stopRequestReducer.error,
-        scene: state.routes.scene
+        scene: state.routes.scene,
+        fromRequestId: state.stopRequestReducer.fromRequestId
     }
 }
 
 const mapDispatchToProps = (dispatch) =>
 {
     return {
-        sendStoprequest: (vehicle, stop, fcmToken) =>
+        sendStoprequest: (vehicle, stop, fcmToken, fromVehicle) =>
        {
-            dispatch(sendStoprequest(vehicle, stop, fcmToken))
+            dispatch(sendStoprequest(vehicle, stop, fcmToken, fromVehicle))
         },
         fetchRouteStops: (tripId, BusId, current) =>
         {
             dispatch(fetchRouteStops(tripId, BusId, current))
+        },
+        cancelStopRequest: (requestId, cancelStopRequestCallback) =>
+        {
+            dispatch(cancelStopRequest(requestId, false))
+            .then((stopRequestCancellationError) => cancelStopRequestCallback(stopRequestCancellationError))
         }
     }
 }
@@ -233,7 +252,9 @@ StopRequestPage.propTypes = {
     }),
     sendStoprequest: React.PropTypes.func.isRequired,
     fcmToken: React.PropTypes.string,
-    successfulStopRequest: React.PropTypes.bool.isRequired
+    successfulStopRequest: React.PropTypes.bool.isRequired,
+    fromRequestId: React.PropTypes.number.isRequired,
+    cancelStopRequest: React.PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StopRequestPage)
