@@ -138,7 +138,8 @@ class StopRequestPage extends Component{
 
     renderRouteInfo = () =>
     {
-        return (this.state.renderConfirm ? <RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination} vehicleMinutesLeft={this.state.minutesLeft}/> : <RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination} vehicleMinutesLeft={this.state.minutesLeft}/>)
+        return (this.state.renderConfirm ?
+<RouteInfo mode="arrive" vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination} vehicleMinutesLeft={this.state.minutesLeft}/> : <RouteInfo mode="stop" vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination} vehicleMinutesLeft={this.state.minutesLeft}/>)
     }
 
     renderSlider = () =>
@@ -150,15 +151,23 @@ class StopRequestPage extends Component{
 
         if (!this.props.successfulStopRequest)
         {
-            return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide + ' →'} />)
+            return (<SlideConfirmButton mode="stop" onSlideSuccess={sendStoprequest} text={strings.slideToStop + ' →'} />)
         }
         else
         {
-            return (
-            <View style={styles.sliderBackgroundGreen}>
-              <DefaultText style={styles.confirmedText}>{strings.stopsent}</DefaultText>
-            </View>
-            )
+            function cancelStopRequestCallback(error) {
+                if(!error) {
+                    BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
+
+                    Actions.pop()
+                } else {
+                    Alert.alert( strings.stopRequestCancellationErrorTitle, strings.stopRequestCancellationErrorMsg,
+                        [ {text: 'Ok', onPress: () => {}}] )
+                }
+            }
+
+            return (<SlideConfirmButton mode="cancel" onSlideSuccess={() => this.props.cancelStopRequest(this.props.fromRequestId, cancelStopRequestCallback)
+} text={'← ' + strings.slideToCancel} />)
         }
     }
 
@@ -184,9 +193,8 @@ class StopRequestPage extends Component{
   {
         return (
         <AccessibilityView style={styles.flex1} name="stopRequest">
-        <BoldTitleBar title={strings.stopRequest}/>
           <PushController vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} />
-          <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopCode + ')'} />
+          <TitleBar title={strings.fromStop + ' ' + this.props.stop.stopName + '  (' + this.props.stop.stopCode + ')'} />
 
           <View style={styles.flex3}>
             {this.renderRouteInfo()}
