@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, TouchableOpacity, BackAndroid, Alert } from 'react-native'
 import { sendStoprequest } from '../actions/sendStoprequest'
+import { cancelStopRequest } from '../actions/cancelStopRequest'
+
 import { Actions } from 'react-native-router-flux'
 
 import { TitleBar, BoldTitleBar } from '../components/TitleBar'
@@ -104,39 +106,46 @@ class RouteStopRequestPage extends Component{
         }
     }
 
+
     backAndroidHandler = () =>
-        // when a user sends a stop request, the back button will be disabled
     {
         if (this.state.renderConfirm)
         {
             return false
         }
-        else
-        {
-            Alert.alert(
-                strings.cancelStopRequest, '',
-                [
-                    {
-                        text: strings.no,
-                        onPress: () =>
-                        {
-                        }
-                    },
-                    {
-                        text: strings.yes,
-                        onPress: () =>
-                        {
-                            BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
-                            Actions.pop()
-                        }
-                    }
-                ],
-                {cancelable: false}
-            )
 
-            return true
-        }
+        this.showStopRequestCancelConfirmation()
+        return true
     }
+
+    showStopRequestCancelConfirmation = () =>
+    {
+        function cancelStopRequestCallback(error) {
+            if(!error) {
+                BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
+
+                Actions.pop()
+            } else {
+                Alert.alert( strings.stopRequestCancellationErrorTitle, strings.stopRequestCancellationErrorMsg,
+                    [ {text: 'Ok', onPress: () => {}}] )
+            }
+        }
+
+        Alert.alert(
+            strings.cancelStopRequest, '',
+            [
+                {text: strings.no, onPress: () => {
+                }},
+                {text: strings.yes, onPress: () => {
+                    this.props.cancelStopRequest(this.props.destinationRequestId, cancelStopRequestCallback)
+                }},
+            ],
+            {
+                cancelable: false
+            }
+        )
+    }
+
 
     renderRouteInfo = () =>
     {
@@ -222,7 +231,8 @@ const mapStateToProps = (state) =>
         scene: state.routes.scene,
         startStop: state.stopRequestReducer.startStop,
         vehicle: state.stopRequestReducer.currentVehicle,
-        fcmToken: state.fcmReducer.token
+        fcmToken: state.fcmReducer.token,
+        destinationRequestId: state.stopRequestReducer.destinationRequestId
     }
 }
 
@@ -240,6 +250,11 @@ const mapDispatchToProps = (dispatch) =>
         resetState: () =>
        {
             dispatch(resetState())
+        },
+        cancelStopRequest: (requestId, cancelStopRequestCallback) =>
+        {
+            dispatch(cancelStopRequest(requestId, true))
+            .then((stopRequestCancellationError) => cancelStopRequestCallback(stopRequestCancellationError))
         }
     }
 }
@@ -267,7 +282,9 @@ RouteStopRequestPage.propTypes = {
     sendStoprequest: React.PropTypes.func.isRequired,
     sent: React.PropTypes.bool.isRequired,
     resetState: React.PropTypes.func.isRequired,
-    fcmToken: React.PropTypes.string.token
+    fcmToken: React.PropTypes.string.token,
+    destinationRequestId: React.PropTypes.number.isRequired,
+    cancelStopRequest: React.PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RouteStopRequestPage)
