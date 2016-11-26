@@ -18,7 +18,7 @@ export default class RouteInfo extends Component {
             </View>
           </View>
           <View style={styles.vehicleArrivesInWrapper}>
-            <DefaultText style={styles.vehicleArrivesInText}>{strings.vehicleArrivesIn}</DefaultText>
+            <DefaultText style={styles.vehicleArrivesInText}>{this.props.mode == 'stop' ? strings.vehicleStopsIn : strings.vehicleArrivesIn}</DefaultText>
           </View>
           <View>
             <DefaultText style={styles.vehicleMinutesLeft}>{this.props.vehicleMinutesLeft}</DefaultText>
