@@ -1,7 +1,9 @@
 exports[`fetch reducer handles RECEIVE_CONFIRM action 1`] = `
 Object {
   "currentVehicle": undefined,
+  "destinationRequestId": null,
   "error": false,
+  "fromRequestId": null,
   "isFetching": false,
   "isReady": false,
   "sentStoprequestFromStop": true,
@@ -14,7 +16,9 @@ Object {
 exports[`fetch reducer handles SEND_STOPREQUEST action 1`] = `
 Object {
   "currentVehicle": null,
+  "destinationRequestId": null,
   "error": false,
+  "fromRequestId": null,
   "isFetching": false,
   "isReady": false,
   "sentStoprequestFromStop": false,
@@ -27,7 +31,9 @@ Object {
 exports[`fetch reducer returns the same state on an unhandled action 1`] = `
 Object {
   "currentVehicle": null,
+  "destinationRequestId": null,
   "error": false,
+  "fromRequestId": null,
   "isFetching": false,
   "isReady": false,
   "sentStoprequestFromStop": false,
