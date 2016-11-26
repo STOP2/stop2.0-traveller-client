@@ -42,7 +42,11 @@ export let cancelStopRequest = function(requestId)
 
         return fetch(config.API_URL + API_ENDPOINT + '?request_id=' + requestId, {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'}
+            headers:
+            {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
         })
         .then(response => {
             if (response.ok) {
