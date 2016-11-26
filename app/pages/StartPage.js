@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ActivityIndicator, View, TouchableOpacity } from 'react-native'
-
+import { ActivityIndicator, View, TouchableOpacity, PermissionsAndroid } from 'react-native'
 import { DefaultText } from '../components/textComponents'
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
@@ -10,18 +9,41 @@ import StartViewButtons from '../components/StartViewButtons'
 import AccessibilityView from '../components/AccessibilityView'
 
 import { checkLocationPermissionAndGetLocation } from '../actions/locationActions'
-
 import BeaconController from '../components/BeaconController'
 
 class StartView extends Component {
-    constructor(props)
+    constructor()
     {
-        super(props)
+        super()
+
+        this.state = {
+            locationPermissionsError: false
+        }
+    }
+
+    async requestLocationPermission() {
+        try {
+            const granted = await PermissionsAndroid.requestPermission(
+                PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+                {
+                    'title': strings.locationPermissionTitle,
+                    'message': strings.locationPermissionMessage
+                }
+            )
+
+            if (granted) {
+                this.props.getLocation()
+            } else {
+                this.setState({locationPermissionsError: true})
+            }
+        } catch (err) {
+            this.setState({locationError: true})
+        }
     }
 
     componentWillMount = () =>
     {
-        this.props.getLocation()
+        this.requestLocationPermission()
     }
 
     render()
@@ -38,7 +60,7 @@ class StartView extends Component {
             {
             viewElement = <View>
                               <DefaultText style={styles.locationErrorText}>{strings.locationError}</DefaultText>
-                              <TouchableOpacity onPress={this.props.getLocation}>
+                              <TouchableOpacity onPress={this.props.getLocation} accessibilityComponentType="button" accessibilityLabel={strings.tryAgain}>
                                 <DefaultText style={styles.tryAgain}>{strings.tryAgain}</DefaultText>
                               </TouchableOpacity>
                             </View>

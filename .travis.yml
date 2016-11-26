@@ -6,14 +6,18 @@ env:
 install:
 - npm install https://github.com/sreejithr/react-native-slide-button/archive/v1.3.0.tar.gz
 - npm install
+- sed -i "s/23\.0\.1/25.0.0/g" node_modules/react-native-localization/android/build.gradle
+- sed -i "s/23\.0\.1/25.0.0/g" node_modules/react-native-fcm/android/build.gradle
 jdk:
   - oraclejdk8
 android:
   components:
   - platform-tools
   - tools
-  - build-tools-23.0.1
+  - build-tools-25.0.0
   - android-23
+  - extra-google-google_play_services
+  - extra-google-m2repository
   - extra-android-m2repository
 licenses:
   - 'android-sdk-preview-license-.+'
@@ -25,14 +29,14 @@ script:
 before_install:
 - nvm install 6
 - node --version
-- openssl aes-256-cbc -K $encrypted_880ab629b699_key -iv $encrypted_880ab629b699_iv -in .keystore.enc -out .keystore -d
+- openssl aes-256-cbc -K $encrypted_3aca4c1762c3_key -iv $encrypted_3aca4c1762c3_iv -in secrets.tar.enc -out secrets.tar -d
+- tar xvf secrets.tar
 - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
-- gem install coveralls-lcov
 before_deploy:
 - rvm 1.9.3 do gem install octokit -v 4.3.0
 - cp $TRAVIS_BUILD_DIR/.keystore $HOME
 - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 $TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release-unsigned.apk STOP2 -keystore $HOME/.keystore -storepass $storepass -keypass $keypass
-- "${ANDROID_HOME}/build-tools/23.0.1/zipalign 4 $TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release-unsigned.apk $TRAVIS_BUILD_DIR/android/STOP2.apk"
+- "${ANDROID_HOME}/build-tools/25.0.0/zipalign 4 $TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release-unsigned.apk $TRAVIS_BUILD_DIR/android/STOP2.apk"
 deploy:
   provider: releases
   api_key:
@@ -45,7 +49,7 @@ notifications:
   slack:
     secure: FC6pCe4YbbDVGgGNcHxp3tTe8i4rD+jT/+9ZuNF6vS/7cSkzfABGoEIlJMtPgUNl0B8N8MHvKFslMazgboLjnzdjLnNxsqnhUY17Mnpx4uyUqjnppel+FsbNkty6pRxNibwK2N131YjsPhpnLnDOv50S7H0MH+q7dk36sBm2l55Xltqkt5B3LdLkT0QpplbgiR8GoK6uo8au/OBqC8O1AyQojFSezVH2ceh/NjHzeEhPGMwT1hnHricq1VCxU8ORB7YITiZ7KDgkv46dp4YME31Rrqh94oYY4OdunRDkTpWuZpe9VXDx4YqLM3x8Ew3DsN9R94YmHW3JJr4hZK1pwqXgZ9Lih6tqW0Qepf8fw4ciSEEXlr1iQsSFeJsALOg3e1X9LichY+4GoZFs35RD2TK1LSxmpyje2lWIuRA+jgv+bGuWJay4APJ/gDYtiSapq32dgJ13h/bMG6iwHCA+wWdkpMwfr45hEAr2oW9z4FKgb58OXfx4IcbFEXvHPR+4KB28Yo4KHPvOwa0HlZXL65tt3mkUhaJ5nOnTLhdbkFDp5L8JXT8ZKk8QO0gs6rTRyLjYvQVAWR+dxIYEWldnlpgOYGzdilj3VA+GOk/UJaaLHkjCq1mNzyY1YuVKpQzjB0MW3gyO7Yv9TXP8Ov57mOdsylvlIYu7uEFMpmC3GNM=
 after_success:
-- coveralls-lcov coverage/lcov.info
+  - bash <(curl -s https://codecov.io/bash)
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 cache:

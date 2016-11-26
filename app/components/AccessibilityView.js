@@ -2,14 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View } from 'react-native'
 
-class AccessibilityView extends Component {
-    constructor(props)
-    {
-        super(props)
-
-        this.state = {}
-    }
-
+export class AccessibilityView extends Component {
     render()
     {
         return (
@@ -27,8 +20,8 @@ const mapStateToProps = (state) =>
 AccessibilityView.propTypes = {
     children: React.PropTypes.node,
     style: React.PropTypes.number,
-    scene: React.PropTypes.object,
-    name: React.PropTypes.string.isRequired
+    name: React.PropTypes.string.isRequired,
+    scene: React.PropTypes.shape({name: React.PropTypes.string.isRequired})
 }
 
 export default connect(mapStateToProps)(AccessibilityView)

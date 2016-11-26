@@ -7,11 +7,14 @@ import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
 class StartViewButtons extends Component {
-    constructor(props)
+    constructor()
     {
-        super(props)
+        super()
 
-        this.state = {}
+        this.icons = {
+            stop: require('../resources/images/rinkeli.png'),
+            vehicle: require('../resources/images/bussi.png')
+        }
     }
 
     render()
@@ -21,8 +24,8 @@ class StartViewButtons extends Component {
 
         return (
         <View style={styles.start}>
-          <StartButton style={styles.startUpper} imageStyle={styles.startImageStop} onPress={goToBusListView} buttonText={strings.onStop} image={require('../resources/images/rinkeli.png')}/>
-          <StartButton style={styles.startLower} imageStyle={styles.startImageVehicle} onPress={goToRouteStopsView} buttonText={strings.onBus} image={require('../resources/images/bussi.png')}/>
+          <StartButton style={styles.startUpper} imageStyle={styles.startImageStop} onPress={goToBusListView} buttonText={strings.onStop} image={this.icons.stop} />
+          <StartButton style={styles.startLower} imageStyle={styles.startImageVehicle} onPress={goToRouteStopsView} buttonText={strings.onBus} image={this.icons.vehicle} />
         </View>)
     }
 }

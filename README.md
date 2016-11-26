@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/STOP2/stop2.0-traveller-client.svg?branch=master)](https://travis-ci.org/STOP2/stop2.0-traveller-client)
-[![Coverage Status](https://coveralls.io/repos/github/STOP2/stop2.0-traveller-client/badge.svg?branch=master)](https://coveralls.io/github/STOP2/stop2.0-traveller-client?branch=master)
+[![codecov](https://codecov.io/gh/STOP2/stop2.0-traveller-client/branch/master/graph/badge.svg)](https://codecov.io/gh/STOP2/stop2.0-traveller-client)
 
 # stop2.0
 Digital stop button for your mobile phone
@@ -47,6 +47,12 @@ Connect the phone to PC with USB
 Run the app (the app will run on the device if it's connected, otherwise it will run on the emulator):
 
 In debug mode (shows errors & warnings):
+
+First start react-native:
+```bash
+react-native start
+```
+In a new terminal window:
 ```bash
 react-native run-android
 ```
@@ -66,4 +72,10 @@ apm install nuclide
 Install Eslint (https://eslint.org/) support for Atom:
 ```bash
 apm install linter-eslint
+```
+
+### Tests
+Run tests with
+```bash
+npm test
 ```

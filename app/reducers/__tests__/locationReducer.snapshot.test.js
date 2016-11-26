@@ -1,5 +1,5 @@
 import locationReducer, { initialState } from '../../reducers/locationReducer'
-import { setLocation } from '../../actions/locationActions'
+import { setLocation, locationError } from '../../actions/locationActions'
 
 describe('location reducer', () =>
 {
@@ -12,5 +12,10 @@ describe('location reducer', () =>
     {
         let locationData = {coords: []}
         expect(locationReducer(initialState, setLocation(locationData))).toMatchSnapshot()
+    })
+
+    it('handles LOCATION_ERROR action', () =>
+    {
+        expect(locationReducer(initialState, locationError(true))).toMatchSnapshot()
     })
 })

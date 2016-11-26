@@ -1,0 +1,25 @@
+exports[`fetchRouteStops actions should handle REQUEST_ROUTE_STOPS action 1`] = `
+Array [
+  Object {
+    "isFetching": true,
+    "tripId": "HSL:1240118",
+    "type": "REQUEST_ROUTE_STOPS",
+  },
+  Object {
+    "error": false,
+    "isFetching": false,
+    "routeIsReady": true,
+    "stops": Array [
+      Object {
+        "stop": Object {
+          "arrives_in": 4,
+          "stop_code": 3028,
+          "stop_id": "HSL:1240118",
+          "stop_name": "Kumpulan kampus",
+        },
+      },
+    ],
+    "type": "RECEIVE_ROUTE_STOPS",
+  },
+]
+`;

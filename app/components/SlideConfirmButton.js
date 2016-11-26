@@ -6,17 +6,10 @@ import { BoldText } from '../components/textComponents'
 import styles from '../styles/stylesheet'
 
 class SlideConfirmButton extends Component {
-    constructor(props)
-    {
-        super(props)
-
-        this.state = {}
-    }
-
     render()
     {
         return (
-        <View style={styles.sliderBackgroundRed}>
+        <View style={styles.sliderBackgroundRed} accessibilityComponentType="button" accessibilityLabel={this.props.text}>
           <SlideButton width={500} height={80}
            onSlideSuccess={this.props.onSlideSuccess}>
             <View style={styles.sliderTextContainer}>
