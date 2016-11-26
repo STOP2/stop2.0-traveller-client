@@ -8,7 +8,7 @@ import strings from '../resources/translations'
 import StartViewButtons from '../components/StartViewButtons'
 import AccessibilityView from '../components/AccessibilityView'
 
-import { checkLocationPermissionAndGetLocation } from '../actions/locationActions'
+import { getLocation } from '../actions/locationActions'
 import BeaconController from '../components/BeaconController'
 
 class StartView extends Component {
@@ -16,13 +16,13 @@ class StartView extends Component {
     {
         super()
 
-        this.state = {
-            locationPermissionsError: false
-        }
+        this.state = {locationPermissionsError: false}
     }
 
-    async requestLocationPermission() {
-        try {
+    async requestLocationPermission()
+    {
+        try
+        {
             const granted = await PermissionsAndroid.requestPermission(
                 PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
                 {
@@ -31,12 +31,17 @@ class StartView extends Component {
                 }
             )
 
-            if (granted) {
+            if (granted)
+            {
                 this.props.getLocation()
-            } else {
+            }
+            else
+            {
                 this.setState({locationPermissionsError: true})
             }
-        } catch (err) {
+        }
+        catch (error)
+        {
             this.setState({locationError: true})
         }
     }
@@ -104,7 +109,7 @@ const mapDispatchToProps = (dispatch) =>
     return {
         getLocation: () =>
         {
-            dispatch(checkLocationPermissionAndGetLocation())
+            dispatch(getLocation())
         }
     }
 }
