@@ -47,7 +47,9 @@ let strings = new LocalizedStrings({
         cancelStopRequest: 'Cancel your stop request?',
         yes: 'Yes',
         no: 'No',
-        loadingDepartures: 'Fetching departures...'
+        loadingDepartures: 'Fetching departures...',
+        stopRequestCancellationErrorTitle: 'Error',
+        stopRequestCancellationErrorMsg: 'Could not cancel your stop request. Please try again.'
     },
 
     fi: {
@@ -97,7 +99,9 @@ let strings = new LocalizedStrings({
         cancelStopRequest: 'Perutaanko pysäytyspyyntö?',
         yes: 'Kyllä',
         no: 'Ei',
-        loadingDepartures: 'Ladataan aikataulutietoja...'
+        loadingDepartures: 'Ladataan aikataulutietoja...',
+        stopRequestCancellationErrorTitle: 'Virhe',
+        stopRequestCancellationErrorMsg: 'Peruutuspyyntö epäonnistui. Yritä uudelleen.'
     }
 })
 
