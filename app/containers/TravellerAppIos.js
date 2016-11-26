@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { Router, Scene, Actions } from 'react-native-router-flux'
-import BusListPage from '../pages/BusListPage'
+import DeparturesListPage from '../pages/DeparturesListPage'
 import StopRequestPage from '../pages/StopRequestPage'
 import StartPageIos from '../pages/StartPageIos'
 import RouteStopsPage from '../pages/RouteStopsPage'
@@ -15,7 +15,7 @@ class TravellerApp extends Component {
         const scenes = Actions.create(
             <Scene key="root" hideNavBar={true} panHandlers={null}>
                 <Scene key="start" component={StartPageIos} initial={true}/>
-                <Scene key="departures" component={BusListPage}/>
+                <Scene key="departures" component={DeparturesListPage}/>
                 <Scene key="stopRequest" component={StopRequestPage}/>
                 <Scene key="routeStops" component={RouteStopsPage}/>
                 <Scene key="routeStopRequest" component={RouteStopRequestPage}/>

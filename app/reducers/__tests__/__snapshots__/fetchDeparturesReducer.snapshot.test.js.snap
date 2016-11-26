@@ -1,20 +1,43 @@
-exports[`fetch reducer handles RECEIVE_CONFIRM action 1`] = `
-Object {
-  "error": false,
-  "isFetching": false,
-  "isReady": false,
-  "routeStops": Object {},
-  "sentStoprequest": true,
-  "stops": Array [],
-}
-`;
-
 exports[`fetch reducer handles RECEIVE_DEPARTURES action 1`] = `
 Object {
   "error": false,
   "isFetching": false,
   "isReady": true,
-  "routeStops": Object {},
+  "sentStoprequest": false,
+  "stops": Array [
+    Object {
+      "stop": Object {
+        "schedule": Array [
+          Object {
+            "arrival": 7,
+            "destination": "Rautatientori",
+            "line": "55",
+            "route_id": "HSL:1055",
+            "trip_id": "HSL:1055_20161003_La_2_1412",
+            "vehicle_type": 3,
+          },
+          Object {
+            "arrival": 21,
+            "destination": "Rautatientori",
+            "line": "55",
+            "route_id": "HSL:1055",
+            "trip_id": "HSL:1055_20161003_La_2_1427",
+            "vehicle_type": 3,
+          },
+        ],
+        "stop_code": "3597",
+        "stop_name": "A.I. Virtasen aukio",
+      },
+    },
+  ],
+}
+`;
+
+exports[`fetch reducer handles RECEIVE_DEPARTURES action 2`] = `
+Object {
+  "error": false,
+  "isFetching": false,
+  "isReady": true,
   "sentStoprequest": false,
   "stops": Array [
     Object {
@@ -50,7 +73,6 @@ Object {
   "error": false,
   "isFetching": true,
   "isReady": false,
-  "routeStops": Object {},
   "sentStoprequest": false,
   "stops": Array [],
 }
@@ -61,18 +83,6 @@ Object {
   "error": true,
   "isFetching": false,
   "isReady": false,
-  "routeStops": Object {},
-  "sentStoprequest": false,
-  "stops": Array [],
-}
-`;
-
-exports[`fetch reducer handles SEND_STOPREQUEST action 1`] = `
-Object {
-  "error": false,
-  "isFetching": false,
-  "isReady": false,
-  "routeStops": Object {},
   "sentStoprequest": false,
   "stops": Array [],
 }
@@ -83,7 +93,6 @@ Object {
   "error": false,
   "isFetching": false,
   "isReady": false,
-  "routeStops": Object {},
   "sentStoprequest": false,
   "stops": Array [],
 }

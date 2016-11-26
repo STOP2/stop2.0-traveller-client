@@ -1,7 +1,7 @@
 import { REQUEST_ROUTE_STOPS, RECEIVE_ROUTE_STOPS, REQUEST_ROUTE_STOPS_ERROR } from '../actions/fetchRouteStops'
+import {RESET_STATE} from '../actions/resetStateAction'
 
 let initialState = {
-    stops: [],
     isFetchingStops: false,
     routeIsReady: false,
     errorFetchingStops: false,
@@ -14,7 +14,7 @@ const fetchRouteStopsReducer = (state = initialState, action) =>
     {
 
     case REQUEST_ROUTE_STOPS:
-        return Object.assign({}, state, {isFetching: action.isFetching})
+        return Object.assign({}, state, {isFetchingStops: action.isFetching})
 
     case RECEIVE_ROUTE_STOPS:
         return Object.assign({}, state, {
@@ -26,6 +26,9 @@ const fetchRouteStopsReducer = (state = initialState, action) =>
 
     case REQUEST_ROUTE_STOPS_ERROR:
         return Object.assign({}, state, {sentStoprequest: action.sentStoprequest})
+
+    case RESET_STATE:
+        return Object.assign({}, state, initialState)
 
     default:
         return state

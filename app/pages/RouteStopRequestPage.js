@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View } from 'react-native'
+import { View, TouchableOpacity, BackAndroid, Alert } from 'react-native'
 import { sendStoprequest } from '../actions/sendStoprequest'
+import { Actions } from 'react-native-router-flux'
 
-import { BoldTitleBar } from '../components/TitleBar'
-
+import { TitleBar, BoldTitleBar } from '../components/TitleBar'
+import { RouteInfoForStop } from '../components/RouteInfo'
 import SlideConfirmButton from '../components/SlideConfirmButton'
 import AccessibilityView from '../components/AccessibilityView'
 import {DefaultText} from '../components/textComponents'
@@ -12,29 +13,155 @@ import {DefaultText} from '../components/textComponents'
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
-class RouteStopRequestPage extends Component{
-    constructor()
-    {
-        super()
+import { fetchRouteStops } from '../actions/fetchRouteStops'
+import { resetState } from '../actions/resetStateAction'
 
-        this.state = {renderConfirm: true}
+const UPDATE_INTERVAL_IN_SECS = 10
+
+class RouteStopRequestPage extends Component{
+
+    constructor(props)
+  {
+        super(props)
+
+        this.state = {
+            renderConfirm: true,
+            minutesLeftToStart: strings.minutes,
+            minutesLeftToEnd: strings.minutes,
+            fetchIntervalRunning: false
+        }
+
+        this.sceneName = 'routeStopRequest'
+    }
+
+
+    createInterval = (props) =>
+    {
+        this.fetchInterval = setInterval(() =>
+        {
+            if (!props.isFetchingStops)
+            {
+                props.fetchRouteStops(this.props.vehicle.trip_id, this.props.startStop.stopId, true)
+            }
+        }, UPDATE_INTERVAL_IN_SECS * 1000)
+    }
+
+    componentWillMount = () =>
+    {
+        this.props.fetchRouteStops(this.props.vehicle.trip_id, this.props.startStop.stopId, true)
+        this.setState({fetchIntervalRunning: true})
+        this.createInterval(this.props)
+        BackAndroid.addEventListener('hardwareBackPress', this.backAndroidHandler)
     }
 
     componentWillReceiveProps = (nextProps) =>
       {
         this.setState({renderConfirm: !nextProps.sent})
+
+        if (nextProps.scene.name == this.sceneName)
+        {
+            if (!this.state.fetchIntervalRunning)
+            {
+                this.setState({fetchIntervalRunning: true})
+                this.createInterval(nextProps)
+            }
+            for (let index in nextProps.routeStops)
+            {
+                let routeStop = nextProps.routeStops[index]
+
+                if (routeStop.stop_code == this.props.startStop.stopCode || routeStop.stop_code == this.props.stop.stopCode)
+                {
+                    let minutesLeft = ''
+
+                    if (routeStop.arrives_in < 0)
+                    {
+                        minutesLeft = strings.vehiclePassedStop
+                    }
+                    else if (routeStop.arrives_in == 0)
+                    {
+                        minutesLeft = strings.now
+                    }
+                    else
+                    {
+                        minutesLeft = routeStop.arrives_in + ' ' + strings.minutes
+                    }
+
+                    if (routeStop.stop_code == this.props.startStop.stopCode)
+                    {
+                        this.setState({minutesLeftToStart: minutesLeft})
+                    }
+                    else
+                    {
+                        this.setState({minutesLeftToEnd: minutesLeft})
+                    }
+                }
+            }
+        }
+        else if (this.state.fetchIntervalRunning)
+        {
+            this.setState({fetchIntervalRunning: false})
+            clearInterval(this.fetchInterval)
+        }
+    }
+
+    backAndroidHandler = () =>
+        // when a user sends a stop request, the back button will be disabled
+    {
+        if (this.state.renderConfirm)
+        {
+            return false
+        }
+        else
+        {
+            Alert.alert(
+                strings.cancelStopRequest, '',
+                [
+                    {
+                        text: strings.no,
+                        onPress: () =>
+                        {
+                        }
+                    },
+                    {
+                        text: strings.yes,
+                        onPress: () =>
+                        {
+                            BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
+                            Actions.pop()
+                        }
+                    }
+                ],
+                {cancelable: false}
+            )
+
+            return true
+        }
+    }
+
+    renderRouteInfo = () =>
+    {
+        return (
+          <View>
+            <View>
+              <RouteInfoForStop stopName={this.props.startStop.stopName} stopCode={this.props.startStop.stopCode} vehicleMinutesLeft={this.state.minutesLeftToStart}/>
+            </View>
+            <View>
+              <RouteInfoForStop stopName={this.props.stop.stopName} stopCode={this.props.stop.stopCode} vehicleMinutesLeft={this.state.minutesLeftToEnd}/>
+            </View>
+          </View>
+        )
     }
 
     renderSlider = () =>
   {
         const sendStoprequest = () =>
-      {
-            this.props.sendStoprequest(this.props.vehicle.trip_id, this.props.stop.stopId)
+        {
+            this.props.sendStoprequest(this.props.vehicle, this.props.stop, this.props.fcmToken, true)
         }
 
         if (this.state.renderConfirm)
       {
-            return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide} />)
+            return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide + ' →'} />)
         }
         else
       {
@@ -46,37 +173,101 @@ class RouteStopRequestPage extends Component{
         }
     }
 
-    render()
+    renderButton = () =>
     {
+        const goToStopRequestPage = () =>
+      {
+            clearInterval(this.fetchInterval)
+            BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
+            this.props.resetState()
+            Actions.start()
+        }
+
+        if (this.props.sent)
+        {
+            return (
+          <TouchableOpacity accessibilityComponentType="button" accessibilityLabel={strings.goToBackToFrontPage} style={styles.goToRouteViewButton} onPress={goToStopRequestPage}>
+            <DefaultText style={styles.goToRouteViewButtonText}>{strings.goToBackToFrontPage}</DefaultText>
+          </TouchableOpacity>)
+        }
+    }
+
+    render()
+  {
         return (
-            <AccessibilityView name="routeStopRequest">
-                <BoldTitleBar title={strings.stopRequest}/>
-                <DefaultText>Heloooo</DefaultText>
-            </AccessibilityView>
+        <AccessibilityView style={styles.flex1} name="stopRequest">
+          <BoldTitleBar title={strings.stopRequest}/>
+          <TitleBar title={this.props.vehicle.line + ' ' + this.props.vehicle.destination} />
+          <View style={styles.flex3}>
+            {this.renderRouteInfo()}
+          </View>
+          <View style={styles.flex1}>
+            {this.renderButton()}
+          </View>
+          {this.renderSlider()}
+        </AccessibilityView>
         )
     }
 }
 
 const mapStateToProps = (state) =>
 {
-    return {sent: state.fetchReducer.sentStoprequest}
+    return {
+        sent: state.stopRequestReducer.sentStoprequestFromVehicle,
+        routeStops: state.fetchRouteStopsReducer.routeStops,
+        isFetchingStops: state.fetchRouteStopsReducer.isFetchingStops,
+        routeIsReady: state.fetchRouteStopsReducer.routeIsReady,
+        errorFetchingStops: state.fetchRouteStopsReducer.errorFetchingStops,
+        error: state.stopRequestReducer.error,
+        scene: state.routes.scene,
+        startStop: state.stopRequestReducer.startStop,
+        vehicle: state.stopRequestReducer.currentVehicle,
+        fcmToken: state.fcmReducer.token
+    }
 }
 
 const mapDispatchToProps = (dispatch) =>
 {
     return {
-        sendStoprequest: (busId, stopId) =>
+        sendStoprequest: (busId, stopId, fcmToken, fromVehicle) =>
        {
-            dispatch(sendStoprequest(busId, stopId))
+            dispatch(sendStoprequest(busId, stopId, fcmToken, fromVehicle))
+        },
+        fetchRouteStops: (tripId, BusId, current) =>
+        {
+            dispatch(fetchRouteStops(tripId, BusId, current))
+        },
+        resetState: () =>
+       {
+            dispatch(resetState())
         }
     }
 }
 
+
 RouteStopRequestPage.propTypes = {
-    sent: React.PropTypes.bool,
-    sendStoprequest: React.PropTypes.func,
-    vehicle: React.PropTypes.object,
-    stop: React.PropTypes.object
+    fetchRouteStops: React.PropTypes.func.isRequired,
+    vehicle: React.PropTypes.shape({
+        trip_id: React.PropTypes.string.isRequired,
+        vehicle_type: React.PropTypes.number.isRequired,
+        line: React.PropTypes.string.isRequired,
+        destination: React.PropTypes.string.isRequired,
+        arrival: React.PropTypes.number.isRequired
+    }),
+    startStop: React.PropTypes.shape({
+        stopCode: React.PropTypes.string.isRequired,
+        stopName: React.PropTypes.string.isRequired,
+        stopId: React.PropTypes.string.isRequired
+    }),
+    stop: React.PropTypes.shape({
+        stopCode: React.PropTypes.string.isRequired,
+        stopName: React.PropTypes.string.isRequired,
+        stopId: React.PropTypes.string.isRequired
+    }),
+    sendStoprequest: React.PropTypes.func.isRequired,
+    sent: React.PropTypes.bool.isRequired,
+    resetState: React.PropTypes.func.isRequired,
+    fcmToken: React.PropTypes.string.token
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RouteStopRequestPage)

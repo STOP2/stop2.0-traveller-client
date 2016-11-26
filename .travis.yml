@@ -7,6 +7,7 @@ install:
 - npm install https://github.com/sreejithr/react-native-slide-button/archive/v1.3.0.tar.gz
 - npm install
 - sed -i "s/23\.0\.1/25.0.0/g" node_modules/react-native-localization/android/build.gradle
+- sed -i "s/23\.0\.1/25.0.0/g" node_modules/react-native-fcm/android/build.gradle
 jdk:
   - oraclejdk8
 android:
@@ -15,6 +16,8 @@ android:
   - tools
   - build-tools-25.0.0
   - android-23
+  - extra-google-google_play_services
+  - extra-google-m2repository
   - extra-android-m2repository
 licenses:
   - 'android-sdk-preview-license-.+'
@@ -26,7 +29,7 @@ script:
 before_install:
 - nvm install 6
 - node --version
-- openssl aes-256-cbc -K $encrypted_500d072b0f10_key -iv $encrypted_500d072b0f10_iv -in secrets.tar.enc -out secrets.tar -d
+- openssl aes-256-cbc -K $encrypted_3aca4c1762c3_key -iv $encrypted_3aca4c1762c3_iv -in secrets.tar.enc -out secrets.tar -d
 - tar xvf secrets.tar
 - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
 before_deploy:

@@ -18,7 +18,7 @@ import { fetchDepartures } from '../actions/fetchDeparturesActions'
 
 const UPDATE_INTERVAL_IN_SECS = 10
 
-class BusListPage extends Component {
+class DeparturesListPage extends Component {
     constructor()
     {
         super()
@@ -32,6 +32,7 @@ class BusListPage extends Component {
             dataBlob: {},
             dataSource: ds.cloneWithRowsAndSections({}, []),
             stops: [],
+            stopCount: 0,
             fetchIntervalRunning: false
         }
 
@@ -97,7 +98,8 @@ class BusListPage extends Component {
             this.setState({
                 dataBlob: tempDataBlob,
                 dataSource: this.state.dataSource.cloneWithRowsAndSections(tempDataBlob, sections),
-                stops: stopsTemp
+                stops: stopsTemp,
+                stopCount: nextProps.stops.length
             })
         }
     }
@@ -106,6 +108,7 @@ class BusListPage extends Component {
   {
         const goToStopRequestPage = () =>
     {
+            clearInterval(this.fetchInterval)
             Actions.stopRequest({
                 vehicle: rowData,
                 stop: {
@@ -149,6 +152,39 @@ class BusListPage extends Component {
 
     renderList = () =>
     {
+        let listElement
+        if (this.state.dataSource.getRowCount() > 0)
+        {
+            listElement = <ListView
+                           dataSource={this.state.dataSource}
+                           renderRow={this.renderRow}
+                           renderSectionHeader={this.renderSectionHeader}
+                           renderFooter={this.renderFooter}
+                           renderSeparator={this.renderSeparator}
+                          />
+        }
+        else
+        {
+            let infoText
+
+            if (this.state.stopCount > 0)
+            {
+                infoText = strings.noDepartures
+            }
+            else
+            {
+                infoText = strings.noStops
+            }
+
+            listElement = <View style={styles.spinnerContainer}>
+                            <View style={styles.spinnerBackground}>
+                              <DefaultText style={styles.fetchDeparturesError}>
+                                {infoText}
+                              </DefaultText>
+                            </View>
+                          </View>
+        }
+
         return (
             <View style={styles.flex1}>
               {this.props.fetchDeparturesError &&
@@ -156,13 +192,7 @@ class BusListPage extends Component {
                  {strings.backendError}
                </DefaultText>}
               <BusListHeader />
-              <ListView
-               dataSource={this.state.dataSource}
-               renderRow={this.renderRow}
-               renderSectionHeader={this.renderSectionHeader}
-               renderFooter={this.renderFooter}
-               renderSeparator={this.renderSeparator}
-              />
+              {listElement}
             </View>
         )
     }
@@ -171,12 +201,15 @@ class BusListPage extends Component {
     {
         return (
             <View style={styles.spinnerContainer}>
-              <View style={styles.spinnerBackground}>
-                <ActivityIndicator
-                 size="large"
-                 animating={true}
-                />
-              </View>
+                <View style={styles.spinnerBackground}>
+                    <DefaultText style={styles.loadingDeparturesText}>
+                        {strings.loadingDepartures}
+                    </DefaultText>
+                    <ActivityIndicator
+                        size="large"
+                        animating={true}
+                    />
+                </View>
             </View>
         )
     }
@@ -223,10 +256,10 @@ class BusListPage extends Component {
 const mapStateToProps = (state) =>
 {
     return {
-        stops: state.fetchReducer.stops,
-        isFetchingDepartures: state.fetchReducer.isFetching,
-        isDeparturesReady: state.fetchReducer.isReady,
-        fetchDeparturesError: state.fetchReducer.error,
+        stops: state.fetchDeparturesReducer.stops,
+        isFetchingDepartures: state.fetchDeparturesReducer.isFetching,
+        isDeparturesReady: state.fetchDeparturesReducer.isReady,
+        fetchDeparturesError: state.fetchDeparturesReducer.error,
         locationData: state.locationReducer.locationData,
         scene: state.routes.scene
     }
@@ -242,7 +275,7 @@ const mapDispatchToProps = (dispatch) =>
     }
 }
 
-BusListPage.propTypes = {
+DeparturesListPage.propTypes = {
     fetchDepartures: React.PropTypes.func.isRequired,
     locationData: React.PropTypes.shape({
         latitude: React.PropTypes.number.isRequired,
@@ -255,5 +288,4 @@ BusListPage.propTypes = {
     scene: React.PropTypes.object.isRequired
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(BusListPage)
+export default connect(mapStateToProps, mapDispatchToProps)(DeparturesListPage)

@@ -1,28 +1,18 @@
 import React, { Component } from 'react'
-import { View, Image } from 'react-native'
+import { View } from 'react-native'
 
 import {DefaultText} from '../components/textComponents'
+import VehicleImage from '../components/VehicleImage'
 
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
-class RouteInfo extends Component {
-    constructor()
-    {
-        super()
-
-        this.icons = {
-            tram: require('../resources/icons/hsl_reittiopas_tram.png'),
-            bus: require('../resources/icons/hsl_reittiopas_bus.png')
-        }
-    }
-
+export default class RouteInfo extends Component {
     render()
     {
         return (<View style={styles.stopRequestStyle}>
           <View style={styles.stopRequestVehicleInfo}>
-            <Image style={styles.busIcon} resizeMode="contain"
-            source={this.props.vehicleType == 0 ? this.icons.tram : this.icons.bus}/>
+            <VehicleImage style={styles.busIcon} vehicleType={this.props.vehicleType}/>
             <View style={styles.vehicleInfoWrapper}>
               <DefaultText style={styles.vehicleInfo}>{this.props.vehicleLine} {this.props.vehicleDestination}</DefaultText>
             </View>
@@ -38,11 +28,28 @@ class RouteInfo extends Component {
 }
 
 RouteInfo.propTypes = {
-    title: React.PropTypes.string.isRequired,
     vehicleType: React.PropTypes.number.isRequired,
     vehicleLine: React.PropTypes.string.isRequired,
     vehicleDestination: React.PropTypes.string.isRequired,
     vehicleMinutesLeft: React.PropTypes.string.isRequired
 }
 
-export default RouteInfo
+export class RouteInfoForStop extends Component {
+    render()
+    {
+        return (<View style={styles.stopRequestStyle}>
+          <View style={styles.vehicleArrivesInWrapper}>
+            <DefaultText style={styles.vehicleArrivesInText}>{strings.arrives} {this.props.stopName} ({this.props.stopCode}) {strings.in}:</DefaultText>
+          </View>
+          <View>
+            <DefaultText style={styles.vehicleMinutesLeft}>{this.props.vehicleMinutesLeft}</DefaultText>
+          </View>
+        </View>)
+    }
+}
+
+RouteInfoForStop.propTypes = {
+    stopName: React.PropTypes.string.isRequired,
+    stopCode: React.PropTypes.string.isRequired,
+    vehicleMinutesLeft: React.PropTypes.string.isRequired
+}
