@@ -228,7 +228,7 @@ const mapDispatchToProps = (dispatch) =>
         },
         cancelStopRequest: (requestId, cancelStopRequestCallback) =>
         {
-            dispatch(cancelStopRequest(requestId))
+            dispatch(cancelStopRequest(requestId, false))
             .then((stopRequestCancellationError) => cancelStopRequestCallback(stopRequestCancellationError))
         }
     }
