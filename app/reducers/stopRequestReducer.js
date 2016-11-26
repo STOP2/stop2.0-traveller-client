@@ -1,6 +1,5 @@
-import { SEND_STOPREQUEST, RECEIVE_CONFIRM } from '../actions/sendStoprequest'
-import {RESET_STATE} from '../actions/resetStateAction'
-import { ActionConst } from 'react-native-router-flux'
+import { SEND_STOPREQUEST, RECEIVE_CONFIRM, SET_STOPREQUEST_REQUEST_ID_DESTINATION, SET_STOPREQUEST_REQUEST_ID_FROM } from '../actions/sendStoprequest'
+import { RESET_STATE } from '../actions/resetStateAction'
 
 let initialState = {
     stops: [],
@@ -10,7 +9,9 @@ let initialState = {
     sentStoprequestFromVehicle: false,
     error: false,
     startStop: null,
-    currentVehicle: null
+    currentVehicle: null,
+    fromRequestId: null,
+    destinationRequestId: null
 }
 
 const stopRequestReducer = (state = initialState, action) =>
@@ -20,23 +21,23 @@ const stopRequestReducer = (state = initialState, action) =>
     case SEND_STOPREQUEST:
         if (action.fromVehicle)
         {
-            return Object.assign({}, state, {sentStoprequestFromVehicle: action.sentStoprequest})
+            return Object.assign({}, state, {sentStoprequestFromVehicle: action.stopRequestSent})
         }
         else
         {
-            return Object.assign({}, state, {sentStoprequestFromStop: action.sentStoprequest})
+            return Object.assign({}, state, {sentStoprequestFromStop: action.stopRequestSent})
         }
 
 
     case RECEIVE_CONFIRM:
         if (action.fromVehicle)
         {
-            return Object.assign({}, state, {sentStoprequestFromVehicle: action.sentStoprequest})
+            return Object.assign({}, state, {sentStoprequestFromVehicle: action.stopRequestSent})
         }
         else
         {
             return Object.assign({}, state, {
-                sentStoprequestFromStop: action.sentStoprequest,
+                sentStoprequestFromStop: action.stopRequestSent,
                 startStop: action.stop,
                 currentVehicle: action.vehicle
             })
@@ -45,8 +46,13 @@ const stopRequestReducer = (state = initialState, action) =>
     case RESET_STATE:
         return Object.assign({}, state, initialState)
 
-    case ActionConst.FOCUS:
-        return Object.assign({}, state, { sentStoprequest: false })
+    case SET_STOPREQUEST_REQUEST_ID_DESTINATION:
+        return Object.assign({}, state, { fromRequestId: action.requestId })
+    break
+
+    case SET_STOPREQUEST_REQUEST_ID_FROM:
+        return Object.assign({}, state, { destinationRequestId: action.requestId })
+    break
 
     default:
         return state
