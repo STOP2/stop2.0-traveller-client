@@ -1,8 +1,9 @@
-import { SET_LOCATION, LOCATION_ERROR, REQUEST_LOCATION, LOCATION_PERMISSION_ERROR } from '../actions/locationActions'
+import { SET_GPS_LOCATION, SET_BEACON, LOCATION_ERROR, REQUEST_LOCATION, LOCATION_PERMISSION_ERROR } from '../actions/locationActions'
 import {RESET_STATE} from '../actions/resetStateAction'
 
 export let initialState = {
     locationData: {},
+    beaconData: {},
     error: null,
     locationPermissionError: null,
     gettingLocation: false
@@ -12,9 +13,14 @@ const locationReducer = (state = initialState, action) =>
 {
     switch (action.type)
   {
-    case SET_LOCATION:
+    case SET_GPS_LOCATION:
         return Object.assign({}, state, {
             locationData: action.locationData,
+            gettingLocation: action.gettingLocation
+        })
+    case SET_BEACON:
+        return Object.assign({}, state, {
+            beaconData: action.beaconData,
             gettingLocation: action.gettingLocation
         })
 
