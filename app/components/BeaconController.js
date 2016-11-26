@@ -6,15 +6,18 @@ import Beacons from 'react-native-beacons-android'
 
 import  { setLocation } from '../actions/locationActions'
 
-const FOREGROUND_SCAN_PERIOD = 5000
-const BACKGROUND_SCAN_PERIOD = 5000
+const FOREGROUND_SCAN_PERIOD = 1000
+const BACKGROUND_SCAN_PERIOD = 1000
 
 class BeaconController extends Component {
     constructor(props)
     {
         super(props)
 
-        this.state = {beaconDetected: false }
+        this.state = {
+            beaconDetected: false,
+            attempts: 0
+        }
 
         this.beacons = [{
             id: 'ebefd083-70a2-47c8-9837-e7b5634df524',
@@ -39,26 +42,31 @@ class BeaconController extends Component {
             console.log(`Beacons ranging not started, error: ${error}`)
         }
 
-        // Print a log of the detected iBeacons (1 per second)
+        // Print a log of the detected iBeacons (1 per 5 second)
         DeviceEventEmitter.addListener('beaconsDidRange', (data) =>
         {
             console.log(data)
+            console.log("yritykset" + this.state.attempts)
+            if(this.state.attempts == 5){
+                Beacons.stopRangingBeaconsInRegion('REGION1', this.beacons[0].id)
+            }
             if (data.beacons.length > 0)
-{
+            {
                 if (!this.state.beaconDetected)
-{
+                {
                     this.props.setLocation({latitude: this.beacons[0].latitude, longitude: this.beacons[0].longitude})
-
+                    Beacons.stopRangingBeaconsInRegion('REGION1', this.beacons[0].id)
                     alert('Olet pysäkillä Pasilan asema (2181)')
+                    this.setState({beaconDetected: true})
                 }
-                this.setState({beaconDetected: true})
             }
             else
-{
+            {
                 if (this.state.beaconDetected)
                     alert('Poistuit pysäkiltä Pasilan asema (2181)')
                 this.setState({beaconDetected: false})
             }
+            this.setState({attempts: this.state.attempts++})
         })
     }
 
