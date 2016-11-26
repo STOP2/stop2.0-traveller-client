@@ -51,11 +51,22 @@ export let cancelStopRequest = function(requestId)
         .then(response => {
             if (response.ok) {
                 dispatch(receiveStopRequestCancellationConfirmation())
+
+                // return false as there are no errors
+                return false
             }
             else {
                 dispatch(stopRequestCancellationError())
+
+                // return true as there is an error
+                return true
             }
         })
-        .catch(error => dispatch(stopRequestCancellationError(error)))
+        .catch(error => {
+            dispatch(stopRequestCancellationError(error))
+
+            // return true as there is an error
+            return true
+        })
     }
 }
