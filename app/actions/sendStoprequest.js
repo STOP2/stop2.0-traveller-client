@@ -14,7 +14,7 @@ export let requestStoprequest = function(tripId, stopId)
 {
     return {
         type: SEND_STOPREQUEST,
-        sentStoprequest: false,
+        stopRequestSent: false,
         trip_id: tripId,
         stop_id: stopId
     }
@@ -24,7 +24,7 @@ export let receiveConfirm = function(vehicle, stop, fromVehicle)
 {
     return {
         type: RECEIVE_CONFIRM,
-        sentStoprequest: true,
+        stopRequestSent: true,
         vehicle: vehicle,
         stop: stop,
         fromVehicle: fromVehicle,
