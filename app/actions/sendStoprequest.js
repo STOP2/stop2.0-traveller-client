@@ -51,6 +51,14 @@ export let requestError = function()
     }
 }
 
+export let setStopRequest_requestId = (fromVehicle, requestId) =>
+{
+        return {
+            type: fromVehicle ? SET_STOPREQUEST_REQUEST_ID_FROM : SET_STOPREQUEST_REQUEST_ID_DESTINATION,
+            requestId: requestId
+        }
+}
+
 export let sendStoprequest = function(vehicle, stop, fcmToken, fromVehicle)
 {
     return dispatch =>
