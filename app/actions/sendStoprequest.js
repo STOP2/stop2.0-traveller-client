@@ -92,6 +92,10 @@ export let sendStoprequest = function(vehicle, stop, fcmToken, fromVehicle)
                 dispatch(requestError())
             }
         })
+        .then(json =>
+        {
+                dispatch(setStopRequest_requestId(fromVehicle, json.request_id))
+        })
         .catch(error => dispatch(requestError(error)))
     }
 }
