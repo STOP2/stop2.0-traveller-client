@@ -52,7 +52,6 @@ class StopRequestPage extends Component{
         this.setState({fetchIntervalRunning: true})
         this.setState({minutesLeft: this.props.vehicle.arrival + ' ' + strings.minutes})
         this.createInterval(this.props)
-        BackAndroid.addEventListener('hardwareBackPress', this.backAndroidHandler)
     }
 
     componentWillReceiveProps = (nextProps) =>
@@ -62,6 +61,7 @@ class StopRequestPage extends Component{
 
         if (nextProps.scene.name == this.sceneName)
         {
+            BackAndroid.addEventListener('hardwareBackPress', this.backAndroidHandler)
             if (!this.state.fetchIntervalRunning)
             {
                 this.setState({fetchIntervalRunning: true})
