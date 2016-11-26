@@ -47,7 +47,8 @@ class BeaconController extends Component {
         {
             console.log(data)
             console.log("yritykset" + this.state.attempts)
-            if(this.state.attempts == 5){
+            if (this.state.attempts == 5)
+            {
                 Beacons.stopRangingBeaconsInRegion('REGION1', this.beacons[0].id)
             }
             if (data.beacons.length > 0)
