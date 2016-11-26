@@ -49,7 +49,12 @@ let strings = new LocalizedStrings({
         no: 'No',
         loadingDepartures: 'Fetching departures...',
         stopRequestCancellationErrorTitle: 'Error',
-        stopRequestCancellationErrorMsg: 'Could not cancel your stop request. Please try again.'
+        stopRequestCancellationErrorMsg: 'Could not cancel your stop request. Please try again.',
+        nearestStops: 'Nearest stops',
+        slideToStop: 'Slide to stop',
+        slideToCancel: 'Cancel stop request',
+        fromStop: 'From stop',
+        vehicleStopsIn: 'Stops in: '
     },
 
     fi: {
@@ -101,7 +106,12 @@ let strings = new LocalizedStrings({
         no: 'Ei',
         loadingDepartures: 'Ladataan aikataulutietoja...',
         stopRequestCancellationErrorTitle: 'Virhe',
-        stopRequestCancellationErrorMsg: 'Peruutuspyyntö epäonnistui. Yritä uudelleen.'
+        stopRequestCancellationErrorMsg: 'Peruutuspyyntö epäonnistui. Yritä uudelleen.',
+        nearestStops: 'Lähellä olevat pysäkit',
+        slideToStop: 'Pysäytä liu\'uttamalla',
+        slideToCancel: 'Peruuta pysäytyspyyntö',
+        fromStop: 'Pysäkiltä',
+        vehicleStopsIn: 'Pysähtymiseen: '
     }
 })
 
