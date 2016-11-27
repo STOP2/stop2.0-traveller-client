@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { DeviceEventEmitter } from 'react-native'
 import Beacons from 'react-native-beacons-android'
 
-import  { setLocation } from '../actions/locationActions'
+import  { setBeaconData, beaconError, requestBeaconData } from '../actions/beaconLocationActions'
 
 const FOREGROUND_SCAN_PERIOD = 1000
 const BACKGROUND_SCAN_PERIOD = 1000
@@ -28,6 +28,7 @@ class BeaconController extends Component {
 
     async getBeacons()
     {
+        this.props.requestBeaconData()
         Beacons.detectIBeacons()
         Beacons.setForegroundScanPeriod(FOREGROUND_SCAN_PERIOD)
         Beacons.setBackgroundScanPeriod(BACKGROUND_SCAN_PERIOD)
@@ -46,16 +47,17 @@ class BeaconController extends Component {
         DeviceEventEmitter.addListener('beaconsDidRange', (data) =>
         {
             console.log(data)
-            console.log("yritykset" + this.state.attempts)
+
             if (this.state.attempts == 5)
             {
                 Beacons.stopRangingBeaconsInRegion('REGION1', this.beacons[0].id)
+                this.props.beaconError('Beacon not found in 5 seconds')
             }
             if (data.beacons.length > 0)
             {
                 if (!this.state.beaconDetected)
                 {
-                    this.props.setLocation({latitude: this.beacons[0].latitude, longitude: this.beacons[0].longitude})
+                    this.props.setBeaconData({beaconData: 'FAKE BEACON DATA'})
                     Beacons.stopRangingBeaconsInRegion('REGION1', this.beacons[0].id)
                     alert('Olet pysäkillä Pasilan asema (2181)')
                     this.setState({beaconDetected: true})
@@ -67,12 +69,12 @@ class BeaconController extends Component {
                     alert('Poistuit pysäkiltä Pasilan asema (2181)')
                 this.setState({beaconDetected: false})
             }
-            this.setState({attempts: this.state.attempts++})
+            this.setState({attempts: this.state.attempts + 1})
         })
     }
 
     componentWillMount()
-{
+    {
         this.getBeacons()
     }
 
@@ -83,7 +85,11 @@ class BeaconController extends Component {
 }
 
 
-BeaconController.propTypes = {setLocation: React.PropTypes.func}
+BeaconController.propTypes = {
+    setBeaconData: React.PropTypes.func,
+    beaconError: React.PropTypes.func,
+    requestBeaconData: React.PropTypes.func
+}
 
 const mapStateToProps = () =>
 {
@@ -93,9 +99,17 @@ const mapStateToProps = () =>
 const mapDispatchToProps = (dispatch) =>
 {
     return {
-        setLocation: (coords) =>
+        setBeaconData: (beaconData) =>
         {
-            dispatch(setLocation(coords))
+            dispatch(setBeaconData(beaconData))
+        },
+        beaconError: (error) =>
+        {
+            dispatch(beaconError(error))
+        },
+        requestBeaconData: () =>
+        {
+            dispatch(requestBeaconData())
         }
     }
 }

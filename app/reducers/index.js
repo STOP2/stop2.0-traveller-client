@@ -3,7 +3,8 @@ import { combineReducers } from 'redux'
 import fetchDeparturesReducer from './fetchDeparturesReducer'
 import stopRequestReducer from './stopRequestReducer'
 import fetchRouteStopsReducer from './fetchRouteStopsReducer'
-import locationReducer from './locationReducer'
+import gpsLocationReducer from './gpsLocationReducer'
+import beaconLocationReducer from './beaconLocationReducer'
 import fcmReducer from './fcmReducer'
 import routes from './routes'
 
@@ -11,7 +12,8 @@ const reducers = combineReducers({
     fetchDeparturesReducer,
     stopRequestReducer,
     fetchRouteStopsReducer,
-    locationReducer,
+    gpsLocationReducer,
+    beaconLocationReducer,
     fcmReducer,
     routes
 })

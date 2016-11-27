@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ActivityIndicator, View, TouchableOpacity, PermissionsAndroid } from 'react-native'
-import { DefaultText } from '../components/textComponents'
+import { PermissionsAndroid } from 'react-native'
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
 import StartViewButtons from '../components/StartViewButtons'
 import AccessibilityView from '../components/AccessibilityView'
 
-import { getLocation } from '../actions/locationActions'
 import BeaconController from '../components/BeaconController'
+import { getGpsLocation } from '../actions/gpsLocationActions'
 
 class StartView extends Component {
     constructor()
@@ -33,7 +32,7 @@ class StartView extends Component {
 
             if (granted)
             {
-                this.props.getLocation()
+                this.props.getGpsLocation()
             }
             else
             {
@@ -55,34 +54,34 @@ class StartView extends Component {
     {
         return (
             <AccessibilityView style={styles.start} name="start">
-                <StartViewButtons />
+                <BeaconController/><StartViewButtons />
             </AccessibilityView>
         )
     }
 }
 
 StartView.propTypes = {
-    gettingLocation: React.PropTypes.bool.isRequired,
+    gettingGpsLocation: React.PropTypes.bool.isRequired,
     locationError: React.PropTypes.string,
     locationPermissionError: React.PropTypes.string,
-    getLocation: React.PropTypes.func.isRequired
+    getGpsLocation: React.PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) =>
 {
     return {
-        gettingLocation: state.locationReducer.gettingLocation,
-        locationError: state.locationReducer.error,
-        locationPermissionError: state.locationReducer.locationPermissionError
+        gettingGpsLocation: state.gpsLocationReducer.gettingGpsLocation,
+        locationError: state.gpsLocationReducer.error,
+        locationPermissionError: state.gpsLocationReducer.locationPermissionError
     }
 }
 
 const mapDispatchToProps = (dispatch) =>
 {
     return {
-        getLocation: () =>
+        getGpsLocation: () =>
         {
-            dispatch(getLocation())
+            dispatch(getGpsLocation())
         }
     }
 }
