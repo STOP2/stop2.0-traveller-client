@@ -241,13 +241,13 @@ class DeparturesListPage extends Component {
         )
     }
 
-    renderSpinner = () =>
+    renderSpinner = (text) =>
     {
         return (
             <View style={styles.spinnerContainer}>
                 <View style={styles.spinnerBackground}>
                     <DefaultText style={styles.loadingDeparturesText}>
-                        {strings.loadingDepartures}
+                        {text}
                     </DefaultText>
                     <ActivityIndicator
                         size="large"
@@ -285,11 +285,11 @@ class DeparturesListPage extends Component {
         }
         else if (this.state.locatingUser)
         {
-            viewElement = <View><DefaultText style={styles.gettingLocationText}>{strings.gettingLocation}</DefaultText><ActivityIndicator /></View>
+            viewElement = this.renderSpinner(strings.gettingLocation)
         }
         else
         {
-            viewElement = this.renderSpinner()
+            viewElement = this.renderSpinner(strings.loadingDepartures)
         }
 
         return (
