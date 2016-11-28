@@ -141,13 +141,10 @@ class StopRequestPage extends Component{
 
     renderRouteInfo = () =>
     {
-        return (this.state.renderConfirm ? <RouteInfo mode="arrive"
+        return (<RouteInfo mode={this.state.renderConfirm ? 'arrive' : 'stop'}
         vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line}
         vehicleDestination={this.props.vehicle.destination}
-        vehicleMinutesLeft={this.state.minutesLeft}/> : <RouteInfo mode="stop"
-        vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line}
-        vehicleDestination={this.props.vehicle.destination}
-        vehicleMinutesLeft={this.state.minutesLeft}/>)
+        vehicleMinutesLeft={this.state.minutesLeft} />)
     }
 
     renderSlider = () =>
