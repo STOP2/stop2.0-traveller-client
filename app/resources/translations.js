@@ -54,7 +54,10 @@ let strings = new LocalizedStrings({
         slideToStop: 'Slide to stop',
         slideToCancel: 'Cancel stop request',
         fromStop: 'From stop',
-        vehicleStopsIn: 'Stops in: '
+        vehicleStopsIn: 'Stops in: ',
+        doYouReallyWantToMakeTheStopRequest: 'Do you really want to make the stop request?',
+        stop: 'Stop',
+        doYouReallyWantToGoToFrontPage: 'Do you really want start again?'
     },
 
     fi: {
@@ -111,7 +114,10 @@ let strings = new LocalizedStrings({
         slideToStop: 'Pysäytä liu\'uttamalla',
         slideToCancel: 'Peruuta pysäytyspyyntö',
         fromStop: 'Pysäkiltä',
-        vehicleStopsIn: 'Pysähtymiseen: '
+        vehicleStopsIn: 'Pysähtymiseen: ',
+        doYouReallyWantToMakeTheStopRequest: 'Haluatko varmasti tehdä pysäytyspyynnön?',
+        stop: 'Pysäytä',
+        doYouReallyWantToGoToFrontPage: 'Aloitetaanko alusta?'
     }
 })
 

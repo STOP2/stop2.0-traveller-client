@@ -176,14 +176,18 @@ const styles = StyleSheet.create({
         margin: 20
     },
     sliderBackgroundRed: {
-        width: undefined,
+        backgroundColor: colors.HSLalarmRed,
         height: 80,
-        backgroundColor: colors.HSLalarmRed
+        padding: 5,
+        borderRadius: 30,
+        margin: 10
     },
     sliderBackgroundGreen: {
-        width: undefined,
         height: 80,
-        backgroundColor: colors.HSLgreen
+        backgroundColor: colors.HSLgreen,
+        padding: 5,
+        borderRadius: 30,
+        margin: 10
     },
     sliderTextContainer: {
         height: 80,
@@ -225,11 +229,10 @@ const styles = StyleSheet.create({
         color: colors.tryAgain
     },
     goToRouteViewButton: {
-        marginBottom: 0,
         padding: 5,
         backgroundColor: colors.HSLpink,
-        borderRadius: 5,
-        margin: 20
+        borderRadius: 30,
+        margin: 10
     },
     placeholderButton: {
         marginBottom: 0,

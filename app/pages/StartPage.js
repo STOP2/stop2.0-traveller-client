@@ -10,6 +10,7 @@ import StartViewButtons from '../components/StartViewButtons'
 import AccessibilityView from '../components/AccessibilityView'
 
 import { getLocation } from '../actions/locationActions'
+import { resetState } from '../actions/resetStateAction'
 
 class StartView extends Component {
     constructor()
@@ -43,6 +44,7 @@ class StartView extends Component {
 
     componentWillMount = () =>
     {
+        this.props.resetState()
         this.requestLocationPermission()
     }
 
@@ -103,6 +105,10 @@ const mapDispatchToProps = (dispatch) =>
         getLocation: () =>
         {
             dispatch(getLocation())
+        },
+        resetState: () =>
+        {
+            dispatch(resetState())
         }
     }
 }

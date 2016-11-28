@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, TouchableOpacity, BackAndroid, Alert } from 'react-native'
-import { sendStoprequest } from '../actions/sendStoprequest'
-import { cancelStopRequest } from '../actions/cancelStopRequest'
+import AwesomeButton from 'react-native-awesome-button'
 
 import { Actions } from 'react-native-router-flux'
 
@@ -16,7 +15,8 @@ import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
 import { fetchRouteStops } from '../actions/fetchRouteStops'
-import { resetState } from '../actions/resetStateAction'
+import { sendStoprequest } from '../actions/sendStoprequest'
+import { cancelStopRequest } from '../actions/cancelStopRequest'
 
 const UPDATE_INTERVAL_IN_SECS = 10
 
@@ -163,41 +163,79 @@ class RouteStopRequestPage extends Component{
 
     renderSlider = () =>
   {
-        const sendStoprequest = () =>
-        {
-            this.props.sendStoprequest(this.props.vehicle, this.props.stop, this.props.fcmToken, true)
-        }
+      const sendStopRequest = () =>
+      {
+          Alert.alert(
+              strings.doYouReallyWantToMakeTheStopRequest, '',
+              [
+                  {text: strings.no, onPress: () => {
+                  }},
+                  {text: strings.yes, onPress: () => {
+                      this.props.sendStoprequest(this.props.vehicle, this.props.stop, this.props.fcmToken, true)
+                  }},
+              ],
+              {
+                  cancelable: false
+              }
+          )
+      }
 
         if (this.state.renderConfirm)
       {
-            return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide + ' →'} />)
+          return(<View style={{padding: 10}}><AwesomeButton labelStyle={{fontSize: 20, color: '#ffffff', fontFamily: 'gotham-rounded-medium'}} states={{
+                        default: {
+                          text: strings.stop,
+                          onPress: sendStopRequest,
+                          backgroundColor: '#64BE14'
+                        }
+                       }} /></View>)
+            /*return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide + ' →'} />)*/
         }
         else
       {
-            return (
+            /*return (
             <View style={styles.sliderBackgroundGreen}>
               <DefaultText style={styles.confirmedText}>{strings.stopsent}</DefaultText>
             </View>
-            )
+            )*/
         }
     }
 
     renderButton = () =>
     {
-        const goToStopRequestPage = () =>
-      {
-            clearInterval(this.fetchInterval)
-            BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
-            this.props.resetState()
-            Actions.start()
+        const goToFrontPage = () =>
+        {
+            Alert.alert(
+                strings.doYouReallyWantToGoToFrontPage, '',
+                [
+                    {text: strings.no, onPress: () => {
+                    }},
+                    {text: strings.yes, onPress: () => {
+                        clearInterval(this.fetchInterval)
+                        BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
+                        Actions.start()
+                    }},
+                ],
+                {
+                    cancelable: false
+                }
+            )
         }
 
         if (this.props.sent)
         {
+            return(<View style={{padding: 10}}><AwesomeButton labelStyle={{fontSize: 20, color: '#ffffff', fontFamily: 'gotham-rounded-medium'}} states={{
+                        default: {
+                          text: strings.goToBackToFrontPage,
+                          onPress: goToFrontPage,
+                          backgroundColor: '#F092CD'
+                        }
+                       }} /></View>)
+            /*
             return (
           <TouchableOpacity accessibilityComponentType="button" accessibilityLabel={strings.goToBackToFrontPage} style={styles.goToRouteViewButton} onPress={goToStopRequestPage}>
             <DefaultText style={styles.goToRouteViewButtonText}>{strings.goToBackToFrontPage}</DefaultText>
-          </TouchableOpacity>)
+          </TouchableOpacity>)*/
         }
     }
 
@@ -205,7 +243,16 @@ class RouteStopRequestPage extends Component{
   {
         return (
         <AccessibilityView style={styles.flex1} name="stopRequest">
-          <BoldTitleBar title={strings.stopRequest}/>
+            {this.props.successfulStopRequest && <View style={{padding: 10, width: undefined, height: undefined, backgroundColor: '#BEE4F8'}}>
+                <DefaultText style={{marginBottom: 10, fontWeight: 'bold', fontSize: 20}}>Pysäytyspyyntö lähetetty</DefaultText>
+                <AwesomeButton labelStyle={{fontSize: 20, color: '#ffffff', fontFamily: 'gotham-rounded-medium'}} states={{
+                        default: {
+                          text: 'Peruuta',
+                          onPress: this.showStopRequestCancelConfirmation,
+                          backgroundColor: '#DC0451'
+                        }
+                       }} />
+            </View>}
           <TitleBar title={this.props.vehicle.line + ' ' + this.props.vehicle.destination} />
           <View style={styles.flex3}>
             {this.renderRouteInfo()}
@@ -232,7 +279,8 @@ const mapStateToProps = (state) =>
         startStop: state.stopRequestReducer.startStop,
         vehicle: state.stopRequestReducer.currentVehicle,
         fcmToken: state.fcmReducer.token,
-        destinationRequestId: state.stopRequestReducer.destinationRequestId
+        destinationRequestId: state.stopRequestReducer.destinationRequestId,
+        successfulStopRequest: state.stopRequestReducer.sentStoprequestFromVehicle,
     }
 }
 
@@ -246,10 +294,6 @@ const mapDispatchToProps = (dispatch) =>
         fetchRouteStops: (tripId, BusId, current) =>
         {
             dispatch(fetchRouteStops(tripId, BusId, current))
-        },
-        resetState: () =>
-       {
-            dispatch(resetState())
         },
         cancelStopRequest: (requestId, cancelStopRequestCallback) =>
         {
