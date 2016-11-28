@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     flex1: {flex: 1},
     flex3: {flex: 3},
     flexRow: {flexDirection: 'row'},
+    padding10: {padding: 10},
     busrow: {
         flexDirection: 'row',
         height: 60,
@@ -114,6 +115,11 @@ const styles = StyleSheet.create({
         backgroundColor: colors.HSLgreen,
         borderRadius: 5,
         margin: 20
+    },
+    buttonLabel: {
+        fontSize: 20,
+        color: colors.white,
+        fontFamily: 'gotham-rounded-medium'
     },
     confirmText: {
         fontSize: 40,
@@ -273,6 +279,17 @@ const styles = StyleSheet.create({
     loadingDeparturesText: {
         textAlign: 'center',
         fontSize: 25
+    },
+    stopRequestSentBackground: {
+        padding: 10,
+        width: undefined,
+        height: undefined,
+        backgroundColor: colors.lightFerryBlue
+    },
+    stopRequestSentText: {
+        marginBottom: 10,
+        fontWeight: 'bold',
+        fontSize: 20
     }
 })
 

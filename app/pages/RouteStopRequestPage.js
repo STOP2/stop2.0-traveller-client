@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, TouchableOpacity, BackAndroid, Alert } from 'react-native'
+import { View, BackAndroid, Alert } from 'react-native'
 import AwesomeButton from 'react-native-awesome-button'
 
 import { Actions } from 'react-native-router-flux'
 
-import { TitleBar, BoldTitleBar } from '../components/TitleBar'
+import { TitleBar } from '../components/TitleBar'
 import { RouteInfoForStop } from '../components/RouteInfo'
 import AccessibilityView from '../components/AccessibilityView'
 import {DefaultText} from '../components/textComponents'
 
 import styles from '../styles/stylesheet'
+import colors from '../styles/colors'
 import strings from '../resources/translations'
 
 import { fetchRouteStops } from '../actions/fetchRouteStops'
@@ -70,7 +71,7 @@ class RouteStopRequestPage extends Component{
             BackAndroid.addEventListener('hardwareBackPress', this.backAndroidHandler)
         }
 
-        this.setState({renderConfirm: !nextProps.sent})
+        this.setState({renderConfirm: !nextProps.successfulStopRequest})
 
         for (let index in nextProps.routeStops)
         {
@@ -114,6 +115,7 @@ class RouteStopRequestPage extends Component{
         }
 
         this.showStopRequestCancelConfirmation()
+
         return true
     }
 
@@ -131,15 +133,20 @@ class RouteStopRequestPage extends Component{
         Alert.alert(
             strings.cancelStopRequest, '',
             [
-                {text: strings.no, onPress: () => {
-                }},
-                {text: strings.yes, onPress: () => {
-                    this.props.cancelStopRequest(this.props.destinationRequestId, cancelStopRequestCallback)
-                }},
+                {
+                    text: strings.no,
+                    onPress: () =>
+                    {}
+                },
+                {
+                    text: strings.yes,
+                    onPress: () =>
+                    {
+                        this.props.cancelStopRequest(this.props.destinationRequestId, cancelStopRequestCallback)
+                    }
+                }
             ],
-            {
-                cancelable: false
-            }
+            { cancelable: false }
         )
     }
 
@@ -160,41 +167,40 @@ class RouteStopRequestPage extends Component{
 
     renderSlider = () =>
   {
-      const sendStopRequest = () =>
-      {
-          Alert.alert(
+        const sendStopRequest = () =>
+        {
+            Alert.alert(
               strings.doYouReallyWantToMakeTheStopRequest, '',
-              [
-                  {text: strings.no, onPress: () => {
-                  }},
-                  {text: strings.yes, onPress: () => {
-                      this.props.sendStoprequest(this.props.vehicle, this.props.stop, this.props.fcmToken, true)
-                  }},
-              ],
-              {
-                  cancelable: false
-              }
+                [
+                    {
+                        text: strings.no,
+                        onPress: () =>
+                        {}
+                    },
+                    {
+                        text: strings.yes,
+                        onPress: () =>
+                        {
+                            this.props.sendStoprequest(this.props.vehicle, this.props.stop, this.props.fcmToken, true)
+                        }
+                    }
+                ],
+                { cancelable: false }
           )
-      }
+        }
 
         if (this.state.renderConfirm)
-      {
-          return(<View style={{padding: 10}}><AwesomeButton labelStyle={{fontSize: 20, color: '#ffffff', fontFamily: 'gotham-rounded-medium'}} states={{
-                        default: {
-                          text: strings.stop,
-                          onPress: sendStopRequest,
-                          backgroundColor: '#64BE14'
-                        }
-                       }} /></View>)
-            /*return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide + ' →'} />)*/
-        }
-        else
-      {
-            /*return (
-            <View style={styles.sliderBackgroundGreen}>
-              <DefaultText style={styles.confirmedText}>{strings.stopsent}</DefaultText>
-            </View>
-            )*/
+        {
+            return (<View style={styles.padding10}>
+                      <AwesomeButton labelStyle={styles.buttonLabel}
+                      states={{
+                          default: {
+                              text: strings.stop,
+                              onPress: sendStopRequest,
+                              backgroundColor: colors.HSLgreen
+                          }
+                      }} />
+                    </View>)
         }
     }
 
@@ -205,35 +211,38 @@ class RouteStopRequestPage extends Component{
             Alert.alert(
                 strings.doYouReallyWantToGoToFrontPage, '',
                 [
-                    {text: strings.no, onPress: () => {
-                    }},
-                    {text: strings.yes, onPress: () => {
-                        clearInterval(this.fetchInterval)
-                        this.fetchInterval = false
-                        BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
-                        Actions.start()
-                    }},
+                    {
+                        text: strings.no,
+                        onPress: () =>
+                        {}
+                    },
+                    {
+                        text: strings.yes,
+                        onPress: () =>
+                        {
+                            clearInterval(this.fetchInterval)
+                            this.fetchInterval = false
+                            BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
+                            Actions.start()
+                        }
+                    }
                 ],
-                {
-                    cancelable: false
-                }
+                { cancelable: false }
             )
         }
 
-        if (this.props.sent)
+        if (this.props.successfulStopRequest)
         {
-            return(<View style={{padding: 10}}><AwesomeButton labelStyle={{fontSize: 20, color: '#ffffff', fontFamily: 'gotham-rounded-medium'}} states={{
-                        default: {
-                          text: strings.goToBackToFrontPage,
-                          onPress: goToFrontPage,
-                          backgroundColor: '#F092CD'
-                        }
-                       }} /></View>)
-            /*
-            return (
-          <TouchableOpacity accessibilityComponentType="button" accessibilityLabel={strings.goToBackToFrontPage} style={styles.goToRouteViewButton} onPress={goToStopRequestPage}>
-            <DefaultText style={styles.goToRouteViewButtonText}>{strings.goToBackToFrontPage}</DefaultText>
-          </TouchableOpacity>)*/
+            return (<View style={styles.padding10}>
+                      <AwesomeButton labelStyle={styles.buttonLabel}
+                      states={{
+                          default: {
+                              text: strings.goToBackToFrontPage,
+                              onPress: goToFrontPage,
+                              backgroundColor: colors.HSLpink
+                          }
+                      }} />
+                    </View>)
         }
     }
 
@@ -241,15 +250,15 @@ class RouteStopRequestPage extends Component{
   {
         return (
         <AccessibilityView style={styles.flex1} name="stopRequest">
-            {this.props.successfulStopRequest && <View style={{padding: 10, width: undefined, height: undefined, backgroundColor: '#BEE4F8'}}>
-                <DefaultText style={{marginBottom: 10, fontWeight: 'bold', fontSize: 20}}>Pysäytyspyyntö lähetetty</DefaultText>
-                <AwesomeButton labelStyle={{fontSize: 20, color: '#ffffff', fontFamily: 'gotham-rounded-medium'}} states={{
-                        default: {
-                          text: 'Peruuta',
-                          onPress: this.showStopRequestCancelConfirmation,
-                          backgroundColor: '#DC0451'
-                        }
-                       }} />
+            {this.props.successfulStopRequest && <View style={styles.stopRequestSentBackground}>
+                <DefaultText style={styles.stopRequestSentText}>{strings.stopsent}</DefaultText>
+                <AwesomeButton labelStyle={styles.buttonLabel} states={{
+                    default: {
+                        text: strings.cancel,
+                        onPress: this.showStopRequestCancelConfirmation,
+                        backgroundColor: colors.HSLalarmRed
+                    }
+                }} />
             </View>}
           <TitleBar title={this.props.vehicle.line + ' ' + this.props.vehicle.destination} />
           <View style={styles.flex3}>
@@ -267,7 +276,6 @@ class RouteStopRequestPage extends Component{
 const mapStateToProps = (state) =>
 {
     return {
-        sent: state.stopRequestReducer.sentStoprequestFromVehicle,
         routeStops: state.fetchRouteStopsReducer.routeStops,
         isFetchingStops: state.fetchRouteStopsReducer.isFetchingStops,
         routeIsReady: state.fetchRouteStopsReducer.routeIsReady,
@@ -278,7 +286,7 @@ const mapStateToProps = (state) =>
         vehicle: state.stopRequestReducer.currentVehicle,
         fcmToken: state.fcmReducer.token,
         destinationRequestId: state.stopRequestReducer.destinationRequestId,
-        successfulStopRequest: state.stopRequestReducer.sentStoprequestFromVehicle,
+        successfulStopRequest: state.stopRequestReducer.sentStoprequestFromVehicle
     }
 }
 
@@ -322,7 +330,7 @@ RouteStopRequestPage.propTypes = {
         stopId: React.PropTypes.string.isRequired
     }),
     sendStoprequest: React.PropTypes.func.isRequired,
-    sent: React.PropTypes.bool.isRequired,
+    successfulStopRequest: React.PropTypes.bool.isRequired,
     resetState: React.PropTypes.func.isRequired,
     fcmToken: React.PropTypes.string.token,
     destinationRequestId: React.PropTypes.number.isRequired,
