@@ -5,6 +5,8 @@ import {Alert} from 'react-native'
 export const SEND_STOPREQUEST = 'SEND_STOPREQUEST'
 export const RECEIVE_CONFIRM = 'RECEIVE_CONFIRM'
 export const REQUEST_ERROR = 'REQUEST_ERROR'
+export const SET_STOPREQUEST_REQUEST_ID_FROM = 'SET_STOPREQUEST_REQUEST_ID_FROM'
+export const SET_STOPREQUEST_REQUEST_ID_DESTINATION = 'SET_STOPREQUEST_REQUEST_ID_DESTINATION'
 
 const API_ENDPOINT = '/stoprequests'
 
@@ -12,7 +14,7 @@ export let requestStoprequest = function(tripId, stopId)
 {
     return {
         type: SEND_STOPREQUEST,
-        sentStoprequest: false,
+        stopRequestSent: false,
         trip_id: tripId,
         stop_id: stopId
     }
@@ -22,7 +24,7 @@ export let receiveConfirm = function(vehicle, stop, fromVehicle)
 {
     return {
         type: RECEIVE_CONFIRM,
-        sentStoprequest: true,
+        stopRequestSent: true,
         vehicle: vehicle,
         stop: stop,
         fromVehicle: fromVehicle,
@@ -47,6 +49,14 @@ export let requestError = function()
         type: REQUEST_ERROR,
         error: true
     }
+}
+
+export let setStopRequest_requestId = (fromVehicle, requestId) =>
+{
+        return {
+            type: fromVehicle ? SET_STOPREQUEST_REQUEST_ID_FROM : SET_STOPREQUEST_REQUEST_ID_DESTINATION,
+            requestId: requestId
+        }
 }
 
 export let sendStoprequest = function(vehicle, stop, fcmToken, fromVehicle)
@@ -81,6 +91,10 @@ export let sendStoprequest = function(vehicle, stop, fcmToken, fromVehicle)
             {
                 dispatch(requestError())
             }
+        })
+        .then(json =>
+        {
+                dispatch(setStopRequest_requestId(fromVehicle, json.request_id))
         })
         .catch(error => dispatch(requestError(error)))
     }
