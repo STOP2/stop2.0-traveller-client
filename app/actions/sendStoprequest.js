@@ -10,13 +10,14 @@ export const SET_STOPREQUEST_REQUEST_ID_DESTINATION = 'SET_STOPREQUEST_REQUEST_I
 
 const API_ENDPOINT = '/stoprequests'
 
-export let requestStoprequest = function(tripId, stopId)
+export let requestStoprequest = function(tripId, stopId, fromVehicle)
 {
     return {
         type: SEND_STOPREQUEST,
         stopRequestSent: false,
         trip_id: tripId,
-        stop_id: stopId
+        stop_id: stopId,
+        fromVehicle: fromVehicle
     }
 }
 
@@ -63,7 +64,7 @@ export let sendStoprequest = function(vehicle, stop, fcmToken, fromVehicle)
 {
     return dispatch =>
     {
-        dispatch(requestStoprequest(vehicle.trip_id, stop.stopId))
+        dispatch(requestStoprequest(vehicle.trip_id, stop.stopId, fromVehicle))
 
         let stopRequest = JSON.stringify({
             trip_id: vehicle.trip_id,

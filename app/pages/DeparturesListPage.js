@@ -33,13 +33,17 @@ class DeparturesListPage extends Component {
             dataSource: ds.cloneWithRowsAndSections({}, []),
             stops: [],
             stopCount: 0,
-            fetchIntervalRunning: false,
             locatingUser: true
         }
 
         this.sceneName = 'departures'
     }
 
+    componentWillUnmount = () =>
+    {
+        clearInterval(this.fetchInterval)
+        this.fetchInterval = false
+    }
 
     checkIfLocationExists(props)
     {
@@ -99,28 +103,16 @@ class DeparturesListPage extends Component {
 
     componentWillReceiveProps = (nextProps) =>
     {
+        if (nextProps.scene.name != this.sceneName) return
+
         if (this.state.locatingUser)
         {
             this.checkIfLocationExists(nextProps)
         }
         else
         {
-            if (nextProps.scene.name == this.sceneName)
-          {
-                if (!this.state.fetchIntervalRunning)
-              {
-                    this.setState({fetchIntervalRunning: true})
-                    this.createInterval(nextProps)
-                }
-            }
-            else if (this.state.fetchIntervalRunning)
-          {
-                this.setState({fetchIntervalRunning: false})
-                clearInterval(this.fetchInterval)
-            }
+            if (!this.fetchInterval) this.createInterval(nextProps)
 
-
-      // this.props.fetchDepartures(nextProps.gpsLocationData.latitude, nextProps.gpsLocationData.longitude, false)
 
             if (nextProps.stops.length > 0)
             {
@@ -152,6 +144,7 @@ class DeparturesListPage extends Component {
         const goToStopRequestPage = () =>
     {
             clearInterval(this.fetchInterval)
+            this.fetchInterval = false
             Actions.stopRequest({
                 vehicle: rowData,
                 stop: {

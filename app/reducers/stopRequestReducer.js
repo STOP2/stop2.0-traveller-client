@@ -1,4 +1,5 @@
 import { SEND_STOPREQUEST, RECEIVE_CONFIRM, SET_STOPREQUEST_REQUEST_ID_DESTINATION, SET_STOPREQUEST_REQUEST_ID_FROM } from '../actions/sendStoprequest'
+import { STOPREQUEST_FROM_CANCELLED, STOPREQUEST_DESTINATION_CANCELLED } from '../actions/cancelStopRequest'
 import { RESET_STATE } from '../actions/resetStateAction'
 
 let initialState = {
@@ -43,16 +44,20 @@ const stopRequestReducer = (state = initialState, action) =>
             })
         }
 
+    case STOPREQUEST_DESTINATION_CANCELLED:
+        return Object.assign({}, state, { sentStoprequestFromStop: false })
+
+    case STOPREQUEST_FROM_CANCELLED:
+        return Object.assign({}, state, { sentStoprequestFromVehicle: false })
+
     case RESET_STATE:
         return Object.assign({}, state, initialState)
 
     case SET_STOPREQUEST_REQUEST_ID_DESTINATION:
         return Object.assign({}, state, { fromRequestId: action.requestId })
-    break
 
     case SET_STOPREQUEST_REQUEST_ID_FROM:
         return Object.assign({}, state, { destinationRequestId: action.requestId })
-    break
 
     default:
         return state

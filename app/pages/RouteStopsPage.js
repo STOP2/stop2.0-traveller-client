@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ActivityIndicator, ListView, View, TouchableOpacity, BackAndroid } from 'react-native'
+import { ActivityIndicator, ListView, View, TouchableOpacity } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
 import { TitleBar, BoldTitleBar } from '../components/TitleBar'
@@ -24,8 +24,7 @@ class RouteStopsPage extends Component {
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
 
         this.state = {
-            dataSource: ds.cloneWithRows([]),
-            fetchIntervalRunning: false
+            dataSource: ds.cloneWithRows([])
         }
 
         this.sceneName = 'routeStops'
@@ -45,35 +44,26 @@ class RouteStopsPage extends Component {
     componentWillMount = () =>
     {
         this.props.fetchRouteStops(this.props.vehicle.trip_id, this.props.stop.stopId, false)
-        this.setState({fetchIntervalRunning: true})
         this.createInterval(this.props)
+    }
 
+    componentWillUnmount = () =>
+    {
+        clearInterval(this.fetchInterval)
+        this.fetchInterval = false
     }
 
     componentWillReceiveProps = (nextProps) =>
     {
-        BackAndroid.addEventListener('hardwareBackPress', this.backAndroidHandler)
-        if (nextProps.scene.name == this.sceneName)
-        {
-            if (!this.state.fetchIntervalRunning)
-            {
-                this.setState({fetchIntervalRunning: true})
+        if (nextProps.scene.name != this.sceneName) return
 
-                this.createInterval(nextProps)
-            }
-        }
-        else if (this.state.fetchIntervalRunning)
-        {
-            this.setState({fetchIntervalRunning: false})
-
-            clearInterval(this.fetchInterval)
-        }
+        if (!this.fetchInterval) this.createInterval(this.props)
 
         let rawData = JSON.parse(JSON.stringify(nextProps.routeStops))
         let beforeCurrent = true
 
         for (let index in rawData)
-{
+        {
             if (beforeCurrent || rawData[index].arrives_in < 0)
             {
                 if (rawData[index].stop_code == this.props.stop.stopCode)
@@ -94,19 +84,13 @@ class RouteStopsPage extends Component {
         this.setState({dataSource: this.state.dataSource.cloneWithRows(rawData)})
     }
 
-    backAndroidHandler = () =>
-    {
-        BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
-
-        return false
-    }
-
     renderRow = (renderData) =>
     {
         const goToStopVehicleRequestPage = () =>
         {
             clearInterval(this.fetchInterval)
-            BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
+            this.fetchInterval = false
+
             Actions.routeStopRequest({
                 stop: {
                     stopName: renderData.stop_name,
