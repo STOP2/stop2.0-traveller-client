@@ -57,16 +57,21 @@ class BeaconController extends Component {
             {
                 if (!this.state.beaconDetected)
                 {
-                    this.props.setBeaconData({beaconData: 'FAKE BEACON DATA'})
+                    let beaconData = {
+                        major: data.beacons[0].major,
+                        minor: data.beacons[0].minor
+                    }
+
+                    this.props.setBeaconData(beaconData)
                     Beacons.stopRangingBeaconsInRegion('REGION1', this.beacons[0].id)
-                    alert('Olet pysäkillä Pasilan asema (2181)')
+                    // alert('Olet pysäkillä Pasilan asema (2181)')
                     this.setState({beaconDetected: true})
                 }
             }
             else
             {
                 if (this.state.beaconDetected)
-                    alert('Poistuit pysäkiltä Pasilan asema (2181)')
+                    // alert('Poistuit pysäkiltä Pasilan asema (2181)')
                 this.setState({beaconDetected: false})
             }
             this.setState({attempts: this.state.attempts + 1})

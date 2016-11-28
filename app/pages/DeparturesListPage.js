@@ -50,7 +50,11 @@ class DeparturesListPage extends Component {
         console.log('gpsError: ' + props.gpsLocationError)
         if (props.gettingBeaconData == false && props.beaconError == null)
         {
-            console.log('BEACON FETCH GOES HERE')
+            console.log('BEACON DATA: ')
+            console.log(props.beaconData)
+            console.log(props.beaconData.major)
+            
+            props.fetchDepartures(props.beaconData.major, props.beaconData.minor, true)
             this.setState({fetchIntervalRunning: true})
             this.createInterval(props, true)
             this.setState({locatingUser: false})
@@ -59,7 +63,7 @@ class DeparturesListPage extends Component {
         {
             if (props.gettingGpsLocation == false && props.gpsLocationError == null)
             {
-                this.props.fetchDepartures(props.gpsLocationData.latitude, props.gpsLocationData.longitude)
+                this.props.fetchDepartures(props.gpsLocationData.latitude, props.gpsLocationData.longitude, false)
                 this.setState({fetchIntervalRunning: true})
                 this.createInterval(props, false)
                 this.setState({locatingUser: false})
@@ -92,11 +96,11 @@ class DeparturesListPage extends Component {
             {
                 if (usesBeacons)
                 {
-                    console.log('BEACON FETCH GOES HERE')
+                    props.fetchDepartures(props.beaconData.major, props.beaconData.minor, true)
                 }
                 else
                 {
-                    props.fetchDepartures(props.gpsLocationData.latitude, props.gpsLocationData.longitude)
+                    props.fetchDepartures(props.gpsLocationData.latitude, props.gpsLocationData.longitude, false)
                 }
             }
         }, UPDATE_INTERVAL_IN_SECS * 1000)
@@ -125,7 +129,7 @@ class DeparturesListPage extends Component {
             }
 
 
-      // this.props.fetchDepartures(nextProps.gpsLocationData.latitude, nextProps.gpsLocationData.longitude)
+      // this.props.fetchDepartures(nextProps.gpsLocationData.latitude, nextProps.gpsLocationData.longitude, false)
 
             if (nextProps.stops.length > 0)
             {
@@ -326,9 +330,9 @@ const mapStateToProps = (state) =>
 const mapDispatchToProps = (dispatch) =>
 {
     return {
-        fetchDepartures: (latitude, longitude) =>
+        fetchDepartures: (latitude, longitude, withBeacons) =>
         {
-            dispatch(fetchDepartures(latitude, longitude))
+            dispatch(fetchDepartures(latitude, longitude, withBeacons))
         }
     }
 }

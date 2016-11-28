@@ -8,6 +8,7 @@ export const RECEIVE_DEPARTURES = 'RECEIVE_DEPARTURES'
 export const REQUEST_ERROR = 'REQUEST_ERROR'
 
 const API_ENDPOINT = '/stops'
+const API_ENDPOINT_WITH_BEACONS = '/stops/beacons'
 
 export let requestDepartures = function(latitude, longitude)
 {
@@ -16,6 +17,16 @@ export let requestDepartures = function(latitude, longitude)
         isFetching: true,
         latitude: latitude,
         longitude: longitude
+    }
+}
+
+export let requestDeparturesWithBeacons = function(major, minor)
+{
+    return {
+        type: REQUEST_DEPARTURES,
+        isFetching: true,
+        major: major,
+        minor: minor
     }
 }
 
@@ -38,15 +49,33 @@ export let requestError = function()
     }
 }
 
-export let fetchDepartures = function(latitude, longitude) {
+export let fetchDepartures = function(latitude, longitude, withBeacons)
+{
     let radiusString = ''
 
     if (USE_LOCATION_RADIUS) radiusString = '&rad=' + LOCATION_RADIUS
 
-    return dispatch => {
-        dispatch(requestDepartures(latitude, longitude))
+    return dispatch =>
+    {
+        let fetchString
 
-        return fetch(config.API_URL + API_ENDPOINT + '?lat=' + latitude + '&lon=' + longitude + radiusString,
+        if (withBeacons)
+        {
+            // here latitude =  major and longtitude = minor
+            dispatch(requestDeparturesWithBeacons(latitude, longitude))
+            fetchString = config.API_URL + API_ENDPOINT_WITH_BEACONS + '?major=' + latitude + '&minor=' + longitude + radiusString
+            console.log('REQUESTING DEPARTURES WITH BEACONS')
+            console.log(latitude)
+            console.log(fetchString)
+        }
+        else
+        {
+            dispatch(requestDepartures(latitude, longitude))
+            fetchString = config.API_URL + API_ENDPOINT + '?lat=' + latitude + '&lon=' + longitude + radiusString
+        }
+
+
+        return fetch(fetchString,
             {
                 method: 'GET',
                 headers: {
@@ -54,11 +83,14 @@ export let fetchDepartures = function(latitude, longitude) {
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => {
-                if (response.ok) {
+            .then(response =>
+              {
+                if (response.ok)
+                {
                     return response.json()
                 }
-                else {
+                else
+                {
                     dispatch(requestError())
                 }
             })

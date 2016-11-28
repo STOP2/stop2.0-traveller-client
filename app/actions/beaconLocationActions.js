@@ -4,6 +4,8 @@ export const REQUEST_BEACON_DATA = 'REQUEST_BEACON_DATA'
 
 export let setBeaconData = function(beaconData)
 {
+    console.log('SETTING BEACON DATA: ')
+    console.log(beaconData)
     return {
         type: SET_BEACON_DATA,
         beaconData: beaconData,
@@ -21,7 +23,6 @@ export let requestBeaconData = function()
 
 export let beaconError = function(error)
 {
-    console.log('BEACON_ERROR: ' + error)
     return {
         type: BEACON_ERROR,
         beaconError: error,
