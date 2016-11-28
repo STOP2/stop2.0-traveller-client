@@ -7,16 +7,16 @@
 
 #### Setup of development environment (UNDER PROGRESS) 
 
-Download Node.js version 4 or newer.
+You'll Node.js version 4 or newer.
 
-Download Watchman
+Watchman is recommended but optional.
 
-Install React Native:
+First install React Native:
 ```bash
 npm install -g react-native-cli
 ```
 
-Clone the latest version of the project. Inside the Stop2.0-traveller-client folder
+Clone the latest version of the project. Inside the project folder install dependencies with
 ```bash
 npm install
 ```
@@ -28,11 +28,11 @@ Change buildToolsVersion from 23.0.1 to 25.0.0 in these files:
 ./node_modules/react-native-fcm/android/build.gradle
 ```
 
-#### For Android development:
+#### To build and run the project on Android:
 
 Download and install Android Studio: https://developer.android.com/studio/index.html
 
-Open Android Studio -> tools -> SDK Manager -> Launch SDK Manager (or in command line: cd tools && ./android on android SDK folder) and install Android 6.0 and Android SDK Build-tools 23.0.3.
+Open Android Studio -> Tools -> SDK Manager -> Launch SDK Manager (or in command line: cd tools && ./android on android SDK folder) and install Android 6.0 and Android SDK Build-tools 23.0.3.
 
 Set up Android keystore: Follow steps "Generating a signing key" and "Setting up gradle variables" at https://facebook.github.io/react-native/docs/signed-apk-android.html
 
@@ -53,7 +53,7 @@ First start react-native:
 ```bash
 react-native start
 ```
-In a new terminal window:
+In a new terminal window run:
 ```bash
 react-native run-android
 ```
@@ -63,20 +63,10 @@ In production mode (hides errors & warnings):
 react-native run-android --variant=release
 ```
 
-### Recommended IDE
-The recommended IDE is Atom (https://atom.io) with Nuclide (https://nuclide.io).
+### Testing
+Components, actions and reducers are tested with [Jest](https://facebook.github.io/jest/) snapshot tests which are located in the __tests__ subfolders.
 
-To install Nuclide for Atom:
-```bash
-apm install nuclide
-```
-Install Eslint (https://eslint.org/) support for Atom:
-```bash
-apm install linter-eslint
-```
-
-### Tests
-Run tests with
+Tests can be run with
 ```bash
 npm test
 ```
