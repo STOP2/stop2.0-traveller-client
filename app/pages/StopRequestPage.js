@@ -27,8 +27,7 @@ class StopRequestPage extends Component{
 
         this.state = {
             renderConfirm: true,
-            minutesLeft: '',
-            fetchIntervalRunning: false
+            minutesLeft: ''
         }
 
         this.sceneName = 'stopRequest'
@@ -49,51 +48,42 @@ class StopRequestPage extends Component{
     componentWillMount = () =>
     {
         this.props.fetchRouteStops(this.props.vehicle.trip_id, this.props.stop.stopId, true)
-        this.setState({fetchIntervalRunning: true})
         this.setState({minutesLeft: this.props.vehicle.arrival + ' ' + strings.minutes})
         this.createInterval(this.props)
+        BackAndroid.addEventListener('hardwareBackPress', this.backAndroidHandler)
+    }
+
+    componentWillUnmount = () =>
+    {
+        clearInterval(this.fetchInterval)
+        BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
     }
 
     componentWillReceiveProps = (nextProps) =>
       {
         this.setState({renderConfirm: !nextProps.successfulStopRequest})
 
-
-        if (nextProps.scene.name == this.sceneName)
+        for (let index in nextProps.routeStops)
         {
-            BackAndroid.addEventListener('hardwareBackPress', this.backAndroidHandler)
-            if (!this.state.fetchIntervalRunning)
-            {
-                this.setState({fetchIntervalRunning: true})
-                this.createInterval(nextProps)
-            }
-            for (let index in nextProps.routeStops)
-            {
-                let routeStop = nextProps.routeStops[index]
+            let routeStop = nextProps.routeStops[index]
 
-                if (routeStop.stop_code == this.props.stop.stopCode)
+            if (routeStop.stop_code == this.props.stop.stopCode)
+            {
+                this.setState({minutesLeft: routeStop.arrives_in})
+
+                if (routeStop.arrives_in < 0)
                 {
-                    this.setState({minutesLeft: routeStop.arrives_in})
-
-                    if (routeStop.arrives_in < 0)
-                    {
-                        this.setState({minutesLeft: strings.vehiclePassedStop})
-                    }
-                    else if (routeStop.arrives_in == 0)
-                    {
-                        this.setState({minutesLeft: strings.now})
-                    }
-                    else
-                    {
-                        this.setState({minutesLeft: routeStop.arrives_in + ' ' + strings.minutes})
-                    }
+                    this.setState({minutesLeft: strings.vehiclePassedStop})
+                }
+                else if (routeStop.arrives_in == 0)
+                {
+                    this.setState({minutesLeft: strings.now})
+                }
+                else
+                {
+                    this.setState({minutesLeft: routeStop.arrives_in + ' ' + strings.minutes})
                 }
             }
-        }
-        else if (this.state.fetchIntervalRunning)
-        {
-            this.setState({fetchIntervalRunning: false})
-            clearInterval(this.fetchInterval)
         }
     }
 
@@ -105,6 +95,7 @@ class StopRequestPage extends Component{
         }
 
         this.showStopRequestCancelConfirmation()
+
         return true
     }
 
@@ -112,8 +103,6 @@ class StopRequestPage extends Component{
     {
         function cancelStopRequestCallback(error) {
             if(!error) {
-                BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
-
                 Actions.pop()
             } else {
                 Alert.alert( strings.stopRequestCancellationErrorTitle, strings.stopRequestCancellationErrorMsg,
@@ -168,7 +157,7 @@ class StopRequestPage extends Component{
       {
             clearInterval(this.fetchInterval)
             BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
-            Actions.routeStops({})
+            Actions.routeStops()
         }
 
         if (this.props.successfulStopRequest)

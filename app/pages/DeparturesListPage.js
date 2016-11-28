@@ -32,8 +32,7 @@ class DeparturesListPage extends Component {
             dataBlob: {},
             dataSource: ds.cloneWithRowsAndSections({}, []),
             stops: [],
-            stopCount: 0,
-            fetchIntervalRunning: false
+            stopCount: 0
         }
 
         this.sceneName = 'departures'
@@ -43,9 +42,12 @@ class DeparturesListPage extends Component {
     {
         this.props.fetchDepartures(this.props.locationData.latitude, this.props.locationData.longitude)
 
-        this.setState({fetchIntervalRunning: true})
-
         this.createInterval(this.props)
+    }
+
+    componentWillUnmount = () =>
+    {
+        clearInterval(this.fetchInterval)
     }
 
     createInterval = (props) =>
@@ -61,25 +63,6 @@ class DeparturesListPage extends Component {
 
     componentWillReceiveProps = (nextProps) =>
     {
-        if (nextProps.scene.name == this.sceneName)
-        {
-            if (!this.state.fetchIntervalRunning)
-            {
-                this.setState({fetchIntervalRunning: true})
-
-                this.createInterval(nextProps)
-            }
-        }
-        else if (this.state.fetchIntervalRunning)
-        {
-            this.setState({fetchIntervalRunning: false})
-
-            clearInterval(this.fetchInterval)
-        }
-
-
-    // this.props.fetchDepartures(nextProps.locationData.latitude, nextProps.locationData.longitude)
-
         if (nextProps.stops.length > 0)
         {
             let tempDataBlob = Object.assign({}, this.state.dataBlob)
