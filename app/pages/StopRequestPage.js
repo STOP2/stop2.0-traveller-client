@@ -56,12 +56,21 @@ class StopRequestPage extends Component{
     componentWillUnmount = () =>
     {
         clearInterval(this.fetchInterval)
+        this.fetchInterval = false
         BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
     }
 
     componentWillReceiveProps = (nextProps) =>
       {
+        if (nextProps.scene.name != this.sceneName) return
+
         this.setState({renderConfirm: !nextProps.successfulStopRequest})
+
+        if (!this.fetchInterval)
+        {
+            this.createInterval(this.props)
+            BackAndroid.addEventListener('hardwareBackPress', this.backAndroidHandler)
+        }
 
         for (let index in nextProps.routeStops)
         {
@@ -156,6 +165,7 @@ class StopRequestPage extends Component{
         const goToStopRequestPage = () =>
       {
             clearInterval(this.fetchInterval)
+            this.fetchInterval = false
             BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
             Actions.routeStops()
         }

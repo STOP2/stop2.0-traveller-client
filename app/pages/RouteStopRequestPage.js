@@ -57,44 +57,50 @@ class RouteStopRequestPage extends Component{
     componentWillUnmount = () =>
     {
         clearInterval(this.fetchInterval)
+        this.fetchInterval = false
         BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
     }
 
     componentWillReceiveProps = (nextProps) =>
       {
+        if (nextProps.scene.name != this.sceneName) return
+
+        if (!this.fetchInterval)
+        {
+            this.createInterval(this.props)
+            BackAndroid.addEventListener('hardwareBackPress', this.backAndroidHandler)
+        }
+
         this.setState({renderConfirm: !nextProps.sent})
 
-        if (nextProps.scene.name == this.sceneName)
+        for (let index in nextProps.routeStops)
         {
-            for (let index in nextProps.routeStops)
+            let routeStop = nextProps.routeStops[index]
+
+            if (routeStop.stop_code == this.props.startStop.stopCode || routeStop.stop_code == this.props.stop.stopCode)
             {
-                let routeStop = nextProps.routeStops[index]
+                let minutesLeft = ''
 
-                if (routeStop.stop_code == this.props.startStop.stopCode || routeStop.stop_code == this.props.stop.stopCode)
+                if (routeStop.arrives_in < 0)
                 {
-                    let minutesLeft = ''
+                    minutesLeft = strings.vehiclePassedStop
+                }
+                else if (routeStop.arrives_in == 0)
+                {
+                    minutesLeft = strings.now
+                }
+                else
+                {
+                    minutesLeft = routeStop.arrives_in + ' ' + strings.minutes
+                }
 
-                    if (routeStop.arrives_in < 0)
-                    {
-                        minutesLeft = strings.vehiclePassedStop
-                    }
-                    else if (routeStop.arrives_in == 0)
-                    {
-                        minutesLeft = strings.now
-                    }
-                    else
-                    {
-                        minutesLeft = routeStop.arrives_in + ' ' + strings.minutes
-                    }
-
-                    if (routeStop.stop_code == this.props.startStop.stopCode)
-                    {
-                        this.setState({minutesLeftToStart: minutesLeft})
-                    }
-                    else
-                    {
-                        this.setState({minutesLeftToEnd: minutesLeft})
-                    }
+                if (routeStop.stop_code == this.props.startStop.stopCode)
+                {
+                    this.setState({minutesLeftToStart: minutesLeft})
+                }
+                else
+                {
+                    this.setState({minutesLeftToEnd: minutesLeft})
                 }
             }
         }
@@ -178,6 +184,9 @@ class RouteStopRequestPage extends Component{
     {
         const goToStopRequestPage = () =>
       {
+            clearInterval(this.fetchInterval)
+            this.fetchInterval = false
+            BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
             this.props.resetState()
             Actions.start()
         }

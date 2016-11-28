@@ -50,10 +50,15 @@ class RouteStopsPage extends Component {
     componentWillUnmount = () =>
     {
         clearInterval(this.fetchInterval)
+        this.fetchInterval = false
     }
 
     componentWillReceiveProps = (nextProps) =>
     {
+        if (nextProps.scene.name != this.sceneName) return
+
+        if (!this.fetchInterval) this.createInterval(this.props)
+
         let rawData = JSON.parse(JSON.stringify(nextProps.routeStops))
         let beforeCurrent = true
 
@@ -84,6 +89,7 @@ class RouteStopsPage extends Component {
         const goToStopVehicleRequestPage = () =>
         {
             clearInterval(this.fetchInterval)
+            this.fetchInterval = false
 
             Actions.routeStopRequest({
                 stop: {

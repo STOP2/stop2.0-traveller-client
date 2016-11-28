@@ -48,6 +48,7 @@ class DeparturesListPage extends Component {
     componentWillUnmount = () =>
     {
         clearInterval(this.fetchInterval)
+        this.fetchInterval = false
     }
 
     createInterval = (props) =>
@@ -63,6 +64,10 @@ class DeparturesListPage extends Component {
 
     componentWillReceiveProps = (nextProps) =>
     {
+        if (nextProps.scene.name != this.sceneName) return
+
+        if (!this.fetchInterval) this.createInterval(this.props)
+
         if (nextProps.stops.length > 0)
         {
             let tempDataBlob = Object.assign({}, this.state.dataBlob)
@@ -92,6 +97,7 @@ class DeparturesListPage extends Component {
         const goToStopRequestPage = () =>
     {
             clearInterval(this.fetchInterval)
+            this.fetchInterval = false
             Actions.stopRequest({
                 vehicle: rowData,
                 stop: {
