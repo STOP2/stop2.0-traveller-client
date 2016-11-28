@@ -1,0 +1,25 @@
+exports[`beacon location reducer handles BEACON_ERROR action 1`] = `
+Object {
+  "beaconData": Object {},
+  "beaconError": true,
+  "gettingBeaconData": false,
+}
+`;
+
+exports[`beacon location reducer handles SET_BEACON_DATA action 1`] = `
+Object {
+  "beaconData": Object {
+    "beaconData": Array [],
+  },
+  "beaconError": null,
+  "gettingBeaconData": false,
+}
+`;
+
+exports[`beacon location reducer returns the same state on an unhandled action 1`] = `
+Object {
+  "beaconData": Object {},
+  "beaconError": null,
+  "gettingBeaconData": false,
+}
+`;

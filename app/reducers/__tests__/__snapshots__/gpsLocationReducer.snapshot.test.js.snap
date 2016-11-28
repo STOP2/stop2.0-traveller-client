@@ -1,0 +1,28 @@
+exports[`gps location reducer handles GPS_LOCATION_ERROR action 1`] = `
+Object {
+  "error": true,
+  "gettingGpsLocation": false,
+  "gpsLocationData": Object {},
+  "locationPermissionError": null,
+}
+`;
+
+exports[`gps location reducer handles SET_GPS_LOCATION action 1`] = `
+Object {
+  "error": null,
+  "gettingGpsLocation": false,
+  "gpsLocationData": Object {
+    "coords": Array [],
+  },
+  "locationPermissionError": null,
+}
+`;
+
+exports[`gps location reducer returns the same state on an unhandled action 1`] = `
+Object {
+  "error": null,
+  "gettingGpsLocation": false,
+  "gpsLocationData": Object {},
+  "locationPermissionError": null,
+}
+`;

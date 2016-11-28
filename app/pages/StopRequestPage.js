@@ -1,23 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, TouchableOpacity, BackAndroid, Alert } from 'react-native'
-import { sendStoprequest } from '../actions/sendStoprequest'
+import AwesomeButton from 'react-native-awesome-button'
 import { Actions } from 'react-native-router-flux'
 
-import { TitleBar, BoldTitleBar } from '../components/TitleBar'
+import { TitleBar } from '../components/TitleBar'
 import RouteInfo from '../components/RouteInfo'
-import SlideConfirmButton from '../components/SlideConfirmButton'
 import AccessibilityView from '../components/AccessibilityView'
 import {DefaultText} from '../components/textComponents'
 
-import styles from '../styles/stylesheet'
-import strings from '../resources/translations'
-
 import PushController from '../components/PushController'
 
+import { sendStoprequest } from '../actions/sendStoprequest'
 import { fetchRouteStops } from '../actions/fetchRouteStops'
 import { cancelStopRequest } from '../actions/cancelStopRequest'
 
+import styles from '../styles/stylesheet'
+import strings from '../resources/translations'
 const UPDATE_INTERVAL_IN_SECS = 10
 
 class StopRequestPage extends Component{
@@ -136,64 +135,129 @@ class StopRequestPage extends Component{
 
     renderRouteInfo = () =>
     {
-        return (this.state.renderConfirm ? <RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination} vehicleMinutesLeft={this.state.minutesLeft}/> : <RouteInfo vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination} vehicleMinutesLeft={this.state.minutesLeft}/>)
+        return (this.state.renderConfirm ?
+<RouteInfo mode="arrive" vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination} vehicleMinutesLeft={this.state.minutesLeft}/> : <RouteInfo mode="stop" vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} vehicleDestination={this.props.vehicle.destination} vehicleMinutesLeft={this.state.minutesLeft}/>)
     }
 
     renderSlider = () =>
     {
-        const sendStoprequest = () =>
+        const sendStopRequest = () =>
         {
-            this.props.sendStoprequest(this.props.vehicle, this.props.stop, this.props.fcmToken, false)
-        }
+            Alert.alert(
+                strings.doYouReallyWantToMakeTheStopRequest, '',
+                [
+                    {text: strings.no, onPress: () => {
+                    }},
+                    {text: strings.yes, onPress: () => {
+                        this.props.sendStoprequest(this.props.vehicle, this.props.stop, this.props.fcmToken, false)
+                    }},
+                ],
+                {
+                    cancelable: false
+                }
+            )
+    }
 
         if (!this.props.successfulStopRequest)
         {
-            return (<SlideConfirmButton onSlideSuccess={sendStoprequest} text={strings.slide + ' →'} />)
+            return(<View style={{padding: 10}}><AwesomeButton labelStyle={{fontSize: 20, color: '#ffffff', fontFamily: 'gotham-rounded-medium'}} states={{
+                        default: {
+                          text: strings.stop,
+                          onPress: sendStopRequest,
+                          backgroundColor: '#64BE14'
+                        }
+                       }} /></View>)
         }
         else
         {
-            return (
-            <View style={styles.sliderBackgroundGreen}>
-              <DefaultText style={styles.confirmedText}>{strings.stopsent}</DefaultText>
-            </View>
-            )
-        }
-    }
+            function cancelStopRequestCallback(error) {
+                if(!error) {
+                    BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
 
-    renderButton = () =>
-    {
-        const goToStopRequestPage = () =>
-      {
-            clearInterval(this.fetchInterval)
-            this.fetchInterval = false
-            BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
-            Actions.routeStops()
-        }
+                    Actions.pop()
+                } else {
+                    Alert.alert( strings.stopRequestCancellationErrorTitle, strings.stopRequestCancellationErrorMsg,
+                        [ {text: 'Ok', onPress: () => {}}] )
+                }
+            }
 
-        if (this.props.successfulStopRequest)
-        {
-            return (
-          <TouchableOpacity accessibilityComponentType="button" accessibilityLabel={strings.goToRouteStopsView} style={styles.goToRouteViewButton} onPress={goToStopRequestPage}>
-            <DefaultText style={styles.goToRouteViewButtonText}>{strings.goToRouteStopsView}</DefaultText>
-          </TouchableOpacity>)
+            let goToStopRequestPage = () =>
+            {
+              clearInterval(this.fetchInterval)
+              this.fetchInterval = false
+              BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
+              Actions.routeStops()
+            }
+
+
+            /*return (
+                <TouchableOpacity accessibilityComponentType="button" accessibilityLabel={strings.goToRouteStopsView} style={styles.goToRouteViewButton} onPress={goToStopRequestPage}>
+                    <DefaultText style={styles.goToRouteViewButtonText}>{strings.goToRouteStopsView}</DefaultText>
+                </TouchableOpacity>)*/
+            return(<View style={{padding: 10}}><AwesomeButton labelStyle={{fontSize: 20, color: '#ffffff', fontFamily: 'gotham-rounded-medium'}} states={{
+                        default: {
+                          text: strings.goToRouteStopsView,
+                          onPress: goToStopRequestPage,
+                          backgroundColor: '#F092CD'
+                        }
+                       }} /></View>)
+
+            //return (<SlideConfirmButton mode="cancel" onSlideSuccess={() => this.props.cancelStopRequest(this.props.fromRequestId, cancelStopRequestCallback)} text={'← ' + strings.slideToCancel} />)
         }
     }
 
     render()
   {
-        return (
-        <AccessibilityView style={styles.flex1} name="stopRequest">
-        <BoldTitleBar title={strings.stopRequest}/>
-          <PushController vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} />
-          <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopCode + ')'} />
+      function cancelStopRequestCallback(error) {
+          if(!error) {
+              BackAndroid.removeEventListener('hardwareBackPress', this.backAndroidHandler)
 
-          <View style={styles.flex3}>
+              Actions.pop()
+          } else {
+              Alert.alert( strings.stopRequestCancellationErrorTitle, strings.stopRequestCancellationErrorMsg,
+                  [ {text: 'Ok', onPress: () => {}}] )
+          }
+      }
+
+
+      const cancelStopRequest = () => {
+          Alert.alert(
+              strings.cancelStopRequest, '',
+              [
+                  {text: strings.no, onPress: () => {
+                  }},
+                  {text: strings.yes, onPress: () => {
+                      this.props.cancelStopRequest(this.props.fromRequestId, cancelStopRequestCallback)
+                  }},
+              ],
+              {
+                  cancelable: false
+              }
+          )
+      }
+
+      return (
+        <AccessibilityView style={styles.flex1} name="stopRequest">
+          <PushController vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} />
+
+            {this.props.successfulStopRequest && <View style={{padding: 10, width: undefined, height: undefined, backgroundColor: '#BEE4F8'}}>
+                <DefaultText style={{marginBottom: 10, fontWeight: 'bold', fontSize: 20}}>Pysäytyspyyntö lähetetty</DefaultText>
+                <AwesomeButton labelStyle={{fontSize: 20, color: '#ffffff', fontFamily: 'gotham-rounded-medium'}} states={{
+                        default: {
+                          text: 'Peruuta',
+                          onPress: cancelStopRequest,
+                          backgroundColor: '#DC0451'
+                        }
+                       }} />
+            </View>}
+
+            <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopCode + ')'} />
+
+
+            <View style={styles.flex3}>
             {this.renderRouteInfo()}
           </View>
 
-          <View style={styles.flex1}>
-            {this.renderButton()}
-          </View>
           {this.renderSlider()}
         </AccessibilityView>
         )

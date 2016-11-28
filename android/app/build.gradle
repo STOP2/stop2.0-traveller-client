@@ -93,7 +93,7 @@ android {
 
     defaultConfig {
         applicationId "com.stop2travellerclient"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 23
         versionName "1.0"
         versionCode 10
@@ -139,6 +139,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-beacons-android')
     compile project(':react-native-fcm')
     compile project(':react-native-localization')
     compile fileTree(dir: "libs", include: ["*.jar"])
