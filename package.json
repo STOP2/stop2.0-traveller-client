@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "^15.3.2",
     "react-native": "^0.34.1",
+    "react-native-awesome-button": "^1.6.0",
     "react-native-beacons-android": "^2.1.0",
     "react-native-fcm": "^2.3.2",
     "react-native-localization": "^0.1.17",
@@ -50,6 +51,8 @@
     ]
   },
   "rnpm": {
-    "assets": ["assets"]
+    "assets": [
+      "assets"
+    ]
   }
 }
