@@ -36,18 +36,14 @@ class BeaconController extends Component {
         try
         {
             await Beacons.startRangingBeaconsInRegion('REGION1', this.beacons[0].id)
-            console.log('Beacons ranging started succesfully!')
         }
         catch (error)
         {
-            console.log(`Beacons ranging not started, error: ${error}`)
         }
 
         // Print a log of the detected iBeacons (1 per 5 second)
         DeviceEventEmitter.addListener('beaconsDidRange', (data) =>
         {
-            console.log(data)
-
             if (this.state.attempts == 5)
             {
                 Beacons.stopRangingBeaconsInRegion('REGION1', this.beacons[0].id)
@@ -57,9 +53,19 @@ class BeaconController extends Component {
             {
                 if (!this.state.beaconDetected)
                 {
+                    let closestBeaconIndex = 0
+                    let closestBeaconDistance = 999999
+
+                    for (let beaconIndex in data.beacons)
+                    {
+                        if (data.beacons[beaconIndex].distance < closestBeaconDistance)
+                        {
+                            closestBeaconIndex = beaconIndex
+                        }
+                    }
                     let beaconData = {
-                        major: data.beacons[0].major,
-                        minor: data.beacons[0].minor
+                        major: data.beacons[closestBeaconIndex].major,
+                        minor: data.beacons[closestBeaconIndex].minor
                     }
 
                     this.props.setBeaconData(beaconData)
@@ -71,8 +77,9 @@ class BeaconController extends Component {
             else
             {
                 if (this.state.beaconDetected)
-                    // alert('Poistuit pysäkiltä Pasilan asema (2181)')
-                this.setState({beaconDetected: false})
+                {
+                    this.setState({beaconDetected: false})
+                }
             }
             this.setState({attempts: this.state.attempts + 1})
         })

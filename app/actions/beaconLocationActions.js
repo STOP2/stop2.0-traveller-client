@@ -4,8 +4,6 @@ export const REQUEST_BEACON_DATA = 'REQUEST_BEACON_DATA'
 
 export let setBeaconData = function(beaconData)
 {
-    console.log('SETTING BEACON DATA: ')
-    console.log(beaconData)
     return {
         type: SET_BEACON_DATA,
         beaconData: beaconData,

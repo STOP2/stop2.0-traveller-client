@@ -43,17 +43,8 @@ class DeparturesListPage extends Component {
 
     checkIfLocationExists(props)
     {
-        console.log('CHECKING LOCATION')
-        console.log('gettingBeacon: ' + props.gettingBeaconData)
-        console.log('beaconError: ' + props.beaconError)
-        console.log('gettingGps: ' + props.gettingGpsLocation)
-        console.log('gpsError: ' + props.gpsLocationError)
         if (props.gettingBeaconData == false && props.beaconError == null)
         {
-            console.log('BEACON DATA: ')
-            console.log(props.beaconData)
-            console.log(props.beaconData.major)
-            
             props.fetchDepartures(props.beaconData.major, props.beaconData.minor, true)
             this.setState({fetchIntervalRunning: true})
             this.createInterval(props, true)

@@ -64,9 +64,6 @@ export let fetchDepartures = function(latitude, longitude, withBeacons)
             // here latitude =  major and longtitude = minor
             dispatch(requestDeparturesWithBeacons(latitude, longitude))
             fetchString = config.API_URL + API_ENDPOINT_WITH_BEACONS + '?major=' + latitude + '&minor=' + longitude + radiusString
-            console.log('REQUESTING DEPARTURES WITH BEACONS')
-            console.log(latitude)
-            console.log(fetchString)
         }
         else
         {
