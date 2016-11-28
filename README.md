@@ -22,9 +22,11 @@ Clone the latest version of the project. Inside the Stop2.0-traveller-client fol
 npm install
 ```
 
-Install react-native-slide-button v. 1.3.0 manually:
+Change buildToolsVersion from 23.0.1 to 25.0.0 in these files:
 ```bash
-npm install https://github.com/sreejithr/react-native-slide-button/archive/v1.3.0.tar.gz
+./node_modules/react-native-localization/android/build.gradle
+./node_modules/react-native-beacons-android/android/build.gradle
+./node_modules/react-native-fcm/android/build.gradle
 ```
 
 #### For Android development:
