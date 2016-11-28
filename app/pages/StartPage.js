@@ -7,6 +7,7 @@ import strings from '../resources/translations'
 import StartViewButtons from '../components/StartViewButtons'
 import AccessibilityView from '../components/AccessibilityView'
 
+import { resetState } from '../actions/resetStateAction'
 import BeaconController from '../components/BeaconController'
 import { getGpsLocation } from '../actions/gpsLocationActions'
 
@@ -47,6 +48,7 @@ class StartView extends Component {
 
     componentWillMount = () =>
     {
+        this.props.resetState()
         this.requestLocationPermission()
     }
 
@@ -82,6 +84,10 @@ const mapDispatchToProps = (dispatch) =>
         getGpsLocation: () =>
         {
             dispatch(getGpsLocation())
+        },
+        resetState: () =>
+        {
+            dispatch(resetState())
         }
     }
 }
