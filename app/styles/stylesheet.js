@@ -84,12 +84,6 @@ const styles = StyleSheet.create({
         color: colors.busBlue,
         fontSize: 20
     },
-    gettingLocationText: {
-        textAlign: 'center',
-        flex: 1,
-        color: colors.busBlue,
-        fontSize: 30
-    },
     stopRequestStyle: {
         flex: 1,
         flexDirection: 'column',

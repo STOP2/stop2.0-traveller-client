@@ -1,0 +1,9 @@
+exports[`gps location actions creates a SET_GPS_LOCATION action 1`] = `
+Object {
+  "gettingGpsLocation": false,
+  "gpsLocationData": Object {
+    "coords": Array [],
+  },
+  "type": "SET_GPS_LOCATION",
+}
+`;

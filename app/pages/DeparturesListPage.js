@@ -33,74 +33,117 @@ class DeparturesListPage extends Component {
             dataSource: ds.cloneWithRowsAndSections({}, []),
             stops: [],
             stopCount: 0,
-            fetchIntervalRunning: false
+            fetchIntervalRunning: false,
+            locatingUser: true
         }
 
         this.sceneName = 'departures'
     }
 
-    componentWillMount = () =>
+
+    checkIfLocationExists(props)
     {
-        this.props.fetchDepartures(this.props.locationData.latitude, this.props.locationData.longitude)
-
-        this.setState({fetchIntervalRunning: true})
-
-        this.createInterval(this.props)
+        if (props.gettingBeaconData == false && props.beaconError == null)
+        {
+            props.fetchDepartures(props.beaconData.major, props.beaconData.minor, true)
+            this.setState({fetchIntervalRunning: true})
+            this.createInterval(props, true)
+            this.setState({locatingUser: false})
+        }
+        else if (props.gettingBeaconData == false && props.beaconError != null)
+        {
+            if (props.gettingGpsLocation == false && props.gpsLocationError == null)
+            {
+                this.props.fetchDepartures(props.gpsLocationData.latitude, props.gpsLocationData.longitude, false)
+                this.setState({fetchIntervalRunning: true})
+                this.createInterval(props, false)
+                this.setState({locatingUser: false})
+            }
+            else if (props.gettingGpsLocation == false && props.gpsLocationError != null)
+            {
+                console.log('both have errored, do something?')
+            }
+            else
+            {
+                return false
+            }
+        }
+        else
+        {
+            return false
+        }
     }
 
-    createInterval = (props) =>
+    componentWillMount = () =>
+    {
+        this.checkIfLocationExists(this.props)
+    }
+
+    createInterval = (props, usesBeacons) =>
     {
         this.fetchInterval = setInterval(() =>
         {
             if (!props.isFetchingDepartures)
             {
-                props.fetchDepartures(props.locationData.latitude, props.locationData.longitude)
+                if (usesBeacons)
+                {
+                    props.fetchDepartures(props.beaconData.major, props.beaconData.minor, true)
+                }
+                else
+                {
+                    props.fetchDepartures(props.gpsLocationData.latitude, props.gpsLocationData.longitude, false)
+                }
             }
         }, UPDATE_INTERVAL_IN_SECS * 1000)
     }
 
     componentWillReceiveProps = (nextProps) =>
     {
-        if (nextProps.scene.name == this.sceneName)
+        if (this.state.locatingUser)
         {
-            if (!this.state.fetchIntervalRunning)
-            {
-                this.setState({fetchIntervalRunning: true})
-
-                this.createInterval(nextProps)
-            }
+            this.checkIfLocationExists(nextProps)
         }
-        else if (this.state.fetchIntervalRunning)
+        else
         {
-            this.setState({fetchIntervalRunning: false})
-
-            clearInterval(this.fetchInterval)
-        }
-
-
-    // this.props.fetchDepartures(nextProps.locationData.latitude, nextProps.locationData.longitude)
-
-        if (nextProps.stops.length > 0)
-        {
-            let tempDataBlob = Object.assign({}, this.state.dataBlob)
-            let stopsTemp = this.state.stops
-            let sections = []
-
-            for (let index = 0; index < nextProps.stops.length; index++)
-            {
-                let sectionID = nextProps.stops[index].stop.stop_id
-
-                sections.push(sectionID)
-                tempDataBlob[sectionID] = nextProps.stops[index].stop.schedule
-
-                stopsTemp[nextProps.stops[index].stop.stop_id] = nextProps.stops[index].stop
+            if (nextProps.scene.name == this.sceneName)
+          {
+                if (!this.state.fetchIntervalRunning)
+              {
+                    this.setState({fetchIntervalRunning: true})
+                    this.createInterval(nextProps)
+                }
             }
-            this.setState({
-                dataBlob: tempDataBlob,
-                dataSource: this.state.dataSource.cloneWithRowsAndSections(tempDataBlob, sections),
-                stops: stopsTemp,
-                stopCount: nextProps.stops.length
-            })
+            else if (this.state.fetchIntervalRunning)
+          {
+                this.setState({fetchIntervalRunning: false})
+                clearInterval(this.fetchInterval)
+            }
+
+
+      // this.props.fetchDepartures(nextProps.gpsLocationData.latitude, nextProps.gpsLocationData.longitude, false)
+
+            if (nextProps.stops.length > 0)
+            {
+                let tempDataBlob = Object.assign({}, this.state.dataBlob)
+                let stopsTemp = this.state.stops
+                let sections = []
+
+                for (let index = 0; index < nextProps.stops.length; index++)
+                {
+                    let sectionID = nextProps.stops[index].stop.stop_id
+
+                    sections.push(sectionID)
+                    tempDataBlob[sectionID] = nextProps.stops[index].stop.schedule
+
+                    stopsTemp[nextProps.stops[index].stop.stop_id] = nextProps.stops[index].stop
+                }
+                this.setState({
+                    dataBlob: tempDataBlob,
+                    dataSource: this.state.dataSource.cloneWithRowsAndSections(tempDataBlob, sections),
+                    stops: stopsTemp,
+                    stopCount: nextProps.stops.length
+                })
+            }
         }
     }
 
@@ -153,6 +196,7 @@ class DeparturesListPage extends Component {
     renderList = () =>
     {
         let listElement
+
         if (this.state.dataSource.getRowCount() > 0)
         {
             listElement = <ListView
@@ -197,13 +241,13 @@ class DeparturesListPage extends Component {
         )
     }
 
-    renderSpinner = () =>
+    renderSpinner = (text) =>
     {
         return (
             <View style={styles.spinnerContainer}>
                 <View style={styles.spinnerBackground}>
                     <DefaultText style={styles.loadingDeparturesText}>
-                        {strings.loadingDepartures}
+                        {text}
                     </DefaultText>
                     <ActivityIndicator
                         size="large"
@@ -239,9 +283,13 @@ class DeparturesListPage extends Component {
         {
             viewElement = this.renderFetchError()
         }
+        else if (this.state.locatingUser)
+        {
+            viewElement = this.renderSpinner(strings.gettingLocation)
+        }
         else
         {
-            viewElement = this.renderSpinner()
+            viewElement = this.renderSpinner(strings.loadingDepartures)
         }
 
         return (
@@ -260,7 +308,12 @@ const mapStateToProps = (state) =>
         isFetchingDepartures: state.fetchDeparturesReducer.isFetching,
         isDeparturesReady: state.fetchDeparturesReducer.isReady,
         fetchDeparturesError: state.fetchDeparturesReducer.error,
-        locationData: state.locationReducer.locationData,
+        gpsLocationData: state.gpsLocationReducer.gpsLocationData,
+        gettingGpsLocation: state.gpsLocationReducer.gettingGpsLocation,
+        gpsLocationError: state.gpsLocationReducer.error,
+        beaconData: state.beaconLocationReducer.beaconData,
+        gettingBeaconData: state.beaconLocationReducer.gettingBeaconData,
+        beaconError: state.beaconLocationReducer.beaconError,
         scene: state.routes.scene
     }
 }
@@ -268,16 +321,16 @@ const mapStateToProps = (state) =>
 const mapDispatchToProps = (dispatch) =>
 {
     return {
-        fetchDepartures: (latitude, longitude) =>
+        fetchDepartures: (latitude, longitude, withBeacons) =>
         {
-            dispatch(fetchDepartures(latitude, longitude))
+            dispatch(fetchDepartures(latitude, longitude, withBeacons))
         }
     }
 }
 
 DeparturesListPage.propTypes = {
     fetchDepartures: React.PropTypes.func.isRequired,
-    locationData: React.PropTypes.shape({
+    gpsLocationData: React.PropTypes.shape({
         latitude: React.PropTypes.number.isRequired,
         longitude: React.PropTypes.number.isRequired
     }),
@@ -285,7 +338,8 @@ DeparturesListPage.propTypes = {
     isFetchingDepartures: React.PropTypes.bool.isRequired,
     fetchDeparturesError: React.PropTypes.bool.isRequired,
     isDeparturesReady: React.PropTypes.bool.isRequired,
-    scene: React.PropTypes.object.isRequired
+    scene: React.PropTypes.object.isRequired,
+    locatingUser: React.PropTypes.bool.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeparturesListPage)

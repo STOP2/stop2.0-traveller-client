@@ -9,7 +9,7 @@ import strings from '../resources/translations'
 import StartViewButtons from '../components/StartViewButtons'
 import AccessibilityView from '../components/AccessibilityView'
 
-import { getLocation } from '../actions/locationActions'
+import { getLocation } from '../actions/gpsLocationActions'
 
 class StartView extends Component {
     constructor()
@@ -25,7 +25,7 @@ class StartView extends Component {
     {
         this.props.getLocation()
     }
-    
+
     render()
     {
         let viewElement
@@ -64,7 +64,7 @@ class StartView extends Component {
 }
 
 StartView.propTypes = {
-    gettingLocation: React.PropTypes.bool.isRequired,
+    gettingGpsLocation: React.PropTypes.bool.isRequired,
     locationError: React.PropTypes.string,
     getLocation: React.PropTypes.func.isRequired
 }
@@ -72,8 +72,8 @@ StartView.propTypes = {
 const mapStateToProps = (state) =>
 {
     return {
-        gettingLocation: state.locationReducer.gettingLocation,
-        locationError: state.locationReducer.error
+        gettingGpsLocation: state.gpsLocationReducer.gettingGpsLocation,
+        locationError: state.gpsLocationReducer.error
     }
 }
 
