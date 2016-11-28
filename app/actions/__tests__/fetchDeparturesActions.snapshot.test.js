@@ -17,7 +17,7 @@ describe('fetchDepartures actions', () =>
 
         fetch.mockResponseSuccess(response)
 
-        await store.dispatch(fetchDepartures(60.203978, 24.9633573))
+        await store.dispatch(fetchDepartures(60.203978, 24.9633573, false))
 
         expect(store.getActions()).toMatchSnapshot()
     })

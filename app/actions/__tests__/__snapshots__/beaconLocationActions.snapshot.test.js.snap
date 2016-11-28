@@ -1,0 +1,9 @@
+exports[`beacon location actions creates a SET_BEACON_DATA action 1`] = `
+Object {
+  "beaconData": Object {
+    "beaconData": Array [],
+  },
+  "gettingBeaconData": false,
+  "type": "SET_BEACON_DATA",
+}
+`;

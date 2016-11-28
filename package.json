@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "^15.3.2",
     "react-native": "^0.34.1",
+    "react-native-beacons-android": "^2.1.0",
     "react-native-fcm": "^2.3.2",
     "react-native-localization": "^0.1.17",
     "react-native-router-flux": "^3.35.0",
