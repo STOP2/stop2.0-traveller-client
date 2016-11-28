@@ -330,7 +330,7 @@ RouteStopRequestPage.propTypes = {
         stopId: React.PropTypes.string.isRequired
     }),
     sendStoprequest: React.PropTypes.func.isRequired,
-    successfulStopRequest: React.PropTypes.func.isRequired,
+    successfulStopRequest: React.PropTypes.bool.isRequired,
     resetState: React.PropTypes.func.isRequired,
     fcmToken: React.PropTypes.string.token,
     destinationRequestId: React.PropTypes.number.isRequired,
