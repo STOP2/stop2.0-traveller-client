@@ -7,7 +7,6 @@ import { Actions } from 'react-native-router-flux'
 
 import { TitleBar, BoldTitleBar } from '../components/TitleBar'
 import { RouteInfoForStop } from '../components/RouteInfo'
-import SlideConfirmButton from '../components/SlideConfirmButton'
 import AccessibilityView from '../components/AccessibilityView'
 import {DefaultText} from '../components/textComponents'
 
