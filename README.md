@@ -50,11 +50,11 @@ Run the app (the app will run on the device if it's connected, otherwise it will
 
 In debug mode (shows errors & warnings):
 
-First start react-native:
+Ensure that the React Native packager is running (you may skip this step, it should automatically start on the next step):
 ```bash
 react-native start
 ```
-In a new terminal window run:
+To start the build process, run:
 ```bash
 react-native run-android
 ```
