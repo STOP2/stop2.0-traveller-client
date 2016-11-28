@@ -25,9 +25,9 @@ Object {
   "isCancellingDestinationStopRequest": false,
   "isCancellingFromStopRequest": false,
   "stopRequestDestinationCancellationError": null,
-  "stopRequestDestinationCancelled": false,
+  "stopRequestDestinationCancelled": true,
   "stopRequestFromCancellationError": null,
-  "stopRequestFromCancelled": true,
+  "stopRequestFromCancelled": false,
 }
 `;
 
