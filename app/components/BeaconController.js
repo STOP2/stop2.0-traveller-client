@@ -21,6 +21,7 @@ class BeaconController extends Component {
 
         this.beacons = [{
             id: 'ebefd083-70a2-47c8-9837-e7b5634df524',
+            busUuid: 'f7826da6-4fa2-4e98-8024-bc5b71e0893e',
             latitude: 60.19942,
             longitude: 24.93461
         }]
@@ -35,7 +36,8 @@ class BeaconController extends Component {
 
         try
         {
-            await Beacons.startRangingBeaconsInRegion('REGION1', this.beacons[0].id)
+            await Beacons.startRangingBeaconsInRegion('STOPS', this.beacons[0].id)
+            await Beacons.startRangingBeaconsInRegion('BUSSES', this.beacons[0].busUuid)
         }
         catch (error)
         {
@@ -44,9 +46,11 @@ class BeaconController extends Component {
         // Print a log of the detected iBeacons (1 per 5 second)
         DeviceEventEmitter.addListener('beaconsDidRange', (data) =>
         {
+            console.log(data)
             if (this.state.attempts == 5)
             {
-                Beacons.stopRangingBeaconsInRegion('REGION1', this.beacons[0].id)
+                Beacons.stopRangingBeaconsInRegion('STOPS', this.beacons[0].id)
+                Beacons.stopRangingBeaconsInRegion('BUSSES', this.beacons[0].busUuid)
                 this.props.beaconError('Beacon not found in 5 seconds')
             }
             if (data.beacons.length > 0)
@@ -64,12 +68,21 @@ class BeaconController extends Component {
                         }
                     }
                     let beaconData = {
+                        uuid: data.beacons[closestBeaconIndex].uuid,
                         major: data.beacons[closestBeaconIndex].major,
                         minor: data.beacons[closestBeaconIndex].minor
                     }
 
-                    this.props.setBeaconData(beaconData)
-                    Beacons.stopRangingBeaconsInRegion('REGION1', this.beacons[0].id)
+                    if (beaconData.uuid == this.beacons[0].id)
+                    {
+                        this.props.setBeaconData(beaconData)
+                        Beacons.stopRangingBeaconsInRegion('STOPS', this.beacons[0].id)
+                    }
+                    else
+                    {
+                        this.props.setBusBeaconData(beaconData)
+                        Beacons.stopRangingBeaconsInRegion('BUSSES', this.beacons[0].busUuid)
+                    }
                     // alert('Olet pysäkillä Pasilan asema (2181)')
                     this.setState({beaconDetected: true})
                 }
@@ -99,6 +112,7 @@ class BeaconController extends Component {
 
 BeaconController.propTypes = {
     setBeaconData: React.PropTypes.func,
+    setBusBeaconData: React.PropTypes.func,
     beaconError: React.PropTypes.func,
     requestBeaconData: React.PropTypes.func
 }

@@ -11,6 +11,15 @@ export let setBeaconData = function(beaconData)
     }
 }
 
+export let setBusBeaconData = function(beaconData)
+{
+    return {
+        type: SET_BEACON_DATA,
+        beaconData: beaconData,
+        gettingBeaconData: false
+    }
+}
+
 export let requestBeaconData = function()
 {
     return {
