@@ -72,8 +72,8 @@ StartView.propTypes = {
 const mapStateToProps = (state) =>
 {
     return {
-        gettingGpsLocation: state.gpsLocationReducer.gettingGpsLocation,
-        locationError: state.gpsLocationReducer.error
+        gettingGpsLocation: state.gpsLocation.gettingGpsLocation,
+        locationError: state.gpsLocation.error
     }
 }
 

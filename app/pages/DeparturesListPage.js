@@ -297,16 +297,16 @@ class DeparturesListPage extends Component {
 const mapStateToProps = (state) =>
 {
     return {
-        stops: state.fetchDeparturesReducer.stops,
-        isFetchingDepartures: state.fetchDeparturesReducer.isFetching,
-        isDeparturesReady: state.fetchDeparturesReducer.isReady,
-        fetchDeparturesError: state.fetchDeparturesReducer.error,
-        gpsLocationData: state.gpsLocationReducer.gpsLocationData,
-        gettingGpsLocation: state.gpsLocationReducer.gettingGpsLocation,
-        gpsLocationError: state.gpsLocationReducer.error,
-        beaconData: state.beaconLocationReducer.beaconData,
-        gettingBeaconData: state.beaconLocationReducer.gettingBeaconData,
-        beaconError: state.beaconLocationReducer.beaconError,
+        stops: state.departures.stops,
+        isFetchingDepartures: state.departures.isFetching,
+        isDeparturesReady: state.departures.isReady,
+        fetchDeparturesError: state.departures.error,
+        gpsLocationData: state.gpsLocation.gpsLocationData,
+        gettingGpsLocation: state.gpsLocation.gettingGpsLocation,
+        gpsLocationError: state.gpsLocation.error,
+        beaconData: state.beacons.beaconData,
+        gettingBeaconData: state.beacons.gettingBeaconData,
+        beaconError: state.beacons.beaconError,
         scene: state.routes.scene
     }
 }

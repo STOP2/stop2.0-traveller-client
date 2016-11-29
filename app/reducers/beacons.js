@@ -7,7 +7,7 @@ export let initialState = {
     gettingBeaconData: false
 }
 
-const beaconLocationReducer = (state = initialState, action) =>
+const beacons = (state = initialState, action) =>
 {
     switch (action.type)
   {
@@ -36,4 +36,4 @@ const beaconLocationReducer = (state = initialState, action) =>
     }
 }
 
-export default beaconLocationReducer
+export default beacons
