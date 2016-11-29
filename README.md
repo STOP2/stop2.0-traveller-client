@@ -8,7 +8,7 @@ Made with [React Native](https://facebook.github.io/react-native/) and [Redux](h
 
 #### Setup of development environment (UNDER PROGRESS) 
 
-You'll Node.js version 4 or newer.
+You'll need Node.js version 4 or newer.
 
 Watchman is recommended but optional.
 
