@@ -23,9 +23,12 @@
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146E264946774D3EB95E1471 /* libRNFIRMessaging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE2CBA35AB840E3A317CDC6 /* libRNFIRMessaging.a */; };
+		627DFE451DEDE314006238A3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 627DFE441DEDE314006238A3 /* GoogleService-Info.plist */; };
 		6299AE231DD2004300EF657A /* gotham-rounded-book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6299AE211DD2004300EF657A /* gotham-rounded-book.otf */; };
 		6299AE241DD2004300EF657A /* gotham-rounded-medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6299AE221DD2004300EF657A /* gotham-rounded-medium.otf */; };
+		790BF2166F429C022F19B28E /* Pods_Stop2TravellerClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCB043B806D7419CB93E10A /* Pods_Stop2TravellerClientTests.framework */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		8DECE3BDF53156C7B67F49F3 /* Pods_Stop2TravellerClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B893AC741F2DBA7A18900F0 /* Pods_Stop2TravellerClient.framework */; };
 		BD9E593009FC47548DB14909 /* libReactNativeLocalization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EF517655BE94AD7B3264E1D /* libReactNativeLocalization.a */; };
 /* End PBXBuildFile section */
 
@@ -143,14 +146,21 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Stop2TravellerClient/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Stop2TravellerClient/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		37313802EBFB71B90C921470 /* Pods-Stop2TravellerClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stop2TravellerClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stop2TravellerClient/Pods-Stop2TravellerClient.release.xcconfig"; sourceTree = "<group>"; };
+		4A9D30341281B1B1B8168223 /* Pods-Stop2TravellerClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stop2TravellerClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stop2TravellerClient/Pods-Stop2TravellerClient.debug.xcconfig"; sourceTree = "<group>"; };
 		4EF517655BE94AD7B3264E1D /* libReactNativeLocalization.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeLocalization.a; sourceTree = "<group>"; };
+		5B893AC741F2DBA7A18900F0 /* Pods_Stop2TravellerClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stop2TravellerClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		627DFE441DEDE314006238A3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Stop2TravellerClient/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6299AE211DD2004300EF657A /* gotham-rounded-book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "gotham-rounded-book.otf"; path = "../android/app/src/main/assets/fonts/gotham-rounded-book.otf"; sourceTree = "<group>"; };
 		6299AE221DD2004300EF657A /* gotham-rounded-medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "gotham-rounded-medium.otf"; path = "../android/app/src/main/assets/fonts/gotham-rounded-medium.otf"; sourceTree = "<group>"; };
 		770A5441D3F04C7985E4E991 /* RNFIRMessaging.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFIRMessaging.xcodeproj; path = "../node_modules/react-native-fcm/ios/RNFIRMessaging.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7DE2CBA35AB840E3A317CDC6 /* libRNFIRMessaging.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFIRMessaging.a; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		8DAA5BBE735AD928AB551B60 /* Pods-Stop2TravellerClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stop2TravellerClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stop2TravellerClientTests/Pods-Stop2TravellerClientTests.release.xcconfig"; sourceTree = "<group>"; };
+		C74655527ED9826F8F202CBC /* Pods-Stop2TravellerClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stop2TravellerClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stop2TravellerClientTests/Pods-Stop2TravellerClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C9B62DC9494F416A93FD0672 /* ReactNativeLocalization.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeLocalization.xcodeproj; path = "../node_modules/react-native-localization/ReactNativeLocalization.xcodeproj"; sourceTree = "<group>"; };
+		DBCB043B806D7419CB93E10A /* Pods_Stop2TravellerClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stop2TravellerClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
+				790BF2166F429C022F19B28E /* Pods_Stop2TravellerClientTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +189,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				BD9E593009FC47548DB14909 /* libReactNativeLocalization.a in Frameworks */,
 				146E264946774D3EB95E1471 /* libRNFIRMessaging.a in Frameworks */,
+				8DECE3BDF53156C7B67F49F3 /* Pods_Stop2TravellerClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,12 +345,15 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				627DFE441DEDE314006238A3 /* GoogleService-Info.plist */,
 				6299AE211DD2004300EF657A /* gotham-rounded-book.otf */,
 				6299AE221DD2004300EF657A /* gotham-rounded-medium.otf */,
 				13B07FAE1A68108700A75B9A /* Stop2TravellerClient */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* Stop2TravellerClientTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				E6AFD0C0D8C1C2B016D306EE /* Pods */,
+				E97E8FDB5172D76C888C9023 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -353,6 +368,26 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E6AFD0C0D8C1C2B016D306EE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4A9D30341281B1B1B8168223 /* Pods-Stop2TravellerClient.debug.xcconfig */,
+				37313802EBFB71B90C921470 /* Pods-Stop2TravellerClient.release.xcconfig */,
+				C74655527ED9826F8F202CBC /* Pods-Stop2TravellerClientTests.debug.xcconfig */,
+				8DAA5BBE735AD928AB551B60 /* Pods-Stop2TravellerClientTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E97E8FDB5172D76C888C9023 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B893AC741F2DBA7A18900F0 /* Pods_Stop2TravellerClient.framework */,
+				DBCB043B806D7419CB93E10A /* Pods_Stop2TravellerClientTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -360,9 +395,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "Stop2TravellerClientTests" */;
 			buildPhases = (
+				8C60DB98C488FC56BA41763D /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				8A7B87EE294054D73FC028D1 /* [CP] Embed Pods Frameworks */,
+				F46516607D877F4FB166CE52 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -378,10 +416,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Stop2TravellerClient" */;
 			buildPhases = (
+				87F8FE5551AB571AF7E7FE0A /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				2BA1B188CF893C7F3E5DF257 /* [CP] Embed Pods Frameworks */,
+				170A72233C27C3E061783C76 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -577,6 +618,7 @@
 			files = (
 				6299AE241DD2004300EF657A /* gotham-rounded-medium.otf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				627DFE451DEDE314006238A3 /* GoogleService-Info.plist in Resources */,
 				6299AE231DD2004300EF657A /* gotham-rounded-book.otf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
@@ -598,6 +640,96 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
+		};
+		170A72233C27C3E061783C76 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Stop2TravellerClient/Pods-Stop2TravellerClient-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2BA1B188CF893C7F3E5DF257 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Stop2TravellerClient/Pods-Stop2TravellerClient-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		87F8FE5551AB571AF7E7FE0A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8A7B87EE294054D73FC028D1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Stop2TravellerClientTests/Pods-Stop2TravellerClientTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8C60DB98C488FC56BA41763D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F46516607D877F4FB166CE52 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Stop2TravellerClientTests/Pods-Stop2TravellerClientTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -644,6 +776,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C74655527ED9826F8F202CBC /* Pods-Stop2TravellerClientTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -665,6 +798,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8DAA5BBE735AD928AB551B60 /* Pods-Stop2TravellerClientTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -683,6 +817,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A9D30341281B1B1B8168223 /* Pods-Stop2TravellerClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEAD_CODE_STRIPPING = NO;
@@ -694,7 +829,9 @@
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
 				);
 				INFOPLIST_FILE = Stop2TravellerClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MACH_O_TYPE = mh_execute;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -706,6 +843,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37313802EBFB71B90C921470 /* Pods-Stop2TravellerClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				HEADER_SEARCH_PATHS = (
@@ -716,7 +854,9 @@
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
 				);
 				INFOPLIST_FILE = Stop2TravellerClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MACH_O_TYPE = mh_execute;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
