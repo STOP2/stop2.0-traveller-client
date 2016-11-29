@@ -13,12 +13,12 @@ class TravellerApp extends Component {
     render()
     {
         const scenes = Actions.create(
-            <Scene key="root" hideNavBar={true} panHandlers={null}>
-                <Scene key="start" component={StartPage} initial={true} type="reset"/>
-                <Scene key="departures" component={DeparturesListPage}/>
-                <Scene key="stopRequest" component={StopRequestPage}/>
-                <Scene key="routeStops" component={RouteStopsPage}/>
-                <Scene key="routeStopRequest" component={RouteStopRequestPage}/>
+            <Scene key="root" hideNavBar={true}>
+                <Scene key="start" component={StartPage} initial={true} panHandlers={null} type="reset"/>
+                <Scene key="departures" component={DeparturesListPage} panHandlers={null}/>
+                <Scene key="stopRequest" component={StopRequestPage} panHandlers={null}/>
+                <Scene key="routeStops" component={RouteStopsPage} panHandlers={null}/>
+                <Scene key="routeStopRequest" component={RouteStopRequestPage} panHandlers={null}/>
             </Scene>
         )
 
