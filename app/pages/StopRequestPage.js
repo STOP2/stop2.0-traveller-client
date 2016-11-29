@@ -272,14 +272,14 @@ class StopRequestPage extends Component{
 const mapStateToProps = (state) =>
 {
     return {
-        fcmToken: state.fcmReducer.token,
-        successfulStopRequest: state.stopRequestReducer.sentStoprequestFromStop,
-        routeStops: state.fetchRouteStopsReducer.routeStops,
-        isFetchingStops: state.fetchRouteStopsReducer.isFetchingStops,
-        errorFetchingStops: state.fetchRouteStopsReducer.errorFetchingStops,
-        stopRequestFailed: state.stopRequestReducer.error,
+        fcmToken: state.pushNotifications.token,
+        successfulStopRequest: state.stopRequest.sentStoprequestFromStop,
+        routeStops: state.routeStops.routeStops,
+        isFetchingStops: state.routeStops.isFetchingStops,
+        errorFetchingStops: state.routeStops.errorFetchingStops,
+        stopRequestFailed: state.stopRequest.error,
         scene: state.routes.scene,
-        fromRequestId: state.stopRequestReducer.fromRequestId
+        fromRequestId: state.stopRequest.fromRequestId
     }
 }
 

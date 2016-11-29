@@ -8,7 +8,7 @@ let initialState = {
     routeStops: {}
 }
 
-const fetchRouteStopsReducer = (state = initialState, action) =>
+const routeStops = (state = initialState, action) =>
 {
     switch (action.type)
     {
@@ -35,4 +35,4 @@ const fetchRouteStopsReducer = (state = initialState, action) =>
     }
 }
 
-export default fetchRouteStopsReducer
+export default routeStops

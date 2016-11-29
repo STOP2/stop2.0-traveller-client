@@ -8,7 +8,7 @@ export let initialState = {
     gettingGpsLocation: false
 }
 
-const gpsLocationReducer = (state = initialState, action) =>
+const gpsLocation = (state = initialState, action) =>
 {
     switch (action.type)
   {
@@ -38,4 +38,4 @@ const gpsLocationReducer = (state = initialState, action) =>
     }
 }
 
-export default gpsLocationReducer
+export default gpsLocation
