@@ -6,11 +6,11 @@ Made with [React Native](https://facebook.github.io/react-native/) and [Redux](h
 
 <a href="https://play.google.com/store/apps/details?id=com.stop2travellerclient&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img width="200" alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"/></a>
 
-#### Setup of development environment (UNDER PROGRESS) 
+#### How to setup development environment (UNDER PROGRESS) 
 
-You'll need Node.js version 4 or newer.
+You'll need [Node.js](https://nodejs.org/en/) version >= 4.
 
-Watchman is recommended but optional.
+[Watchman](https://facebook.github.io/watchman/) is highly recommended (it will speed up the development by showing your code changes instantly on the app using [live/hot reloading](https://facebook.github.io/react-native/docs/debugging.html#automatic-reloading)) but not required.
 
 First install React Native:
 ```bash
