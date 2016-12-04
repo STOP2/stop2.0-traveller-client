@@ -1,6 +1,9 @@
 export const SET_GPS_LOCATION = 'SET_GPS_LOCATION'
 export const GPS_LOCATION_ERROR = 'GPS_LOCATION_ERROR'
 export const REQUEST_GPS_LOCATION = 'REQUEST_GPS_LOCATION'
+export const CLEAR_LOCATION = 'CLEAR_LOCATION'
+
+let watchId = false
 
 export let setGpsLocation = function(gpsLocationData)
 {
@@ -32,33 +35,44 @@ export let getGpsLocation = function()
 {
     return dispatch =>
    {
-        dispatch(requestGpsLocation())
-        navigator.geolocation.getCurrentPosition((position) =>
+        if (!watchId)
         {
-            dispatch(setGpsLocation(position.coords))
-        },
-           (error) =>
-           {
-               dispatch(gpsLocationError(error))
-           },
+            dispatch(requestGpsLocation())
+            navigator.geolocation.getCurrentPosition((position) =>
             {
-                enableHighAccuracy: false,
-                timeout: 60000,
-                maximumAge: 1000
-            })
+                dispatch(setGpsLocation(position.coords))
+            },
+            (error) =>
+            {
+                dispatch(gpsLocationError(error))
+            },
+                {
+                    enableHighAccuracy: false,
+                    timeout: 60000,
+                    maximumAge: 1000
+                })
 
-        navigator.geolocation.watchPosition((position) =>
-        {
-            console.log(position.coords)
-            dispatch(setGpsLocation(position.coords))
-        },
-           (error) =>
-           {
-           },
+
+            watchId = navigator.geolocation.watchPosition((position) =>
             {
-                enableHighAccuracy: false,
-                timeout: 60000,
-                maximumAge: 1000
-            })
+                dispatch(setGpsLocation(position.coords))
+            },
+              (error) =>
+              {
+              },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 60000,
+                    maximumAge: 1000
+                })
+        }
     }
+}
+
+export let clearWatchLocation = function()
+{
+    navigator.geolocation.clearWatch(watchId)
+    watchId = false
+
+    return { type: CLEAR_LOCATION }
 }

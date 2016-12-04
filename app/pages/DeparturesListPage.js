@@ -15,6 +15,7 @@ import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
 import { fetchDepartures } from '../actions/fetchDeparturesActions'
+import { clearWatchLocation, getGpsLocation  } from '../actions/gpsLocationActions'
 
 const UPDATE_INTERVAL_IN_SECS = 10
 
@@ -109,8 +110,11 @@ class DeparturesListPage extends Component {
         }
         else
         {
-            if (!this.fetchInterval) this.createInterval(nextProps)
-
+            if (!this.fetchInterval)
+            {
+                this.props.getGpsLocation()
+                this.checkIfLocationExists(nextProps)
+            }
 
             if (nextProps.stops.length > 0)
             {
@@ -143,6 +147,7 @@ class DeparturesListPage extends Component {
     {
             clearInterval(this.fetchInterval)
             this.fetchInterval = false
+            this.props.clearWatchLocation()
             Actions.stopRequest({
                 vehicle: rowData,
                 stop: {
@@ -312,15 +317,25 @@ const mapStateToProps = (state) =>
 const mapDispatchToProps = (dispatch) =>
 {
     return {
+        getGpsLocation: () =>
+        {
+            dispatch(getGpsLocation())
+        },
         fetchDepartures: (latitude, longitude, withBeacons) =>
         {
             dispatch(fetchDepartures(latitude, longitude, withBeacons))
+        },
+        clearWatchLocation: () =>
+        {
+            dispatch(clearWatchLocation())
         }
     }
 }
 
 DeparturesListPage.propTypes = {
     fetchDepartures: React.PropTypes.func.isRequired,
+    getGpsLocation: React.PropTypes.func.isRequired,
+    clearWatchLocation: React.PropTypes.func.isRequired,
     gpsLocationData: React.PropTypes.shape({
         latitude: React.PropTypes.number.isRequired,
         longitude: React.PropTypes.number.isRequired
