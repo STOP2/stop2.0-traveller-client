@@ -31,7 +31,7 @@ let strings = new LocalizedStrings({
         goToRouteStopsView: 'Choose your destination',
         routeStops: 'Choose a stop',
         aboutToStop: 'You\'re about to stop',
-        vehicleArrivesIn: 'Arrives in: ',
+        vehicleArrivesIn: 'Arrives ',
         minutes: 'min',
         vehiclePassedStop: 'has left the stop',
         arrivesShortly: 'arrives shortly',
@@ -55,12 +55,12 @@ let strings = new LocalizedStrings({
         slideToStop: 'Slide to stop',
         slideToCancel: 'Cancel stop request',
         fromStop: 'From stop',
-        vehicleStopsIn: 'Stops in: ',
+        vehicleStopsIn: 'Stops ',
         doYouReallyWantToMakeTheStopRequest: 'Do you really want to make the stop request?',
         stop: 'Stop',
         doYouReallyWantToGoToFrontPage: 'Do you really want to start again?',
         notifyArrival: 'Notify arrival',
-        weWillNotifyYou: 'You will get a notification when your bus arrives'
+        weWillNotifyYou: 'You will be notified before arrival'
     },
 
     fi: {
@@ -123,7 +123,7 @@ let strings = new LocalizedStrings({
         stop: 'Pysäytä',
         doYouReallyWantToGoToFrontPage: 'Aloitetaanko alusta?',
         notifyArrival: 'Ilmoita saapumisesta',
-        weWillNotifyYou: 'Tulet saamaan ilmoituksen ennen bussin saapumista pysäkille'
+        weWillNotifyYou: 'Tulet saamaan ilmoituksen ennen pysäkille saapumista'
     }
 })
 
