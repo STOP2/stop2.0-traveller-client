@@ -226,24 +226,27 @@ class StopRequestPage extends Component{
 
         const cancelStopRequest = () =>
         {
-            Alert.alert(
-              strings.cancelStopRequest, '',
-                [
-                    {
-                        text: strings.no,
-                        onPress: () =>
-                        {}
-                    },
-                    {
-                        text: strings.yes,
-                        onPress: () =>
+            if(this.props.vehicle.supportsStopRequest) {
+                Alert.alert(
+                    strings.cancelStopRequest, '',
+                    [
                         {
-                            this.props.cancelStopRequest(this.props.fromRequestId, cancelStopRequestCallback)
+                            text: strings.no,
+                            onPress: () => {
+                            }
+                        },
+                        {
+                            text: strings.yes,
+                            onPress: () => {
+                                this.props.cancelStopRequest(this.props.fromRequestId, cancelStopRequestCallback)
+                            }
                         }
-                    }
-                ],
-              { cancelable: false }
-          )
+                    ],
+                    {cancelable: false}
+                )
+            } else {
+                this.props.cancelStopRequest(this.props.fromRequestId, cancelStopRequestCallback)
+            }
         }
 
         return (
