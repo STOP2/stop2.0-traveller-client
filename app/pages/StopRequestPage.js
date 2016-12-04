@@ -254,7 +254,7 @@ class StopRequestPage extends Component{
             <PushController vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} />
 
             {this.props.successfulStopRequest && <View style={styles.stopRequestSentBackground}>
-                <DefaultText style={styles.stopRequestSentText}>{strings.stopsent}</DefaultText>
+                <DefaultText style={styles.stopRequestSentText}>{this.props.vehicle.supportsStopRequest ? strings.stopsent : strings.weWillNotifyYou}</DefaultText>
                 <AwesomeButton labelStyle={styles.buttonLabel} states={{
                     default: {
                         text: strings.cancel,
