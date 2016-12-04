@@ -27,6 +27,7 @@ Change buildToolsVersion from 23.0.1 to 25.0.0 in these files:
 ./node_modules/react-native-localization/android/build.gradle
 ./node_modules/react-native-beacons-android/android/build.gradle
 ./node_modules/react-native-fcm/android/build.gradle
+./node_modules/react-native-bluetooth-serial/build.gradle
 ```
 
 #### To build and run the project on Android:
