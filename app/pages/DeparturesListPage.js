@@ -50,7 +50,6 @@ class DeparturesListPage extends Component {
         if (props.gettingBeaconData == false && props.beaconError == null)
         {
             props.fetchDepartures(props.beaconData.major, props.beaconData.minor, true)
-            this.setState({fetchIntervalRunning: true})
             this.createInterval(props, true)
             this.setState({locatingUser: false})
         }
@@ -59,7 +58,6 @@ class DeparturesListPage extends Component {
             if (props.gettingGpsLocation == false && props.gpsLocationError == null)
             {
                 this.props.fetchDepartures(props.gpsLocationData.latitude, props.gpsLocationData.longitude, false)
-                this.setState({fetchIntervalRunning: true})
                 this.createInterval(props, false)
                 this.setState({locatingUser: false})
             }
@@ -95,7 +93,7 @@ class DeparturesListPage extends Component {
                 }
                 else
                 {
-                    props.fetchDepartures(props.gpsLocationData.latitude, props.gpsLocationData.longitude, false)
+                    props.fetchDepartures(this.props.gpsLocationData.latitude, this.props.gpsLocationData.longitude, false)
                 }
             }
         }, UPDATE_INTERVAL_IN_SECS * 1000)

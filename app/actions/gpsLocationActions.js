@@ -46,5 +46,19 @@ export let getGpsLocation = function()
                 timeout: 60000,
                 maximumAge: 1000
             })
+
+        navigator.geolocation.watchPosition((position) =>
+        {
+            console.log(position.coords)
+            dispatch(setGpsLocation(position.coords))
+        },
+           (error) =>
+           {
+           },
+            {
+                enableHighAccuracy: false,
+                timeout: 60000,
+                maximumAge: 1000
+            })
     }
 }
