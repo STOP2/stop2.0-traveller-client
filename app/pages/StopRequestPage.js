@@ -190,7 +190,7 @@ class StopRequestPage extends Component{
         }
         else
         {
-            let goToStopRequestPage = () =>
+            let goToRouteStopsPage = () =>
             {
                 clearInterval(this.fetchInterval)
                 this.fetchInterval = false
@@ -202,7 +202,7 @@ class StopRequestPage extends Component{
                       <AwesomeButton labelStyle={styles.buttonLabel} states={{
                           default: {
                               text: strings.goToRouteStopsView,
-                              onPress: goToStopRequestPage,
+                              onPress: goToRouteStopsPage,
                               backgroundColor: colors.HSLpink
                           }
                       }} />
