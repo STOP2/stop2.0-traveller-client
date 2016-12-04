@@ -37,9 +37,12 @@ RouteInfo.propTypes = {
 export class RouteInfoForStop extends Component {
     render()
     {
+        const minutesleft = () => {
+            return (this.props.vehicleMinutesLeft == 0)
+        }
         return (<View style={styles.stopRequestStyle}>
           <View style={styles.vehicleArrivesInWrapper}>
-            <DefaultText style={styles.vehicleArrivesInText}>{strings.arrives} {this.props.stopName} ({this.props.stopCode}) {strings.in}:</DefaultText>
+            <DefaultText style={styles.vehicleArrivesInText}>{strings.arrives} {this.props.stopName} ({this.props.stopCode}) {this.props.vehicleMinutesLeft == 0 ? ' ' : strings.in}:</DefaultText>
           </View>
           <View>
             <DefaultText style={styles.vehicleMinutesLeft}>{this.props.vehicleMinutesLeft}</DefaultText>
