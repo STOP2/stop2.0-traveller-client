@@ -55,7 +55,7 @@ class StartView extends Component {
     render()
     {
         return (
-            <AccessibilityView style={styles.start} name="start">
+            <AccessibilityView style={styles.start} name={this.sceneName}>
                 <BeaconController/><StartViewButtons />
             </AccessibilityView>
         )
