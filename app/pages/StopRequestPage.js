@@ -82,7 +82,7 @@ class StopRequestPage extends Component{
 
                 if (routeStop.arrives_in < 0)
                 {
-                    this.setState({minutesLeft: strings.vehiclePassedStop})
+                    this.setState({minutesLeft: (this.props.vehicle.vehicle_type == 0 ? strings.tram : strings.bus) + ' ' + strings.vehiclePassedStop})
                 }
                 else if (routeStop.arrives_in == 0)
                 {
@@ -92,6 +92,8 @@ class StopRequestPage extends Component{
                 {
                     this.setState({minutesLeft: routeStop.arrives_in + ' ' + strings.minutes})
                 }
+
+                break
             }
         }
     }
@@ -151,24 +153,27 @@ class StopRequestPage extends Component{
     {
         const sendStopRequest = () =>
         {
-            Alert.alert(
-                strings.doYouReallyWantToMakeTheStopRequest, '',
-                [
-                    {
-                        text: strings.no,
-                        onPress: () =>
-                        {}
-                    },
-                    {
-                        text: strings.yes,
-                        onPress: () =>
+            if(this.props.vehicle.supportsStopRequest) {
+                Alert.alert(
+                    strings.doYouReallyWantToMakeTheStopRequest, '',
+                    [
                         {
-                            this.props.sendStoprequest(this.props.vehicle, this.props.stop, this.props.fcmToken, false)
+                            text: strings.no,
+                            onPress: () => {
+                            }
+                        },
+                        {
+                            text: strings.yes,
+                            onPress: () => {
+                                this.props.sendStoprequest(this.props.vehicle, this.props.stop, this.props.fcmToken, false)
+                            }
                         }
-                    }
-                ],
-                { cancelable: false }
-            )
+                    ],
+                    {cancelable: false}
+                )
+            } else {
+                this.props.sendStoprequest(this.props.vehicle, this.props.stop, this.props.fcmToken, false)
+            }
         }
 
         if (!this.props.successfulStopRequest)
@@ -176,7 +181,7 @@ class StopRequestPage extends Component{
             return (<View style={styles.padding10}>
                       <AwesomeButton labelStyle={styles.buttonLabel} states={{
                           default: {
-                              text: strings.stop,
+                              text: this.props.vehicle.supportsStopRequest ? strings.stop : strings.notifyArrival,
                               onPress: sendStopRequest,
                               backgroundColor: colors.HSLgreen
                           }
@@ -185,7 +190,7 @@ class StopRequestPage extends Component{
         }
         else
         {
-            let goToStopRequestPage = () =>
+            let goToRouteStopsPage = () =>
             {
                 clearInterval(this.fetchInterval)
                 this.fetchInterval = false
@@ -197,7 +202,7 @@ class StopRequestPage extends Component{
                       <AwesomeButton labelStyle={styles.buttonLabel} states={{
                           default: {
                               text: strings.goToRouteStopsView,
-                              onPress: goToStopRequestPage,
+                              onPress: goToRouteStopsPage,
                               backgroundColor: colors.HSLpink
                           }
                       }} />
@@ -221,24 +226,27 @@ class StopRequestPage extends Component{
 
         const cancelStopRequest = () =>
         {
-            Alert.alert(
-              strings.cancelStopRequest, '',
-                [
-                    {
-                        text: strings.no,
-                        onPress: () =>
-                        {}
-                    },
-                    {
-                        text: strings.yes,
-                        onPress: () =>
+            if(this.props.vehicle.supportsStopRequest) {
+                Alert.alert(
+                    strings.cancelStopRequest, '',
+                    [
                         {
-                            this.props.cancelStopRequest(this.props.fromRequestId, cancelStopRequestCallback)
+                            text: strings.no,
+                            onPress: () => {
+                            }
+                        },
+                        {
+                            text: strings.yes,
+                            onPress: () => {
+                                this.props.cancelStopRequest(this.props.fromRequestId, cancelStopRequestCallback)
+                            }
                         }
-                    }
-                ],
-              { cancelable: false }
-          )
+                    ],
+                    {cancelable: false}
+                )
+            } else {
+                this.props.cancelStopRequest(this.props.fromRequestId, cancelStopRequestCallback)
+            }
         }
 
         return (
@@ -246,7 +254,7 @@ class StopRequestPage extends Component{
             <PushController vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} />
 
             {this.props.successfulStopRequest && <View style={styles.stopRequestSentBackground}>
-                <DefaultText style={styles.stopRequestSentText}>{strings.stopsent}</DefaultText>
+                <DefaultText style={styles.stopRequestSentText}>{this.props.vehicle.supportsStopRequest ? strings.stopsent : strings.weWillNotifyYou}</DefaultText>
                 <AwesomeButton labelStyle={styles.buttonLabel} states={{
                     default: {
                         text: strings.cancel,
