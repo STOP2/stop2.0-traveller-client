@@ -101,7 +101,7 @@ class RouteStopsPage extends Component {
         }
 
         return (
-          <TouchableOpacity onPress={goToStopVehicleRequestPage}>
+          <TouchableOpacity accessibilityComponentType="button" onPress={goToStopVehicleRequestPage}>
             <RouteStopsRow stopId={renderData.stop_code} stopName={renderData.stop_name} arrivalTime={renderData.arrives_in} />
           </TouchableOpacity>)
     }
