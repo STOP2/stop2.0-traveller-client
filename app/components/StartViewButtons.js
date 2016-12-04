@@ -20,6 +20,7 @@ class StartViewButtons extends Component {
     render()
     {
         const goToBusListView = () => Actions.departures()
+        // routeStopsView is only allowed if bluetooth is enabled
         const goToRouteStopsView = () =>
         {
             BluetoothSerial.isEnabled()
@@ -33,7 +34,7 @@ class StartViewButtons extends Component {
                   {
                       if (success)
                       {
-                          Actions.departures()
+                          Actions.vehicles()
                       }
                       else
                       {
@@ -44,7 +45,7 @@ class StartViewButtons extends Component {
               }
               else
               {
-                  Actions.departures()
+                  Actions.vehicles()
               }
           })
           .catch((error) => Alert.alert(error))
