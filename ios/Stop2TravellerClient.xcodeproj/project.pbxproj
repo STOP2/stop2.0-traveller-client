@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -27,6 +26,9 @@
 		6299AE241DD2004300EF657A /* gotham-rounded-medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6299AE221DD2004300EF657A /* gotham-rounded-medium.otf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		BD9E593009FC47548DB14909 /* libReactNativeLocalization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EF517655BE94AD7B3264E1D /* libReactNativeLocalization.a */; };
+		B34495CE62D0498CBAF752DA /* libRCTBluetoothSerial.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E0049A0CBF14522B5270E98 /* libRCTBluetoothSerial.a */; };
+		320CB2DE400545BBBFA2D71E /* gotham-rounded-book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F420E7ABFD44496BE50A22F /* gotham-rounded-book.otf */; };
+		9CF7F26CF8C44683943CEA47 /* gotham-rounded-medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 53A2FEFA2D7F49BBAA299D80 /* gotham-rounded-medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +153,10 @@
 		7DE2CBA35AB840E3A317CDC6 /* libRNFIRMessaging.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFIRMessaging.a; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		C9B62DC9494F416A93FD0672 /* ReactNativeLocalization.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeLocalization.xcodeproj; path = "../node_modules/react-native-localization/ReactNativeLocalization.xcodeproj"; sourceTree = "<group>"; };
+		9B98ACC3A7814646B7AE2C68 /* RCTBluetoothSerial.xcodeproj */ = {isa = PBXFileReference; name = "RCTBluetoothSerial.xcodeproj"; path = "../node_modules/react-native-bluetooth-serial/ios/RCTBluetoothSerial.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		1E0049A0CBF14522B5270E98 /* libRCTBluetoothSerial.a */ = {isa = PBXFileReference; name = "libRCTBluetoothSerial.a"; path = "libRCTBluetoothSerial.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		2F420E7ABFD44496BE50A22F /* gotham-rounded-book.otf */ = {isa = PBXFileReference; name = "gotham-rounded-book.otf"; path = "../assets/gotham-rounded-book.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		53A2FEFA2D7F49BBAA299D80 /* gotham-rounded-medium.otf */ = {isa = PBXFileReference; name = "gotham-rounded-medium.otf"; path = "../assets/gotham-rounded-medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +184,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				BD9E593009FC47548DB14909 /* libReactNativeLocalization.a in Frameworks */,
 				146E264946774D3EB95E1471 /* libRNFIRMessaging.a in Frameworks */,
+				B34495CE62D0498CBAF752DA /* libRCTBluetoothSerial.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +325,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				C9B62DC9494F416A93FD0672 /* ReactNativeLocalization.xcodeproj */,
 				770A5441D3F04C7985E4E991 /* RNFIRMessaging.xcodeproj */,
+				9B98ACC3A7814646B7AE2C68 /* RCTBluetoothSerial.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -339,6 +347,7 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* Stop2TravellerClientTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				80BA8E6F1AD44100A8061D00 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -351,6 +360,16 @@
 				00E356EE1AD99517003FC87E /* Stop2TravellerClientTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		80BA8E6F1AD44100A8061D00 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2F420E7ABFD44496BE50A22F /* gotham-rounded-book.otf */,
+				53A2FEFA2D7F49BBAA299D80 /* gotham-rounded-medium.otf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -579,6 +598,8 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				6299AE231DD2004300EF657A /* gotham-rounded-book.otf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				320CB2DE400545BBBFA2D71E /* gotham-rounded-book.otf in Resources */,
+				9CF7F26CF8C44683943CEA47 /* gotham-rounded-medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,6 +678,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stop2TravellerClient.app/Stop2TravellerClient";
@@ -673,6 +695,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -692,6 +715,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-localization",
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
+					"$(SRCROOT)/../node_modules/react-native-bluetooth-serial/ios/RCTBluetoothSerial",
 				);
 				INFOPLIST_FILE = Stop2TravellerClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -714,6 +738,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-localization",
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
+					"$(SRCROOT)/../node_modules/react-native-bluetooth-serial/ios/RCTBluetoothSerial",
 				);
 				INFOPLIST_FILE = Stop2TravellerClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -766,6 +791,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-localization",
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
+					"$(SRCROOT)/../node_modules/react-native-bluetooth-serial/ios/RCTBluetoothSerial",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -808,6 +834,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-localization",
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
+					"$(SRCROOT)/../node_modules/react-native-bluetooth-serial/ios/RCTBluetoothSerial",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
