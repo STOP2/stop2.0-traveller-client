@@ -123,7 +123,7 @@ let strings = new LocalizedStrings({
         stop: 'Pysäytä',
         doYouReallyWantToGoToFrontPage: 'Aloitetaanko alusta?',
         notifyArrival: 'Ilmoita saapumisesta',
-        weWillNotifyYou: 'Tulet saamaan ilmoituksen ennen pysäkille saapumista'
+        weWillNotifyYou: 'Saat ilmoituksen ennen pysäkille saapumista'
     }
 })
 
