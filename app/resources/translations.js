@@ -3,7 +3,7 @@ import LocalizedStrings from 'react-native-localization'
 let strings = new LocalizedStrings({
     en: {
         onBus: 'On the bus',
-        onStop: 'On the stop',
+        onStop: 'At the stop',
         title: 'Departures from',
         type: 'Type',
         line: 'Line',
@@ -20,7 +20,7 @@ let strings = new LocalizedStrings({
         confirm: 'Confirm',
         stopsent: 'Stop request sent',
         gettingLocation: 'Finding your location...',
-        locationError: 'Unable to find your location. Make sure that GPS enabled.',
+        locationError: 'Unable to find your location. Make sure that GPS is enabled.',
         locationPermissionsError: 'Couldn\'t grant location permissions.',
         chooseVehicle: 'Choose a vehicle',
         noDepartures: 'No departures found, try again later',
@@ -58,7 +58,7 @@ let strings = new LocalizedStrings({
         vehicleStopsIn: 'Stops in: ',
         doYouReallyWantToMakeTheStopRequest: 'Do you really want to make the stop request?',
         stop: 'Stop',
-        doYouReallyWantToGoToFrontPage: 'Do you really want start again?'
+        doYouReallyWantToGoToFrontPage: 'Do you really want to start again?'
     },
 
     fi: {
