@@ -181,7 +181,7 @@ class StopRequestPage extends Component{
             return (<View style={styles.padding10}>
                       <AwesomeButton labelStyle={styles.buttonLabel} states={{
                           default: {
-                              text: strings.stop,
+                              text: this.props.vehicle.supportsStopRequest ? strings.stop : strings.notifyArrival,
                               onPress: sendStopRequest,
                               backgroundColor: colors.HSLgreen
                           }
