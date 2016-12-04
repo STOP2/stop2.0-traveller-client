@@ -17,6 +17,8 @@ class StartView extends Component {
         super()
 
         this.state = {locationPermissionsError: false}
+
+        this.sceneName = 'start'
     }
 
     async requestLocationPermission()
