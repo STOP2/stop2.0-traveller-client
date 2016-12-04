@@ -92,6 +92,8 @@ class StopRequestPage extends Component{
                 {
                     this.setState({minutesLeft: routeStop.arrives_in + ' ' + strings.minutes})
                 }
+
+                break
             }
         }
     }
