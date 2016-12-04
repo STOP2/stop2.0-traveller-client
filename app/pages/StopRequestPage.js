@@ -242,7 +242,7 @@ class StopRequestPage extends Component{
         }
 
         return (
-          <AccessibilityView style={styles.flex1} name="stopRequest">
+          <AccessibilityView style={styles.flex1} name={this.sceneName}>
             <PushController vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} />
 
             {this.props.successfulStopRequest && <View style={styles.stopRequestSentBackground}>
