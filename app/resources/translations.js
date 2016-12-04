@@ -33,7 +33,7 @@ let strings = new LocalizedStrings({
         aboutToStop: 'You\'re about to stop',
         vehicleArrivesIn: 'Arrives in: ',
         minutes: 'minutes',
-        vehiclePassedStop: 'Vehicle has left the stop',
+        vehiclePassedStop: 'has left the stop',
         arrivesShortly: 'arrives shortly',
         arrivalNotificationTitle: 'Get ready',
         locationPermissionTitle: 'Location Permission',
@@ -58,7 +58,9 @@ let strings = new LocalizedStrings({
         vehicleStopsIn: 'Stops in: ',
         doYouReallyWantToMakeTheStopRequest: 'Do you really want to make the stop request?',
         stop: 'Stop',
-        doYouReallyWantToGoToFrontPage: 'Do you really want to start again?'
+        doYouReallyWantToGoToFrontPage: 'Do you really want to start again?',
+        notifyArrival: 'Notify arrival',
+        weWillNotifyYou: 'We will notify you when it arrives'
     },
 
     fi: {
@@ -92,7 +94,7 @@ let strings = new LocalizedStrings({
         aboutToStop: 'Olet pysäyttämässä',
         vehicleArrivesIn: 'Saapumiseen: ',
         minutes: 'minuuttia',
-        vehiclePassedStop: 'Kulkuneuvo ohitti pysäkin',
+        vehiclePassedStop: 'ohitti pysäkin',
         goToRouteStopsView: 'Valitse määränpää',
         routeStops: 'Valitse pysäkki',
         arrivesShortly: 'saapuu hetken kuluttua pysäkillesi',
@@ -119,7 +121,9 @@ let strings = new LocalizedStrings({
         vehicleStopsIn: 'Pysähtymiseen: ',
         doYouReallyWantToMakeTheStopRequest: 'Haluatko varmasti tehdä pysäytyspyynnön?',
         stop: 'Pysäytä',
-        doYouReallyWantToGoToFrontPage: 'Aloitetaanko alusta?'
+        doYouReallyWantToGoToFrontPage: 'Aloitetaanko alusta?',
+        notifyArrival: 'Ilmoita saapumisesta',
+        weWillNotifyYou: 'Ilmoitamme sinulle saapumisesta'
     }
 })
 
