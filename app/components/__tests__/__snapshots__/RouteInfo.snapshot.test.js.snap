@@ -76,7 +76,9 @@ exports[`RouteInfo component renders correctly 1`] = `
           },
         ]
       }>
-      Arrives in: 
+      Arrives 
+       
+      in
     </Text>
   </View>
   <View>
