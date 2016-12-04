@@ -82,7 +82,7 @@ class StopRequestPage extends Component{
 
                 if (routeStop.arrives_in < 0)
                 {
-                    this.setState({minutesLeft: strings.vehiclePassedStop})
+                    this.setState({minutesLeft: (this.props.vehicle.vehicle_type == 0 ? strings.tram : strings.bus) + ' ' + strings.vehiclePassedStop})
                 }
                 else if (routeStop.arrives_in == 0)
                 {
