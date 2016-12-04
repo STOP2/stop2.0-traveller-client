@@ -8,13 +8,11 @@ export const REQUEST_BEACON_DATA = 'REQUEST_BEACON_DATA'
 const FOREGROUND_SCAN_PERIOD = 1000
 const BACKGROUND_SCAN_PERIOD = 1000
 
-let beacons = [{
-    id: 'ebefd083-70a2-47c8-9837-e7b5634df524',
-    latitude: 60.19942,
-    longitude: 24.93461
-}]
+let beaconId = 'ebefd083-70a2-47c8-9837-e7b5634df524'
+let vehicleBeaconId = 'f7826da6-4fa2-4e98-8024-bc5b71e0893e'
 
 let beaconDetected = false
+let tryingToFindBeacons = false
 let attempts = 0
 
 export let setBeaconData = function(beaconData)
@@ -63,13 +61,19 @@ export let getBeaconData = function(dispatch)
 
 let getData = async function(dispatch)
 {
+    if (tryingToFindBeacons) return
+    tryingToFindBeacons = true
+
+    attempts = 0
+
     Beacons.detectIBeacons()
     Beacons.setForegroundScanPeriod(FOREGROUND_SCAN_PERIOD)
     Beacons.setBackgroundScanPeriod(BACKGROUND_SCAN_PERIOD)
 
     try
     {
-        await Beacons.startRangingBeaconsInRegion('REGION1', beacons[0].id)
+        await Beacons.startRangingBeaconsInRegion('STOPS', beaconId)
+        await Beacons.startRangingBeaconsInRegion('BUSSES', vehicleBeaconId)
     }
     catch (error)
     {
@@ -80,7 +84,9 @@ let getData = async function(dispatch)
     {
         if (attempts == 5)
         {
-            Beacons.stopRangingBeaconsInRegion('REGION1', beacons[0].id)
+            Beacons.stopRangingBeaconsInRegion('STOPS', beaconId)
+            Beacons.stopRangingBeaconsInRegion('BUSSES', vehicleBeaconId)
+            tryingToFindBeacons = false
             dispatch(beaconError('Beacon not found in 5 seconds'))
         }
         if (data.beacons.length > 0)
@@ -98,12 +104,23 @@ let getData = async function(dispatch)
                     }
                 }
                 let beaconData = {
+                    uuid: data.beacons[closestBeaconIndex].uuid,
                     major: data.beacons[closestBeaconIndex].major,
                     minor: data.beacons[closestBeaconIndex].minor
                 }
 
-                dispatch(setBeaconData(beaconData))
-                Beacons.stopRangingBeaconsInRegion('REGION1', beacons[0].id)
+                if (beaconData.uuid == beaconId)
+                {
+                    dispatch(setBeaconData(beaconData))
+                    Beacons.stopRangingBeaconsInRegion('STOPS', beaconId)
+                }
+                else
+                {
+                    dispatch(setBusBeaconData(beaconData))
+                    Beacons.stopRangingBeaconsInRegion('BUSSES', vehicleBeaconId)
+                }
+
+                tryingToFindBeacons = false
                 beaconDetected = true
             }
         }
