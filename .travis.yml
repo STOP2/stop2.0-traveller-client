@@ -8,6 +8,7 @@ install:
 - sed -i "s/23\.0\.1/25.0.0/g" node_modules/react-native-localization/android/build.gradle
 - sed -i "s/23\.0\.1/25.0.0/g" node_modules/react-native-beacons-android/android/build.gradle
 - sed -i "s/23\.0\.1/25.0.0/g" node_modules/react-native-fcm/android/build.gradle
+- sed -i "s/23\.0\.1/25.0.0/g" node_modules/react-native-bluetooth-serial/android/build.gradle
 jdk:
   - oraclejdk8
 android:
