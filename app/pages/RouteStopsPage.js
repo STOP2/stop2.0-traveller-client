@@ -166,13 +166,13 @@ class RouteStopsPage extends Component {
 const mapStateToProps = (state) =>
 {
     return {
-        routeStops: state.fetchRouteStopsReducer.routeStops,
-        isFetchingStops: state.fetchRouteStopsReducer.isFetchingStops,
-        routeIsReady: state.fetchRouteStopsReducer.routeIsReady,
-        errorFetchingStops: state.fetchRouteStopsReducer.errorFetchingStops,
+        routeStops: state.routeStops.routeStops,
+        isFetchingStops: state.routeStops.isFetchingStops,
+        routeIsReady: state.routeStops.routeIsReady,
+        errorFetchingStops: state.routeStops.errorFetchingStops,
         scene: state.routes.scene,
-        vehicle: state.stopRequestReducer.currentVehicle,
-        stop: state.stopRequestReducer.startStop
+        vehicle: state.stopRequest.currentVehicle,
+        stop: state.stopRequest.startStop
     }
 }
 

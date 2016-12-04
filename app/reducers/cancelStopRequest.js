@@ -9,7 +9,7 @@ export let initialState = {
     stopRequestDestinationCancellationError: null
 }
 
-const fetchReducer = (state = initialState, action) =>
+const cancelStopRequest = (state = initialState, action) =>
 {
     switch (action.type)
     {
@@ -68,4 +68,4 @@ const fetchReducer = (state = initialState, action) =>
     }
 }
 
-export default fetchReducer
+export default cancelStopRequest

@@ -2,7 +2,7 @@ import { SET_FCM_TOKEN } from '../actions/fcmActions'
 
 export let initialState = {token: null}
 
-const fcmReducer = (state = initialState, action) =>
+const pushNotifications = (state = initialState, action) =>
 {
     switch (action.type)
   {
@@ -14,4 +14,4 @@ const fcmReducer = (state = initialState, action) =>
     }
 }
 
-export default fcmReducer
+export default pushNotifications

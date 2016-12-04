@@ -15,7 +15,7 @@ let initialState = {
     destinationRequestId: null
 }
 
-const stopRequestReducer = (state = initialState, action) =>
+const stopRequest = (state = initialState, action) =>
 {
     switch (action.type)
     {
@@ -64,4 +64,4 @@ const stopRequestReducer = (state = initialState, action) =>
     }
 }
 
-export default stopRequestReducer
+export default stopRequest

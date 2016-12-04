@@ -275,18 +275,20 @@ class RouteStopRequestPage extends Component{
 
 const mapStateToProps = (state) =>
 {
+    console.log(state)
+
     return {
-        routeStops: state.fetchRouteStopsReducer.routeStops,
-        isFetchingStops: state.fetchRouteStopsReducer.isFetchingStops,
-        routeIsReady: state.fetchRouteStopsReducer.routeIsReady,
-        errorFetchingStops: state.fetchRouteStopsReducer.errorFetchingStops,
-        error: state.stopRequestReducer.error,
+        routeStops: state.routeStops.routeStops,
+        isFetchingStops: state.routeStops.isFetchingStops,
+        routeIsReady: state.routeStops.routeIsReady,
+        errorFetchingStops: state.routeStops.errorFetchingStops,
+        error: state.stopRequest.error,
         scene: state.routes.scene,
-        startStop: state.stopRequestReducer.startStop,
-        vehicle: state.stopRequestReducer.currentVehicle,
-        fcmToken: state.fcmReducer.token,
-        destinationRequestId: state.stopRequestReducer.destinationRequestId,
-        successfulStopRequest: state.stopRequestReducer.sentStoprequestFromVehicle
+        startStop: state.stopRequest.startStop,
+        vehicle: state.stopRequest.currentVehicle,
+        fcmToken: state.pushNotifications.token,
+        destinationRequestId: state.stopRequest.destinationRequestId,
+        successfulStopRequest: state.stopRequest.sentStoprequestFromVehicle
     }
 }
 

@@ -1,4 +1,4 @@
-import cancelStopRequestReducer, { initialState } from '../../reducers/cancelStopRequestReducer'
+import cancelStopRequestReducer, { initialState } from '../../reducers/cancelStopRequest'
 import { cancelStopRequest, receiveStopRequestCancellationConfirmation, requestStopRequestCancellation, stopRequestCancellationError } from '../../actions/cancelStopRequest'
 describe('cancelStopRequest reducer', () =>
 {
