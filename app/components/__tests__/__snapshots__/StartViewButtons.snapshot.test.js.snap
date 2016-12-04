@@ -11,7 +11,7 @@ exports[`StartViewButtons component renders correctly 1`] = `
   }>
   <View
     accessibilityComponentType="button"
-    accessibilityLabel="On the stop"
+    accessibilityLabel="At the stop"
     accessibilityTraits={undefined}
     accessible={true}
     hitSlop={undefined}
@@ -58,7 +58,7 @@ exports[`StartViewButtons component renders correctly 1`] = `
           },
         ]
       }>
-      On the stop
+      At the stop
     </Text>
   </View>
   <View

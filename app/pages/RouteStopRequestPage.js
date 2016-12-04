@@ -257,7 +257,7 @@ class RouteStopRequestPage extends Component{
         return (
         <AccessibilityView style={styles.flex1} name={this.sceneName}>
             {this.props.successfulStopRequest && <View style={styles.stopRequestSentBackground}>
-                <DefaultText style={styles.stopRequestSentText}>{this.props.vehicle.supportsStopRequest ? strings.stopsent : strings.weWillNotifyYou}</DefaultText>
+                <DefaultText style={styles.stopRequestSentText}>{this.props.vehicle.supportsStopRequest ? strings.stopsent : strings.weWillNotifyYou} </DefaultText>
                 <AwesomeButton labelStyle={styles.buttonLabel} states={{
                     default: {
                         text: strings.cancel,
