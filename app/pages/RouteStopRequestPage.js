@@ -130,24 +130,27 @@ class RouteStopRequestPage extends Component{
             }
         }
 
-        Alert.alert(
-            strings.cancelStopRequest, '',
-            [
-                {
-                    text: strings.no,
-                    onPress: () =>
-                    {}
-                },
-                {
-                    text: strings.yes,
-                    onPress: () =>
+        if(this.props.vehicle.supportsStopRequest) {
+            Alert.alert(
+                strings.cancelStopRequest, '',
+                [
                     {
-                        this.props.cancelStopRequest(this.props.destinationRequestId, cancelStopRequestCallback)
+                        text: strings.no,
+                        onPress: () => {
+                        }
+                    },
+                    {
+                        text: strings.yes,
+                        onPress: () => {
+                            this.props.cancelStopRequest(this.props.destinationRequestId, cancelStopRequestCallback)
+                        }
                     }
-                }
-            ],
-            { cancelable: false }
-        )
+                ],
+                {cancelable: false}
+            )
+        } else {
+            this.props.cancelStopRequest(this.props.destinationRequestId, cancelStopRequestCallback)
+        }
     }
 
 
@@ -169,24 +172,27 @@ class RouteStopRequestPage extends Component{
   {
         const sendStopRequest = () =>
         {
-            Alert.alert(
-              strings.doYouReallyWantToMakeTheStopRequest, '',
-                [
-                    {
-                        text: strings.no,
-                        onPress: () =>
-                        {}
-                    },
-                    {
-                        text: strings.yes,
-                        onPress: () =>
+            if(this.props.vehicle.supportsStopRequest) {
+                Alert.alert(
+                    strings.doYouReallyWantToMakeTheStopRequest, '',
+                    [
                         {
-                            this.props.sendStoprequest(this.props.vehicle, this.props.stop, this.props.fcmToken, true)
+                            text: strings.no,
+                            onPress: () => {
+                            }
+                        },
+                        {
+                            text: strings.yes,
+                            onPress: () => {
+                                this.props.sendStoprequest(this.props.vehicle, this.props.stop, this.props.fcmToken, true)
+                            }
                         }
-                    }
-                ],
-                { cancelable: false }
-          )
+                    ],
+                    {cancelable: false}
+                )
+            } else {
+                this.props.sendStoprequest(this.props.vehicle, this.props.stop, this.props.fcmToken, true)
+            }
         }
 
         if (this.state.renderConfirm)
