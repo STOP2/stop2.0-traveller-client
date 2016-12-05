@@ -12,10 +12,28 @@ class VehiclesPage extends Component {
     {
         return (
           <View>
-          <Text>{this.props.beaconData}</Text>
+          <Text>stop beacon:{'\n'}
+          {this.props.beaconData.uuid}{'\n'}
+          {this.props.beaconData.major}{'\n'}
+          {this.props.beaconData.minor}{'\n'}
+          </Text>
           </View>
         )
     }
   }
 
-export default VehiclesPage
+const mapStateToProps = (state) =>
+  {
+    return {
+          beaconData: state.beacons.beaconData
+      }
+  }
+
+  const mapDispatchToProps = (dispatch) =>
+  {
+      return {
+
+      }
+  }
+
+export default connect(mapStateToProps,mapDispatchToProps)(VehiclesPage)
