@@ -25,7 +25,7 @@ class VehiclesPage extends Component {
 const mapStateToProps = (state) =>
   {
     return {
-          beaconData: state.beacons.beaconData
+          beaconData: state.beacons.vehicleBeaconData
       }
   }
 

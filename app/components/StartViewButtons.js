@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { View, Alert } from 'react-native'
 import { Actions } from 'react-native-router-flux'
+import { connect } from 'react-redux'
 import StartButton from './StartButton'
 import BluetoothSerial from 'react-native-bluetooth-serial'
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
+import { getBeaconData } from '../actions/beaconLocationActions'
 
 class StartViewButtons extends Component {
     constructor()
@@ -34,6 +36,7 @@ class StartViewButtons extends Component {
                   {
                       if (success)
                       {
+                          this.props.getBeaconData()
                           Actions.vehicles()
                       }
                       else
@@ -59,4 +62,14 @@ class StartViewButtons extends Component {
     }
 }
 
-export default StartViewButtons
+const mapDispatchToProps = (dispatch) =>
+{
+    return {
+        getBeaconData: () =>
+        {
+            dispatch(getBeaconData())
+        }
+    }
+}
+
+export default connect(mapDispatchToProps)(StartViewButtons)
