@@ -9,6 +9,8 @@ import AccessibilityView from '../components/AccessibilityView'
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
+import { fetchVehicles } from '../actions/fetchVehiclesActions'
+
 const UPDATE_INTERVAL_IN_SECS = 10
 
 class VehiclesPage extends Component {
@@ -33,6 +35,10 @@ class VehiclesPage extends Component {
 
     componentWillUnmount = () =>
     {
+        this.createInterval(this.props)
+    }
+    componentWillUnmount = () =>
+    {
         clearInterval(this.fetchInterval)
         this.fetchInterval = false
     }
@@ -43,7 +49,7 @@ class VehiclesPage extends Component {
         {
             if (!props.isFetchingVehicles)
             {
-                    props.fetchVehicles(props.beacons)
+                    props.fetchVehicles(props.beaconData)
 
             }
         }, UPDATE_INTERVAL_IN_SECS * 1000)
@@ -51,6 +57,7 @@ class VehiclesPage extends Component {
 
     componentWillReceiveProps = (nextProps) =>
     {
+      console.log(nextProps)
         if (nextProps.scene.name != this.sceneName) return
 
         if (this.state.locatingUser)
@@ -96,7 +103,6 @@ class VehiclesPage extends Component {
 
       if (!this.props.gettingVehicleBeaconData) //fetchingVehicles
       {
-        console.log(this.props.beaconData[0].major)
           viewElement =  <DefaultText>stop beacon:{'\n'}
           {this.props.beaconData[0].major}
           {this.props.beaconData[0].minor}
@@ -170,7 +176,13 @@ const mapStateToProps = (state) =>
 
   const mapDispatchToProps = (dispatch) =>
   {
-      return {}
+      return {
+
+        fetchVehicles: (beaconData) =>
+        {
+            dispatch(fetchVehicles(beaconData))
+        }
+      }
   }
 
 export default connect(mapStateToProps, mapDispatchToProps)(VehiclesPage)
