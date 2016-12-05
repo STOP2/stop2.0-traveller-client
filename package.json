@@ -10,6 +10,9 @@
     "apk": "(cd android/ && ./gradlew assembleRelease)"
   },
   "dependencies": {
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
     "react": "~15.3.2",
     "react-native": "^0.34.1",
     "react-native-awesome-button": "https://github.com/STOP2/react-native-awesome-button.git",
