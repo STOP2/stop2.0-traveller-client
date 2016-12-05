@@ -9,46 +9,50 @@ import AccessibilityView from '../components/AccessibilityView'
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 
+const UPDATE_INTERVAL_IN_SECS = 10
+
 class VehiclesPage extends Component {
 
     constructor(props)
     {
         super(props)
-          let ds = new ListView.DataSource({
-              rowHasChanged: (r1, r2) => r1 !== r2,
-              sectionHeaderHasChanged: (s1, s2) => s1 !== s2
-          })
-          this.state = {
-              dataBlob: {},
-              dataSource: ds.cloneWithRowsAndSections({}, []),
-              vehicles: [],
-              stopCount: 0,
-              locatingUser: true
-          }
-          this.sceneName = 'vehicles'
+        let ds = new ListView.DataSource({
+            rowHasChanged: (r1, r2) => r1 !== r2,
+            sectionHeaderHasChanged: (s1, s2) => s1 !== s2
+        })
+
+        this.state = {
+            dataBlob: {},
+            dataSource: ds.cloneWithRowsAndSections({}, []),
+            vehicles: [],
+            stopCount: 0,
+            locatingUser: true
         }
+        this.sceneName = 'vehicles'
+    }
 
     render()
     {
-      let viewElement
+        let viewElement
 
       if (true)
       {
-         viewElement =  <DefaultText>stop beacon:{'\n'}
+          viewElement =  <DefaultText>stop beacon:{'\n'}
             {this.props.beaconData.uuid}{'\n'}
             {this.props.beaconData.major}{'\n'}
             {this.props.beaconData.minor}{'\n'}
             </DefaultText>
-        //this.renderList()
+        // this.renderList()
       }
-      else if (false)
+        else if (false)
       {
-          viewElement = this.renderFetchError()
-      }
-      else
+            viewElement = this.renderFetchError()
+        }
+        else
       {
-          viewElement = this.renderSpinner(strings.loadingDepartures)
-      }
+            viewElement = this.renderSpinner(strings.loadingDepartures)
+        }
+
         return (
           <AccessibilityView style={styles.flex1} name={this.sceneName}>
             <BoldTitleBar title={strings.nearestVehicles} noBorder={true}/>
@@ -94,16 +98,12 @@ class VehiclesPage extends Component {
 
 const mapStateToProps = (state) =>
   {
-    return {
-          beaconData: state.beacons.vehicleBeaconData
-      }
-  }
+    return {beaconData: state.beacons.vehicleBeaconData}
+}
 
   const mapDispatchToProps = (dispatch) =>
   {
-      return {
-
-      }
+      return {}
   }
 
-export default connect(mapStateToProps,mapDispatchToProps)(VehiclesPage)
+export default connect(mapStateToProps, mapDispatchToProps)(VehiclesPage)
