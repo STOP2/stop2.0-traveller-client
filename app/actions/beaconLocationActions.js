@@ -4,6 +4,7 @@ import { DeviceEventEmitter } from 'react-native'
 export const SET_BEACON_DATA = 'SET_BEACON_DATA'
 export const SET_VEHICLE_BEACON_DATA = 'SET_VEHICLE_BEACON_DATA'
 export const BEACON_ERROR = 'BEACON_ERROR'
+export const VEHICLE_BEACON_ERROR = 'VEHICLE_BEACON_ERROR'
 export const REQUEST_BEACON_DATA = 'REQUEST_BEACON_DATA'
 
 const FOREGROUND_SCAN_PERIOD = 1000
@@ -53,6 +54,15 @@ export let beaconError = function(error)
     }
 }
 
+export let vehicleBeaconError = function(error)
+{
+    return {
+        type: VEHICLE_BEACON_ERROR,
+        beaconError: error,
+        gettingBeaconData: false
+    }
+}
+
 export let getBeaconData = function()
 {
     return dispatch =>
@@ -91,7 +101,8 @@ let getData = async function(dispatch)
             Beacons.stopRangingBeaconsInRegion('STOPS', beaconId)
             Beacons.stopRangingBeaconsInRegion('BUSSES', vehicleBeaconId)
             tryingToFindBeacons = false
-            dispatch(beaconError('Beacon not found in 5 seconds'))
+            if (!beaconFound) dispatch(beaconError('Beacon not found in 5 seconds'))
+            if (!vehicleBeaconsFound) dispatch(vehicleBeaconError('Beacon not found in 5 seconds'))
         }
         if (data.beacons.length > 0)
         {

@@ -1,11 +1,13 @@
-import { BEACON_ERROR, SET_BEACON_DATA, SET_VEHICLE_BEACON_DATA, REQUEST_BEACON_DATA } from '../actions/beaconLocationActions'
+import { BEACON_ERROR, VEHICLE_BEACON_ERROR, SET_BEACON_DATA, SET_VEHICLE_BEACON_DATA, REQUEST_BEACON_DATA } from '../actions/beaconLocationActions'
 import {RESET_STATE} from '../actions/resetStateAction'
 
 export let initialState = {
     beaconData: {},
     vehicleBeaconData: [],
     beaconError: null,
-    gettingBeaconData: false
+    vehicleBeaconError: null,
+    gettingBeaconData: false,
+    gettingVehicleBeaconData: false
 }
 
 const beacons = (state = initialState, action) =>
@@ -23,7 +25,7 @@ const beacons = (state = initialState, action) =>
 
         return Object.assign({}, state, {
             vehicleBeaconData: action.beaconData,
-            gettingBeaconData: action.gettingBeaconData
+            gettingVehicleBeaconData: action.gettingBeaconData
         })
 
     case REQUEST_BEACON_DATA:
@@ -34,6 +36,12 @@ const beacons = (state = initialState, action) =>
         return Object.assign({}, state, {
             beaconError: action.beaconError,
             gettingBeaconData: action.gettingBeaconData
+        })
+
+    case VEHICLE_BEACON_ERROR:
+        return Object.assign({}, state, {
+            vehicleBeaconError: action.beaconError,
+            gettingVehicleBeaconData: action.gettingBeaconData
         })
 
     case RESET_STATE:
