@@ -30,7 +30,10 @@ const beacons = (state = initialState, action) =>
 
     case REQUEST_BEACON_DATA:
 
-        return Object.assign({}, state, {gettingBeaconData: action.gettingBeaconData})
+        return Object.assign({}, state, {
+            gettingBeaconData: action.gettingBeaconData,
+            gettingVehicleBeaconData: action.gettingBeaconData
+        })
 
     case BEACON_ERROR:
         return Object.assign({}, state, {
