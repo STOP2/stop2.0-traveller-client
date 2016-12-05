@@ -21,7 +21,11 @@ class StartViewButtons extends Component {
 
     render()
     {
-        const goToBusListView = () => Actions.departures()
+        const goToBusListView = () =>
+        {
+            this.props.getBeaconData()
+            Actions.departures()
+        }
         // routeStopsView is only allowed if bluetooth is enabled
         const goToRouteStopsView = () =>
         {
@@ -48,6 +52,7 @@ class StartViewButtons extends Component {
               }
               else
               {
+                  this.props.getBeaconData()
                   Actions.vehicles()
               }
           })
@@ -62,6 +67,11 @@ class StartViewButtons extends Component {
     }
 }
 
+const mapStateToProps = (state) =>
+{
+    return {}
+}
+
 const mapDispatchToProps = (dispatch) =>
 {
     return {
@@ -72,4 +82,6 @@ const mapDispatchToProps = (dispatch) =>
     }
 }
 
-export default connect(mapDispatchToProps)(StartViewButtons)
+StartViewButtons.propTypes = { getBeaconData: React.PropTypes.func.isRequired }
+
+export default connect(mapStateToProps, mapDispatchToProps)(StartViewButtons)

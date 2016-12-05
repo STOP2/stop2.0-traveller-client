@@ -6,6 +6,7 @@ export const SET_VEHICLE_BEACON_DATA = 'SET_VEHICLE_BEACON_DATA'
 export const BEACON_ERROR = 'BEACON_ERROR'
 export const VEHICLE_BEACON_ERROR = 'VEHICLE_BEACON_ERROR'
 export const REQUEST_BEACON_DATA = 'REQUEST_BEACON_DATA'
+export const REQUESTING_DATA = 'REQUESTING_DATA'
 
 const FOREGROUND_SCAN_PERIOD = 1000
 const BACKGROUND_SCAN_PERIOD = 1000
@@ -65,16 +66,22 @@ export let vehicleBeaconError = function(error)
 
 export let getBeaconData = function()
 {
-    return dispatch =>
+    if (!tryingToFindBeacons)
     {
-        getData(dispatch)
-        dispatch(requestBeaconData())
+        return dispatch =>
+        {
+            getData(dispatch)
+            dispatch(requestBeaconData())
+        }
+    }
+    else
+    {
+        return { type: REQUESTING_DATA }
     }
 }
 
 let getData = async function(dispatch)
 {
-    if (tryingToFindBeacons) return
     tryingToFindBeacons = true
 
     attempts = 0
@@ -100,9 +107,11 @@ let getData = async function(dispatch)
         {
             Beacons.stopRangingBeaconsInRegion('STOPS', beaconId)
             Beacons.stopRangingBeaconsInRegion('BUSSES', vehicleBeaconId)
-            tryingToFindBeacons = false
             if (!beaconFound) dispatch(beaconError('Beacon not found in 5 seconds'))
             if (!vehicleBeaconsFound) dispatch(vehicleBeaconError('Beacon not found in 5 seconds'))
+            tryingToFindBeacons = false
+
+            return
         }
         if (data.beacons.length > 0)
         {
@@ -149,9 +158,8 @@ let getData = async function(dispatch)
                 Beacons.stopRangingBeaconsInRegion('BUSSES', vehicleBeaconId)
                 vehicleBeaconsFound = true
             }
-
-            if (beaconFound && vehicleBeaconsFound) tryingToFindBeacons = false
         }
         attempts++
+        if (beaconFound && vehicleBeaconsFound) tryingToFindBeacons = false
     })
 }
