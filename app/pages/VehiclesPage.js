@@ -31,20 +31,82 @@ class VehiclesPage extends Component {
         this.sceneName = 'vehicles'
     }
 
+    componentWillUnmount = () =>
+    {
+        clearInterval(this.fetchInterval)
+        this.fetchInterval = false
+    }
+
+    createInterval = (props) =>
+    {
+        this.fetchInterval = setInterval(() =>
+        {
+            if (!props.isFetchingVehicles)
+            {
+                    props.fetchVehicles(props.beacons)
+
+            }
+        }, UPDATE_INTERVAL_IN_SECS * 1000)
+    }
+
+    componentWillReceiveProps = (nextProps) =>
+    {
+        if (nextProps.scene.name != this.sceneName) return
+
+        if (this.state.locatingUser)
+        {
+          //  this.checkIfLocationExists(nextProps)
+        }
+        else
+        {
+            if (!this.fetchInterval)
+            {
+              //  this.props.getGpsLocation()
+              //  this.checkIfLocationExists(nextProps)
+            }
+
+            if (nextProps.stops.length > 0)
+            {
+                let tempDataBlob = Object.assign({}, this.state.dataBlob)
+                let stopsTemp = this.state.stops
+                let sections = []
+
+                for (let index = 0; index < nextProps.stops.length; index++)
+                {
+                    let sectionID = nextProps.stops[index].stop.stop_id
+
+                    sections.push(sectionID)
+                    tempDataBlob[sectionID] = nextProps.stops[index].stop.schedule
+
+                    stopsTemp[nextProps.stops[index].stop.stop_id] = nextProps.stops[index].stop
+                }
+                this.setState({
+                    dataBlob: tempDataBlob,
+                    dataSource: this.state.dataSource.cloneWithRowsAndSections(tempDataBlob, sections),
+                    stops: stopsTemp,
+                    stopCount: nextProps.stops.length
+                })
+            }
+        }
+    }
+
     render()
     {
         let viewElement
 
-      if (true)
+      if (!this.props.gettingVehicleBeaconData) //fetchingVehicles
       {
+        console.log(this.props.beaconData[0].major)
           viewElement =  <DefaultText>stop beacon:{'\n'}
-            {this.props.beaconData.uuid}{'\n'}
-            {this.props.beaconData.major}{'\n'}
-            {this.props.beaconData.minor}{'\n'}
+          {this.props.beaconData[0].major}
+          {this.props.beaconData[0].minor}
             </DefaultText>
+
+          //  vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line}
+          //  vehicleDestination={this.props.vehicle.destination}
         // this.renderList()
       }
-        else if (false)
+        else if (this.props.vehicleBeaconError != null)
       {
             viewElement = this.renderFetchError()
         }
@@ -98,7 +160,12 @@ class VehiclesPage extends Component {
 
 const mapStateToProps = (state) =>
   {
-    return {beaconData: state.beacons.vehicleBeaconData}
+    console.log(state.beacons)
+    return {
+      beaconData: state.beacons.vehicleBeaconData,
+      gettingBeaconData: state.beacons.vehicleBeaconData,
+      vehicleBeaconError: state.beacons.vehicleBeaconError
+  }
 }
 
   const mapDispatchToProps = (dispatch) =>
