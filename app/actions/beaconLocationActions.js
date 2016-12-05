@@ -129,14 +129,17 @@ let getData = async function(dispatch)
             {
                 dispatch(setBeaconData(beaconData))
                 Beacons.stopRangingBeaconsInRegion('STOPS', beaconId)
-                if (beaconFound)
+                beaconFound = true
             }
 
             if (vehicleBeacons.length > 0)
             {
                 dispatch(setBusBeaconData(vehicleBeacons))
                 Beacons.stopRangingBeaconsInRegion('BUSSES', vehicleBeaconId)
+                vehicleBeaconsFound = true
             }
+
+            if (beaconFound && vehicleBeaconsFound) tryingToFindBeacons = false
         }
         attempts++
     })
