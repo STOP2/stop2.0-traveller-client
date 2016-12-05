@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View } from 'react-native'
+import { View, StatusBar } from 'react-native'
+
+import colors from '../styles/colors'
 
 export class AccessibilityView extends Component {
+    componentWillMount() {
+        StatusBar.setBackgroundColor(colors.statusBar)
+    }
+
     render()
     {
         return (
