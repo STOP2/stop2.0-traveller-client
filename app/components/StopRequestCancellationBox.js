@@ -11,15 +11,15 @@ import strings from '../resources/translations'
 class StopRequestCancellationBox extends Component {
     render()
     {
-        return(<View style={styles.stopRequestSentBackground}>
+        return (<View style={styles.stopRequestSentBackground}>
             <DefaultText style={styles.stopRequestSentText}>{this.props.supportsStopRequest ? strings.stopsent : strings.weWillNotifyYou} </DefaultText>
             <AwesomeButton labelStyle={styles.buttonLabel} states={{
-                    default: {
-                        text: strings.cancel,
-                        onPress: this.props.onPress,
-                        backgroundColor: colors.HSLalarmRed
-                    }
-                }} />
+                default: {
+                    text: strings.cancel,
+                    onPress: this.props.onPress,
+                    backgroundColor: colors.HSLalarmRed
+                }
+            }} />
         </View>)
     }
 }
