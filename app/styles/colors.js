@@ -19,7 +19,8 @@ const colors = {
     K40: '#666666',
     K10: '#dddddc',
     stopBackground: '#e9e9e9',
-    tryAgain: '#0000ff'
+    tryAgain: '#0000ff',
+    statusBar: '#006AAF',
 }
 
 export default colors
