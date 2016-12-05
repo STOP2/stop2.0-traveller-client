@@ -94,7 +94,7 @@ class VehiclesPage extends Component {
     {
         let viewElement
 
-      if (!this.props.gettingVehicleBeaconData) //fetchingVehicles
+      if (!this.props.gettingBeaconData) //fetchingVehicles
       {
         console.log(this.props.beaconData[0].major)
           viewElement =  <DefaultText>stop beacon:{'\n'}
@@ -106,7 +106,7 @@ class VehiclesPage extends Component {
           //  vehicleDestination={this.props.vehicle.destination}
         // this.renderList()
       }
-        else if (this.props.vehicleBeaconError != null)
+        else if (this.props.beaconError != null)
       {
             viewElement = this.renderFetchError()
         }
@@ -164,7 +164,8 @@ const mapStateToProps = (state) =>
     return {
       beaconData: state.beacons.vehicleBeaconData,
       gettingBeaconData: state.beacons.vehicleBeaconData,
-      vehicleBeaconError: state.beacons.vehicleBeaconError
+      beaconError: state.beacons.vehicleBeaconError,
+      scene: state.routes.scene
   }
 }
 

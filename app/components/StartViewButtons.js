@@ -7,6 +7,7 @@ import BluetoothSerial from 'react-native-bluetooth-serial'
 import styles from '../styles/stylesheet'
 import strings from '../resources/translations'
 import { getBeaconData } from '../actions/beaconLocationActions'
+import { getGpsLocation, clearWatchLocation } from '../actions/gpsLocationActions'
 
 class StartViewButtons extends Component {
     constructor()
@@ -41,6 +42,7 @@ class StartViewButtons extends Component {
                       if (success)
                       {
                           this.props.getBeaconData()
+                          this.props.clearWatchLocation()
                           Actions.vehicles()
                       }
                       else
@@ -53,6 +55,7 @@ class StartViewButtons extends Component {
               else
               {
                   this.props.getBeaconData()
+                  this.props.clearWatchLocation()
                   Actions.vehicles()
               }
           })
@@ -65,11 +68,17 @@ class StartViewButtons extends Component {
           <StartButton style={styles.startLower} imageStyle={styles.startImageVehicle} onPress={goToRouteStopsView} buttonText={strings.onBus} image={this.icons.vehicle} />
         </View>)
     }
+
+    componentWillReceiveProps = (nextProps) =>
+    {
+        console.log("!!!!!!!")
+        this.props.getGpsLocation()
+    }
 }
 
 const mapStateToProps = (state) =>
 {
-    return {}
+    return { scene: state.routes.scene }
 }
 
 const mapDispatchToProps = (dispatch) =>
@@ -78,10 +87,21 @@ const mapDispatchToProps = (dispatch) =>
         getBeaconData: () =>
         {
             dispatch(getBeaconData())
+        },
+        getGpsLocation: () =>
+        {
+            dispatch(getGpsLocation())
+        },
+        clearWatchLocation: () =>
+        {
+            dispatch(clearWatchLocation())
         }
     }
 }
 
-StartViewButtons.propTypes = { getBeaconData: React.PropTypes.func.isRequired }
+StartViewButtons.propTypes = {
+    getBeaconData: React.PropTypes.func.isRequired,
+    clearWatchLocation: React.PropTypes.func.isRequired
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(StartViewButtons)

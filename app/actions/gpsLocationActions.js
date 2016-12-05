@@ -61,7 +61,7 @@ export let getGpsLocation = function()
               {
               },
                 {
-                    enableHighAccuracy: true,
+                    enableHighAccuracy: false,
                     timeout: 60000,
                     maximumAge: 1000
                 })
