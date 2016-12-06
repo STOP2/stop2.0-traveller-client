@@ -1,5 +1,7 @@
 exports[`RouteInfo component renders correctly 1`] = `
 <View
+  accessibilityLiveRegion="polite"
+  accessible={true}
   style={
     Object {
       "alignItems": "center",
