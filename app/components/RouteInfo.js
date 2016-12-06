@@ -10,7 +10,7 @@ import strings from '../resources/translations'
 export default class RouteInfo extends Component {
     render()
     {
-        return (<View style={styles.stopRequestStyle}>
+        return (<View accessibilityLiveRegion="polite" accessible={true} style={styles.stopRequestStyle}>
           <View style={styles.stopRequestVehicleInfo}>
             <VehicleImage style={styles.busIcon} vehicleType={this.props.vehicleType}/>
             <View style={styles.vehicleInfoWrapper}>
@@ -37,7 +37,7 @@ RouteInfo.propTypes = {
 export class RouteInfoForStop extends Component {
     render()
     {
-        return (<View style={styles.stopRequestStyle}>
+        return (<View accessibilityLiveRegion="polite" accessible={true} style={styles.stopRequestStyle}>
           <View style={styles.vehicleArrivesInWrapper}>
             <DefaultText style={styles.vehicleArrivesInText}>{strings.arrives} {this.props.stopName} ({this.props.stopCode}) {this.props.vehicleMinutesLeft == strings.now || this.props.vehicleMinutesLeft == strings.vehiclePassedStop ? '' : strings.in}:</DefaultText>
           </View>
