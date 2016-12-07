@@ -1,19 +1,15 @@
-import 'react-native'
-import React from 'react'
-import BusListHeader from '../BusListHeader'
-
+import 'react-native';
+import React from 'react';
 // Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer'
+import renderer from 'react-test-renderer';
+import BusListHeader from '../BusListHeader';
 
+jest.mock('react-native-localization');
 
-jest.mock('react-native-localization')
+describe('BusListHeader component', () => {
+  it('renders correctly', () => {
+    const tree = renderer.create(<BusListHeader />).toJSON();
 
-describe('BusListHeader component', () =>
-{
-    it('renders correctly', () =>
-    {
-        let tree = renderer.create(<BusListHeader />).toJSON()
-
-        expect(tree).toMatchSnapshot()
-    })
-})
+    expect(tree).toMatchSnapshot();
+  });
+});
