@@ -1,3 +1,69 @@
+exports[`BoldTitleBar component renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#007AC9",
+        "height": 50,
+        "justifyContent": "center",
+      },
+      Object {
+        "borderBottomColor": "white",
+        "borderBottomWidth": 0.5,
+      },
+    ]
+  }>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": "gotham-rounded-medium",
+        },
+        Object {
+          "color": "white",
+          "fontSize": 25,
+        },
+      ]
+    }>
+    otsikko
+  </Text>
+</View>
+`;
+
+exports[`BoldTitleBar component renders correctly without border 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#007AC9",
+      "height": 50,
+      "justifyContent": "center",
+    }
+  }>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": "gotham-rounded-medium",
+        },
+        Object {
+          "color": "white",
+          "fontSize": 25,
+        },
+      ]
+    }>
+    otsikko
+  </Text>
+</View>
+`;
+
 exports[`TitleBar component renders correctly 1`] = `
 <Text
   accessible={true}
