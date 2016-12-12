@@ -42,7 +42,7 @@ export let cancelStopRequest = function(requestId, fromVehicle)
 {
     return dispatch =>
     {
-        dispatch(requestStopRequestCancellation())
+        dispatch(requestStopRequestCancellation(fromVehicle))
 
         return fetch(config.API_URL + API_ENDPOINT + '?request_id=' + requestId, {
             method: 'POST',
