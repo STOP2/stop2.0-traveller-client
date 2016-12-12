@@ -19,9 +19,11 @@ class StartViewButtons extends Component {
     };
   }
 
-  componentWillReceiveProps = () => {
-    this.props.getGpsLocation();
-    this.props.getBeaconData();
+  componentWillReceiveProps = (props) => {
+    if (props.scene.name === 'start') {
+      this.props.getGpsLocation();
+      this.props.getBeaconData();
+    }
   }
 
   render() {
