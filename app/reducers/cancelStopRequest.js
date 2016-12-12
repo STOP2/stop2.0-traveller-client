@@ -1,5 +1,5 @@
 import { STOPREQUEST_FROM_CANCELLED, STOPREQUEST_DESTINATION_CANCELLED, SEND_STOPREQUEST_FROM_CANCELLATION, SEND_STOPREQUEST_DESTINATION_CANCELLATION, STOPREQUEST_FROM_CANCELLATION_ERROR, STOPREQUEST_DESTINATION_CANCELLATION_ERROR } from '../actions/cancelStopRequest'
-
+import {RESET_STATE} from '../actions/resetStateAction'
 export let initialState = {
     stopRequestFromCancelled: false,
     stopRequestDestinationCancelled: false,
@@ -62,6 +62,9 @@ const cancelStopRequest = (state = initialState, action) =>
                     stopRequestDestinationCancellationError: action.stopRequestCancellationError
                 }
             )
+
+        case RESET_STATE:
+            return Object.assign({}, state, initialState)
 
         default:
             return state

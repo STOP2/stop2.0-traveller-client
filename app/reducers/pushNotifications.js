@@ -1,4 +1,5 @@
 import { SET_FCM_TOKEN } from '../actions/fcmActions'
+import {RESET_STATE} from '../actions/resetStateAction'
 
 export let initialState = {token: null}
 
@@ -9,7 +10,11 @@ const pushNotifications = (state = initialState, action) =>
     case SET_FCM_TOKEN:
         return Object.assign({}, state, {token: action.token})
 
-    default:
+        case RESET_STATE:
+            return Object.assign({}, state, initialState)
+
+
+        default:
         return state
     }
 }
