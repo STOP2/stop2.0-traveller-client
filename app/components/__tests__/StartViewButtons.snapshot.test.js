@@ -1,19 +1,15 @@
-import 'react-native'
-import React from 'react'
-import StartViewButtons from '../StartViewButtons'
-
+import 'react-native';
+import React from 'react';
 // Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer'
+import renderer from 'react-test-renderer';
+import StartViewButtons from '../StartViewButtons';
 
+jest.mock('react-native-localization');
 
-jest.mock('react-native-localization')
+describe('StartViewButtons component', () => {
+  it('renders correctly', () => {
+    const tree = renderer.create(<StartViewButtons />).toJSON();
 
-describe('StartViewButtons component', () =>
-{
-    it('renders correctly', () =>
-    {
-        let tree = renderer.create(<StartViewButtons />).toJSON()
-
-        expect(tree).toMatchSnapshot()
-    })
-})
+    expect(tree).toMatchSnapshot();
+  });
+});
