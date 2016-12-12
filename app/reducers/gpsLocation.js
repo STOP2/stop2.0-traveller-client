@@ -1,4 +1,4 @@
-import { SET_GPS_LOCATION, GPS_LOCATION_ERROR, REQUEST_GPS_LOCATION, LOCATION_PERMISSION_ERROR } from '../actions/gpsLocationActions';
+import { SET_GPS_LOCATION, GPS_LOCATION_ERROR, REQUEST_GPS_LOCATION } from '../actions/gpsLocationActions';
 import { RESET_STATE } from '../actions/resetStateAction';
 
 export const initialState = {
@@ -24,9 +24,6 @@ const gpsLocation = (state = initialState, action) => {
         error: action.error,
         gettingGpsLocation: action.gettingGpsLocation,
       });
-
-    case LOCATION_PERMISSION_ERROR:
-      return Object.assign({}, state, { locationPermissionError: action.error });
 
     case RESET_STATE:
       return Object.assign({}, state, initialState);
