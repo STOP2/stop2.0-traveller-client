@@ -7,16 +7,28 @@ describe('cancelStopRequest reducer', () => {
     expect(cancelStopRequestReducer(initialState, { type: '_NULL' })).toMatchSnapshot();
   });
 
-  it('handles SEND_STOPREQUEST_CANCELLATION action', () => {
-    expect(cancelStopRequestReducer(initialState, cancelStopRequest(123))).toMatchSnapshot();
+  it('handles SEND_STOPREQUEST_FROM_CANCELLATION action', () => {
+    expect(cancelStopRequestReducer(initialState, cancelStopRequest(123, true))).toMatchSnapshot();
   });
 
-  it('handles STOPREQUEST_CANCELLED action', () => {
-    expect(cancelStopRequestReducer(initialState, receiveStopRequestCancellationConfirmation())).toMatchSnapshot();
+  it('handles SEND_STOPREQUEST_DESTINATION_CANCELLATION action', () => {
+    expect(cancelStopRequestReducer(initialState, cancelStopRequest(123, false))).toMatchSnapshot();
   });
 
-  it('handles STOPREQUEST_CANCELLATION_ERROR action', () => {
-    expect(cancelStopRequestReducer(initialState, stopRequestCancellationError('error'))).toMatchSnapshot();
+  it('handles STOPREQUEST_FROM_CANCELLED action', () => {
+    expect(cancelStopRequestReducer(initialState, receiveStopRequestCancellationConfirmation(true))).toMatchSnapshot();
+  });
+
+  it('handles STOPREQUEST_DESTINATION_CANCELLED action', () => {
+    expect(cancelStopRequestReducer(initialState, receiveStopRequestCancellationConfirmation(false))).toMatchSnapshot();
+  });
+
+  it('handles STOPREQUEST_FROM_CANCELLATION_ERROR action', () => {
+    expect(cancelStopRequestReducer(initialState, stopRequestCancellationError(true, 'error'))).toMatchSnapshot();
+  });
+
+  it('handles STOPREQUEST_DESTINATION_CANCELLATION_ERROR action', () => {
+    expect(cancelStopRequestReducer(initialState, stopRequestCancellationError(false, 'error'))).toMatchSnapshot();
   });
 
   it('handles RESET_STATE action', () => {
