@@ -1,76 +1,73 @@
-import config from '../config/config'
+import config from '../config/config';
 
-export const SEND_STOPREQUEST_FROM_CANCELLATION = 'SEND_STOPREQUEST_FROM_CANCELLATION'
-export const STOPREQUEST_FROM_CANCELLED = 'STOPREQUEST_FROM_CANCELLED'
-export const STOPREQUEST_FROM_CANCELLATION_ERROR ='STOPREQUEST_FROM_CANCELLATION_ERROR'
+export const SEND_STOPREQUEST_FROM_CANCELLATION = 'SEND_STOPREQUEST_FROM_CANCELLATION';
+export const STOPREQUEST_FROM_CANCELLED = 'STOPREQUEST_FROM_CANCELLED';
+export const STOPREQUEST_FROM_CANCELLATION_ERROR = 'STOPREQUEST_FROM_CANCELLATION_ERROR';
 
-export const SEND_STOPREQUEST_DESTINATION_CANCELLATION = 'SEND_STOPREQUEST_DESTINATION_CANCELLATION'
-export const STOPREQUEST_DESTINATION_CANCELLED = 'STOPREQUEST_DESTINATION_CANCELLED'
-export const STOPREQUEST_DESTINATION_CANCELLATION_ERROR ='STOPREQUEST_DESTINATION_CANCELLATION_ERROR'
+export const SEND_STOPREQUEST_DESTINATION_CANCELLATION = 'SEND_STOPREQUEST_DESTINATION_CANCELLATION';
+export const STOPREQUEST_DESTINATION_CANCELLED = 'STOPREQUEST_DESTINATION_CANCELLED';
+export const STOPREQUEST_DESTINATION_CANCELLATION_ERROR = 'STOPREQUEST_DESTINATION_CANCELLATION_ERROR';
 
-const API_ENDPOINT = '/stoprequests/cancel'
+const API_ENDPOINT = '/stoprequests/cancel';
 
-export let requestStopRequestCancellation = function(fromVehicle)
-{
-    return {
-        type: fromVehicle ? SEND_STOPREQUEST_FROM_CANCELLATION : SEND_STOPREQUEST_DESTINATION_CANCELLATION,
-        stopRequestCancelled: false,
-        isCancellingStopRequest: true
-    }
-}
+export const requestStopRequestCancellation = function requestStopRequestCancellation(fromVehicle) {
+  return {
+    type: fromVehicle ?
+      SEND_STOPREQUEST_FROM_CANCELLATION : SEND_STOPREQUEST_DESTINATION_CANCELLATION,
+    stopRequestCancelled: false,
+    isCancellingStopRequest: true,
+  };
+};
 
-export let receiveStopRequestCancellationConfirmation = function(fromVehicle)
-{
-    return {
-        type: fromVehicle ? STOPREQUEST_FROM_CANCELLED : STOPREQUEST_DESTINATION_CANCELLED,
-        stopRequestCancelled: true,
-        isCancellingStopRequest: false
-    }
-}
+export const receiveStopRequestCancellationConfirmation =
+function receiveStopRequestCancellationConfirmation(fromVehicle) {
+  return {
+    type: fromVehicle ? STOPREQUEST_FROM_CANCELLED : STOPREQUEST_DESTINATION_CANCELLED,
+    stopRequestCancelled: true,
+    isCancellingStopRequest: false,
+  };
+};
 
-export let stopRequestCancellationError = function(fromVehicle, error)
-{
-    return {
-        type: fromVehicle ? STOPREQUEST_FROM_CANCELLATION_ERROR : STOPREQUEST_DESTINATION_CANCELLATION_ERROR,
-        stopRequestCancelled: false,
-        isCancellingStopRequest: false,
-        stopRequestCancellationError: error
-    }
-}
+export const stopRequestCancellationError =
+function stopRequestCancellationError(fromVehicle, error) {
+  return {
+    type: fromVehicle ?
+      STOPREQUEST_FROM_CANCELLATION_ERROR : STOPREQUEST_DESTINATION_CANCELLATION_ERROR,
+    stopRequestCancelled: false,
+    isCancellingStopRequest: false,
+    stopRequestCancellationError: error,
+  };
+};
 
-export let cancelStopRequest = function(requestId, fromVehicle)
-{
-    return dispatch =>
-    {
-        dispatch(requestStopRequestCancellation(fromVehicle))
+export const cancelStopRequest = function (requestId, fromVehicle) {
+  return (dispatch) => {
+    dispatch(requestStopRequestCancellation(fromVehicle));
 
-        return fetch(config.API_URL + API_ENDPOINT + '?request_id=' + requestId, {
-            method: 'POST',
-            headers:
-            {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                dispatch(receiveStopRequestCancellationConfirmation(fromVehicle))
+    return fetch(`${config.API_URL + API_ENDPOINT}?request_id=${requestId}`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => {
+      if (response.ok) {
+        dispatch(receiveStopRequestCancellationConfirmation(fromVehicle));
 
-                // return false as there are no errors
-                return false
-            }
-            else {
-                dispatch(stopRequestCancellationError(fromVehicle))
+        // return false as there are no errors
+        return false;
+      }
 
-                // return true as there is an error
-                return true
-            }
-        })
-        .catch(error => {
-            dispatch(stopRequestCancellationError(error, fromVehicle))
+      dispatch(stopRequestCancellationError(fromVehicle));
 
-            // return true as there is an error
-            return true
-        })
-    }
-}
+      // return true as there is an error
+      return true;
+    })
+    .catch((error) => {
+      dispatch(stopRequestCancellationError(error, fromVehicle));
+
+      // return true as there is an error
+      return true;
+    });
+  };
+};

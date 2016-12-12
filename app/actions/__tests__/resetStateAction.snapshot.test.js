@@ -1,9 +1,7 @@
-import { resetState } from '../resetStateAction'
+import { resetState } from '../resetStateAction';
 
-describe('reset state action', () =>
-{
-    it('creates a RESET_STATE action', () =>
-    {
-        expect(resetState()).toMatchSnapshot()
-    })
-})
+describe('reset state action', () => {
+  it('creates a RESET_STATE action', () => {
+    expect(resetState()).toMatchSnapshot();
+  });
+});

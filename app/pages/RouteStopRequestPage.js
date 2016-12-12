@@ -8,7 +8,7 @@ import { Actions } from 'react-native-router-flux'
 import { TitleBar } from '../components/TitleBar'
 import { RouteInfoForStop } from '../components/RouteInfo'
 import AccessibilityView from '../components/AccessibilityView'
-import {DefaultText} from '../components/textComponents'
+import StopRequestCancellationBox from '../components/StopRequestCancellationBox'
 
 import styles from '../styles/stylesheet'
 import colors from '../styles/colors'
@@ -254,19 +254,12 @@ class RouteStopRequestPage extends Component{
 
     render()
   {
+      let { vehicle } = this.props
+
         return (
         <AccessibilityView style={styles.flex1} name={this.sceneName}>
-            {this.props.successfulStopRequest && <View style={styles.stopRequestSentBackground}>
-                <DefaultText style={styles.stopRequestSentText}>{this.props.vehicle.supportsStopRequest ? strings.stopsent : strings.weWillNotifyYou} </DefaultText>
-                <AwesomeButton labelStyle={styles.buttonLabel} states={{
-                    default: {
-                        text: strings.cancel,
-                        onPress: this.showStopRequestCancelConfirmation,
-                        backgroundColor: colors.HSLalarmRed
-                    }
-                }} />
-            </View>}
-          <TitleBar title={this.props.vehicle.line + ' ' + this.props.vehicle.destination} />
+            {this.props.successfulStopRequest && <StopRequestCancellationBox supportsStopRequest={vehicle.supportsStopRequest} onPress={this.showStopRequestCancelConfirmation} />}
+          <TitleBar title={vehicle.line + ' ' + vehicle.destination} />
           <View style={styles.flex3}>
             {this.renderRouteInfo()}
           </View>

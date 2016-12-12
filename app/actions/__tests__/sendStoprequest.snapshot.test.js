@@ -1,18 +1,15 @@
-import mockStore from 'redux-mock-store'
+import mockStore from 'redux-mock-store';
 
-import { requestError, receiveConfirm, requestStoprequest, setStopRequest_requestId } from '../sendStoprequest'
+import { requestError, receiveConfirm, requestStoprequest, setStopRequest_requestId } from '../sendStoprequest';
 
-const store = mockStore()
+const store = mockStore();
 
-beforeEach(() =>
-{
-    store.clearActions()
-})
+beforeEach(() => {
+  store.clearActions();
+});
 
-describe('sendStoprequest actions', () =>
-{
-    it('should handle REQUEST_ERROR action', () =>
-    {
-        expect(requestError()).toMatchSnapshot()
-    })
-})
+describe('sendStoprequest actions', () => {
+  it('should handle REQUEST_ERROR action', () => {
+    expect(requestError()).toMatchSnapshot();
+  });
+});

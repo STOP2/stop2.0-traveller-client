@@ -1,50 +1,43 @@
-export const SET_GPS_LOCATION = 'SET_GPS_LOCATION'
-export const GPS_LOCATION_ERROR = 'GPS_LOCATION_ERROR'
-export const REQUEST_GPS_LOCATION = 'REQUEST_GPS_LOCATION'
+export const SET_GPS_LOCATION = 'SET_GPS_LOCATION';
+export const GPS_LOCATION_ERROR = 'GPS_LOCATION_ERROR';
+export const REQUEST_GPS_LOCATION = 'REQUEST_GPS_LOCATION';
 
-export let setGpsLocation = function(gpsLocationData)
-{
-    return {
-        type: SET_GPS_LOCATION,
-        gettingGpsLocation: false,
-        gpsLocationData: gpsLocationData
-    }
-}
+export const setGpsLocation = function setGpsLocation(gpsLocationData) {
+  return {
+    type: SET_GPS_LOCATION,
+    gettingGpsLocation: false,
+    gpsLocationData,
+  };
+};
 
-export let requestGpsLocation = function()
-{
-    return {
-        type: REQUEST_GPS_LOCATION,
-        gettingGpsLocation: true
-    }
-}
+export const requestGpsLocation = function requestGpsLocation() {
+  return {
+    type: REQUEST_GPS_LOCATION,
+    gettingGpsLocation: true,
+  };
+};
 
-export let gpsLocationError = function(error)
-{
-    return {
-        type: GPS_LOCATION_ERROR,
-        error: error,
-        gettingGpsLocation: false
-    }
-}
+export const gpsLocationError = function gpsLocationError(error) {
+  return {
+    type: GPS_LOCATION_ERROR,
+    error,
+    gettingGpsLocation: false,
+  };
+};
 
-export let getGpsLocation = function()
-{
-    return dispatch =>
-   {
-        dispatch(requestGpsLocation())
-        navigator.geolocation.getCurrentPosition((position) =>
-        {
-            dispatch(setGpsLocation(position.coords))
-        },
-           (error) =>
-           {
-               dispatch(gpsLocationError(error))
-           },
-            {
-                enableHighAccuracy: false,
-                timeout: 60000,
-                maximumAge: 1000
-            })
-    }
-}
+export const getGpsLocation = function getGpsLocation() {
+  return (dispatch) => {
+    dispatch(requestGpsLocation());
+    navigator.geolocation.getCurrentPosition((position) => {
+      dispatch(setGpsLocation(position.coords));
+    },
+    (error) => {
+      dispatch(gpsLocationError(error));
+    },
+      {
+        enableHighAccuracy: false,
+        timeout: 60000,
+        maximumAge: 1000,
+      });
+  };
+};

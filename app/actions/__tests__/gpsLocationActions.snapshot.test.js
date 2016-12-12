@@ -1,28 +1,24 @@
-import mockStore from 'redux-mock-store'
 
-import { setGpsLocation, getGpsLocation, requestGpsLocation, gpsLocationError } from '../gpsLocationActions'
+import mockStore from 'redux-mock-store';
 
-const store = mockStore()
+import { setGpsLocation, getGpsLocation, requestGpsLocation, gpsLocationError } from '../gpsLocationActions';
 
-beforeEach(() =>
-{
-    store.clearActions()
-})
+const store = mockStore();
 
-describe('gps location actions', () =>
-{
-    it('creates a SET_GPS_LOCATION action', () =>
-    {
-        expect(setGpsLocation({coords: []})).toMatchSnapshot()
-    })
+beforeEach(() => {
+  store.clearActions();
+});
 
-    it('creates a REQUEST_GPS_LOCATION action', () =>
-    {
-        expect(requestGpsLocation()).toMatchSnapshot()
-    })
+describe('gps location actions', () => {
+  it('creates a SET_GPS_LOCATION action', () => {
+    expect(setGpsLocation({ coords: [] })).toMatchSnapshot();
+  });
 
-    it('creates a GPS_LOCATION_ERROR action', () =>
-    {
-        expect(gpsLocationError(true)).toMatchSnapshot()
-    })
-})
+  it('creates a REQUEST_GPS_LOCATION action', () => {
+    expect(requestGpsLocation()).toMatchSnapshot();
+  });
+
+  it('creates a GPS_LOCATION_ERROR action', () => {
+    expect(gpsLocationError(true)).toMatchSnapshot();
+  });
+});
