@@ -42,6 +42,40 @@ const styles = StyleSheet.create({
         height: 20,
         marginLeft: 5
     },
+    vehiclerow: {
+        flexDirection: 'row',
+        height: 60,
+        padding: 10,
+        alignItems: 'center'
+    },
+    vehiclerowheader: {
+        flexDirection: 'row',
+        padding: 10,
+        backgroundColor: colors.stopBackground
+    },
+    vehiclerowText: {
+        flex: 1,
+        fontSize: 15
+    },
+    vehiclerowText2: {
+        flex: 3,
+        fontSize: 15
+    },
+    vehiclerowTextBlack: {
+        flex: 1,
+        color: colors.black,
+        fontSize: 15
+    },
+    vehiclerowTextBlack2: {
+        flex: 3,
+        color: colors.black,
+        fontSize: 15
+    },
+    vehiclerowImage: {
+        width: 20,
+        height: 20,
+        marginLeft: 5
+    },
     bottomBorder: {
         borderBottomColor: colors.white,
         borderBottomWidth: 0.5
