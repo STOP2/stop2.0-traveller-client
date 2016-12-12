@@ -1,30 +1,40 @@
-import React, { Component } from 'react'
-import { View } from 'react-native'
-import { DefaultText, BoldText } from '../components/textComponents'
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import { DefaultText, BoldText } from '../components/textComponents';
 
-import styles from '../styles/stylesheet'
+import styles from '../styles/stylesheet';
 
 export class TitleBar extends Component {
-    render()
-    {
-        return (<DefaultText style={styles.title}>{this.props.title}</DefaultText>)
-    }
+  render() {
+    return (
+      <DefaultText style={styles.title}>{this.props.title}</DefaultText>
+    );
+  }
 }
 
-TitleBar.propTypes = {title: React.PropTypes.string.isRequired}
+TitleBar.propTypes = { title: React.PropTypes.string.isRequired };
 
 export class BoldTitleBar extends Component {
-    render()
-    {
-        return (<View style={this.props.noBorder ? styles.mainTitleCont : [styles.mainTitleCont, styles.bottomBorder]}>
-                  <BoldText style={styles.mainTitle}>{this.props.title}</BoldText>
-                </View>)
+  render() {
+    let viewStyle;
+
+    if (this.props.noBorder) {
+      viewStyle = styles.mainTitleCont;
+    } else {
+      viewStyle = [styles.mainTitleCont, styles.bottomBorder];
     }
+
+    return (
+      <View style={viewStyle}>
+        <BoldText style={styles.mainTitle}>{this.props.title}</BoldText>
+      </View>
+    );
+  }
 }
 
-BoldTitleBar.defaultProps = { noBorder: false }
+BoldTitleBar.defaultProps = { noBorder: false };
 
 BoldTitleBar.propTypes = {
-    title: React.PropTypes.string.isRequired,
-    noBorder: React.PropTypes.bool
-}
+  title: React.PropTypes.string.isRequired,
+  noBorder: React.PropTypes.bool,
+};
