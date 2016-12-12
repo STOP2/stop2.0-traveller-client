@@ -1,6 +1,6 @@
 import mockStore from 'redux-mock-store'
 
-import { fetchDepartures } from '../fetchDeparturesActions'
+import { fetchDepartures, requestError } from '../fetchDeparturesActions'
 
 const store = mockStore()
 
