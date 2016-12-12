@@ -50,8 +50,6 @@ class VehiclesPage extends Component {
 
   checkIfLocationExists(props) {
     if (props.gettingBeaconData == false && props.beaconError == null) {
-      console.log('####################!!!!##################');
-      console.log(props.beaconData);
       props.fetchVehicles(props.beaconData);
       this.createInterval(props, true);
       this.setState({ locatingUser: false });
@@ -63,8 +61,7 @@ class VehiclesPage extends Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    console.log('VEHICLES:');
-    console.log(this.state.vehicles);
+    console.log('VEHICLES:')
     console.log(nextProps.vehicles);
     if (nextProps.scene.name != this.sceneName) return;
 

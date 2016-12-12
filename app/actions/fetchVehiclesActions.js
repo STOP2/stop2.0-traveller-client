@@ -6,7 +6,7 @@ export const REQUEST_VEHICLES_ERROR = 'REQUEST_VEHICLES_ERROR';
 
 const API_ENDPOINT = '/vehicles/beacons';
 
-export const requestVehicles = function (beacons) {
+export const requestVehicles = function requestVehicles(beacons) {
   return {
     type: REQUEST_VEHICLES,
     isFetching: true,
@@ -14,27 +14,26 @@ export const requestVehicles = function (beacons) {
   };
 };
 
-export const receiveVehicles = function (json) {
-  console.log('CALLING RECEIVE VEHICLES');
-  console.log(json);
+export const receiveVehicles = function receiveVehicles(json) {
   return {
     type: RECEIVE_VEHICLES,
     isFetching: false,
     isReady: true,
     error: false,
-    departures: json.stops,
+    vehicles: json.vehicles,
   };
 };
 
-export const requestVehiclesError = function () {
+export const requestVehiclesError = function requestVehiclesError(error) {
   console.log('FETCH ERRORED');
+  console.log(error)
   return {
     type: REQUEST_VEHICLES_ERROR,
     error: true,
   };
 };
 
-export const fetchVehicles = function (beacons) {
+export const fetchVehicles = function fetchVehicles(beacons) {
   return (dispatch) => {
     console.log('DOING THE FETCH');
     console.log(JSON.stringify({ beacons }));
@@ -51,6 +50,7 @@ export const fetchVehicles = function (beacons) {
               if (response.ok) {
                 return response.json();
               } else {
+                console.log('ERROR1')
                 dispatch(requestVehiclesError());
               }
             })
