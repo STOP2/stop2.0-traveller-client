@@ -1,0 +1,87 @@
+exports[`cancelStopRequest reducer handles RESET_STATE action 1`] = `
+Object {
+  "isCancellingDestinationStopRequest": false,
+  "isCancellingFromStopRequest": false,
+  "stopRequestDestinationCancellationError": null,
+  "stopRequestDestinationCancelled": false,
+  "stopRequestFromCancellationError": null,
+  "stopRequestFromCancelled": false,
+}
+`;
+
+exports[`cancelStopRequest reducer handles SEND_STOPREQUEST_DESTINATION_CANCELLATION action 1`] = `
+Object {
+  "isCancellingDestinationStopRequest": false,
+  "isCancellingFromStopRequest": false,
+  "stopRequestDestinationCancellationError": null,
+  "stopRequestDestinationCancelled": false,
+  "stopRequestFromCancellationError": null,
+  "stopRequestFromCancelled": false,
+}
+`;
+
+exports[`cancelStopRequest reducer handles SEND_STOPREQUEST_FROM_CANCELLATION action 1`] = `
+Object {
+  "isCancellingDestinationStopRequest": false,
+  "isCancellingFromStopRequest": false,
+  "stopRequestDestinationCancellationError": null,
+  "stopRequestDestinationCancelled": false,
+  "stopRequestFromCancellationError": null,
+  "stopRequestFromCancelled": false,
+}
+`;
+
+exports[`cancelStopRequest reducer handles STOPREQUEST_DESTINATION_CANCELLATION_ERROR action 1`] = `
+Object {
+  "isCancellingDestinationStopRequest": false,
+  "isCancellingFromStopRequest": false,
+  "stopRequestDestinationCancellationError": "error",
+  "stopRequestDestinationCancelled": false,
+  "stopRequestFromCancellationError": null,
+  "stopRequestFromCancelled": false,
+}
+`;
+
+exports[`cancelStopRequest reducer handles STOPREQUEST_DESTINATION_CANCELLED action 1`] = `
+Object {
+  "isCancellingDestinationStopRequest": false,
+  "isCancellingFromStopRequest": false,
+  "stopRequestDestinationCancellationError": null,
+  "stopRequestDestinationCancelled": true,
+  "stopRequestFromCancellationError": null,
+  "stopRequestFromCancelled": false,
+}
+`;
+
+exports[`cancelStopRequest reducer handles STOPREQUEST_FROM_CANCELLATION_ERROR action 1`] = `
+Object {
+  "isCancellingDestinationStopRequest": false,
+  "isCancellingFromStopRequest": false,
+  "stopRequestDestinationCancellationError": null,
+  "stopRequestDestinationCancelled": false,
+  "stopRequestFromCancellationError": "error",
+  "stopRequestFromCancelled": false,
+}
+`;
+
+exports[`cancelStopRequest reducer handles STOPREQUEST_FROM_CANCELLED action 1`] = `
+Object {
+  "isCancellingDestinationStopRequest": false,
+  "isCancellingFromStopRequest": false,
+  "stopRequestDestinationCancellationError": null,
+  "stopRequestDestinationCancelled": false,
+  "stopRequestFromCancellationError": null,
+  "stopRequestFromCancelled": true,
+}
+`;
+
+exports[`cancelStopRequest reducer returns the same state on an unhandled action 1`] = `
+Object {
+  "isCancellingDestinationStopRequest": false,
+  "isCancellingFromStopRequest": false,
+  "stopRequestDestinationCancellationError": null,
+  "stopRequestDestinationCancelled": false,
+  "stopRequestFromCancellationError": null,
+  "stopRequestFromCancelled": false,
+}
+`;

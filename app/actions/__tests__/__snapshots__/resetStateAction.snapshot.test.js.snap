@@ -1,0 +1,5 @@
+exports[`reset state action creates a RESET_STATE action 1`] = `
+Object {
+  "type": "RESET_STATE",
+}
+`;

@@ -1,19 +1,18 @@
-exports[`fetch reducer handles RECEIVE_CONFIRM action 1`] = `
+exports[`stopRequest reducer handles RECEIVE_CONFIRM (fromVehicle false) action 1`] = `
 Object {
-  "currentVehicle": undefined,
+  "currentVehicle": Object {},
   "destinationRequestId": null,
   "error": false,
   "fromRequestId": null,
   "isFetching": false,
   "isReady": false,
   "sentStoprequestFromStop": true,
-  "sentStoprequestFromVehicle": false,
-  "startStop": undefined,
+  "startStop": Object {},
   "stops": Array [],
 }
 `;
 
-exports[`fetch reducer handles SEND_STOPREQUEST action 1`] = `
+exports[`stopRequest reducer handles RECEIVE_CONFIRM (fromVehicle true) action 1`] = `
 Object {
   "currentVehicle": null,
   "destinationRequestId": null,
@@ -21,14 +20,13 @@ Object {
   "fromRequestId": null,
   "isFetching": false,
   "isReady": false,
-  "sentStoprequestFromStop": false,
-  "sentStoprequestFromVehicle": false,
+  "sentStoprequestFromVehicle": true,
   "startStop": null,
   "stops": Array [],
 }
 `;
 
-exports[`fetch reducer returns the same state on an unhandled action 1`] = `
+exports[`stopRequest reducer handles RESET_STATE action 1`] = `
 Object {
   "currentVehicle": null,
   "destinationRequestId": null,
@@ -36,8 +34,71 @@ Object {
   "fromRequestId": null,
   "isFetching": false,
   "isReady": false,
-  "sentStoprequestFromStop": false,
-  "sentStoprequestFromVehicle": false,
+  "startStop": null,
+  "stops": Array [],
+}
+`;
+
+exports[`stopRequest reducer handles SEND_STOPREQUEST (fromVehicle false) action 1`] = `
+Object {
+  "currentVehicle": null,
+  "destinationRequestId": null,
+  "error": false,
+  "fromRequestId": null,
+  "isFetching": false,
+  "isReady": false,
+  "startStop": null,
+  "stops": Array [],
+}
+`;
+
+exports[`stopRequest reducer handles SEND_STOPREQUEST (fromVehicle true) action 1`] = `
+Object {
+  "currentVehicle": null,
+  "destinationRequestId": null,
+  "error": false,
+  "fromRequestId": null,
+  "isFetching": false,
+  "isReady": false,
+  "startStop": null,
+  "stops": Array [],
+}
+`;
+
+exports[`stopRequest reducer handles SET_STOPREQUEST_REQUEST_ID_DESTINATION action 1`] = `
+Object {
+  "currentVehicle": null,
+  "destinationRequestId": null,
+  "error": false,
+  "fromRequestId": 123,
+  "isFetching": false,
+  "isReady": false,
+  "startStop": null,
+  "stops": Array [],
+}
+`;
+
+exports[`stopRequest reducer handles SET_STOPREQUEST_REQUEST_ID_FROM action 1`] = `
+Object {
+  "currentVehicle": null,
+  "destinationRequestId": 123,
+  "error": false,
+  "fromRequestId": null,
+  "isFetching": false,
+  "isReady": false,
+  "startStop": null,
+  "stops": Array [],
+}
+`;
+
+exports[`stopRequest reducer returns the same state on an unhandled action 1`] = `
+Object {
+  "currentVehicle": null,
+  "destinationRequestId": null,
+  "error": false,
+  "fromRequestId": null,
+  "isFetching": false,
+  "isReady": false,
   "startStop": null,
   "stops": Array [],
 }

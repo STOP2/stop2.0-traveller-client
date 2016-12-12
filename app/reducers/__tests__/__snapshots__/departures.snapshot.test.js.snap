@@ -88,6 +88,16 @@ Object {
 }
 `;
 
+exports[`fetch reducer handles RESET_STATE action 1`] = `
+Object {
+  "error": false,
+  "isFetching": false,
+  "isReady": false,
+  "sentStoprequest": false,
+  "stops": Array [],
+}
+`;
+
 exports[`fetch reducer returns the same state on an unhandled action 1`] = `
 Object {
   "error": false,

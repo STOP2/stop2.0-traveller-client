@@ -1,0 +1,47 @@
+exports[`cancelStopRequest actions should handle SEND_STOPREQUEST_DESTINATION_CANCELLATION action 1`] = `
+Array [
+  Object {
+    "isCancellingStopRequest": true,
+    "stopRequestCancelled": false,
+    "type": "SEND_STOPREQUEST_DESTINATION_CANCELLATION",
+  },
+  Object {
+    "isCancellingStopRequest": false,
+    "stopRequestCancelled": true,
+    "type": "STOPREQUEST_DESTINATION_CANCELLED",
+  },
+]
+`;
+
+exports[`cancelStopRequest actions should handle SEND_STOPREQUEST_FROM_CANCELLATION action 1`] = `
+Array [
+  Object {
+    "isCancellingStopRequest": true,
+    "stopRequestCancelled": false,
+    "type": "SEND_STOPREQUEST_FROM_CANCELLATION",
+  },
+  Object {
+    "isCancellingStopRequest": false,
+    "stopRequestCancelled": true,
+    "type": "STOPREQUEST_FROM_CANCELLED",
+  },
+]
+`;
+
+exports[`cancelStopRequest actions should handle STOPREQUEST_DESTINATION_CANCELLATION_ERROR action 1`] = `
+Object {
+  "isCancellingStopRequest": false,
+  "stopRequestCancellationError": true,
+  "stopRequestCancelled": false,
+  "type": "STOPREQUEST_DESTINATION_CANCELLATION_ERROR",
+}
+`;
+
+exports[`cancelStopRequest actions should handle STOPREQUEST_FROM_CANCELLATION_ERROR action 1`] = `
+Object {
+  "isCancellingStopRequest": false,
+  "stopRequestCancellationError": true,
+  "stopRequestCancelled": false,
+  "type": "STOPREQUEST_FROM_CANCELLATION_ERROR",
+}
+`;
