@@ -13,6 +13,8 @@ export const requestRouteStops = function requestRouteStops(tripId) {
 };
 
 export const receiveRouteStops = function receiveRouteStops(json) {
+  if (json.error) throw json.error;
+
   return {
     type: RECEIVE_ROUTE_STOPS,
     isFetching: false,
@@ -33,7 +35,6 @@ export const requestError = function requestError(error) {
 export const fetchRouteStops = function fetchRouteStops(tripId) {
   return (dispatch) => {
     dispatch(requestRouteStops(tripId));
-
     return fetch(`${config.API_URL}/routes?trip_id=${tripId}`,
       {
         method: 'GET',
