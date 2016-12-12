@@ -33,7 +33,7 @@ class VehiclesPage extends Component {
         this.sceneName = 'vehicles'
     }
 
-    componentWillUnmount = () =>
+    componentWillMount = () =>
     {
         this.createInterval(this.props)
     }
