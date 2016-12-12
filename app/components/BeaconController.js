@@ -50,11 +50,12 @@ class BeaconController extends Component {
       if (data.beacons.length > 0) {
         if (!this.state.beaconDetected) {
           let closestBeaconIndex = 0;
-          let closestBeaconDistance = 999999;
+          let closestBeaconDistance = data.beacons[0].distance;
 
-          for (let beaconIndex = 0; beaconIndex < data.beacons.length; beaconIndex++) {
+          for (let beaconIndex = 1; beaconIndex < data.beacons.length; beaconIndex++) {
             if (data.beacons[beaconIndex].distance < closestBeaconDistance) {
               closestBeaconIndex = beaconIndex;
+              closestBeaconDistance = data.beacons[beaconIndex].distance;
             }
           }
 
