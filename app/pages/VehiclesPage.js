@@ -32,7 +32,7 @@ class VehiclesPage extends Component {
   }
 
   componentWillMount = () => {
-    //this.checkIfLocationExists(this.props);
+    this.checkIfLocationExists(this.props);
   }
   componentWillUnmount = () => {
     clearInterval(this.fetchInterval);
@@ -49,8 +49,6 @@ class VehiclesPage extends Component {
 
   checkIfLocationExists(props) {
     if (props.gettingBeaconData == false && props.beaconError == null) {
-      console.log('####################!!!!##################');
-      console.log(props.beaconData);
       props.fetchVehicles(props.beaconData);
       this.createInterval(props, true);
       this.setState({ locatingUser: false });
@@ -86,7 +84,7 @@ class VehiclesPage extends Component {
       clearInterval(this.fetchInterval);
       this.fetchInterval = false;
 
-      Actions.routeStops({vehicle: renderData});
+      Actions.routeStops({ vehicle: renderData });
     };
 
     return (
@@ -99,29 +97,29 @@ class VehiclesPage extends Component {
       </TouchableOpacity>);
   }
 
-  renderSeparator = () => {
-    return (<View style={styles.rowSeparator}></View>)
-  }
+  renderSeparator = () =>
+     (<View style={styles.rowSeparator} />)
 
-  renderFooter = () => {
-    return (
-      <View>
-        <ActivityIndicator animating={this.props.gettingBeaconData}/>
-      </View>
+
+  renderFooter = () =>
+     (
+       <View>
+         <ActivityIndicator animating={this.props.gettingBeaconData} />
+       </View>
       )
-  }
+
 
   renderList = () =>
     (
-    <View style={styles.flex1}>
-      <ListView
-        enableEmptySections={true}
-        dataSource={this.state.dataSource}
-        renderRow={this.renderRow}
-        renderFooter={this.renderFooter}
-        renderSeparator={this.renderSeparator}
-      />
-    </View>)
+      <View style={styles.flex1}>
+        <ListView
+          enableEmptySections
+          dataSource={this.state.dataSource}
+          renderRow={this.renderRow}
+          renderFooter={this.renderFooter}
+          renderSeparator={this.renderSeparator}
+        />
+      </View>)
 
 
   renderFetchError = () =>
@@ -136,7 +134,7 @@ class VehiclesPage extends Component {
            </View>
         )
 
-  renderSpinner = (text) =>
+  renderSpinner = text =>
 
          (
            <View style={styles.spinnerContainer}>
@@ -153,26 +151,25 @@ class VehiclesPage extends Component {
         )
 
   render() {
-    let viewElement = this.renderList();
+    let viewElement
 
-          /*if (!this.state.locatingUser) // fetchingVehicles
-              {
-            viewElement = this.renderList();
-          } else if (this.props.beaconError != null) {
-            viewElement = this.renderFetchError();
-          } else if (this.state.locatingUser) {
-            viewElement = this.renderSpinner(strings.gettingLocation);
-          } else {
-            viewElement = this.renderSpinner(strings.loadingDepartures);
-          }*/
-          return (
-            <AccessibilityView style={styles.flex1} name={this.sceneName}>
-              <BoldTitleBar title={strings.nearestVehicles} noBorder />
-              {viewElement}
-            </AccessibilityView>
-          );
+    if (!this.state.locatingUser) {
+      viewElement = this.renderList();
+    } else if (this.props.beaconError != null) {
+      viewElement = this.renderFetchError();
+    } else if (this.state.locatingUser) {
+      viewElement = this.renderSpinner(strings.gettingLocation);
+    } else {
+      viewElement = this.renderSpinner(strings.loadingDepartures);
     }
+    return (
+      <AccessibilityView style={styles.flex1} name={this.sceneName}>
+        <BoldTitleBar title={strings.nearestVehicles} noBorder />
+        {viewElement}
+      </AccessibilityView>
+    );
   }
+}
 
 const mapStateToProps = state =>
    ({

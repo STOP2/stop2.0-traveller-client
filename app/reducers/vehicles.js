@@ -11,12 +11,9 @@ const initialState = {
 const fetchDepartures = (state = initialState, action) => {
   switch (action.type) {
     case REQUEST_VEHICLES:
-      console.log('FETCHING VEHICLES');
       return Object.assign({}, state, { isFetching: action.isFetching });
 
     case RECEIVE_VEHICLES:
-      console.log('RECEIVED VEHICLES');
-      console.log(actions.vehicles);
       return Object.assign({}, state, {
         isFetching: action.isFetching,
         isReady: action.isReady,
