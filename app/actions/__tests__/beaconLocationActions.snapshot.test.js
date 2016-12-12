@@ -1,4 +1,4 @@
-import { setBeaconData } from '../beaconLocationActions'
+import { setBeaconData, requestBeaconData, beaconError } from '../beaconLocationActions'
 
 describe('beacon location actions', () =>
 {
