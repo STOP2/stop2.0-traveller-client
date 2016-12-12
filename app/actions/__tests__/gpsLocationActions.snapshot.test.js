@@ -15,4 +15,14 @@ describe('gps location actions', () =>
     {
         expect(setGpsLocation({coords: []})).toMatchSnapshot()
     })
+
+    it('creates a REQUEST_GPS_LOCATION action', () =>
+    {
+        expect(requestGpsLocation()).toMatchSnapshot()
+    })
+
+    it('creates a GPS_LOCATION_ERROR action', () =>
+    {
+        expect(gpsLocationError(true)).toMatchSnapshot()
+    })
 })
