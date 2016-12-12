@@ -3,7 +3,7 @@ import LocalizedStrings from 'react-native-localization'
 let strings = new LocalizedStrings({
     en: {
         onBus: 'On the bus',
-        onStop: 'On the stop',
+        onStop: 'At the stop',
         title: 'Departures from',
         type: 'Type',
         line: 'Line',
@@ -20,7 +20,7 @@ let strings = new LocalizedStrings({
         confirm: 'Confirm',
         stopsent: 'Stop request sent',
         gettingLocation: 'Finding your location...',
-        locationError: 'Unable to find your location. Make sure that GPS enabled.',
+        locationError: 'Unable to find your location. Make sure that GPS is enabled.',
         locationPermissionsError: 'Couldn\'t grant location permissions.',
         chooseVehicle: 'Choose a vehicle',
         noDepartures: 'No departures found, try again later',
@@ -31,8 +31,8 @@ let strings = new LocalizedStrings({
         goToRouteStopsView: 'Choose your destination',
         routeStops: 'Choose a stop',
         aboutToStop: 'You\'re about to stop',
-        vehicleArrivesIn: 'Arrives in: ',
-        minutes: 'minutes',
+        vehicleArrivesIn: 'Arrives ',
+        minutes: 'min',
         vehiclePassedStop: 'has left the stop',
         arrivesShortly: 'arrives shortly',
         arrivalNotificationTitle: 'Get ready',
@@ -41,7 +41,7 @@ let strings = new LocalizedStrings({
         now: 'Now',
         stopRequestError: 'Stop request failed. Try again.',
         fetchDeparturesError: 'Could not fetch departures.',
-        arrives: 'Arrives',
+        arrives: 'Arrives at',
         in: 'in',
         goToBackToFrontPage: 'Start from the beginning',
         cancelStopRequest: 'Cancel your stop request?',
@@ -56,12 +56,12 @@ let strings = new LocalizedStrings({
         slideToStop: 'Slide to stop',
         slideToCancel: 'Cancel stop request',
         fromStop: 'From stop',
-        vehicleStopsIn: 'Stops in: ',
+        vehicleStopsIn: 'Stops ',
         doYouReallyWantToMakeTheStopRequest: 'Do you really want to make the stop request?',
         stop: 'Stop',
-        doYouReallyWantToGoToFrontPage: 'Do you really want start again?',
+        doYouReallyWantToGoToFrontPage: 'Do you really want to start again?',
         notifyArrival: 'Notify arrival',
-        weWillNotifyYou: 'We will notify you when it arrives'
+        weWillNotifyYou: 'You will be notified before arrival'
     },
 
     fi: {
@@ -94,7 +94,7 @@ let strings = new LocalizedStrings({
         backendError: 'Virhe: Ei verkkoyhteyttä',
         aboutToStop: 'Olet pysäyttämässä',
         vehicleArrivesIn: 'Saapumiseen: ',
-        minutes: 'minuuttia',
+        minutes: 'min',
         vehiclePassedStop: 'ohitti pysäkin',
         goToRouteStopsView: 'Valitse määränpää',
         routeStops: 'Valitse pysäkki',
@@ -106,7 +106,7 @@ let strings = new LocalizedStrings({
         stopRequestError: 'Pysäytyspyyntö epäonnistui. Yritä uudestaan.',
         fetchDeparturesError: 'Virhe aikataulutietojen hakemisessa',
         arrives: 'Saapumiseen pysäkille',
-        in: '',
+        in: ' ',
         goToBackToFrontPage: 'Aloita alusta',
         cancelStopRequest: 'Perutaanko pysäytyspyyntö?',
         yes: 'Kyllä',
@@ -125,7 +125,7 @@ let strings = new LocalizedStrings({
         stop: 'Pysäytä',
         doYouReallyWantToGoToFrontPage: 'Aloitetaanko alusta?',
         notifyArrival: 'Ilmoita saapumisesta',
-        weWillNotifyYou: 'Ilmoitamme sinulle saapumisesta'
+        weWillNotifyYou: 'Saat ilmoituksen ennen pysäkille saapumista'
     }
 })
 

@@ -145,14 +145,16 @@ class DeparturesListPage extends Component {
   {
         const goToStopRequestPage = () =>
     {
+            let { stops } = this.state
+
             clearInterval(this.fetchInterval)
             this.fetchInterval = false
             this.props.clearWatchLocation()
             Actions.stopRequest({
                 vehicle: rowData,
                 stop: {
-                    stopName: this.state.stops[sectionID].stop_name,
-                    stopCode: this.state.stops[sectionID].stop_code,
+                    stopName: stops[sectionID].stop_name,
+                    stopCode: stops[sectionID].stop_code,
                     stopId: sectionID
                 }
             })
@@ -177,10 +179,12 @@ class DeparturesListPage extends Component {
 
     renderSectionHeader = (sectionData, sectionID) =>
     {
+        let { stops } = this.state
+
         return (<StopTitle
-                  name={this.state.stops[sectionID].stop_name}
-                  line={this.state.stops[sectionID].stop_code}
-                  distance={this.state.stops[sectionID].distance}
+                  name={stops[sectionID].stop_name}
+                  line={stops[sectionID].stop_code}
+                  distance={stops[sectionID].distance}
                 />)
     }
 
@@ -205,21 +209,10 @@ class DeparturesListPage extends Component {
         }
         else
         {
-            let infoText
-
-            if (this.state.stopCount > 0)
-            {
-                infoText = strings.noDepartures
-            }
-            else
-            {
-                infoText = strings.noStops
-            }
-
             listElement = <View style={styles.spinnerContainer}>
                             <View style={styles.spinnerBackground}>
                               <DefaultText style={styles.fetchDeparturesError}>
-                                {infoText}
+                                {this.state.stopCount > 0 ? strings.noDepartures : strings.noStops}
                               </DefaultText>
                             </View>
                           </View>

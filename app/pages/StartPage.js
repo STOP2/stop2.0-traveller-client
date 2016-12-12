@@ -17,6 +17,8 @@ class StartView extends Component {
         super()
 
         this.state = {locationPermissionsError: false}
+
+        this.sceneName = 'start'
     }
 
     async requestLocationPermission()
@@ -56,7 +58,7 @@ class StartView extends Component {
     render()
     {
         return (
-            <AccessibilityView style={styles.start} name="start">
+            <AccessibilityView style={styles.start} name={this.sceneName}>
                 <StartViewButtons />
             </AccessibilityView>
         )

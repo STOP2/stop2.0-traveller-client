@@ -7,7 +7,7 @@ import { Actions } from 'react-native-router-flux'
 import { TitleBar } from '../components/TitleBar'
 import RouteInfo from '../components/RouteInfo'
 import AccessibilityView from '../components/AccessibilityView'
-import {DefaultText} from '../components/textComponents'
+import StopRequestCancellationBox from '../components/StopRequestCancellationBox'
 
 import PushController from '../components/PushController'
 
@@ -249,22 +249,15 @@ class StopRequestPage extends Component{
             }
         }
 
+        let { vehicle, stop } = this.props
+
         return (
-          <AccessibilityView style={styles.flex1} name="stopRequest">
-            <PushController vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line} />
+          <AccessibilityView style={styles.flex1} name={this.sceneName}>
+            <PushController vehicleType={vehicle.vehicle_type} vehicleLine={vehicle.line} />
 
-            {this.props.successfulStopRequest && <View style={styles.stopRequestSentBackground}>
-                <DefaultText style={styles.stopRequestSentText}>{this.props.vehicle.supportsStopRequest ? strings.stopsent : strings.weWillNotifyYou}</DefaultText>
-                <AwesomeButton labelStyle={styles.buttonLabel} states={{
-                    default: {
-                        text: strings.cancel,
-                        onPress: cancelStopRequest,
-                        backgroundColor: colors.HSLalarmRed
-                    }
-                }} />
-            </View>}
+              {this.props.successfulStopRequest && <StopRequestCancellationBox supportsStopRequest={vehicle.supportsStopRequest} onPress={cancelStopRequest} />}
 
-            <TitleBar title={this.props.stop.stopName + '  (' + this.props.stop.stopCode + ')'} />
+              <TitleBar title={stop.stopName + '  (' + stop.stopCode + ')'} />
 
 
             <View style={styles.flex3}>

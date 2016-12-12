@@ -1,0 +1,85 @@
+exports[`StopRequestCancellationBox component renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#BEE4F8",
+      "height": undefined,
+      "padding": 10,
+      "width": undefined,
+    }
+  }>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": "gotham-rounded-book",
+        },
+        Object {
+          "fontSize": 20,
+          "fontWeight": "bold",
+          "marginBottom": 10,
+        },
+      ]
+    }>
+    Stop request sent
+     
+  </Text>
+  <View
+    accessibilityComponentType="button"
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hitSlop={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "flex": 1,
+        "opacity": 1,
+      }
+    }
+    testID={undefined}>
+    <View
+      style={
+        Object {
+          "backgroundColor": "rgba(220, 4, 81, 1)",
+          "borderRadius": 20,
+          "flex": 1,
+          "height": 40,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "alignSelf": "center",
+            "flex": 1,
+            "flexDirection": "row",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontFamily": "gotham-rounded-medium",
+              "fontSize": 20,
+            }
+          }>
+          Cancel
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
