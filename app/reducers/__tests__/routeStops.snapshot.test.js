@@ -1,5 +1,6 @@
 import routeStops, { initialState } from '../../reducers/routeStops'
 import { requestRouteStops, receiveRouteStops, requestError } from '../../actions/fetchRouteStops'
+import { resetState } from '../../actions/resetStateAction'
 
 describe('fetch route stops reducer', () =>
 {
@@ -22,4 +23,10 @@ describe('fetch route stops reducer', () =>
     {
         expect(routeStops(initialState, receiveRouteStops({stops: []}))).toMatchSnapshot()
     })
+
+    it('handles RESET_STATE action', () =>
+    {
+        expect(routeStops(initialState, resetState())).toMatchSnapshot()
+    })
+
 })

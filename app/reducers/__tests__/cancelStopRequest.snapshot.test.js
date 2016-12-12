@@ -1,5 +1,7 @@
 import cancelStopRequestReducer, { initialState } from '../../reducers/cancelStopRequest'
 import { cancelStopRequest, receiveStopRequestCancellationConfirmation, requestStopRequestCancellation, stopRequestCancellationError } from '../../actions/cancelStopRequest'
+import { resetState } from '../../actions/resetStateAction'
+
 describe('cancelStopRequest reducer', () =>
 {
     it('returns the same state on an unhandled action', () =>
@@ -20,4 +22,10 @@ describe('cancelStopRequest reducer', () =>
     it('handles STOPREQUEST_CANCELLATION_ERROR action', () => {
         expect(cancelStopRequestReducer(initialState, stopRequestCancellationError('error'))).toMatchSnapshot()
     })
+
+    it('handles RESET_STATE action', () =>
+    {
+        expect(cancelStopRequestReducer(initialState, resetState())).toMatchSnapshot()
+    })
+
 })

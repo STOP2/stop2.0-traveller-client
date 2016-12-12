@@ -1,5 +1,6 @@
 import departures, { initialState } from '../../reducers/departures'
 import { requestDepartures, receiveDepartures, requestError } from '../../actions/fetchDeparturesActions'
+import { resetState } from '../../actions/resetStateAction'
 
 describe('fetch reducer', () =>
 {
@@ -31,4 +32,10 @@ describe('fetch reducer', () =>
 
         expect(departures(initialState, receiveDepartures(departuresData))).toMatchSnapshot()
     })
+
+    it('handles RESET_STATE action', () =>
+    {
+        expect(departures(initialState, resetState())).toMatchSnapshot()
+    })
+
 })

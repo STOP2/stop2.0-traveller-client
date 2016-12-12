@@ -1,5 +1,6 @@
 import gpsLocation, { initialState } from '../../reducers/gpsLocation'
 import { setGpsLocation, gpsLocationError } from '../../actions/gpsLocationActions'
+import { resetState } from '../../actions/resetStateAction'
 
 describe('gps location reducer', () =>
 {
@@ -18,4 +19,10 @@ describe('gps location reducer', () =>
     {
         expect(gpsLocation(initialState, gpsLocationError(true))).toMatchSnapshot()
     })
+
+    it('handles RESET_STATE action', () =>
+    {
+        expect(gpsLocation(initialState, resetState())).toMatchSnapshot()
+    })
+
 })

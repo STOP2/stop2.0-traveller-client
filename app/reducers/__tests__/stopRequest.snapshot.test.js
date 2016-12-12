@@ -1,5 +1,6 @@
 import stopRequest, { initialState } from '../../reducers/stopRequest'
 import { requestStoprequest, receiveConfirm  } from '../../actions/sendStoprequest'
+import { resetState } from '../../actions/resetStateAction'
 
 describe('fetch reducer', () =>
 {
@@ -17,4 +18,10 @@ describe('fetch reducer', () =>
     {
         expect(stopRequest(initialState, requestStoprequest(1, 2, 'stop'))).toMatchSnapshot()
     })
+
+    it('handles RESET_STATE action', () =>
+    {
+        expect(stopRequest(initialState, resetState())).toMatchSnapshot()
+    })
+
 })
