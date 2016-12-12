@@ -110,7 +110,6 @@ class RouteStopsPage extends Component {
 
          (
            <View style={styles.flex1}>
-             <BoldTitleBar title={strings.routeStops} />
              <TitleBar title={`${this.props.vehicle.line} ${this.props.vehicle.destination}`} />
              {this.props.errorFetchingStops ? <DefaultText style={styles.error}>{strings.backendError}</DefaultText> : null}
              <RouteListHeader />
@@ -140,31 +139,46 @@ class RouteStopsPage extends Component {
 
 
   render() {
+    let viewElement;
+
+    if (this.props.routeIsReady) {
+      viewElement = this.renderList();
+    } else if (this.props.errorFetchingStops) {
+      viewElement = (
+        <View style={styles.spinnerContainer}>
+          <View style={styles.spinnerBackground}>
+            <DefaultText style={styles.fetchDeparturesError}>
+              {strings.fetchDeparturesError}
+            </DefaultText>
+          </View>
+        </View>);
+    } else {
+      viewElement = this.renderSpinner();
+    }
+
     return (<AccessibilityView name={this.sceneName} style={styles.flex1}>
-      {this.props.routeIsReady ? this.renderList() : this.renderSpinner() }
+      <BoldTitleBar title={strings.routeStops} />
+      {viewElement}
     </AccessibilityView>);
   }
 }
 
-const mapStateToProps = (state, ownprops) =>
-   ({
-     routeStops: state.routeStops.routeStops,
-     isFetchingStops: state.routeStops.isFetchingStops,
-     routeIsReady: state.routeStops.routeIsReady,
-     errorFetchingStops: state.routeStops.errorFetchingStops,
-     scene: state.routes.scene,
-     vehicle: ownprops.vehicle ? ownprops.vehicle : state.stopRequest.currentVehicle,
-     stop: state.stopRequest.startStop,
-   })
-;
+const mapStateToProps = (state, ownprops) => ({
+  routeStops: state.routeStops.routeStops,
+  isFetchingStops: state.routeStops.isFetchingStops,
+  routeIsReady: state.routeStops.routeIsReady,
+  errorFetchingStops: state.routeStops.errorFetchingStops,
+  scene: state.routes.scene,
+  vehicle: ownprops.vehicle ? ownprops.vehicle : state.stopRequest.currentVehicle,
+  stop: state.stopRequest.startStop,
+});
 
 const mapDispatchToProps = dispatch =>
    ({
      fetchRouteStops: (tripId) => {
        dispatch(fetchRouteStops(tripId));
      },
-   })
-;
+   });
 
 RouteStopsPage.propTypes = {
   fetchRouteStops: React.PropTypes.func.isRequired,

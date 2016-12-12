@@ -153,7 +153,7 @@ class VehiclesPage extends Component {
   render() {
     let viewElement
 
-    if (!this.state.locatingUser) {
+    if (!this.state.locatingUser && this.props.vehiclesReady) {
       viewElement = this.renderList();
     } else if (this.props.beaconError != null) {
       viewElement = this.renderFetchError();
@@ -178,6 +178,7 @@ const mapStateToProps = state =>
      beaconError: state.beacons.vehicleBeaconError,
      scene: state.routes.scene,
      vehicles: state.vehicles.vehicles,
+     vehiclesReady: state.vehicles.isReady,
    })
 ;
 

@@ -13,7 +13,7 @@ export const requestRouteStops = function requestRouteStops(tripId) {
 };
 
 export const receiveRouteStops = function receiveRouteStops(json) {
-  if (json.error) throw json.error;
+  if (json.error) throw json.error
 
   return {
     type: RECEIVE_ROUTE_STOPS,
@@ -27,7 +27,6 @@ export const receiveRouteStops = function receiveRouteStops(json) {
 export const requestError = function requestError(error) {
   return {
     type: REQUEST_ROUTE_STOPS_ERROR,
-    sentStoprequest: false,
     error,
   };
 };

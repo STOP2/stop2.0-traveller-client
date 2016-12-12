@@ -8,6 +8,7 @@ import styles from '../styles/stylesheet';
 import strings from '../resources/translations';
 import { getBeaconData } from '../actions/beaconLocationActions';
 import { getGpsLocation, clearWatchLocation } from '../actions/gpsLocationActions';
+import { resetState } from '../actions/resetStateAction';
 
 class StartViewButtons extends Component {
   constructor() {
@@ -21,6 +22,7 @@ class StartViewButtons extends Component {
 
   componentWillReceiveProps = (props) => {
     if (props.scene.name === 'start') {
+      this.props.resetState();
       this.props.getGpsLocation();
       this.props.getBeaconData();
     }
@@ -91,6 +93,9 @@ const mapDispatchToProps = (dispatch) => {
     clearWatchLocation: () => {
       dispatch(clearWatchLocation());
     },
+    resetState: () => {
+      dispatch(resetState());
+    },
   };
 };
 
@@ -98,6 +103,7 @@ StartViewButtons.propTypes = {
   getBeaconData: React.PropTypes.func.isRequired,
   getGpsLocation: React.PropTypes.func.isRequired,
   clearWatchLocation: React.PropTypes.func.isRequired,
+  resetState: React.PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StartViewButtons);
