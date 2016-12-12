@@ -6,4 +6,14 @@ describe('beacon location actions', () =>
     {
         expect(setBeaconData({beaconData: []})).toMatchSnapshot()
     })
+
+    it('creates a REQUEST_BEACON_DATA action', () =>
+    {
+        expect(requestBeaconData()).toMatchSnapshot()
+    })
+
+    it('creates a BEACON_ERROR action', () =>
+    {
+        expect(beaconError(true)).toMatchSnapshot()
+    })
 })
