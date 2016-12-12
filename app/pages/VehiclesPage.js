@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, ListView, View } from 'react-native';
+import { ActivityIndicator, ListView, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 
 import { DefaultText } from '../components/textComponents';
 import { BoldTitleBar } from '../components/TitleBar';
 import AccessibilityView from '../components/AccessibilityView';
+import VehicleListRow from '../components/VehicleListRow';
 
 import styles from '../styles/stylesheet';
 import strings from '../resources/translations';
@@ -23,17 +25,14 @@ class VehiclesPage extends Component {
     });
 
     this.state = {
-      dataBlob: {},
-      dataSource: ds.cloneWithRowsAndSections({}, []),
-      vehicles: [],
-      stopCount: 0,
+      dataSource: ds.cloneWithRows([]),
       locatingUser: true,
     };
     this.sceneName = 'vehicles';
   }
 
   componentWillMount = () => {
-    this.checkIfLocationExists(this.props);
+    //this.checkIfLocationExists(this.props);
   }
   componentWillUnmount = () => {
     clearInterval(this.fetchInterval);
@@ -63,70 +62,66 @@ class VehiclesPage extends Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    console.log('VEHICLES:');
-    console.log(this.state.vehicles);
-    console.log(nextProps.vehicles);
     if (nextProps.scene.name != this.sceneName) return;
 
     if (this.state.locatingUser) {
       this.checkIfLocationExists(nextProps);
     } else {
       if (!this.fetchInterval) {
-              //  this.props.getGpsLocation()
-              //  this.checkIfLocationExists(nextProps)
+        this.checkIfLocationExists(nextProps);
       }
 
-      if (nextProps.stops.length > 0) {
-        const tempDataBlob = Object.assign({}, this.state.dataBlob);
-        const stopsTemp = this.state.stops;
-        const sections = [];
+      if (nextProps.vehicles.length > 0) {
+        const vehicles = JSON.parse(JSON.stringify(nextProps.vehicles));
 
-        for (let index = 0; index < nextProps.stops.length; index++) {
-          const sectionID = nextProps.stops[index].stop.stop_id;
-
-          sections.push(sectionID);
-          tempDataBlob[sectionID] = nextProps.stops[index].stop.schedule;
-
-          stopsTemp[nextProps.stops[index].stop.stop_id] = nextProps.stops[index].stop;
-        }
         this.setState({
-          dataBlob: tempDataBlob,
-          dataSource: this.state.dataSource.cloneWithRowsAndSections(tempDataBlob, sections),
-          stops: stopsTemp,
-          stopCount: nextProps.stops.length,
+          dataSource: this.state.dataSource.cloneWithRows(vehicles),
         });
       }
     }
   }
 
-  render() {
-    let viewElement;
+  renderRow = (renderData) => {
+    const goToRouteStopsPage = () => {
+      clearInterval(this.fetchInterval);
+      this.fetchInterval = false;
 
-    if (!this.state.locatingUser) // fetchingVehicles
-        {
-      viewElement = (<DefaultText>stop beacon:{'\n'}
-        {this.props.beaconData[0].major}
-        {this.props.beaconData[0].minor}
-      </DefaultText>);
-    } else if (this.props.beaconError != null) {
-      viewElement = this.renderFetchError();
-    } else if (this.state.locatingUser) {
-      viewElement = this.renderSpinner(strings.gettingLocation);
-    } else {
-      viewElement = this.renderSpinner(strings.loadingDepartures);
-    }
+      Actions.routeStops({vehicle: renderData});
+    };
 
     return (
-      <AccessibilityView style={styles.flex1} name={this.sceneName}>
-        <BoldTitleBar title={strings.nearestVehicles} noBorder />
-        {viewElement}
-      </AccessibilityView>
-    );
+      <TouchableOpacity accessibilityComponentType="button" onPress={goToRouteStopsPage}>
+        <VehicleListRow
+          vehicleType={renderData.vehicle_type}
+          line={renderData.line}
+          destination={renderData.destination}
+        />
+      </TouchableOpacity>);
   }
 
-  renderSeparator = (sectionID, rowID) =>
+  renderSeparator = () => {
+    return (<View style={styles.rowSeparator}></View>)
+  }
 
-         (<View key={`${sectionID}-${rowID}`} style={styles.rowSeparator} />)
+  renderFooter = () => {
+    return (
+      <View>
+        <ActivityIndicator animating={this.props.gettingBeaconData}/>
+      </View>
+      )
+  }
+
+  renderList = () =>
+    (
+    <View style={styles.flex1}>
+      <ListView
+        enableEmptySections={true}
+        dataSource={this.state.dataSource}
+        renderRow={this.renderRow}
+        renderFooter={this.renderFooter}
+        renderSeparator={this.renderSeparator}
+      />
+    </View>)
 
 
   renderFetchError = () =>
@@ -141,7 +136,7 @@ class VehiclesPage extends Component {
            </View>
         )
 
-  renderSpinner = text =>
+  renderSpinner = (text) =>
 
          (
            <View style={styles.spinnerContainer}>
@@ -157,6 +152,26 @@ class VehiclesPage extends Component {
            </View>
         )
 
+  render() {
+    let viewElement = this.renderList();
+
+          /*if (!this.state.locatingUser) // fetchingVehicles
+              {
+            viewElement = this.renderList();
+          } else if (this.props.beaconError != null) {
+            viewElement = this.renderFetchError();
+          } else if (this.state.locatingUser) {
+            viewElement = this.renderSpinner(strings.gettingLocation);
+          } else {
+            viewElement = this.renderSpinner(strings.loadingDepartures);
+          }*/
+          return (
+            <AccessibilityView style={styles.flex1} name={this.sceneName}>
+              <BoldTitleBar title={strings.nearestVehicles} noBorder />
+              {viewElement}
+            </AccessibilityView>
+          );
+    }
   }
 
 const mapStateToProps = state =>
