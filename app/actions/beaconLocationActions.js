@@ -103,7 +103,8 @@ let getData = async function(dispatch)
   // Print a log of the detected iBeacons (1 per 5 second)
     DeviceEventEmitter.addListener('beaconsDidRange', (data) =>
     {
-        if (attempts == 5)
+        console.log(data)
+        if (attempts == 15)
         {
             Beacons.stopRangingBeaconsInRegion('STOPS', beaconId)
             Beacons.stopRangingBeaconsInRegion('BUSSES', vehicleBeaconId)
@@ -154,6 +155,7 @@ let getData = async function(dispatch)
 
             if (vehicleBeacons.length > 0)
             {
+                console.log('vehicleBeacons')
                 dispatch(setBusBeaconData(vehicleBeacons))
                 Beacons.stopRangingBeaconsInRegion('BUSSES', vehicleBeaconId)
                 vehicleBeaconsFound = true

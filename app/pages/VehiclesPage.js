@@ -35,7 +35,7 @@ class VehiclesPage extends Component {
 
     componentWillMount = () =>
     {
-        this.createInterval(this.props)
+        this.checkIfLocationExists(this.props)
     }
     componentWillUnmount = () =>
     {
@@ -55,14 +55,36 @@ class VehiclesPage extends Component {
         }, UPDATE_INTERVAL_IN_SECS * 1000)
     }
 
+    checkIfLocationExists(props)
+    {
+        if (props.gettingBeaconData == false && props.beaconError == null)
+        {
+            console.log('####################!!!!##################')
+            console.log(props.beaconData)
+            props.fetchVehicles(props.beaconData)
+            this.createInterval(props, true)
+            this.setState({locatingUser: false})
+        }
+        else if (props.gettingBeaconData == false && props.beaconError != null)
+        {
+            console.log('beacon fetch errored')
+        }
+        else
+        {
+            return false
+        }
+    }
+
     componentWillReceiveProps = (nextProps) =>
     {
-      console.log(nextProps)
+        console.log('VEHICLES:')
+        console.log(this.state.vehicles)
+        console.log(nextProps.vehicles)
         if (nextProps.scene.name != this.sceneName) return
 
         if (this.state.locatingUser)
         {
-          //  this.checkIfLocationExists(nextProps)
+            this.checkIfLocationExists(nextProps)
         }
         else
         {
@@ -101,23 +123,23 @@ class VehiclesPage extends Component {
     {
         let viewElement
 
-      if (!this.props.gettingBeaconData) //fetchingVehicles
-      {
+        if (!this.state.locatingUser) // fetchingVehicles
+        {
           viewElement =  <DefaultText>stop beacon:{'\n'}
           {this.props.beaconData[0].major}
           {this.props.beaconData[0].minor}
             </DefaultText>
-
-          //  vehicleType={this.props.vehicle.vehicle_type} vehicleLine={this.props.vehicle.line}
-          //  vehicleDestination={this.props.vehicle.destination}
-        // this.renderList()
-      }
+          }
         else if (this.props.beaconError != null)
-      {
+        {
             viewElement = this.renderFetchError()
         }
+        else if (this.state.locatingUser)
+        {
+            viewElement = this.renderSpinner(strings.gettingLocation)
+        }
         else
-      {
+        {
             viewElement = this.renderSpinner(strings.loadingDepartures)
         }
 
@@ -166,13 +188,13 @@ class VehiclesPage extends Component {
 
 const mapStateToProps = (state) =>
   {
-    console.log(state.beacons)
     return {
-      beaconData: state.beacons.vehicleBeaconData,
-      gettingBeaconData: state.beacons.vehicleBeaconData,
-      beaconError: state.beacons.vehicleBeaconError,
-      scene: state.routes.scene
-  }
+        beaconData: state.beacons.vehicleBeaconData,
+        gettingBeaconData: state.beacons.gettingVehicleBeaconData,
+        beaconError: state.beacons.vehicleBeaconError,
+        scene: state.routes.scene,
+        vehicles: state.vehicles.vehicles
+    }
 }
 
   const mapDispatchToProps = (dispatch) =>
