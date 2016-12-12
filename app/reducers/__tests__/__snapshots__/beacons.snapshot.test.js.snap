@@ -3,6 +3,9 @@ Object {
   "beaconData": Object {},
   "beaconError": true,
   "gettingBeaconData": false,
+  "gettingVehicleBeaconData": false,
+  "vehicleBeaconData": Array [],
+  "vehicleBeaconError": null,
 }
 `;
 
@@ -13,6 +16,9 @@ Object {
   },
   "beaconError": null,
   "gettingBeaconData": false,
+  "gettingVehicleBeaconData": false,
+  "vehicleBeaconData": Array [],
+  "vehicleBeaconError": null,
 }
 `;
 
@@ -21,5 +27,8 @@ Object {
   "beaconData": Object {},
   "beaconError": null,
   "gettingBeaconData": false,
+  "gettingVehicleBeaconData": false,
+  "vehicleBeaconData": Array [],
+  "vehicleBeaconError": null,
 }
 `;
