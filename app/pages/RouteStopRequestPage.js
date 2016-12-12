@@ -42,14 +42,14 @@ class RouteStopRequestPage extends Component{
         {
             if (!props.isFetchingStops)
             {
-                props.fetchRouteStops(this.props.vehicle.trip_id, this.props.startStop.stopId, true)
+                props.fetchRouteStops(this.props.vehicle.trip_id)
             }
         }, UPDATE_INTERVAL_IN_SECS * 1000)
     }
 
     componentWillMount = () =>
     {
-        this.props.fetchRouteStops(this.props.vehicle.trip_id, this.props.startStop.stopId, true)
+        this.props.fetchRouteStops(this.props.vehicle.trip_id)
         this.createInterval(this.props)
         BackAndroid.addEventListener('hardwareBackPress', this.backAndroidHandler)
     }
@@ -77,7 +77,8 @@ class RouteStopRequestPage extends Component{
         {
             let routeStop = nextProps.routeStops[index]
 
-            if (routeStop.stop_code == this.props.startStop.stopCode || routeStop.stop_code == this.props.stop.stopCode)
+            if (this.props.startStop != null && routeStop.stop_code == this.props.startStop.stopCode ||
+                routeStop.stop_code == this.props.stop.stopCode)
             {
                 let minutesLeft = ''
 
@@ -94,13 +95,13 @@ class RouteStopRequestPage extends Component{
                     minutesLeft = routeStop.arrives_in + ' ' + strings.minutes
                 }
 
-                if (routeStop.stop_code == this.props.startStop.stopCode)
+                if (routeStop.stop_code == this.props.stop.stopCode)
                 {
-                    this.setState({minutesLeftToStart: minutesLeft})
+                    this.setState({minutesLeftToEnd: minutesLeft})
                 }
                 else
                 {
-                    this.setState({minutesLeftToEnd: minutesLeft})
+                    this.setState({minutesLeftToStart: minutesLeft})
                 }
             }
         }
@@ -156,11 +157,20 @@ class RouteStopRequestPage extends Component{
 
     renderRouteInfo = () =>
     {
+        let startStopView = null
+
+        if (this.props.startStop != null)
+        {
+            startStopView = <View>
+                              <RouteInfoForStop stopName={this.props.startStop.stopName}
+                                                stopCode={this.props.startStop.stopCode}
+                                                vehicleMinutesLeft={this.state.minutesLeftToStart}/>
+                            </View>
+        }
+
         return (
           <View>
-            <View>
-              <RouteInfoForStop stopName={this.props.startStop.stopName} stopCode={this.props.startStop.stopCode} vehicleMinutesLeft={this.state.minutesLeftToStart}/>
-            </View>
+            {startStopView}
             <View>
               <RouteInfoForStop stopName={this.props.stop.stopName} stopCode={this.props.stop.stopCode} vehicleMinutesLeft={this.state.minutesLeftToEnd}/>
             </View>
@@ -281,8 +291,6 @@ class RouteStopRequestPage extends Component{
 
 const mapStateToProps = (state) =>
 {
-    console.log(state)
-
     return {
         routeStops: state.routeStops.routeStops,
         isFetchingStops: state.routeStops.isFetchingStops,
@@ -305,9 +313,9 @@ const mapDispatchToProps = (dispatch) =>
        {
             dispatch(sendStoprequest(busId, stopId, fcmToken, fromVehicle))
         },
-        fetchRouteStops: (tripId, BusId, current) =>
+        fetchRouteStops: (tripId) =>
         {
-            dispatch(fetchRouteStops(tripId, BusId, current))
+            dispatch(fetchRouteStops(tripId))
         },
         cancelStopRequest: (requestId, cancelStopRequestCallback) =>
         {
