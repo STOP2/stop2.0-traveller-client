@@ -25,10 +25,10 @@ export const gpsLocationError = function gpsLocationError(error) {
   };
 };
 
-export const getGpsLocation = function getGpsLocation() {
+export const getGpsLocation = function getGpsLocation(locationFunction) {
   return (dispatch) => {
     dispatch(requestGpsLocation());
-    navigator.geolocation.getCurrentPosition((position) => {
+    locationFunction((position) => {
       dispatch(setGpsLocation(position.coords));
     },
     (error) => {

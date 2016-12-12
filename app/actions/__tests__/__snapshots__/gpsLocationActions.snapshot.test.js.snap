@@ -22,3 +22,34 @@ Object {
   "type": "SET_GPS_LOCATION",
 }
 `;
+
+exports[`gps location actions returns a location object 1`] = `
+Array [
+  Object {
+    "gettingGpsLocation": true,
+    "type": "REQUEST_GPS_LOCATION",
+  },
+  Object {
+    "gettingGpsLocation": false,
+    "gpsLocationData": Object {
+      "latitude": 60.203978,
+      "longitude": 24.9633573,
+    },
+    "type": "SET_GPS_LOCATION",
+  },
+]
+`;
+
+exports[`gps location actions returns a location object 2`] = `
+Array [
+  Object {
+    "gettingGpsLocation": true,
+    "type": "REQUEST_GPS_LOCATION",
+  },
+  Object {
+    "error": "Failed to get location",
+    "gettingGpsLocation": false,
+    "type": "GPS_LOCATION_ERROR",
+  },
+]
+`;
