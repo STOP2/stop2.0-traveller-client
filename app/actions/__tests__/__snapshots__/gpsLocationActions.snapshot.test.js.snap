@@ -1,3 +1,18 @@
+exports[`gps location actions creates a GPS_LOCATION_ERROR action 1`] = `
+Object {
+  "error": true,
+  "gettingGpsLocation": false,
+  "type": "GPS_LOCATION_ERROR",
+}
+`;
+
+exports[`gps location actions creates a REQUEST_GPS_LOCATION action 1`] = `
+Object {
+  "gettingGpsLocation": true,
+  "type": "REQUEST_GPS_LOCATION",
+}
+`;
+
 exports[`gps location actions creates a SET_GPS_LOCATION action 1`] = `
 Object {
   "gettingGpsLocation": false,

@@ -1,0 +1,6 @@
+exports[`sendStoprequest actions should handle REQUEST_ERROR action 1`] = `
+Object {
+  "error": true,
+  "type": "REQUEST_ERROR",
+}
+`;

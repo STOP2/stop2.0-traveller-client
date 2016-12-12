@@ -23,3 +23,11 @@ Array [
   },
 ]
 `;
+
+exports[`fetchRouteStops actions should handle REQUEST_ROUTE_STOPS_ERROR action 1`] = `
+Object {
+  "error": true,
+  "sentStoprequest": false,
+  "type": "REQUEST_ROUTE_STOPS_ERROR",
+}
+`;
