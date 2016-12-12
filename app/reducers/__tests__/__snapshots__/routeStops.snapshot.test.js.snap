@@ -26,6 +26,15 @@ Object {
 }
 `;
 
+exports[`fetch route stops reducer handles RESET_STATE action 1`] = `
+Object {
+  "errorFetchingStops": false,
+  "isFetchingStops": false,
+  "routeIsReady": false,
+  "routeStops": Object {},
+}
+`;
+
 exports[`fetch route stops reducer returns the same state on an unhandled action 1`] = `
 Object {
   "errorFetchingStops": false,

@@ -1,3 +1,14 @@
+exports[`cancelStopRequest reducer handles RESET_STATE action 1`] = `
+Object {
+  "isCancellingDestinationStopRequest": false,
+  "isCancellingFromStopRequest": false,
+  "stopRequestDestinationCancellationError": null,
+  "stopRequestDestinationCancelled": false,
+  "stopRequestFromCancellationError": null,
+  "stopRequestFromCancelled": false,
+}
+`;
+
 exports[`cancelStopRequest reducer handles SEND_STOPREQUEST_CANCELLATION action 1`] = `
 Object {
   "isCancellingDestinationStopRequest": false,

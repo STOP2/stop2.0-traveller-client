@@ -13,6 +13,21 @@ Object {
 }
 `;
 
+exports[`fetch reducer handles RESET_STATE action 1`] = `
+Object {
+  "currentVehicle": null,
+  "destinationRequestId": null,
+  "error": false,
+  "fromRequestId": null,
+  "isFetching": false,
+  "isReady": false,
+  "sentStoprequestFromStop": false,
+  "sentStoprequestFromVehicle": false,
+  "startStop": null,
+  "stops": Array [],
+}
+`;
+
 exports[`fetch reducer handles SEND_STOPREQUEST action 1`] = `
 Object {
   "currentVehicle": null,

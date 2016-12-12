@@ -1,3 +1,9 @@
+exports[`fcm reducer handles RESET_STATE action 1`] = `
+Object {
+  "token": null,
+}
+`;
+
 exports[`fcm reducer handles SET_FCM_TOKEN action 1`] = `
 Object {
   "token": 12345,
