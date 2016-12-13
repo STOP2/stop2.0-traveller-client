@@ -7,6 +7,7 @@ Object {
   "isFetching": false,
   "isReady": false,
   "sentStoprequestFromStop": true,
+  "sentStoprequestFromVehicle": false,
   "startStop": Object {},
   "stops": Array [],
 }
@@ -20,6 +21,7 @@ Object {
   "fromRequestId": null,
   "isFetching": false,
   "isReady": false,
+  "sentStoprequestFromStop": false,
   "sentStoprequestFromVehicle": true,
   "startStop": null,
   "stops": Array [],
@@ -34,6 +36,8 @@ Object {
   "fromRequestId": null,
   "isFetching": false,
   "isReady": false,
+  "sentStoprequestFromStop": false,
+  "sentStoprequestFromVehicle": false,
   "startStop": null,
   "stops": Array [],
 }
@@ -47,6 +51,8 @@ Object {
   "fromRequestId": null,
   "isFetching": false,
   "isReady": false,
+  "sentStoprequestFromStop": false,
+  "sentStoprequestFromVehicle": false,
   "startStop": null,
   "stops": Array [],
 }
@@ -60,6 +66,8 @@ Object {
   "fromRequestId": null,
   "isFetching": false,
   "isReady": false,
+  "sentStoprequestFromStop": false,
+  "sentStoprequestFromVehicle": false,
   "startStop": null,
   "stops": Array [],
 }
@@ -73,6 +81,8 @@ Object {
   "fromRequestId": 123,
   "isFetching": false,
   "isReady": false,
+  "sentStoprequestFromStop": false,
+  "sentStoprequestFromVehicle": false,
   "startStop": null,
   "stops": Array [],
 }
@@ -86,6 +96,8 @@ Object {
   "fromRequestId": null,
   "isFetching": false,
   "isReady": false,
+  "sentStoprequestFromStop": false,
+  "sentStoprequestFromVehicle": false,
   "startStop": null,
   "stops": Array [],
 }
@@ -99,6 +111,8 @@ Object {
   "fromRequestId": null,
   "isFetching": false,
   "isReady": false,
+  "sentStoprequestFromStop": false,
+  "sentStoprequestFromVehicle": false,
   "startStop": null,
   "stops": Array [],
 }

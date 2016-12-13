@@ -33,30 +33,44 @@ export const getGpsLocation = function getGpsLocation(locationFunction) {
   return (dispatch) => {
     if (!watchId) {
       dispatch(requestGpsLocation());
-      navigator.geolocation.getCurrentPosition((position) => {
-        coords = position.coords
-        dispatch(setGpsLocation(coords));
-      },
-      (error) => {
-        dispatch(gpsLocationError(error));
-      },
-        {
-          enableHighAccuracy: false,
-          timeout: 60000,
-          maximumAge: 1000,
-        });
+      if (locationFunction) {
+        locationFunction((position) => {
+          dispatch(setGpsLocation(position.coords));
+        },
+        (error) => {
+          dispatch(gpsLocationError(error));
+        },
+          {
+            enableHighAccuracy: false,
+            timeout: 60000,
+            maximumAge: 1000,
+          });
+      } else {
+        navigator.geolocation.getCurrentPosition((position) => {
+          coords = position.coords
+          dispatch(setGpsLocation(coords));
+        },
+        (error) => {
+          dispatch(gpsLocationError(error));
+        },
+          {
+            enableHighAccuracy: false,
+            timeout: 60000,
+            maximumAge: 1000,
+          });
 
 
-      watchId = navigator.geolocation.watchPosition((position) => {
-        coords = position.coords;
-        dispatch(setGpsLocation(coords));
-      },
-      (error) => {},
-        {
-          enableHighAccuracy: false,
-          timeout: 60000,
-          maximumAge: 1000,
-        });
+        watchId = navigator.geolocation.watchPosition((position) => {
+          coords = position.coords;
+          dispatch(setGpsLocation(coords));
+        },
+        (error) => {},
+          {
+            enableHighAccuracy: false,
+            timeout: 60000,
+            maximumAge: 1000,
+          });
+      }
     } else if (coords) {
       dispatch(setGpsLocation(coords));
     } else {

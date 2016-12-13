@@ -18,11 +18,10 @@ Object {
 
 exports[`fetch route stops reducer handles REQUEST_ROUTE_STOPS_ERROR action 1`] = `
 Object {
-  "errorFetchingStops": false,
+  "errorFetchingStops": true,
   "isFetchingStops": false,
   "routeIsReady": false,
   "routeStops": Object {},
-  "sentStoprequest": false,
 }
 `;
 
