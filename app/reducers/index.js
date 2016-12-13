@@ -1,5 +1,6 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 
+<<<<<<< HEAD
 import departures from './departures'
 import stopRequest from './stopRequest'
 import routeStops from './routeStops'
@@ -19,5 +20,24 @@ const reducers = combineReducers({
     routes,
     vehicles
 })
+=======
+import departures from './departures';
+import stopRequest from './stopRequest';
+import routeStops from './routeStops';
+import gpsLocation from './gpsLocation';
+import beacons from './beacons';
+import pushNotifications from './pushNotifications';
+import routes from './routes';
 
-export default reducers
+const reducers = combineReducers({
+  departures,
+  stopRequest,
+  routeStops,
+  gpsLocation,
+  beacons,
+  pushNotifications,
+  routes,
+});
+>>>>>>> origin
+
+export default reducers;

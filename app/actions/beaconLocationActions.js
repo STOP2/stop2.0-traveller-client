@@ -74,6 +74,8 @@ const getData = async function getData(dispatch) {
     if (!beaconFound) dispatch(beaconError("Beacon didn't start ranging"));
     if (!vehicleBeaconsFound) dispatch(vehicleBeaconError("Beacon didn't start ranging"));
     tryingToFindBeacons = false;
+
+    return;
   }
 
   // Print a log of the detected iBeacons (1 per 5 second)

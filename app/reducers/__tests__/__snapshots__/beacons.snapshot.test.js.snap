@@ -9,6 +9,22 @@ Object {
 }
 `;
 
+exports[`beacon location reducer handles REQUEST_BEACON_DATA action 1`] = `
+Object {
+  "beaconData": Object {},
+  "beaconError": null,
+  "gettingBeaconData": true,
+}
+`;
+
+exports[`beacon location reducer handles RESET_STATE action 1`] = `
+Object {
+  "beaconData": Object {},
+  "beaconError": null,
+  "gettingBeaconData": false,
+}
+`;
+
 exports[`beacon location reducer handles SET_BEACON_DATA action 1`] = `
 Object {
   "beaconData": Object {

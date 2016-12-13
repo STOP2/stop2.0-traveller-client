@@ -51,7 +51,7 @@
     ],
     "collectCoverageFrom": [
       "app/**/*.{js,jsx}",
-      "!app/{config,store}/*",
+      "!app/{config,store,pages,containers}/*",
       "!app/reducers/index.js"
     ]
   },

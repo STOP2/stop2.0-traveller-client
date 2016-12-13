@@ -29,7 +29,7 @@ export const gpsLocationError = function gpsLocationError(error) {
   };
 };
 
-export const getGpsLocation = function getGpsLocation() {
+export const getGpsLocation = function getGpsLocation(locationFunction) {
   return (dispatch) => {
     if (!watchId) {
       dispatch(requestGpsLocation());

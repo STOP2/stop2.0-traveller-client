@@ -7,6 +7,24 @@ Object {
 }
 `;
 
+exports[`gps location reducer handles REQUEST_GPS_LOCATION action 1`] = `
+Object {
+  "error": null,
+  "gettingGpsLocation": true,
+  "gpsLocationData": Object {},
+  "locationPermissionError": null,
+}
+`;
+
+exports[`gps location reducer handles RESET_STATE action 1`] = `
+Object {
+  "error": null,
+  "gettingGpsLocation": false,
+  "gpsLocationData": Object {},
+  "locationPermissionError": null,
+}
+`;
+
 exports[`gps location reducer handles SET_GPS_LOCATION action 1`] = `
 Object {
   "error": null,

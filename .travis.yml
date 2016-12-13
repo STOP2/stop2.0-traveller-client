@@ -30,7 +30,7 @@ script:
 before_install:
 - nvm install 6
 - node --version
-- openssl aes-256-cbc -K $encrypted_3aca4c1762c3_key -iv $encrypted_3aca4c1762c3_iv -in secrets.tar.enc -out secrets.tar -d
+- openssl aes-256-cbc -K $encrypted_500d072b0f10_key -iv $encrypted_500d072b0f10_iv -in secrets.tar.enc -out secrets.tar -d
 - tar xvf secrets.tar
 - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
 before_deploy:

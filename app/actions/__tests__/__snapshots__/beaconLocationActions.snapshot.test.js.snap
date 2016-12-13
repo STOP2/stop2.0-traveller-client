@@ -1,3 +1,18 @@
+exports[`beacon location actions creates a BEACON_ERROR action 1`] = `
+Object {
+  "beaconError": true,
+  "gettingBeaconData": false,
+  "type": "BEACON_ERROR",
+}
+`;
+
+exports[`beacon location actions creates a REQUEST_BEACON_DATA action 1`] = `
+Object {
+  "gettingBeaconData": true,
+  "type": "REQUEST_BEACON_DATA",
+}
+`;
+
 exports[`beacon location actions creates a SET_BEACON_DATA action 1`] = `
 Object {
   "beaconData": Object {

@@ -35,7 +35,7 @@ class StartView extends Component {
 
             if (granted)
             {
-                this.props.getGpsLocation()
+                this.props.getGpsLocation(navigator.geolocation.getCurrentPosition)
             }
             else
             {
@@ -88,7 +88,7 @@ const mapDispatchToProps = (dispatch) =>
     return {
         getGpsLocation: () =>
         {
-            dispatch(getGpsLocation())
+            dispatch(getGpsLocation(navigator.geolocation.getCurrentPosition))
         },
         getBeaconData: () =>
         {

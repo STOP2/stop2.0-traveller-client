@@ -4,9 +4,9 @@ export const SEND_STOPREQUEST_FROM_CANCELLATION = 'SEND_STOPREQUEST_FROM_CANCELL
 export const STOPREQUEST_FROM_CANCELLED = 'STOPREQUEST_FROM_CANCELLED';
 export const STOPREQUEST_FROM_CANCELLATION_ERROR = 'STOPREQUEST_FROM_CANCELLATION_ERROR';
 
-export const SEND_STOPREQUEST_DESTINATION_CANCELLATION = 'SEND_STOPREQUEST_CANCELLATION';
-export const STOPREQUEST_DESTINATION_CANCELLED = 'STOPREQUEST_CANCELLED';
-export const STOPREQUEST_DESTINATION_CANCELLATION_ERROR = 'STOPREQUEST_CANCELLATION_ERROR';
+export const SEND_STOPREQUEST_DESTINATION_CANCELLATION = 'SEND_STOPREQUEST_DESTINATION_CANCELLATION';
+export const STOPREQUEST_DESTINATION_CANCELLED = 'STOPREQUEST_DESTINATION_CANCELLED';
+export const STOPREQUEST_DESTINATION_CANCELLATION_ERROR = 'STOPREQUEST_DESTINATION_CANCELLATION_ERROR';
 
 const API_ENDPOINT = '/stoprequests/cancel';
 
@@ -39,11 +39,11 @@ function stopRequestCancellationError(fromVehicle, error) {
   };
 };
 
-export const cancelStopRequest = function cancelStopRequest(requestId, fromVehicle) {
+export const cancelStopRequest = function (requestId, fromVehicle) {
   return (dispatch) => {
-    dispatch(requestStopRequestCancellation());
+    dispatch(requestStopRequestCancellation(fromVehicle));
 
-    return fetch(`${config.API_URL}${API_ENDPOINT}?request_id=${requestId}`, {
+    return fetch(`${config.API_URL + API_ENDPOINT}?request_id=${requestId}`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

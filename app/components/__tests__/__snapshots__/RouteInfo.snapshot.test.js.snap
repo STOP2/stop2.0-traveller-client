@@ -1,4 +1,4 @@
-exports[`RouteInfo component renders correctly 1`] = `
+exports[`RouteInfo component renders correctly as a bus 1`] = `
 <View
   accessibilityLiveRegion="polite"
   accessible={true}
@@ -100,6 +100,457 @@ exports[`RouteInfo component renders correctly 1`] = `
         ]
       }>
       5 min
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`RouteInfo component renders correctly as a bus with minutesLeft as strings.now 1`] = `
+<View
+  accessibilityLiveRegion="polite"
+  accessible={true}
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "center",
+    }
+  }>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "marginBottom": 20,
+      }
+    }>
+    <Image
+      resizeMode="contain"
+      source={1}
+      style={
+        Object {
+          "height": 50,
+          "width": 50,
+        }
+      } />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "marginLeft": 10,
+        }
+      }>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": "gotham-rounded-book",
+            },
+            Object {
+              "flex": 1,
+              "fontSize": 20,
+              "textAlign": "center",
+            },
+          ]
+        }>
+        506
+         
+        Meilahti
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "marginBottom": 2,
+      }
+    }>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": "gotham-rounded-book",
+          },
+          Object {
+            "fontSize": 20,
+            "textAlign": "center",
+          },
+        ]
+      }>
+      Arrives 
+       
+      
+    </Text>
+  </View>
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": "gotham-rounded-book",
+          },
+          Object {
+            "fontSize": 40,
+            "textAlign": "center",
+          },
+        ]
+      }>
+      Now
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`RouteInfo component renders correctly as a tram 1`] = `
+<View
+  accessibilityLiveRegion="polite"
+  accessible={true}
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "center",
+    }
+  }>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "marginBottom": 20,
+      }
+    }>
+    <Image
+      resizeMode="contain"
+      source={1}
+      style={
+        Object {
+          "height": 50,
+          "width": 50,
+        }
+      } />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "marginLeft": 10,
+        }
+      }>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": "gotham-rounded-book",
+            },
+            Object {
+              "flex": 1,
+              "fontSize": 20,
+              "textAlign": "center",
+            },
+          ]
+        }>
+        506
+         
+        Meilahti
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "marginBottom": 2,
+      }
+    }>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": "gotham-rounded-book",
+          },
+          Object {
+            "fontSize": 20,
+            "textAlign": "center",
+          },
+        ]
+      }>
+      Arrives 
+       
+      in
+    </Text>
+  </View>
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": "gotham-rounded-book",
+          },
+          Object {
+            "fontSize": 40,
+            "textAlign": "center",
+          },
+        ]
+      }>
+      5 min
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`RouteInfo component renders correctly as a tram with minutesLeft as strings.now 1`] = `
+<View
+  accessibilityLiveRegion="polite"
+  accessible={true}
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "center",
+    }
+  }>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "marginBottom": 20,
+      }
+    }>
+    <Image
+      resizeMode="contain"
+      source={1}
+      style={
+        Object {
+          "height": 50,
+          "width": 50,
+        }
+      } />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "marginLeft": 10,
+        }
+      }>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": "gotham-rounded-book",
+            },
+            Object {
+              "flex": 1,
+              "fontSize": 20,
+              "textAlign": "center",
+            },
+          ]
+        }>
+        506
+         
+        Meilahti
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "marginBottom": 2,
+      }
+    }>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": "gotham-rounded-book",
+          },
+          Object {
+            "fontSize": 20,
+            "textAlign": "center",
+          },
+        ]
+      }>
+      Arrives 
+       
+      
+    </Text>
+  </View>
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": "gotham-rounded-book",
+          },
+          Object {
+            "fontSize": 40,
+            "textAlign": "center",
+          },
+        ]
+      }>
+      Now
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`RouteInfoForStop component renders correctly 1`] = `
+<View
+  accessibilityLiveRegion="polite"
+  accessible={true}
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "center",
+    }
+  }>
+  <View
+    style={
+      Object {
+        "marginBottom": 2,
+      }
+    }>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": "gotham-rounded-book",
+          },
+          Object {
+            "fontSize": 20,
+            "textAlign": "center",
+          },
+        ]
+      }>
+      Arrives at
+       
+      HSL
+       (
+      123
+      ) 
+      in
+      :
+    </Text>
+  </View>
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": "gotham-rounded-book",
+          },
+          Object {
+            "fontSize": 40,
+            "textAlign": "center",
+          },
+        ]
+      }>
+      5 min
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`RouteInfoForStop component renders correctly with minutesLeft as strings.now 1`] = `
+<View
+  accessibilityLiveRegion="polite"
+  accessible={true}
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "center",
+    }
+  }>
+  <View
+    style={
+      Object {
+        "marginBottom": 2,
+      }
+    }>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": "gotham-rounded-book",
+          },
+          Object {
+            "fontSize": 20,
+            "textAlign": "center",
+          },
+        ]
+      }>
+      Arrives at
+       
+      HSL
+       (
+      123
+      ) 
+      
+      :
+    </Text>
+  </View>
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": "gotham-rounded-book",
+          },
+          Object {
+            "fontSize": 40,
+            "textAlign": "center",
+          },
+        ]
+      }>
+      Now
     </Text>
   </View>
 </View>

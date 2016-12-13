@@ -1,17 +1,20 @@
-import { SET_FCM_TOKEN } from '../actions/fcmActions'
+import { SET_FCM_TOKEN } from '../actions/fcmActions';
+import { RESET_STATE } from '../actions/resetStateAction';
 
-export let initialState = {token: null}
+export const initialState = { token: null };
 
-const pushNotifications = (state = initialState, action) =>
-{
-    switch (action.type)
-  {
+const pushNotifications = (state = initialState, action) => {
+  switch (action.type) {
     case SET_FCM_TOKEN:
-        return Object.assign({}, state, {token: action.token})
+      return Object.assign({}, state, { token: action.token });
+
+    case RESET_STATE:
+      return Object.assign({}, state, initialState);
+
 
     default:
-        return state
-    }
-}
+      return state;
+  }
+};
 
-export default pushNotifications
+export default pushNotifications;
