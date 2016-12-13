@@ -49,7 +49,6 @@ class StartViewButtons extends Component {
           })
           .catch((error) => Alert.alert(error))
         } else {
-          this.props.getBeaconData();
           this.props.clearWatchLocation();
           Actions.vehicles();
         }

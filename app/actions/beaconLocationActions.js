@@ -32,7 +32,7 @@ export const setBusBeaconData = function setBusBeaconData(beaconData) {
   return {
     type: SET_VEHICLE_BEACON_DATA,
     beaconData,
-    gettingBeaconData: false,
+    gettingVehicleBeaconData: false,
   };
 };
 
@@ -40,6 +40,7 @@ export const requestBeaconData = function requestBeaconData() {
   return {
     type: REQUEST_BEACON_DATA,
     gettingBeaconData: true,
+    gettingVehicleBeaconData: true
   };
 };
 
@@ -60,12 +61,6 @@ export const vehicleBeaconError = function vehicleBeaconError(error) {
 };
 
 const getData = async function getData(dispatch) {
-  tryingToFindBeacons = true;
-
-  attempts = 0;
-  beaconFound = false;
-  vehicleBeaconsFound = false;
-
   Beacons.detectIBeacons();
   Beacons.setForegroundScanPeriod(FOREGROUND_SCAN_PERIOD);
   Beacons.setBackgroundScanPeriod(BACKGROUND_SCAN_PERIOD);
@@ -73,13 +68,17 @@ const getData = async function getData(dispatch) {
   try {
     await Beacons.startRangingBeaconsInRegion('STOPS', beaconId);
     await Beacons.startRangingBeaconsInRegion('BUSSES', vehicleBeaconId);
+  } catch (error) {
+    Beacons.stopRangingBeaconsInRegion('STOPS', beaconId);
+    Beacons.stopRangingBeaconsInRegion('BUSSES', vehicleBeaconId);
+    if (!beaconFound) dispatch(beaconError("Beacon didn't start ranging"));
+    if (!vehicleBeaconsFound) dispatch(vehicleBeaconError("Beacon didn't start ranging"));
+    tryingToFindBeacons = false;
   }
-  catch (error) {}
 
   // Print a log of the detected iBeacons (1 per 5 second)
   DeviceEventEmitter.addListener('beaconsDidRange', (data) => {
-    console.log(data)
-    if (attempts === 10) {
+    if (attempts === 5) {
       Beacons.stopRangingBeaconsInRegion('STOPS', beaconId);
       Beacons.stopRangingBeaconsInRegion('BUSSES', vehicleBeaconId);
       if (!beaconFound) dispatch(beaconError('Beacon not found in 5 seconds'));
@@ -135,9 +134,15 @@ const getData = async function getData(dispatch) {
 
 export const getBeaconData = function getBeaconData() {
   if (!tryingToFindBeacons) {
+    tryingToFindBeacons = true;
+
+    attempts = 0;
+    beaconFound = false;
+    vehicleBeaconsFound = false;
+
     return (dispatch) => {
-      getData(dispatch);
       dispatch(requestBeaconData());
+      getData(dispatch);
     };
   }
 

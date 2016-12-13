@@ -4,6 +4,7 @@ export const REQUEST_GPS_LOCATION = 'REQUEST_GPS_LOCATION';
 export const CLEAR_LOCATION = 'CLEAR_LOCATION';
 
 let watchId = false;
+let coords;
 
 export const setGpsLocation = function setGpsLocation(gpsLocationData) {
   return {
@@ -33,7 +34,8 @@ export const getGpsLocation = function getGpsLocation() {
     if (!watchId) {
       dispatch(requestGpsLocation());
       navigator.geolocation.getCurrentPosition((position) => {
-        dispatch(setGpsLocation(position.coords));
+        coords = position.coords
+        dispatch(setGpsLocation(coords));
       },
       (error) => {
         dispatch(gpsLocationError(error));
@@ -46,7 +48,8 @@ export const getGpsLocation = function getGpsLocation() {
 
 
       watchId = navigator.geolocation.watchPosition((position) => {
-        dispatch(setGpsLocation(position.coords));
+        coords = position.coords;
+        dispatch(setGpsLocation(coords));
       },
       (error) => {},
         {
@@ -54,6 +57,10 @@ export const getGpsLocation = function getGpsLocation() {
           timeout: 60000,
           maximumAge: 1000,
         });
+    } else if (coords) {
+      dispatch(setGpsLocation(coords));
+    } else {
+      dispatch(requestGpsLocation());
     }
   };
 };
