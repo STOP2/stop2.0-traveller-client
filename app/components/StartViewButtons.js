@@ -24,7 +24,7 @@ class StartViewButtons extends Component {
     if (props.scene.name === 'start') {
       this.props.resetState();
       this.props.getGpsLocation();
-      this.props.getBeaconData();
+      //this.props.getBeaconData();
     }
   }
 

@@ -20,8 +20,6 @@ let vehicleBeaconsFound = false;
 let tryingToFindBeacons = false;
 let attempts = 0;
 
-let listener;
-
 export const setBeaconData = function setBeaconData(beaconData) {
   return {
     type: SET_BEACON_DATA,
@@ -81,7 +79,7 @@ const getData = async function getData(dispatch) {
   }
 
   // Print a log of the detected iBeacons (1 per 5 second)
-  listener = DeviceEventEmitter.addListener('beaconsDidRange', (data) => {
+  DeviceEventEmitter.addListener('beaconsDidRange', (data) => {
     if (attempts === 5) {
       Beacons.stopRangingBeaconsInRegion('STOPS', beaconId);
       Beacons.stopRangingBeaconsInRegion('BUSSES', vehicleBeaconId);
@@ -138,10 +136,6 @@ const getData = async function getData(dispatch) {
 
 export const getBeaconData = function getBeaconData() {
   if (!tryingToFindBeacons) {
-    if (listener) {
-      listener.remove();
-    }
-
     tryingToFindBeacons = true;
 
     attempts = 0;
