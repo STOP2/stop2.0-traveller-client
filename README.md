@@ -6,7 +6,7 @@ Made with [React Native](https://facebook.github.io/react-native/) and [Redux](h
 
 <a href="https://play.google.com/store/apps/details?id=com.stop2travellerclient&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img width="200" alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"/></a>
 
-#### How to setup development environment (UNDER PROGRESS) 
+#### How to setup the development environment
 
 You'll need [Node.js](https://nodejs.org/en/) version >= 4.
 
@@ -34,22 +34,20 @@ Change buildToolsVersion from 23.0.1 to 25.0.0 in these files:
 
 Download and install Android Studio: https://developer.android.com/studio/index.html
 
-Open Android Studio -> Tools -> SDK Manager -> Launch SDK Manager (or in command line: cd tools && ./android on android SDK folder) and install Android 6.0 and Android SDK Build-tools 23.0.3.
+Open Android Studio -> Tools -> SDK Manager -> Launch SDK Manager (or in command line: cd tools && ./android on android SDK folder) and install Android 6.0 and Android SDK Build-tools 25.0.0.
 
 Set up Android keystore: Follow steps "Generating a signing key" and "Setting up gradle variables" at https://facebook.github.io/react-native/docs/signed-apk-android.html
 
-Run in Android emulator:
+Run on Android emulator:
 Create new AVD (Android Virtual Device) with Android Studio or in command line: cd tools && ./android avd (on android SDK folder)
 Start the emulator on Android Studio or in command line: cd tools && ./emulator -avd name_of_your_avd
 
-Run in phone:
+Run on phone:
 Unlock Developer Settings on Android: Settings -> About Phone -> Tap "Build number" 7 times and the Developer options will be unlocked and available
 Enable Developer options and USB debugging: Settings -> Developer options -> Enable Android debugging
 Connect the phone to PC with USB
 
 Run the app (the app will run on the device if it's connected, otherwise it will run on the emulator):
-
-In debug mode (shows errors & warnings):
 
 Ensure that the React Native packager is running (you may skip this step, it should automatically start on the next step):
 ```bash
@@ -59,8 +57,7 @@ To start the build process, run:
 ```bash
 react-native run-android
 ```
-
-In production mode (hides errors & warnings):
+to run the app on production mode (hides errors & warnings):
 ```bash
 react-native run-android --variant=release
 ```
