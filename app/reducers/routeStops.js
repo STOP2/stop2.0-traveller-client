@@ -23,7 +23,7 @@ const routeStops = (state = initialState, action) => {
       });
 
     case REQUEST_ROUTE_STOPS_ERROR:
-      return Object.assign({}, state, { sentStoprequest: action.sentStoprequest });
+      return Object.assign({}, state, { errorFetchingStops: action.error });
 
     case RESET_STATE:
       return Object.assign({}, state, initialState);

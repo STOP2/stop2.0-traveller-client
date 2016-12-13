@@ -8,8 +8,8 @@ import StartViewButtons from '../components/StartViewButtons'
 import AccessibilityView from '../components/AccessibilityView'
 
 import { resetState } from '../actions/resetStateAction'
-import BeaconController from '../components/BeaconController'
 import { getGpsLocation } from '../actions/gpsLocationActions'
+import { getBeaconData } from '../actions/beaconLocationActions'
 
 class StartView extends Component {
     constructor()
@@ -52,13 +52,14 @@ class StartView extends Component {
     {
         this.props.resetState()
         this.requestLocationPermission()
+        this.props.getBeaconData()
     }
 
     render()
     {
         return (
             <AccessibilityView style={styles.start} name={this.sceneName}>
-                <BeaconController/><StartViewButtons />
+                <StartViewButtons />
             </AccessibilityView>
         )
     }
@@ -68,7 +69,9 @@ StartView.propTypes = {
     gettingGpsLocation: React.PropTypes.bool.isRequired,
     locationError: React.PropTypes.string,
     locationPermissionError: React.PropTypes.string,
-    getGpsLocation: React.PropTypes.func.isRequired
+    getGpsLocation: React.PropTypes.func.isRequired,
+    getBeaconData: React.PropTypes.func.isRequired,
+    resetState: React.PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) =>
@@ -86,6 +89,10 @@ const mapDispatchToProps = (dispatch) =>
         getGpsLocation: () =>
         {
             dispatch(getGpsLocation(navigator.geolocation.getCurrentPosition))
+        },
+        getBeaconData: () =>
+        {
+            dispatch(getBeaconData())
         },
         resetState: () =>
         {

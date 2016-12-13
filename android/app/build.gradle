@@ -139,6 +139,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-bluetooth-serial')
     compile project(':react-native-beacons-android')
     compile project(':react-native-fcm')
     compile project(':react-native-localization')

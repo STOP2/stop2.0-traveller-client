@@ -9,6 +9,7 @@ Object {
 exports[`beacon location actions creates a REQUEST_BEACON_DATA action 1`] = `
 Object {
   "gettingBeaconData": true,
+  "gettingVehicleBeaconData": true,
   "type": "REQUEST_BEACON_DATA",
 }
 `;

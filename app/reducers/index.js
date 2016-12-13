@@ -7,6 +7,7 @@ import gpsLocation from './gpsLocation';
 import beacons from './beacons';
 import pushNotifications from './pushNotifications';
 import routes from './routes';
+import vehicles from './vehicles';
 
 const reducers = combineReducers({
   departures,
@@ -14,6 +15,7 @@ const reducers = combineReducers({
   routeStops,
   gpsLocation,
   beacons,
+  vehicles,
   pushNotifications,
   routes,
 });
